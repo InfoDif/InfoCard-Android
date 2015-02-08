@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.43</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.5.html'>Next</a></p>
+<a name="F.4"></a><h2>F.4 2.43</h2>
+
+<p>Released on February 5th, 2009</p>
+<a name="F.4.1"></a><h3>F.4.1 Release Notes</h3>
+<ul>
+<li>A few minor changes were made to the new plug-in API that break backward compatibility. Header and library paths were changed and RegisterPluginCallback has changed its return value.</li></ul>
+<a name="F.4.2"></a><h3>F.4.2 Changelog</h3>
+<a name="F.4.2.1"></a><h4>F.4.2.1 Minor Changes</h4>
+<ul>
+<li>Added WinCore.nsh, WinDef.nsh, WinError.nsh, WinNT.nsh and WinUser.nsh for more useful Windows definitions</li><li>Fixed a crash caused by <a href="Section5.1.html#5.1.10">!packhdr</a> compressing resources (<a href="http://sourceforge.net/support/tracker.php?aid=2533431">bug #2533431</a>)</li><li>Minor documentation improvements (including <a href="http://sourceforge.net/support/tracker.php?aid=2564005">bug #2564005</a>)</li><li><a href="#" onclick="parser('../Docs/Modern UI 2/Readme.html')">Modern UI 2</a>: Fixed MUI_DIRECTORYPAGE_BGCOLOR (<a href="http://sourceforge.net/support/tracker.php?aid=2494528">bug #2494528</a>)</li></ul>
+<a name="F.4.2.2"></a><h4>F.4.2.2 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/Banner/Readme.txt')">Banner</a>: Fixed installer showing on the background when Banner was used in .onInit</li><li><a href="#" onclick="parser('../Docs/makensisw/Readme.txt')">MakeNSISW</a>: Added Ctrl+K hotkey for build cancelation (<a href="http://sourceforge.net/support/tracker.php?aid=2557392">RFE #2557392</a>)</li><li><a href="#" onclick="parser('../Docs/nsDialogs/Readme.html')">nsDialogs</a>: Added NSD_SetIcon (<a href="http://sourceforge.net/support/tracker.php?aid=2500960">patch #2500960</a>)</li></ul>
+<a name="F.4.2.3"></a><h4>F.4.2.3 Translations</h4>
+<ul>
+<li>Added Esperanto</li><li>Bulgarian fixes</li></ul>
+<a name="F.4.2.4"></a><h4>F.4.2.4 Plug-in API</h4>
+<ul>
+<li>Added VS2008 project files</li><li>Better installation of header and library files under POSIX - see INSTALL file for more information</li><li>Header and library files were moved to a subdirectory named <em>nsis</em> to prevent collisions</li><li><em>RegisterPluginCallback</em> now returns <em>int</em> instead of <em>BOOL</em> for a wider range of error reporting</li></ul>
+<a name="F.4.2.5"></a><h4>F.4.2.5 Build System</h4>
+<ul>
+<li>Added fink's mingw prefixes (<a href="http://sourceforge.net/support/tracker.php?aid=2495138">bug #2495138</a>)</li><li>Fixed BOOL build issue on OS X (<a href="http://sourceforge.net/support/tracker.php?aid=2497290">bug #2497290</a>)</li><li>Fixed iconv dependency detection on OS X (<a href="http://sourceforge.net/support/tracker.php?aid=2494539">bug #2494539</a>)</li><li>Fixed Solaris builds (<a href="http://sourceforge.net/support/tracker.php?aid=2497172">patch #2497172</a>)</li></ul>
+<p><a href='SectionF.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.5.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

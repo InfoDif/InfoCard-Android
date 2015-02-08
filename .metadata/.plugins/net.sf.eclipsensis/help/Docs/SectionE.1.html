@@ -1,0 +1,922 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>File Functions Header</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='AppendixE.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionE.2.html'>Next</a></p>
+<a name="E.1"></a><h2>E.1 File Functions Header</h2>
+<a name="E.1.1"></a><h3>E.1.1 Introduction</h3>
+
+<p>Include header:</p>
+<pre>!include &quot;FileFunc.nsh&quot;
+</pre>
+
+<p>Call functions:</p>
+<pre>Section Install
+     ${GetFileExt} &quot;C:\My Downloads\Index.html&quot; $R0
+     ; $R0=&quot;html&quot;
+SectionEnd
+</pre>
+<pre>Section un.Install
+     ${GetParent} &quot;C:\My Downloads\Index.html&quot; $R0
+     ; $R0=&quot;C:\My Downloads&quot;
+SectionEnd
+</pre>
+<a name="E.1.2"></a><h3>E.1.2 Locate</h3>
+<ul>
+<li>Find files, directories and empty directories with mask and size options.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${Locate} &quot;[Path]&quot; &quot;[Options]&quot; &quot;Function&quot;
+</pre>
+<pre>&quot;[Path]&quot;      ; Disk or Directory
+              ;
+&quot;[Options]&quot;   ; /L=[FD|F|D|DE|FDE]
+              ;     /L=FD    - Locate Files and Directories (default)
+              ;     /L=F     - Locate Files only
+              ;     /L=D     - Locate Directories only
+              ;     /L=DE    - Locate Empty Directories only
+              ;     /L=FDE   - Locate Files and Empty Directories
+              ; /M=[mask]
+              ;     /M=*.*         - Locate all (default)
+              ;     /M=*.doc       - Locate Work.doc, 1.doc ...
+              ;     /M=Pho*        - Locate PHOTOS, phone.txt ...
+              ;     /M=win???.exe  - Locate winamp.exe, winver.exe ...
+              ;     /M=winamp.exe  - Locate winamp.exe only
+              ; /S=No:No[B|K|M|G]
+              ;     /S=      - Don't locate file size (faster) (default)
+              ;     /S=0:0B  - Locate only files of 0 Bytes exactly
+              ;     /S=5:9K  - Locate only files of 5 to 9 Kilobytes
+              ;     /S=:10M  - Locate only files of 10 Megabyte or less
+              ;     /S=1G    - Locate only files of 1 Gigabyte or more
+              ; /G=[1|0]
+              ;     /G=1     - Locate with subdirectories (default)
+              ;     /G=0     - Locate without subdirectories
+              ; /B=[0|1]
+              ;     /B=0     - Banner isn't used (default)
+              ;     /B=1     - Banner is used. Callback when function
+              ;                start to search in new directory
+&quot;Function&quot;    ; Callback function when found
+
+Function &quot;Function&quot;
+&#0009;; $R9    &quot;path\name&quot;
+&#0009;; $R8    &quot;path&quot;
+&#0009;; $R7    &quot;name&quot;
+&#0009;; $R6    &quot;size&quot;  ($R6=&quot;&quot; if directory, $R6=&quot;0&quot; if file with /S=)
+
+&#0009;; $R0-$R5  are not used (save data in them).
+&#0009;; ...
+
+&#0009;Push $var    ; If $var=&quot;StopLocate&quot; Then exit from function
+FunctionEnd
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if disk or directory isn't exist <br>- Error flag if syntax error <br>- See also <a href="http://nsis.sourceforge.net/Locate_plugin">Locate plugin</a></p>
+
+<p><b>Example (Find one file):</b></p>
+<pre>Section
+&#0009;${Locate} &quot;C:\ftp&quot; &quot;/L=F /M=RPC DCOM.rar /S=1K&quot; &quot;Example1&quot;
+&#0009;; 'RPC DCOM.rar' file in 'C:\ftp' with size 1 Kb or more
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+&#0009;MessageBox MB_OK &quot;$$R0=$R0&quot;
+SectionEnd
+
+Function Example1
+&#0009;StrCpy $R0 $R9
+&#0009;; $R0=&quot;C:\ftp\files\RPC DCOM.rar&quot;
+
+&#0009;MessageBox MB_YESNO '$R0$\n$\nFind next?' IDYES +2
+&#0009;StrCpy $0 StopLocate
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Write results to a text file):</b></p>
+<pre>Section
+&#0009;GetTempFileName $R0
+&#0009;FileOpen $R1 $R0 w
+&#0009;${Locate} &quot;C:\ftp&quot; &quot;/S=:2M /G=0&quot; &quot;Example2&quot;
+&#0009;; folders and all files with size 2 Mb or less
+&#0009;; don't scan subdirectories
+&#0009;FileClose $R1
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+&#0009;Exec '&quot;notepad.exe&quot; &quot;$R0&quot;'
+SectionEnd
+
+Function Example2
+&#0009;StrCmp $R6 '' 0 +3
+&#0009;FileWrite $R1 &quot;Directory=$R9$\r$\n&quot;
+&#0009;goto +2
+&#0009;FileWrite $R1 &quot;File=$R9  Size=$R6 Mb$\r$\n&quot;
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Write results to an INI file):</b></p>
+<pre>Section
+&#0009;GetTempFileName $R0
+&#0009;${Locate} &quot;C:\ftp&quot; &quot;/L=F /S=0K&quot; &quot;Example3&quot;
+&#0009;; all files in 'C:\ftp' with size detect in Kb
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+&#0009;Exec '&quot;notepad.exe&quot; &quot;$R0&quot;'
+SectionEnd
+
+Function Example3
+&#0009;WriteINIStr $R0 &quot;$R8&quot; &quot;$R7&quot; &quot;$R6 Kb&quot;
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Delete empty directories):</b></p>
+<pre>Section
+&#0009;StrCpy $R2 0
+&#0009;StrCpy $R3 0
+
+&#0009;loop:
+&#0009;StrCpy $R1 0
+&#0009;${Locate} &quot;C:\ftp&quot; &quot;/L=DE&quot; &quot;Example4&quot;
+&#0009;IntOp $R3 $R3 + 1
+&#0009;IntOp $R2 $R2 + $R1
+&#0009;StrCmp $R0 StopLocate +2
+&#0009;StrCmp $R1 0 0 loop
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK 'error' IDOK +2
+&#0009;MessageBox MB_OK '$R2 directories were removed$\n$R3 loops'
+SectionEnd
+
+Function Example4
+&#0009;MessageBox MB_YESNOCANCEL 'Delete empty &quot;$R9&quot;?' IDNO end IDCANCEL cancel
+&#0009;RMDir $R9
+&#0009;IntOp $R1 $R1 + 1
+&#0009;goto end
+
+&#0009;cancel:
+&#0009;StrCpy $R0 StopLocate
+
+&#0009;end:
+&#0009;Push $R0
+FunctionEnd
+</pre>
+
+<p><b>Example (Move all files into one folder):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 &quot;C:\ftp&quot;   ;Directory move from
+&#0009;StrCpy $R1 &quot;C:\ftp2&quot;  ;Directory move into
+
+&#0009;StrCpy $R2 0
+&#0009;StrCpy $R3 0
+&#0009;${Locate} &quot;$R0&quot; &quot;/L=F&quot; &quot;Example5&quot;
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK 'error' IDOK +4
+&#0009;StrCmp $R3 0 0 +2
+&#0009;MessageBox MB_OK '$R2 files were moved' IDOK +2
+&#0009;MessageBox MB_OK '$R2 files were moved$\n$R3 files were NOT moved'
+SectionEnd
+
+Function Example5
+&#0009;StrCmp $R8 $R1 +6
+&#0009;IfFileExists '$R1\$R7' +4
+&#0009;Rename $R9 '$R1\$R7'
+&#0009;IntOp $R2 $R2 + 1
+&#0009;goto +2
+&#0009;IntOp $R3 $R3 + 1
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Copy files with log):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 &quot;C:\ftp&quot;   ;Directory copy from
+&#0009;StrCpy $R1 &quot;C:\ftp2&quot;  ;Directory copy into
+&#0009;StrLen $R2 $R0
+
+&#0009;GetTempFileName $0
+&#0009;FileOpen $R3 $0 w
+&#0009;${Locate} &quot;$R0&quot; &quot;/L=FDE&quot; &quot;Example6&quot;
+&#0009;FileClose $R3
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK 'error'
+
+&#0009;Exec '&quot;notepad.exe&quot; &quot;$0&quot;'     ;view log
+SectionEnd
+
+Function Example6
+&#0009;StrCpy $1 $R8 '' $R2
+
+&#0009;StrCmp $R6 '' 0 +3
+&#0009;CreateDirectory '$R1$1\$R7'
+&#0009;goto end
+&#0009;CreateDirectory '$R1$1'
+&#0009;CopyFiles /SILENT $R9 '$R1$1'
+
+&#0009;IfFileExists '$R1$1\$R7' 0 +3
+&#0009;FileWrite $R3 &quot;-old:$R9  -new:$R1$1\$R7  -success$\r$\n&quot;
+&#0009;goto +2
+&#0009;FileWrite $R3 &quot;-old:$R9  -new:$R1$1\$R7  -failed$\r$\n&quot;
+
+&#0009;end:
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Recreate directory structure):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 &quot;C:\ftp&quot;     ;Directory structure from
+&#0009;StrCpy $R1 &quot;C:\ftp2&quot;    ;Directory structure into
+&#0009;StrLen $R2 $R0
+
+&#0009;${Locate} &quot;$R0&quot; &quot;/L=D&quot; &quot;Example7&quot;
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK 'error'
+SectionEnd
+
+Function Example7
+&#0009;StrCpy $1 $R9 '' $R2
+&#0009;CreateDirectory '$R1$1'
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Locate with banner - <a href="http://nsis.sourceforge.net/Nxs_plug-in">NxS plugin</a> required):</b></p>
+<pre>Section
+&#0009;nxs::Show /NOUNLOAD `$(^Name) Setup` /top `Setup searching something$\r$\nPlease wait... If you can..` /h 1 /can 1 /end
+&#0009;${Locate} &quot;C:\WINDOWS&quot; &quot;/L=F /M=*.inf /B=1&quot; &quot;Example8&quot;
+&#0009;nxs::Destroy
+SectionEnd
+
+Function Example8
+&#0009;StrCmp $R0 $R8 abortcheck
+&#0009;StrCpy $R0 $R8
+&#0009;nxs::Update /NOUNLOAD /sub &quot;$R8&quot; /pos 78 /end
+
+&#0009;abortcheck:
+&#0009;nxs::HasUserAborted /NOUNLOAD
+&#0009;Pop $0
+&#0009;StrCmp $0 1 0 +2
+&#0009;StrCpy $0 StopLocate
+
+&#0009;StrCmp $R9 '' end
+&#0009;;...
+
+&#0009;end:
+&#0009;Push $0
+FunctionEnd
+</pre>
+<a name="E.1.3"></a><h3>E.1.3 GetSize</h3>
+<ul>
+<li>Find the size of a file, files mask or directory.</li><li>Find the sum of the files, directories and subdirectories.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetSize} &quot;[Path]&quot; &quot;[Options]&quot; $var1 $var2 $var3
+</pre>
+<pre>&quot;[Path]&quot;      ; Disk or Directory
+              ;
+&quot;[Options]&quot;   ; /M=[mask]
+              ;     /M=*.*         - Find all (default)
+              ;     /M=*.doc       - Find Work.doc, 1.doc ...
+              ;     /M=Pho*        - Find PHOTOS, phone.txt ...
+              ;     /M=win???.exe  - Find winamp.exe, winver.exe ...
+              ;     /M=winamp.exe  - Find winamp.exe only
+              ; /S=No:No[B|K|M|G]
+              ;     /S=      - Don't find file size (faster) (default)
+              ;     /S=0:0B  - Find only files of 0 Bytes exactly
+              ;     /S=5:9K  - Find only files of 5 to 9 Kilobytes
+              ;     /S=:10M  - Find only files of 10 Megabyte or less
+              ;     /S=1G    - Find only files of 1 Gigabyte or more
+              ; /G=[1|0]
+              ;     /G=1     - Find with subdirectories (default)
+              ;     /G=0     - Find without subdirectories
+              ;
+$var1         ; Result1: Size
+$var2         ; Result2: Sum of files
+$var3         ; Result3: Sum of directories
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if disk or directory isn't exist <br>- Error flag if syntax error <br>- See also <a href="http://nsis.sourceforge.net/Locate_plugin">Locate plugin</a></p>
+
+<p><b>Example (1):</b></p>
+<pre>Section
+&#0009;; Find file size &quot;C:\WINDOWS\Explorer.exe&quot; in kilobytes
+
+&#0009;${GetSize} &quot;C:\WINDOWS&quot; &quot;/M=Explorer.exe /S=0K /G=0&quot; $0 $1 $2
+&#0009;; $0=&quot;220&quot; Kb
+&#0009;; $1=&quot;1&quot;   files
+&#0009;; $2=&quot;&quot;    directories
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (2):</b></p>
+<pre>Section
+&#0009;; Find folder size &quot;C:\Installs\Reanimator\Drivers&quot; in megabytes
+
+&#0009;${GetSize} &quot;C:\Installs\Reanimator\Drivers&quot; &quot;/S=0M&quot; $0 $1 $2
+&#0009;; $0=&quot;132&quot; Mb
+&#0009;; $1=&quot;555&quot; files
+&#0009;; $2=&quot;55&quot;  directories
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (3):</b></p>
+<pre>Section
+&#0009;; Find sum of files and folders &quot;C:\WINDOWS&quot; (no subfolders)
+
+&#0009;${GetSize} &quot;C:\WINDOWS&quot; &quot;/G=0&quot; $0 $1 $2
+&#0009;; $0=&quot;&quot;    size
+&#0009;; $1=&quot;253&quot; files
+&#0009;; $2=&quot;46&quot;  directories
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+</pre>
+<a name="E.1.4"></a><h3>E.1.4 DriveSpace</h3>
+<ul>
+<li>Get total, occupied or free space of the drive.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${DriveSpace} &quot;[Drive]&quot; &quot;[Options]&quot; $var
+</pre>
+<pre>&quot;[Drive]&quot;     ; Disk to check
+              ;     
+&quot;[Options]&quot;   ; /D=[T|O|F]
+              ;     /D=T  - Total space (default)
+              ;     /D=O  - Occupied space
+              ;     /D=F  - Free space
+              ; /S=[B|K|M|G]
+              ;     /S=B  - size in Bytes (default)
+              ;     /S=K  - size in Kilobytes
+              ;     /S=M  - size in Megabytes
+              ;     /S=G  - size in Gigabytes
+              ;
+$var          ; Result: Size
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if disk isn't exist or not ready <br>- Error flag if syntax error</p>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${DriveSpace} &quot;C:\&quot; &quot;/D=F /S=M&quot; $R0
+&#0009;; $R0=&quot;2530&quot;   megabytes free on drive C:
+SectionEnd
+</pre>
+<a name="E.1.5"></a><h3>E.1.5 GetDrives</h3>
+<ul>
+<li>Find all available drives in the system.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetDrives} &quot;[Option]&quot; &quot;Function&quot;
+</pre>
+<pre>&quot;[Option]&quot;      ; [FDD+HDD+CDROM+NET+RAM]
+                ;   FDD    Floppy Disk Drives
+                ;   HDD    Hard Disk Drives 
+                ;   CDROM  CD-ROM Drives
+                ;   NET    Network Drives
+                ;   RAM    RAM Disk Drives
+                ;
+                ; [ALL]
+                ;   Find all drives by letter (default)
+                ;
+&quot;Function&quot;      ; Callback function when found
+
+Function &quot;Function&quot;
+&#0009;; $9    &quot;drive letter&quot;  (a:\ c:\ ...)
+&#0009;; $8    &quot;drive type&quot;    (FDD HDD ...)
+
+&#0009;; $R0-$R9  are not used (save data in them).
+&#0009;; ...
+
+&#0009;Push $var    ; If $var=&quot;StopGetDrives&quot; Then exit from function
+FunctionEnd
+</pre>
+
+<p><b>Example1:</b></p>
+<pre>Section
+&#0009;${GetDrives} &quot;FDD+CDROM&quot; &quot;Example1&quot;
+SectionEnd
+
+Function Example1
+&#0009;MessageBox MB_OK &quot;$9  ($8 Drive)&quot;
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example2:</b></p>
+<pre>Section
+&#0009;${GetDrives} &quot;ALL&quot; &quot;Example2&quot;
+SectionEnd
+
+Function Example2
+&#0009;MessageBox MB_OK &quot;$9  ($8 Drive)&quot;
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example3 (Get type of drive):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 &quot;D:\&quot;      ;Drive letter
+&#0009;StrCpy $R1 &quot;invalid&quot;
+
+&#0009;${GetDrives} &quot;ALL&quot; &quot;Example3&quot;
+
+&#0009;MessageBox MB_OK &quot;Type of drive $R0 is $R1&quot;
+SectionEnd
+
+Function Example3
+&#0009;StrCmp $9 $R0 0 +3
+&#0009;StrCpy $R1 $8
+&#0009;StrCpy $0 StopGetDrives
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+<a name="E.1.6"></a><h3>E.1.6 GetTime</h3>
+<ul>
+<li>Get local or system time.</li><li>Get file time (access, creation and modification).</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetTime} &quot;[File]&quot; &quot;[Option]&quot; $var1 $var2 $var3 $var4 $var5 $var6 $var7
+</pre>
+<pre>&quot;[File]&quot;        ; Ignored if &quot;L&quot; or &quot;LS&quot;
+                ;
+&quot;[Option]&quot;      ; [Options]
+                ;   L   Local time
+                ;   A   last Access file time
+                ;   C   Creation file time
+                ;   M   Modification file time
+                ;   LS  System time (UTC)
+                ;   AS  last Access file time (UTC)
+                ;   CS  Creation file time (UTC)
+                ;   MS  Modification file time (UTC)
+                ;
+$var1           ; Result1: day
+$var2           ; Result2: month
+$var3           ; Result3: year
+$var4           ; Result4: day of week name
+$var5           ; Result5: hour
+$var6           ; Result6: minute
+$var7           ; Result7: seconds
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if file isn't exist <br>- Error flag if syntax error <br>- See also <a href="http://nsis.sourceforge.net/Time_plugin">Time plugin</a></p>
+
+<p><b>Example (Get local time):</b></p>
+<pre>Section
+&#0009;${GetTime} &quot;&quot; &quot;L&quot; $0 $1 $2 $3 $4 $5 $6
+&#0009;; $0=&quot;01&quot;      day
+&#0009;; $1=&quot;04&quot;      month
+&#0009;; $2=&quot;2005&quot;    year
+&#0009;; $3=&quot;Friday&quot;  day of week name
+&#0009;; $4=&quot;16&quot;      hour
+&#0009;; $5=&quot;05&quot;      minute
+&#0009;; $6=&quot;50&quot;      seconds
+
+&#0009;MessageBox MB_OK 'Date=$0/$1/$2 ($3)$\nTime=$4:$5:$6'
+SectionEnd
+</pre>
+
+<p><b>Example (Get file time):</b></p>
+<pre>Section
+&#0009;${GetTime} &quot;$WINDIR\Explorer.exe&quot; &quot;C&quot; $0 $1 $2 $3 $4 $5 $6
+&#0009;; $0=&quot;12&quot;       day
+&#0009;; $1=&quot;10&quot;       month
+&#0009;; $2=&quot;2004&quot;     year
+&#0009;; $3=&quot;Tuesday&quot;  day of week name
+&#0009;; $4=&quot;2&quot;        hour
+&#0009;; $5=&quot;32&quot;       minute
+&#0009;; $6=&quot;03&quot;       seconds
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+&#0009;MessageBox MB_OK 'Date=$0/$1/$2 ($3)$\nTime=$4:$5:$6'
+SectionEnd
+</pre>
+
+<p><b>Example (Get system time):</b></p>
+<pre>Section
+&#0009;${GetTime} &quot;&quot; &quot;LS&quot; $0 $1 $2 $3 $4 $5 $6
+&#0009;; $0=&quot;01&quot;      day
+&#0009;; $1=&quot;04&quot;      month
+&#0009;; $2=&quot;2005&quot;    year
+&#0009;; $3=&quot;Friday&quot;  day of week name
+&#0009;; $4=&quot;11&quot;      hour
+&#0009;; $5=&quot;05&quot;      minute
+&#0009;; $6=&quot;50&quot;      seconds
+
+&#0009;MessageBox MB_OK 'Date=$0/$1/$2 ($3)$\nTime=$4:$5:$6'
+SectionEnd
+</pre>
+
+<p><b>Example (Convert time to 12-hour format AM/PM):</b></p>
+<pre>Section
+&#0009;${GetTime} &quot;&quot; &quot;L&quot; $0 $1 $2 $3 $4 $5 $6
+
+&#0009;StrCmp $4 0 0 +3
+&#0009;StrCpy $4 12
+&#0009;goto +3
+&#0009;StrCmp $4 12 +5
+&#0009;IntCmp $4 12 0 0 +3
+&#0009;StrCpy $7 AM
+&#0009;goto +3
+&#0009;IntOp $4 $4 - 12
+&#0009;StrCpy $7 PM
+
+&#0009;MessageBox MB_OK 'Date=$0/$1/$2 ($3)$\nTime=$4:$5:$6 $7'
+SectionEnd
+</pre>
+<a name="E.1.7"></a><h3>E.1.7 GetFileAttributes</h3>
+<ul>
+<li>Get attributes of file or directory.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetFileAttributes} &quot;[File]&quot; &quot;[Attributes]&quot; $var
+</pre>
+<pre>&quot;[File]&quot;          ; File or directory
+                  ;
+&quot;[Attributes]&quot;    ; &quot;ALL&quot;  (default)
+                  ;  -all attributes of file combined with &quot;|&quot; to output
+                  ;
+                  ; &quot;READONLY|HIDDEN|SYSTEM|DIRECTORY|ARCHIVE|
+                  ; DEVICE|NORMAL|TEMPORARY|SPARSE_FILE|REPARSE_POINT|
+                  ; COMPRESSED|OFFLINE|NOT_CONTENT_INDEXED|ENCRYPTED&quot;
+                  ;  -file must have specified attributes
+                  ;
+$var              ; Result:
+                  ;    $var=attr1|attr2|... (if used &quot;ALL&quot;)
+                  ;    $var=1   file has specified attributes
+                  ;    $var=0   file has no specified attributes
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if file doesn't exist</p>
+
+<p><b>Example1:</b></p>
+<pre>Section
+&#0009;${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;ALL&quot; $R0
+&#0009;; $R0=READONLY|HIDDEN|SYSTEM|ARCHIVE
+SectionEnd
+</pre>
+
+<p><b>Example2:</b></p>
+<pre>Section
+&#0009;${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;SYSTEM|HIDDEN&quot; $R0
+&#0009;; $R0=1
+SectionEnd
+</pre>
+
+<p><b>Example3:</b></p>
+<pre>Section
+&#0009;${GetFileAttributes} &quot;C:\MSDOS.SYS&quot; &quot;NORMAL&quot; $R0
+&#0009;; $R0=0
+SectionEnd
+</pre>
+<a name="E.1.8"></a><h3>E.1.8 GetFileVersion</h3>
+<ul>
+<li>Get version information from executable file.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetFileVersion} &quot;[Executable]&quot; $var
+</pre>
+<pre>&quot;[Executable]&quot;      ; Executable file (*.exe *.dll ...)
+$var                ; Result: Version number
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if file doesn't exist <br>- Error flag if file doesn't contain version information</p>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${GetFileVersion} &quot;C:\ftp\program.exe&quot; $R0
+&#0009;; $R0=&quot;1.1.0.12&quot;
+SectionEnd
+</pre>
+<a name="E.1.9"></a><h3>E.1.9 GetExeName</h3>
+<ul>
+<li>Get installer filename (with valid case for Windows 98/Me).</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetExeName} $var
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${GetExeName} $R0
+&#0009;; $R0=&quot;C:\ftp\program.exe&quot;
+SectionEnd
+</pre>
+<a name="E.1.10"></a><h3>E.1.10 GetExePath</h3>
+<ul>
+<li>Get installer pathname ($EXEDIR with valid case for Windows 98/Me).</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetExePath} $var
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${GetExePath} $R0
+&#0009;; $R0=&quot;C:\ftp&quot;
+SectionEnd
+</pre>
+<a name="E.1.11"></a><h3>E.1.11 GetParameters</h3>
+<ul>
+<li>Get command line parameters.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetParameters} $var
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${GetParameters} $R0
+&#0009;; $R0=&quot;[parameters]&quot;
+SectionEnd
+</pre>
+<a name="E.1.12"></a><h3>E.1.12 GetOptions</h3>
+<ul>
+<li>Get options from command line parameters.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetOptions} &quot;[Parameters]&quot; &quot;[Option]&quot; $var
+</pre>
+<pre>&quot;[Parameters]&quot;     ; command line parameters
+                   ;
+&quot;[Option]&quot;         ; option name
+                   ;
+$var               ; Result: option string
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if option not found <br>- First option symbol it is delimiter</p>
+
+<p><b>Example1:</b></p>
+<pre>Section
+&#0009;${GetOptions} &quot;/S /T&quot; &quot;/T&quot;  $R0
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Not found&quot; IDOK +2
+&#0009;MessageBox MB_OK &quot;Found&quot;
+SectionEnd
+</pre>
+
+<p><b>Example2:</b></p>
+<pre>Section
+&#0009;${GetOptions} &quot;-INSTDIR=C:\Program Files\Common Files -SILENT=yes&quot; &quot;-INSTDIR=&quot;  $R0
+&#0009;;$R0=C:\Program Files\Common Files
+SectionEnd
+</pre>
+
+<p><b>Example3:</b></p>
+<pre>Section
+&#0009;${GetOptions} '/SILENT=yes /INSTDIR=&quot;C:/Program Files/Common Files&quot; /ADMIN=password' &quot;/INSTDIR=&quot;  $R0
+&#0009;;$R0=C:/Program Files/Common Files
+SectionEnd
+</pre>
+
+<p><b>Example4:</b></p>
+<pre>Section
+&#0009;${GetOptions} `-SILENT=yes -INSTDIR='&quot;C:/Program Files/Common Files&quot;' -ADMIN=password` &quot;-INSTDIR=&quot;  $R0
+&#0009;;$R0=&quot;C:/Program Files/Common Files&quot;
+SectionEnd
+</pre>
+<a name="E.1.13"></a><h3>E.1.13 GetOptionsS</h3>
+<ul>
+<li>Same as <a href="SectionE.1.html#E.1.12">GetOptions</a>, but case sensitive.</li></ul>
+<a name="E.1.14"></a><h3>E.1.14 GetRoot</h3>
+<ul>
+<li>Get root directory.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetRoot} &quot;[FullPath]&quot; $var
+</pre>
+
+<p><b>Example1:</b></p>
+<pre>Section
+&#0009;${GetRoot} &quot;C:\Program Files\NSIS&quot; $R0
+&#0009;; $R0=&quot;C:&quot;
+SectionEnd
+</pre>
+
+<p><b>Example2:</b></p>
+<pre>Section
+&#0009;${GetRoot} &quot;\\SuperPimp\NSIS\Source\exehead\Ui.c&quot; $R0
+&#0009;; $R0=&quot;\\SuperPimp\NSIS&quot;
+SectionEnd
+</pre>
+<a name="E.1.15"></a><h3>E.1.15 GetParent</h3>
+<ul>
+<li>Get parent directory.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetParent} &quot;[PathString]&quot; $var
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${GetParent} &quot;C:\Program Files\Winamp\uninstwa.exe&quot; $R0
+&#0009;; $R0=&quot;C:\Program Files\Winamp&quot;
+SectionEnd
+</pre>
+<a name="E.1.16"></a><h3>E.1.16 GetFileName</h3>
+<ul>
+<li>Get last part from directory path.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetFileName} &quot;[PathString]&quot; $var
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${GetFileName} &quot;C:\Program Files\Winamp\uninstwa.exe&quot; $R0
+&#0009;; $R0=&quot;uninstwa.exe&quot;
+SectionEnd
+</pre>
+<a name="E.1.17"></a><h3>E.1.17 GetBaseName</h3>
+<ul>
+<li>Get file name without extension.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetBaseName} &quot;[FileString]&quot; $var
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${GetBaseName} &quot;C:\ftp\program.exe&quot; $R0
+&#0009;; $R0=&quot;program&quot;
+SectionEnd
+</pre>
+<a name="E.1.18"></a><h3>E.1.18 GetFileExt</h3>
+<ul>
+<li>Get extension of file.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${GetFileExt} &quot;[FileString]&quot; $var
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${GetFileExt} &quot;C:\ftp\program.exe&quot; $R0
+&#0009;; $R0=&quot;exe&quot;
+SectionEnd
+</pre>
+<a name="E.1.19"></a><h3>E.1.19 BannerTrimPath</h3>
+<ul>
+<li>Trim string path for banner.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${BannerTrimPath} &quot;[PathString]&quot; &quot;[Option]&quot; $var
+</pre>
+<pre>&quot;[PathString]&quot;    ;
+                  ;
+&quot;[Option]&quot;        ; [Length][A|B|C|D]
+                  ;
+                  ; Length  -Maximum string length
+                  ;   A     -Trim center path (default)
+                  ;           (C:\root\...\third path) 
+                  ;           If A mode not possible Then will be used B mode
+                  ;   B     -Trim right path
+                  ;           (C:\root\second path\...)
+                  ;           If B mode not possible Then will be used C mode
+                  ;   C     -Trim right string
+                  ;           (C:\root\second path\third p...)
+                  ;   D     -Trim right string + filename
+                  ;           (C:\root\second p...\third path)
+                  ;           If D mode not possible Then will be used C mode
+                  ;
+$var              ; Result:  Trimmed path
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${BannerTrimPath} &quot;C:\Server\Documents\Terminal\license.htm&quot; &quot;35A&quot; $R0
+&#0009;;$R0=C:\Server\...\Terminal\license.htm
+SectionEnd
+</pre>
+
+<p><b>Example (Banner plugin):</b></p>
+<pre>!include &quot;WinMessages.nsh&quot;
+!include &quot;FileFunc.nsh&quot;
+
+Section
+&#0009;Banner::show &quot;Starting...&quot;
+&#0009;Banner::getWindow
+&#0009;Pop $R1
+&#0009;${Locate} &quot;$WINDIR&quot; &quot;/L=F /M=*.* /B=1&quot; &quot;LocateCallback&quot;
+&#0009;Banner::destroy
+SectionEnd
+
+Function LocateCallback
+&#0009;StrCmp $R0 $R8 code
+&#0009;StrCpy $R0 $R8
+&#0009;${BannerTrimPath} &quot;$R8&quot; &quot;38B&quot; $R8
+&#0009;GetDlgItem $1 $R1 1030
+&#0009;SendMessage $1 ${WM_SETTEXT} 0 &quot;STR:$R8&quot;
+
+&#0009;code:
+&#0009;StrCmp $R9 '' end
+&#0009;;...
+
+&#0009;end:
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (<a href="http://nsis.sourceforge.net/Nxs_plug-in">NxS plugin</a>):</b></p>
+<pre>!include &quot;FileFunc.nsh&quot;
+
+Section
+&#0009;nxs::Show /NOUNLOAD `$(^Name) Setup`\
+&#0009;  /top `Setup searching something$\nPlease wait$\nIf you can...`\
+&#0009;  /h 1 /can 1 /end
+&#0009;${Locate} &quot;$WINDIR&quot; &quot;/L=F /M=*.* /B=1&quot; &quot;LocateCallback&quot;
+&#0009;nxs::Destroy
+SectionEnd
+
+Function LocateCallback
+&#0009;StrCmp $R0 $R8 abortcheck
+&#0009;StrCpy $R0 $R8
+&#0009;${BannerTrimPath} &quot;$R8&quot; &quot;55A&quot; $R8
+&#0009;nxs::Update /NOUNLOAD /sub &quot;$R8&quot; /pos 78 /end
+
+&#0009;abortcheck:
+&#0009;nxs::HasUserAborted /NOUNLOAD
+&#0009;Pop $0
+&#0009;StrCmp $0 1 0 +2
+&#0009;StrCpy $0 StopLocate
+
+&#0009;StrCmp $R9 '' end
+&#0009;;...
+
+&#0009;end:
+&#0009;Push $0
+FunctionEnd
+</pre>
+<a name="E.1.20"></a><h3>E.1.20 DirState</h3>
+<ul>
+<li>Check directory full, empty or not exist.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${DirState} &quot;[path]&quot; $var
+</pre>
+<pre>&quot;[path]&quot;      ; Directory
+$var          ; Result:
+              ;    $var=0  (empty)
+              ;    $var=1  (full)
+              ;    $var=-1 (directory not found)
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${DirState} &quot;$TEMP&quot; $R0
+&#0009;; $R0=&quot;1&quot;  directory is full
+SectionEnd
+</pre>
+<a name="E.1.21"></a><h3>E.1.21 RefreshShellIcons</h3>
+<ul>
+<li>After changing file associations, you can call this function to refresh the shell immediately.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${RefreshShellIcons}
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;WriteRegStr HKCR &quot;Winamp.File\DefaultIcon&quot; &quot;&quot; &quot;$PROGRAMFILES\Winamp\WINAMP.EXE,2&quot;
+
+&#0009;${RefreshShellIcons}
+SectionEnd
+</pre>
+<p><a href='AppendixE.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionE.2.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

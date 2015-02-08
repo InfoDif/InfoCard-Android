@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Building on Windows</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionG.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionG.3.html'>Next</a></p>
+<a name="G.2"></a><h2>G.2 Building on Windows</h2>
+
+<p>SCons will automatically detect Microsoft Visual C++. If you are looking for a free compiler to compile NSIS, we recommend <a href="http://msdn.microsoft.com/vstudio/express/visualc/download/">Microsoft Visual C++ 2005 Express Edition</a>.</p>
+
+<p>When using the Microsoft Visual C++ Toolkit 2003, add MSTOOLKIT=yes to the build command line:</p>
+<pre>scons MSTOOLKIT=yes
+</pre>
+
+<p>In case of errors about the compiler or the Platform SDK not being found, use:</p>
+<pre>set MSSDK=C:\Path\To\Platform SDK
+set VCToolkitInstallDir=C:\Path\To\VCToolkit
+scons MSTOOLKIT=yes
+</pre>
+
+<p>The open-source <a href="http://www.mingw.org/">MinGW</a> can also be used to for building, but this results in noticeably larger installers. Borland C++ or Open Watcom C/C++ might also work, but haven't been tested.</p>
+
+<p>To compile the documentation as a CHM file, hhc.exe must be in the PATH. It is available as part of <a href="http://msdn.microsoft.com/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">HTML Help Workshop</a>.</p>
+
+<p>To build NSIS Menu, install <a href="http://www.wxwidgets.org/">wxWidgets 2.8</a>, create an environment variable named <code>WXWIN</code> containing the path to the installation directory of wxWidgets, run <code>Contrib\NSIS Menu\wx\wxbuild.bat</code> and build NSIS as usual.</p>
+
+<p><b>Important notes for Microsoft Visual C++ 6.0 users:</b> The latest <a href="http://www.microsoft.com/msdownload/platformsdk/sdkupdate/">Platform SDK</a> must be installed before building. Because of flaws in the libraries distributed with Microsoft Visual C++ 6.0, not installing the Platform SDK will result in crashes when using the <a href="Section4.9.html#4.9.3.2">CopyFiles</a> command. See <a href="http://forums.winamp.com/showthread.php?s=&threadid=131964">this forum topic</a> for more information. Installing the <a href="http://msdn.microsoft.com/vstudio/downloads/tools/ppack/download.aspx">Processor Pack</a> is highly recommended to decrease the size of the installer overhead.</p>
+<p><a href='SectionG.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionG.3.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

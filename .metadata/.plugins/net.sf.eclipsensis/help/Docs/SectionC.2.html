@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Is .NET Framework installed?</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionC.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionC.3.html'>Next</a></p>
+<a name="C.2"></a><h2>C.2 Is .NET Framework installed?</h2>
+<pre> ; IsDotNETInstalled
+ ;
+ ; Based on GetDotNETVersion
+ ;   http://nsis.sourceforge.net/Get_.NET_Version
+ ;
+ ; Usage:
+ ;   Call IsDotNETInstalled
+ ;   Pop $0
+ ;   StrCmp $0 1 found.NETFramework no.NETFramework
+
+ Function IsDotNETInstalled
+   Push $0
+   Push $1
+
+   StrCpy $0 1
+   System::Call &quot;mscoree::GetCORVersion(w, i ${NSIS_MAX_STRLEN}, *i) i .r1&quot;
+   StrCmp $1 0 +2
+     StrCpy $0 0
+
+   Pop $1
+   Exch $0
+ FunctionEnd
+</pre>
+<p><a href='SectionC.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionC.3.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

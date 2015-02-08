@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Predefines</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section5.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section5.3.html'>Next</a></p>
+<a name="5.2"></a><h2>5.2 Predefines</h2>
+
+<p>You can use these standard predefines to automatically add the build time to the title of development versions, add the date to the version number, etc.</p>
+<a name="5.2.1"></a><h3>5.2.1 ${__FILE__}</h3>
+
+<p>Current script name.</p>
+<a name="5.2.2"></a><h3>5.2.2 ${__LINE__}</h3>
+
+<p>Current line number.</p>
+<a name="5.2.3"></a><h3>5.2.3 ${__DATE__}</h3>
+
+<p>Date when the script started compiling according to the current locale.</p>
+<a name="5.2.4"></a><h3>5.2.4 ${__TIME__}</h3>
+
+<p>Time when the script started compiling according to the current locale.</p>
+<a name="5.2.5"></a><h3>5.2.5 ${__TIMESTAMP__}</h3>
+
+<p>Date &amp; time of the last modification to the script file according to the current locale.</p>
+<a name="5.2.6"></a><h3>5.2.6 ${NSIS_VERSION}</h3>
+
+<p>NSIS version used to build the script.</p>
+<a name="5.2.7"></a><h3>5.2.7 Scope Predefines</h3>
+
+<p>Standard predefines that contain information of the current code scope.</p>
+<a name="5.2.7.1"></a><h4>5.2.7.1 ${__GLOBAL__}</h4>
+
+<p>Defined in the global scope.</p>
+<pre>Section test
+
+  !ifdef ${__GLOBAL__}
+    !error &quot;this shouldn't be here!&quot;
+  !endif
+
+SectionEnd
+
+Function test
+
+  !ifdef ${__GLOBAL__}
+    !error &quot;this shouldn't be here!&quot;
+  !endif
+
+FunctionEnd
+
+PageEx instfiles
+
+  !ifdef ${__GLOBAL__}
+    !error &quot;this shouldn't be here!&quot;
+  !endif
+
+PageExEnd
+</pre>
+<a name="5.2.7.2"></a><h4>5.2.7.2 ${__SECTION__}</h4>
+
+<p>Defined as the section name, without any prefixes, in <a href="Section4.6.html#4.6.1.2">section</a> scope.</p>
+<pre>!ifdef __SECTION__
+  !error &quot;this shouldn't be here!&quot;
+!endif
+
+Section test
+
+  !ifndef __SECTION__
+    !error &quot;missing predefine!&quot;
+  !endif
+
+  !if ${__SECTION__} != test
+    !error &quot;wrong predefine value!&quot;
+  !endif
+
+SectionEnd
+
+Section !test
+
+  !if ${__SECTION__} != test
+    !error &quot;wrong predefine value!&quot;
+  !endif
+
+SectionEnd
+
+Section un.test
+
+  !if ${__SECTION__} != test
+    !error &quot;wrong predefine value!&quot;
+  !endif
+
+SectionEnd
+</pre>
+<a name="5.2.7.3"></a><h4>5.2.7.3 ${__FUNCTION__}</h4>
+
+<p>Defined as the function name, without any prefixes, in <a href="Section4.7.html#4.7.1.1">function</a> scope.</p>
+<pre>!ifdef __FUNCTION__
+  !error &quot;this shouldn't be here!&quot;
+!endif
+
+Function test
+
+  !ifndef __FUNCTION__
+    !error &quot;missing predefine!&quot;
+  !endif
+
+  !if ${__FUNCTION__} != test
+    !error &quot;wrong predefine value!&quot;
+  !endif
+
+FunctionEnd
+
+Function un.test
+
+  !if ${__FUNCTION__} != test
+    !error &quot;wrong predefine value!&quot;
+  !endif
+
+FunctionEnd
+</pre>
+<a name="5.2.7.4"></a><h4>5.2.7.4 ${__PAGEEX__}</h4>
+
+<p>Defined as the page type in <a href="Section4.5.html#4.5.6">PageEx</a> scope.</p>
+<pre>!ifdef __PAGEEX__
+  !error &quot;this shouldn't be here!&quot;
+!endif
+
+PageEx instfiles
+
+  !ifndef __PAGEEX__
+    !error &quot;missing predefine!&quot;
+  !endif
+
+  !if ${__PAGEEX__} != instfiles
+    !error &quot;wrong page type&quot;
+  !endif
+
+PageExEnd
+</pre>
+<a name="5.2.7.5"></a><h4>5.2.7.5 ${__UNINSTALL__}</h4>
+
+<p>Defined in <a href="Section4.6.html#4.6.1.2">section</a>, <a href="Section4.7.html#4.7.1.1">function</a> or <a href="Section4.5.html#4.5.6">PageEx</a> scopes of the uninstaller.</p>
+<pre>!ifdef __UNINSTALL__
+  !error &quot;this shouldn't be here!&quot;
+!endif
+
+Function test
+
+  !ifdef __UNINSTALL__
+    !error &quot;this shouldn't be here!&quot;
+  !endif
+
+FunctionEnd
+
+Function un.test
+
+  !ifndef __UNINSTALL__
+    !error &quot;missing predefine!&quot;
+  !endif
+
+FunctionEnd
+</pre>
+<p><a href='Section5.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section5.3.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

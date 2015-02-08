@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Building in General</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='AppendixG.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionG.2.html'>Next</a></p>
+<a name="G.1"></a><h2>G.1 Building in General</h2>
+
+<p>Source code is available in <a href="http://nsis.svn.sourceforge.net/viewvc/nsis/">SVN</a> and as a separate package with every <a href="http://sourceforge.net/project/showfiles.php?group_id=22049">NSIS distribution</a>.</p>
+
+<p>To build NSIS <a href="http://www.python.org/">Python</a> and <a href="http://www.scons.org/">SCons</a> must be installed. Currently, the supported version of SCons is version 0.96.93. Any version of Python above 1.6 is supported.</p>
+
+<p>To build, open a console, change the working directory to the root directory of NSIS and type <code>scons</code>. That's it. For example:</p>
+<pre>C:\&gt;cd dev\nsis
+C:\dev\nsis&gt;scons
+scons: Reading SConscript files ...
+Using Microsoft tools configuration
+Checking for main() in C library gdi32... (cached) yes
+Checking for main() in C library user32... (cached) yes
+Checking for main() in C library version... (cached) yes
+Checking for main() in C library pthread... (cached) no
+Checking for main() in C library stdc++... (cached) no
+Checking for main() in C library iconv... (cached) no
+Checking for main() in C library libiconv... (cached) no
+scons: done reading SConscript files.
+scons: Building targets ...
+...
+</pre>
+
+<p>To install the built files, type:</p>
+<pre>scons PREFIX=&quot;C:\Program Files\NSIS&quot; install
+</pre>
+
+<p>To create an installer (only on Windows), type:</p>
+<pre>scons dist-installer
+</pre>
+
+<p>To create a distribution zip file, type:</p>
+<pre>scons dist-zip
+</pre>
+
+<p>To create both, type:</p>
+<pre>scons dist
+</pre>
+
+<p>To get a complete list of options that the build system has to offer, type:</p>
+<pre>scons -h
+</pre>
+
+<p>To get a complete list of options SCons has to offer, type:</p>
+<pre>scons -H
+</pre>
+<p><a href='AppendixG.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionG.2.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

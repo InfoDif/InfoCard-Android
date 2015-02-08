@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Is Macromedia Flash Player installed?</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionC.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionC.4.html'>Next</a></p>
+<a name="C.3"></a><h2>C.3 Is Macromedia Flash Player installed?</h2>
+<pre> ; IsFlashInstalled
+ ;
+ ; By Yazno, http://yazno.tripod.com/powerpimpit/
+ ; Returns on top of stack
+ ; 0 (Flash is not installed)
+ ; or
+ ; 1 (Flash is installed)
+ ;
+ ; Usage:
+ ;   Call IsFlashInstalled
+ ;   Pop $R0
+ ;   ; $R0 at this point is &quot;1&quot; or &quot;0&quot;
+
+ Function IsFlashInstalled
+  Push $R0
+  ClearErrors
+  ReadRegStr $R0 HKCR &quot;CLSID\{D27CDB6E-AE6D-11cf-96B8-444553540000}&quot; &quot;&quot;
+  IfErrors lbl_na
+    StrCpy $R0 1
+  Goto lbl_end
+  lbl_na:
+    StrCpy $R0 0
+  lbl_end:
+  Exch $R0
+ FunctionEnd
+</pre>
+<p><a href='SectionC.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionC.4.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Plug-in DLLs</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.10.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.12.html'>Next</a></p>
+<a name="4.11"></a><h2>4.11 Plug-in DLLs</h2>
+
+<p>The abilities of the NSIS scripting language can be extended by utilising functionality provided in a DLL file. Probably the best known example of this is the InstallOptions.dll bundled with every NSIS release.</p>
+
+<p>When the NSIS compiler starts it scans the plug-ins directory for DLLs and makes a list of the plug-ins found and their exported functions. During compilation if a sequence such as fred::flintstone is encountered where the compiler expected to find a language keyword the compiler will look through this list. If a list entry specifies that fred.dll exports function flintstone NSIS will pack the fred.dll file into the created installer binary.</p>
+
+<p>During execution of a plug-in command NSIS will unpack the necessary DLL to a temporary folder ($PLUGINSDIR), push all of the arguments specified (right-to-left order), and then execute the DLL function.</p>
+<a name="4.11.1"></a><h3>4.11.1 Using Plug-in Commands</h3>
+
+<p>A plug-in call looks like this:</p>
+<pre>InstallOptions::dialog &quot;ini_file_location.ini&quot;
+</pre>
+
+<p>All parameters are pushed onto the stack (in this case, the plug-in function only needs one parameter). Some plug-in commands may not need any parameters on the stack, others might require more of them. To use a plug-in command you will need to read the documentation for the plug-in so that you know what parameters its functions require.</p>
+<a name="4.11.2"></a><h3>4.11.2 Calling plug-ins manually</h3>
+
+<p>If you want to call a plug-in that is stored on user's hard drive or somewhere else, use <a href="Section4.9.html#4.9.3.1">CallInstDLL</a>. Almost all plug-ins provide installer functionality, so using plug-in commands is way easier. Using <a href="Section4.9.html#4.9.3.1">CallInstDLL</a> can be useful when you have created plug-ins that should be linked to a certain version of your application and are being copied to the installation folder.</p>
+<p><a href='Section4.10.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.12.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

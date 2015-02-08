@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.01</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.45.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.47.html'>Next</a></p>
+<a name="F.46"></a><h2>F.46 2.01</h2>
+
+<p>Released on September 24th, 2004</p>
+<a name="F.46.1"></a><h3>F.46.1 Release Notes</h3>
+<ul>
+<li>See <a href="SectionG.3.html#G.3">Compiling NSIS Sources</a> for information about compiling makensis on POSIX platforms</li><li>NSIS doesn't create installers for Linux/Mac OS X etc., but you can compile Windows installers on these platforms</li><li>UpgradeDLL is still provided in UpgradeDLL.nsh for backwards compatibility</li></ul>
+<a name="F.46.2"></a><h3>F.46.2 Changelog</h3>
+<a name="F.46.2.1"></a><h4>F.46.2.1 Major Changes</h4>
+<ul>
+<li>Compiler (makensis) supports POSIX platforms (Linux, *BSD, Mac OS X, etc.)</li><li><a href="AppendixB.html#B">New system</a> for DLL/TLB library setup</li></ul>
+<a name="F.46.2.2"></a><h4>F.46.2.2 New/Changed Commands</h4>
+<ul>
+<li>Added <a href="Section4.8.html#4.8.1.4">BGFont</a> that allows setting the background text font</li><li>Added SW_HIDE to <a href="Section4.9.html#4.9.1.3">ExecShell</a>'s accepted show modes</li><li><a href="Section4.9.html#4.9.1.8">RMDir</a> can now be used with both /r and /REBOOTOK at the same time</li><li>Extended maximum binary data for <a href="Section4.9.html#4.9.2.14">WriteRegBin</a> to 3 * NSIS_MAX_STRLEN</li><li>Added <a href="Section5.1.html#5.1.9">!execute</a></li></ul>
+<a name="F.46.2.3"></a><h4>F.46.2.3 Minor Changes</h4>
+<ul>
+<li>LZMA exehead is now 34KB and should also decompress faster</li><li>Windows 95 (OSR2)/98/ME no longer see drive free space capped to 2GB</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern User Interface</a>: New orange theme by MoNKi</li><li>Speedup background gradient painting</li><li><a href="#" onclick="parser('../Examples/LogicLib.nsi')">LogicLib</a> 2.5: Added AndIf, AndUnless, OrIf, OrUnless. Avoids unused variable warnings by requiring !defines before using certain features.</li><li><a href="#" onclick="parser('../Docs/StrFunc/StrFunc.txt')">StrFunc</a>: Added support for uninstaller, some fixes and improvements. See the <a href="#" onclick="parser('../Docs/StrFunc/StrFunc.txt')">readme</a> for a complete changelog</li><li>The plug-ins folder is properly removed when the system is rebooted</li><li><a href="Section4.9.html#4.9.1.9">SetOutPath</a> &quot;-&quot; works again</li><li>Fixed a bug which made plug-ins that didn't have lower case extension not be found</li><li>Fixed a bug that caused directories with drives that had their current directory set to an invalid directory to not be accepted in the directory selection page</li><li>Fixed a crash in makensis caused by defining a macro in a file included by another macro</li><li>makensis shows meaningful errors for compression errors instead of just magic numbers</li><li>Fixed a bug with <a href="Section4.8.html#4.8.1.2">AllowRootDirInstall</a> used along with <a href="Section4.8.html#4.8.1.22">InstallDirRegKey</a> that caused the directory in the registry to be ignored</li><li>Fixed <a href="Section4.9.html#4.9.5.3">FileRead</a> setting the error flag when a null character is the first character it reads</li><li>Fixed a bug which caused the background gradient to paint slowly</li><li><a href="Section4.9.html#4.9.1.5">File</a> paths relative to the root folder work again</li><li>Added <a href="#" onclick="parser('../Include/Colors.nsh')">Colors.nsh</a></li><li>Made Times New Roman default font for the background text because it should always have support for the locale's language</li><li>Fixed compilation of NSISdl under VS.NET</li><li>SetCtlColors /BRANDING wasn't working right, if just one of the background or text color were specified</li><li>Language file fixes and improvements</li></ul>
+<a name="F.46.2.4"></a><h4>F.46.2.4 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/System/System.html')">System</a>: New, hopefully more informative, documentation; fixed some bugs</li><li><a href="#" onclick="parser('../Docs/Banner/Readme.txt')">Banner</a>: Added getWindow to allow greater control over the banner window</li><li><a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions 2.41</a>: Bitmaps are now automatically centered, fixed a bug which prevented enabling the next button from the leave function of InstallOptions pages, fixed a rare freeze</li><li>Zip2Exe 0.32: Fixed codepage problems</li><li><a href="#" onclick="parser('../Docs/nsExec/nsExec.txt')">nsExec</a>: Always create a valid input handle, fixed a problem when called from a path with spaces</li><li><a href="#" onclick="parser('../Docs/VPatch/Readme.html')">VPatch</a>: Close all open file handles when one of them fail to open</li><li><a href="#" onclick="parser('../Docs/NSISdl/ReadMe.txt')">NSISdl</a>: Added /NOIEPROXY (based on memph's code)</li></ul>
+<p><a href='SectionF.45.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.47.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

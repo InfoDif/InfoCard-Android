@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.03</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.43.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.45.html'>Next</a></p>
+<a name="F.44"></a><h2>F.44 2.03</h2>
+
+<p>Released on December 3rd, 2004</p>
+<a name="F.44.1"></a><h3>F.44.1 Release Notes</h3>
+<ul>
+<li>If you're using <code>File /r folder</code> in your script, it's recommended you replace it with <code>File /r folder\*</code> for faster compilation and so no other folders named <em>folder</em> will be included</li><li>Command line switches prefix on POSIX has changed to a dash</li><li>The plug-in API change is backward compatible</li></ul>
+<a name="F.44.2"></a><h3>F.44.2 Changelog</h3>
+<a name="F.44.2.1"></a><h4>F.44.2.1 Major Changes</h4>
+<ul>
+<li>Added another parameter to plug-in functions with a pointer to exec_flags and ExecuteCodeSegment</li><li>Fixed handling of absolute paths on POSIX</li><li>Made RegDLL load and unload a DLL exactly once to fix crashes with COM DLLs registration</li></ul>
+<a name="F.44.2.2"></a><h4>F.44.2.2 New/Changed Commands</h4>
+<ul>
+<li>Added /date switch to !define for definition of date and time constants</li><li>Added /x switch for <a href="Section4.9.html#4.9.1.5">File</a> and <a href="Section4.9.html#4.9.1.7">ReserveFile</a> to exclude files and directories</li><li>Made <a href="Section4.9.html#4.9.1.5">File</a>'s /r switch always search in subdirectories, even if the given path points to an existing directory</li></ul>
+<a name="F.44.2.3"></a><h4>F.44.2.3 Minor Changes</h4>
+<ul>
+<li>Added LIBRARY_SHELL_EXTENSION and LIBRARY_COM to <a href="AppendixB.html#B">Library</a></li><li>Added missing #include</li><li>Added NSIS_LZMA_COMPRESS_WHOLE to the script define list</li><li>Documentation fixes and improvements</li><li>Fixed an access violation in case of a script jump beyond the last entry</li><li>Fixed keyboard navigation in the instfiles page while installing</li><li>Fixed unpacking window not showing when <a href="Section4.8.html#4.8.1.5">BGGradient</a> is used</li><li>Fixed unused label warning in <a href="AppendixB.html#B">Library.nsh</a></li><li>Language file fixes</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.72</a>: Fixed state of Cancel button on Finish page when used in installer and uninstaller, added a string for NSIS_CONFIG_COMPONENTPAGE_ALTERNATIVE</li><li>nsisconf.nsh was not always parsed when compiling using MakeNSISw</li></ul>
+<p><a href='SectionF.43.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.45.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

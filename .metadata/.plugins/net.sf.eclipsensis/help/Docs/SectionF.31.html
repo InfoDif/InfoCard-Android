@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.16</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.30.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.32.html'>Next</a></p>
+<a name="F.31"></a><h2>F.31 2.16</h2>
+
+<p>Released on April 7th, 2006</p>
+<a name="F.31.1"></a><h3>F.31.1 Release Notes</h3>
+<ul>
+<li>The script compiler, makensis, builds and works on big-endian platforms. This change enlarges the portability range of NSIS to theoretically every POSIX platform. Please <a href="http://sourceforge.net/tracker/?group_id=22049&atid=373085">report</a> any incompatibility with specific platforms or build-tools.</li><li>The internal changes made to support big-endian platforms also pave the road to x64 installers. There is now a central function which writes data to disk. This function currently only converts the endianity of integers, but it can be changed to selectively write 64-bit integers. Hopefully, there'll soon be a simple method of compiling a script to both x86 and x64 installers.</li><li>Changing Source/exehead/fileform.h to alter the internal structure of installers is no longer enough. The compiler has its own definitions of the structures which must also be changed in Source/fileform.cpp. In the future, fileform.cpp should be automatically generated from fileform.h, but for now, the synchronization must be done manually.</li></ul>
+<a name="F.31.2"></a><h3>F.31.2 Changelog</h3>
+<a name="F.31.2.1"></a><h4>F.31.2.1 Major Changes</h4>
+<ul>
+<li>Big-endian platforms are now fully supported by makensis</li><li><a href="AppendixB.html#B">Library</a> now available on non-Windows platforms as well, although it requires the installed DLL to have version information</li><li><a href="#" onclick="parser('../Docs/makensisw/Readme.txt')">MakeNSISW 2.1</a>: added &quot;Cancel compilation&quot; menu item</li></ul>
+<a name="F.31.2.2"></a><h4>F.31.2.2 New/Changed Commands</h4>
+<ul>
+<li>Added /utcdate switch to <a href="Section5.4.html#5.4.1">!define</a> for UTC dates (<a href="http://sourceforge.net/support/tracker.php?aid=1459210">RFE #1459210</a>)</li></ul>
+<a name="F.31.2.3"></a><h4>F.31.2.3 Minor Changes</h4>
+<ul>
+<li>Added an optional timestamp in the log - NSIS_CONFIG_LOG_TIMESTAMP build setting (<a href="http://sourceforge.net/support/tracker.php?aid=1460586">RFE #1460586</a>)</li><li>Added NSIS_WIN32_MAKENSIS define, defined only when compiling on Windows</li><li>Exported validate_filename to plug-ins</li><li>Fixed a crash in CResourceEditor when adding resources to a PE that already contains named resources</li><li>Fixed a small resource leak in the TypeLib::GetLibVersion plug-in function</li><li>Fixed CResourceEditor input sanity checks</li><li>Fixed incorrect <a href="Section4.9.html#4.9.5.2">FileOpen</a> input validation (<a href="http://sourceforge.net/support/tracker.php?aid=1459789">bug #1459789</a>)</li><li>Fixed <a href="AppendixB.html#B">Library</a> failure with DLLs marked as read-only</li><li>Fixed lzma's POSIX implemention thread synchronization issues and resource leaks</li><li>Fixed makensis self-path detection on non-Windows platforms (NSIS_CONFIG_CONST_DATA_PATH=no)</li><li>Fixed replace_icon and and generate_uninstall_icon_data icon validation</li><li>Made external CHM links safer to script exceptions (<a href="http://sourceforge.net/support/tracker.php?aid=1449879">bug #1449879</a>)</li><li>Minor documentation improvements and fixes (including <a href="http://sourceforge.net/support/tracker.php?aid=1077439">bug #1077439</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1448374">bug #1448374</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1464446">RFE #1464446</a>)</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.75</a>: added show function for the start menu page (<a href="http://sourceforge.net/support/tracker.php?aid=1448176">RFE #1448176</a>), added MUI_HEADER_TRANSPARENT_TEXT for transparent header texts (<a href="http://sourceforge.net/support/tracker.php?aid=1447766">RFE #1447766</a>)</li><li><a href="#" onclick="parser('../Docs/NSISdl/ReadMe.txt')">NSISdl</a>: better header detection for better compatibility with proxies like WinProxy (<a href="http://sourceforge.net/support/tracker.php?aid=1445735">bug #1445735</a>), fail if no headers are sent, faster downloads (<a href="http://sourceforge.net/support/tracker.php?aid=1465378">patch #1465378</a>)</li><li><a href="#" onclick="parser('../Docs/StartMenu/Readme.txt')">StartMenu</a>: validate user input (<a href="http://sourceforge.net/support/tracker.php?aid=1440636">bug #1440636</a>)</li></ul>
+<a name="F.31.2.4"></a><h4>F.31.2.4 Translations</h4>
+<ul>
+<li>Added Basque translation</li><li>Minor Slovenian fixes</li></ul>
+<a name="F.31.2.5"></a><h4>F.31.2.5 Build System</h4>
+<ul>
+<li>Added code tests for CResourceEditor and CDialogTemplate</li><li>Automatically pass build settings to script, eliminating the need to edit build.cpp for new settings</li><li>Fixed $PREFIX expansion during installation on POSIX platforms (<a href="http://sourceforge.net/support/tracker.php?aid=1456943">bug #1456943</a>)</li><li>Fixed CHM dependencies</li><li>Fixed compatibility issue with EclipseNSIS (version wasn't prefixed with 'v')</li><li>Fixed GCC 4.1 compatibility (<a href="http://sourceforge.net/support/tracker.php?aid=1456861">patch #1456861</a>)</li><li>Test for -Wl,-Map availability</li></ul>
+<p><a href='SectionF.30.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.32.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

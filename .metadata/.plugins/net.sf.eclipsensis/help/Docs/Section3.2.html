@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Installer Usage</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section3.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Chapter4.html'>Next</a></p>
+<a name="3.2"></a><h2>3.2 Installer Usage</h2>
+
+<p>Generated installers and uninstallers accept a few options on the command line. These options give the user a bit more control over the installation process.</p>
+<a name="3.2.1"></a><h3>3.2.1 Common Options</h3>
+<ul>
+<li>/NCRC disables the CRC check, unless <a href="Section4.8.html#4.8.1.12"><code>CRCCheck</code></a><code> force</code> was used in the script.</li><li>/S runs the installer or uninstaller silently. See <a href="Section4.12.html#4.12">section 4.12</a> for more information.</li><li>/D sets the default installation directory (<a href="Section4.2.html#4.2.2">$INSTDIR</a>), overriding <a href="Section4.8.html#4.8.1.21">InstallDir</a> and <a href="Section4.8.html#4.8.1.22">InstallDirRegKey</a>. It must be the last parameter used in the command line and must not contain any quotes, even if the path contains spaces. Only absolute paths are supported.</li></ul>
+<a name="3.2.2"></a><h3>3.2.2 Uninstaller Specific Options</h3>
+<ul>
+<li>_?= sets $INSTDIR. It also stops the uninstaller from copying itself to the temporary directory and running from there. It can be used along with <a href="Section4.9.html#4.9.1.4">ExecWait</a> to wait for the uninstaller to finish. It must be the last parameter used in the command line and must not contain any quotes, even if the path contains spaces.</li></ul>
+<a name="3.2.3"></a><h3>3.2.3 Examples</h3>
+<pre>installer.exe /NCRC
+</pre>
+<pre>installer.exe /S
+</pre>
+<pre>installer.exe /D=C:\Program Files\NSIS
+</pre>
+<pre>installer.exe /NCRC /S /D=C:\Program Files\NSIS
+</pre>
+<pre>uninstaller.exe /S _?=C:\Program Files\NSIS
+</pre>
+<pre># uninstall old version
+ExecWait '&quot;$INSTDIR\uninstaller.exe&quot; /S _?=$INSTDIR'
+</pre>
+<p><a href='Section3.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Chapter4.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

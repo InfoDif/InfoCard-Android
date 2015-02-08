@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Library Installation</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionB.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionB.3.html'>Next</a></p>
+<a name="B.2"></a><h2>B.2 Library Installation</h2>
+<a name="B.2.1"></a><h3>B.2.1 Introduction</h3>
+
+<p>The InstallLib macro allows you to install a library. It sets the error flag if something went wrong during library setup.</p>
+
+<p>To ask the user for a reboot, if required, use the Modern UI with a Finish page or use <a href="Section4.9.html#4.9.4.11">IfRebootFlag</a> and make your own page or message box.</p>
+<a name="B.2.2"></a><h3>B.2.2 Parameters</h3>
+<pre>libtype shared install localfile destfile tempbasedir
+</pre>
+
+<p><b>libtype</b></p>
+
+<p>The type of the library</p>
+
+<p>DLL - Dynamic link library (DLL)<br> REGDLL - DLL that has to be registered<br> REGEXE - EXE COM server that has to be registered using /regserver<br> TLB - Type library or DLL that contains a type library<br> REGDLLTLB - DLL that has to be registered and contains a type library<br></p>
+
+<p><b>shared</b></p>
+
+<p>Specify whether the library is shared with other applications</p>
+
+<p>NOTSHARED - The library is not shared<br> $VARNAME - Variable that is empty when the application is installed for the first time, which is when the shared library count will be increased.<br></p>
+
+<p><b>install</b></p>
+
+<p>Specify the installation method</p>
+
+<p>REBOOT_PROTECTED</p>
+<ul>
+<li>Upgrade the library on reboot when in use (required for system files).</li><li>Upgrade the library if the file is not protected by Windows File Protection.</li></ul>
+
+<p>NOREBOOT_PROTECTED</p>
+<ul>
+<li>Warns the user when the library is in use. The user will have to close applications using the library.</li><li>Upgrade the library if the file is not protected by Windows File Protection.</li></ul>
+
+<p>REBOOT_NOTPROTECTED</p>
+<ul>
+<li>Upgrade the library on reboot when in use (required for system files).</li><li>Upgrade the library without checking for Windows File Protection.</li></ul>
+
+<p>NOREBOOT_NOTPROTECTED</p>
+<ul>
+<li>Warns the user when the library is in use. The user will have to close applications using the library.</li><li>Upgrade the library without checking for Windows File Protection.</li></ul>
+
+<p><b>localfile</b></p>
+
+<p>Location of the library on the compiler system</p>
+
+<p><b>destfile</b></p>
+
+<p>Location to store the library on the user's system</p>
+
+<p><b>tempbasedir</b></p>
+
+<p>Directory on the user's system to store a temporary file when the system has to be rebooted.</p>
+
+<p>For Windows 9x/ME support, this directory should be on the same volume as the destination file (destfile). The Windows temp directory could be located on any volume, so you cannot use this directory.</p>
+<a name="B.2.3"></a><h3>B.2.3 Options</h3>
+
+<p><a href="Section5.4.html#5.4.1">Define</a> any of the following before inserting the InstallLib macro to modify its behavior as specified.</p>
+<a name="B.2.3.1"></a><h4>B.2.3.1 LIBRARY_X64</h4>
+<ul>
+<li>Installs a DLL built for Windows x64.</li><li><b>Warning:</b> this resets file system redirection.</li></ul>
+<a name="B.2.3.2"></a><h4>B.2.3.2 LIBRARY_SHELL_EXTENSION</h4>
+<ul>
+<li>Define this before inserting InstallLib macro to call SHChangeNotify with SHCNE_ASSOCCHANGED after registration.</li><li>Use this to refresh the shell when installing a shell extension or when changing file associations.</li></ul>
+<a name="B.2.3.3"></a><h4>B.2.3.3 LIBRARY_COM</h4>
+<ul>
+<li>Define this before inserting InstallLib macro to call CoFreeUnusedLibraries after registration.</li><li>Use this for unloading all unnecessary libraries from memory when installing COM libraries.</li></ul>
+<a name="B.2.3.4"></a><h4>B.2.3.4 LIBRARY_IGNORE_VERSION</h4>
+<ul>
+<li>Define this before inserting InstallLib macro to ignore version information in the file and always install it, even if it already exists.</li><li>Use this when an older or specific version is required.</li><li>Not recommended for DLLs installed to $SYSDIR.</li></ul>
+<a name="B.2.4"></a><h3>B.2.4 Notes</h3>
+<ul>
+<li>If you want to support Windows 9x/ME, you can only use short filenames (8.3).</li><li><b>Warning:</b> when deploying DLLs, always use redistributable files. Never copy files from your system directory.</li></ul>
+<a name="B.2.5"></a><h3>B.2.5 Example</h3>
+<a name="B.2.5.1"></a><h4>B.2.5.1 Unshared DLL</h4>
+<pre> !insertmacro InstallLib REGDLL NOTSHARED REBOOT_NOTPROTECTED dllname.dll $SYSDIR\dllname.dll $SYSDIR
+</pre>
+<a name="B.2.5.2"></a><h4>B.2.5.2 Shared DLL</h4>
+<pre> ;Add code here that sets $ALREADY_INSTALLED to a non-zero value if the application is
+ ;already installed. For example:
+
+ IfFileExists &quot;$INSTDIR\MyApp.exe&quot; 0 new_installation ;Replace MyApp.exe with your application filename
+   StrCpy $ALREADY_INSTALLED 1
+ new_installation:
+
+ !insertmacro InstallLib REGDLL $ALREADY_INSTALLED REBOOT_NOTPROTECTED dllname.dll $SYSDIR\dllname.dll $SYSDIR
+</pre>
+<p><a href='SectionB.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionB.3.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

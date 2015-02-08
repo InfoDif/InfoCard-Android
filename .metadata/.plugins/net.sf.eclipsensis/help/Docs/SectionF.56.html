@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.0 Beta 0</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.55.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.57.html'>Next</a></p>
+<a name="F.56"></a><h2>F.56 2.0 Beta 0</h2>
+
+<p>Released on December 6th, 2002</p>
+<ul>
+<li>New paging system</li><li>Added Page and UninstPage</li><li>Removed .onNextPage, .onPrevPage, .onInitDialog</li><li>New easier version of the Modern User Interface with better multilanguage support, InstallOptions integration, welcome and finish page etc.</li><li>Custom pages no longer flicker when created</li><li>Added accelerator keys</li><li>Added LangString and LangStringUP for user defined multilingual strings</li><li>Added support for transparent check marks</li><li>Added InitPluginsDir</li><li>Renamed nsisconf.nsi to nsisconf.nsh</li><li>Added CreateShortcut comment/description parameter</li><li>Splash.exe is now a plugin (splash.dll)</li><li>Added new plugins: System, AdvSplash, nsExec, UserInfo, BgImage, Banner and StartMenu</li><li>!ifdef and friends can now be used in macros</li><li>SendMessage can send strings (put STR: before a param) and supports timeouts</li><li>Right mouse button &quot;Copy to clipboard&quot; context menu for the Details window</li><li>Plugin syntax now requires dll name, e.g. dll::func not just func</li><li>Licence text receives initial focus (page up &amp; down work immediately, return key still works)</li><li>Made win9x move/delete on reboot support proper and function like on win2k</li><li>Now always loads RichEdit v2 if present (links work on Win9x)</li><li>DeleteRegKey now complains if given a third parameter (other than /ifempty)</li><li>RegDLL now works with DLLs dependent on DLLs from the same directory</li><li>${LANG_langName} defined as the language id when loading a NLF</li><li>Fixed a few bugs that caused the installer to load slower than before</li><li>Uninstall can now get command line parameters too</li><li>Added ReserveFile</li><li>Added ExDLL.h</li><li>Included makensisw 1.9 (lots of changes)</li><li>Updated InstallOptions</li><li>Updated ZIP2EXE</li><li>Updated HTTP download plugin, NSIS-dl (timeout added, better proxy detection)</li><li>A lot of new language files</li><li>A lot of new icons and check marks</li><li>Changed section flags values</li><li>SectionSetFlags can now set bold too</li><li>SectionSetFlags now works in silent installers too</li><li>SectionSetName for sub sections doesn't need '-' in front of the name</li><li>Added SetPluginUnload</li><li>Hidden section can now use SectionIn too</li><li>File /nonfatal switch added</li><li>Plugins no longer add size to their containing section</li><li>Defines can now be used inside define names (${bla${blo}})</li><li>New docs format (WOOHA!)</li><li>EXE header size a lot smaller, 33.5KB for bzip2 and 34KB for zlib</li><li>Lots of other bugs fixed...</li></ul>
+<p><a href='SectionF.55.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.57.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.06</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.40.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.42.html'>Next</a></p>
+<a name="F.41"></a><h2>F.41 2.06</h2>
+
+<p>Released on March 19th, 2005</p>
+<a name="F.41.1"></a><h3>F.41.1 Changelog</h3>
+<a name="F.41.1.1"></a><h4>F.41.1.1 Major Changes</h4>
+<ul>
+<li>Fixed a bug, introduced in 2.05, that made components selection not function properly if the first section in the script was a section group</li><li>Fixed a bug, introduced in 2.05, that corrupted the state of section groups inside section groups (<a href="http://sourceforge.net/support/tracker.php?aid=1155836">bug #1155836</a>)</li></ul>
+<a name="F.41.1.2"></a><h4>F.41.1.2 New/Changed Commands</h4>
+<ul>
+<li>Added MB_RTLREADING style to <a href="Section4.9.html#4.9.4.15">MessageBox</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1159701">RFE #1159701</a>)</li><li>All registry instructions now accept SHCTX which is replaced with HKLM or HKCU on runtime according to <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1124901">RFE #1124901</a>)</li></ul>
+<a name="F.41.1.3"></a><h4>F.41.1.3 Minor Changes</h4>
+<ul>
+<li>Added Belarusian and Icelandic language files</li><li>Added components.c to the Makefile (<a href="http://sourceforge.net/support/tracker.php?aid=1123154">patch #1123154</a>)</li><li>Added missing <a href="Section4.9.html#4.9.4.3">ClearErrors</a> in GetWindowsVersion (<a href="http://sourceforge.net/support/tracker.php?aid=1155588">bug #1155588</a>)</li><li>Fixed a bug in install.sh that made it try to install a non existing directory</li><li>Fixed a bug in the Russian language file distributed with 2.05</li><li>Fixed a bug that caused SetFont to not function properly with RTL languages on Windows 9x (<a href="http://sourceforge.net/support/tracker.php?aid=1159700">bug #1159700</a>)</li><li>Fixed a bug, introduced in 2.05, that caused problems with <a href="Section4.8.html#4.8.1.24">InstType</a> /COMPONENTSONLYONCUSTOM (<a href="http://sourceforge.net/support/tracker.php?aid=1155060">bug #1155060</a>)</li><li>Fixed a crash caused by compiling large uninstallers (<a href="http://sourceforge.net/support/tracker.php?aid=1144763">bug #1144763</a>)</li><li>Fixed compile error without NSIS_CONFIG_CRC_SUPPORT</li><li>Fixed compile errors of MinGW on POSIX for source code under Contrib (<a href="http://sourceforge.net/support/tracker.php?aid=1164307">patch #1164307</a>)</li><li>Fixed plug-ins directory initialization for extremely restricted guest users with no directory listing access to the temporary directory</li><li>Made install.sh not use $(tempfile) and install files under /usr/share instead of /lib (<a href="http://sourceforge.net/support/tracker.php?aid=1120399">patch #1120399</a>)</li><li>Minor documentation updates and fixes</li><li>Updated Slovenian, Serbian and Serbian Latin language files</li></ul>
+<a name="F.41.1.4"></a><h4>F.41.1.4 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/AdvSplash/advsplash.txt')">AdvSplash</a>: Fixed a small memory leak (Thanks Takhir)</li><li><a href="#" onclick="parser('../Docs/StartMenu/Readme.txt')">StartMenu</a>: Added support for <a href="Section4.9.html#4.9.14.15">SetCtlColors</a> (<a href="http://sourceforge.net/support/tracker.php?aid=711900">RFE #711900</a>)</li></ul>
+<p><a href='SectionF.40.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.42.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

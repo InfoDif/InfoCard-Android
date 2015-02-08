@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Conditional Compilation</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section5.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='AppendixA.html'>Next</a></p>
+<a name="5.4"></a><h2>5.4 Conditional Compilation</h2>
+
+<p>The compiler maintains a list of defined symbols, which can be defined using !define or the /D command line switch. These defined symbols can be used for conditional compilation (using !ifdef) or for symbol replacement (a simple form of macros). To replace a symbol with its value, use ${SYMBOL} (if SYMBOL is not defined, no translation will occur). The translation is first-come-first-served, meaning if you do:</p>
+<pre>!define symbol_one ${symbol_two}
+</pre>
+
+<p>If symbol_two is defined when that line occurs, it will be replaced. Otherwise, any replacing will occur when ${symbol_one} is referenced.</p>
+
+<p>Define/conditional compilation related commands:</p>
+<a name="5.4.1"></a><h3>5.4.1 !define</h3>
+<pre>([/date|/utcdate] gflag [value]) | (/math gflag val1 OP val2) | (/file gflag filename.txt)
+</pre>
+
+<p>This command will add <em>gflag</em> to the global define list. This will have a similar effect as using the /D switch on the command line (only the define only becomes effective after the !define command).</p>
+
+<p>If <em>/date</em> or <em>/utcdate</em> are used, <em>value</em> will be passed into strftime and the result will be used as the value of <em>gflag</em>. strftime converts special symbols into certain parts of the current time or date. For example, %H will be converted into the current hour in 24-hour format. For a complete list of available symbols, search for strftime on <a href="http://msdn.microsoft.com/">MSDN</a>. On POSIX, you can get the list by using <code>man strftime</code>.</p>
+
+<p>If <em>/math</em> is used, the result of 'val1 OP val2', where OP may be +,-,*,&amp;,|,^,/ or % , will be used as the value of <em>gflag</em>. Note that val1 AND val2 MUST be integer values!</p>
+
+<p>If <em>/file</em> is used, the entire text file specified (including whitespace and newlines) will be read and stuffed into <em>gflag</em>.</p>
+<pre>!define USE_SOMETHING
+!define VERSION 1.2
+!define /date NOW &quot;%H:%M:%S %d %b, %Y&quot;
+!define /math RESULT 3 + 10
+!define /math REST 15 % ${RESULT}
+!define /file BUNCHASTUFF somesourcefile.cpp
+</pre>
+<a name="5.4.2"></a><h3>5.4.2 !undef</h3>
+<pre>gflag
+</pre>
+
+<p>Removes an item from the global define list. Note that ${SYMBOL} where SYMBOL is undefined will be translated to &quot;${SYMBOL}&quot;.</p>
+<pre>!define SOMETHING
+!undef SOMETHING
+</pre>
+<a name="5.4.3"></a><h3>5.4.3 !ifdef</h3>
+<pre>gflag [bcheck gflag [...]]]
+</pre>
+
+<p>This command, when paired with an !endif command, will tell the compiler whether or not to compile the lines in between the two lines. If gflag is globally defined (using !define or the /D switch), then the contained lines will be compiled. Otherwise, they will be skipped. 'bcheck' can be specified as &amp; (boolean and) or | (boolean or) along with more gflags -- precedence is simple, left to right.</p>
+<pre>!define SOMETHING
+!ifdef SOMETHING
+  !echo &quot;SOMETHING is defined&quot;
+!endif
+!undef SOMETHING
+!ifdef SOMETHING
+  !echo &quot;SOMETHING is defined&quot; # will never be printed
+!endif
+</pre>
+<a name="5.4.4"></a><h3>5.4.4 !ifndef</h3>
+<pre>gflag [bcheck gflag [...]]]
+</pre>
+
+<p>The opposite of !ifdef. The lines will be compiled when the gflag has not been defined.</p>
+<a name="5.4.5"></a><h3>5.4.5 !if</h3>
+<pre>[!] value [op value2]
+</pre>
+
+<p>This command, when paired with an !endif command, will tell the compiler whether or not to compile the lines in between the two lines. If value is non-zero, or the comparison of value and value2 depending on the operator results in true, the contained lines will be compiled. Otherwise, they will be skipped. op can be either == or != (string comparison), &lt;=, &lt; &gt; or &gt;= (float comparison), &amp;&amp; or || (boolean comparison). If [!] is set, return value will be switched from true to false and vice versa.</p>
+<pre>!if 1 &lt; 2
+  !echo &quot;1 is smaller than 2!!&quot;
+!else if ! 3.1 &gt; 1.99
+  !error &quot;this line should never appear&quot;
+!else
+  !error &quot;neither should this&quot;
+!endif
+</pre>
+<a name="5.4.6"></a><h3>5.4.6 !ifmacrodef</h3>
+<pre>gflag [bcheck gflag [...]]]
+</pre>
+
+<p>This command, when paired with an !endif command, will tell the compiler whether or not to compile the lines in between the two lines. If the macro gflag exists, then the contained lines will be compiled. Otherwise, they will be skipped. 'bcheck' can be specified as &amp; (boolean and) or | (boolean or) along with more gflags -- precedence is simple, left to right.</p>
+<pre>!macro SomeMacro
+!macroend
+!ifmacrodef SomeMacro
+  !echo &quot;SomeMacro is defined&quot;
+!endif
+</pre>
+<a name="5.4.7"></a><h3>5.4.7 !ifmacrondef</h3>
+<pre>gflag [bcheck gflag [...]]]
+</pre>
+
+<p>The opposite of !ifmacrodef. The lines will be compiled when the macro gflag does not exist.</p>
+<a name="5.4.8"></a><h3>5.4.8 !else</h3>
+<pre>[if|ifdef|ifndef|ifmacrodef|ifmacrondef [...]]
+</pre>
+
+<p>This command allows to easily insert different code when different defines or macros are set. You can create blocks like !ifdef/!else/!endif, !ifdef/!else ifdef/!else/!endif etc.</p>
+<pre>!ifdef VERSION
+OutFile installer-${VERSION}.exe
+!else
+OutFile installer.exe
+!endif
+</pre>
+<a name="5.4.9"></a><h3>5.4.9 !endif</h3>
+
+<p>This command closes a block started with !if, !ifdef, !ifndef, !ifmacrodef or !ifmacrondef.</p>
+<a name="5.4.10"></a><h3>5.4.10 !insertmacro</h3>
+<pre>macro_name [parameter] [...]
+</pre>
+
+<p>Inserts the contents of a macro that was created with !macro. If the macro was created with parameters, then you must pass as many parameters to the macro as it requires.</p>
+<pre>!macro Print text
+  DetailPrint &quot;${text}&quot;
+!macroend
+!insertmacro Print &quot;some text&quot;
+!insertmacro Print &quot;some more text&quot;
+</pre>
+<a name="5.4.11"></a><h3>5.4.11 !macro</h3>
+<pre>macro_name [parameter][...]
+</pre>
+
+<p>Creates a macro named 'macro_name'. All lines between the !macro and the !macroend will be saved. To insert the macro later on, use !insertmacro. !macro definitions can have one or more parameters defined. The parameters may be accessed the same way a !define would (e.g. ${PARMNAME}) from inside the macro.</p>
+<pre>!macro SomeMacro parm1 parm2 parm3
+  DetailPrint &quot;${parm1}&quot;
+  MessageBox MB_OK &quot;${parm2}&quot;
+  File &quot;${parm3}&quot;
+!macroend
+</pre>
+<a name="5.4.12"></a><h3>5.4.12 !macroend</h3>
+
+<p>Ends a macro that was started with !macro.</p>
+<a name="5.4.13"></a><h3>5.4.13 !searchparse</h3>
+<pre>[/ignorecase] [/noerrors] [/file] source_string_or_file substring_start OUTPUTSYMBOL1 [substring [OUTPUTSYMBOL2 [substring ...]]]
+</pre>
+
+<p>Parses <em>source_string_or_file</em> (which is treated as a string, or as a filename if <em>/file</em> is set), looking for <em>substring_start</em>. If <em>substring_start</em> is found, then <em>OUTPUTSYMBOL1</em> is defined to the rest of the string (minus any other <em>substring</em> that may be found). Any number of <em>OUTPUTSYMBOLx</em> may be specified, and the final <em>substring</em> is optional.</p>
+
+<p>If <em>/noerrors</em> is specified, matching less than the full number of strings is allowed (all <em>OUTPUTSYMBOLx</em> after the not-found substring will be ignored).</p>
+
+<p>If <em>/file</em> is specified, the file is treated as a series of lines. The file is searched until all substrings are matched. If <em>/noerrors</em> is specified and not all strings are matched, the first line with the most symbols matched is used.</p>
+<pre># search filename.cpp for a line '#define APP_VERSION &quot;2.5&quot;' and set ${VER_MAJOR} to 2, ${VER_MINOR} to 5.
+!searchparse /file filename.cpp `#define APP_VERSION &quot;` VER_MAJOR `.` VER_MINOR `&quot;`
+</pre>
+<a name="5.4.14"></a><h3>5.4.14 !searchreplace</h3>
+<pre>[/ignorecase] symbol_out source_string searchfor replacewith
+</pre>
+
+<p>Searches <em>source_string</em>, looking for <em>searchfor</em> and replacing all instances of it with <em>replacewith</em>. Unlike !define, !searchreplace allows you to redefine <em>symbol_out</em> without warning or error.</p>
+<pre># defines ${blah} to &quot;i like ponies&quot;
+!searchreplace blah &quot;i love ponies&quot; &quot;love&quot; &quot;like&quot;
+</pre>
+<p><a href='Section5.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='AppendixA.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

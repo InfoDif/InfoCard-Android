@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.36</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.10.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.12.html'>Next</a></p>
+<a name="F.11"></a><h2>F.11 2.36</h2>
+
+<p>Released on March 29th, 2008</p>
+<a name="F.11.1"></a><h3>F.11.1 Release Notes</h3>
+<ul>
+<li>nsDialogs is picking up its pace and offers lots of new macros in this release. Keep the patches and requests coming!</li></ul>
+<a name="F.11.2"></a><h3>F.11.2 Changelog</h3>
+<a name="F.11.2.1"></a><h4>F.11.2.1 Major Changes</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/nsExec/nsExec.txt')">nsExec</a>: Support for x64 disabled redirection (<a href="http://sourceforge.net/support/tracker.php?aid=1778973">RFE #1778973</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1889317">bug #1889317</a>)</li></ul>
+<a name="F.11.2.2"></a><h4>F.11.2.2 Modern UI</h4>
+<ul>
+<li>Added missing MUI_UNFUNCTION_DESCRIPTION_BEGIN and MUI_UNFUNCTION_DESCRIPTION_END</li><li>Fixed start menu page setting the error flag (<a href="http://sourceforge.net/support/tracker.php?aid=1891106">bug #1891106</a>)</li></ul>
+<a name="F.11.2.3"></a><h4>F.11.2.3 nsDialogs</h4>
+<ul>
+<li>NSD_AddStyle and NSD_AddExStyle for easy customization (<a href="http://sourceforge.net/support/tracker.php?aid=1900588">patch #1900588</a>)</li><li>NSD_CB_AddString, NSD_CB_SelectString, NSD_LB_AddString and NSD_LB_SelectString for easier handling of combo and list boxes</li><li>NSD_CreateNumber and NSD_SetTextLimit for limited input fields</li><li>NSD_SetImage, NSD_SetStretchedImage, NSD_ClearImage and NSD_FreeImage for image handling</li><li>NSD_SetState, NSD_GetState, NSD_Check and NSD_Uncheck for handling of check boxes and radio buttons (<a href="http://sourceforge.net/support/tracker.php?aid=1900588">patch #1900588</a>)</li><li>NSD_SetText for easily setting control's text</li><li>OnClick support for labels (<a href="http://sourceforge.net/support/tracker.php?aid=1908732">bug #1908732</a>)</li><li>Support for edit box change notification in combo box</li></ul>
+<a name="F.11.2.4"></a><h4>F.11.2.4 Minor Changes</h4>
+<ul>
+<li>Fixed exception handling of UPX compressed icons (<a href="http://sourceforge.net/support/tracker.php?aid=1896500">bug #1896500</a>)</li><li>Fixed InstallDirRegKey example in bigtest.nsi</li><li>Fixed Memento's documentation to include ${MementoSectionDone}</li><li>Fixed rare decompression error with 0x4001 bytes of compressed data (<a href="http://sourceforge.net/support/tracker.php?aid=1874297">bug #1874297</a>)</li><li>LangFile.nsh: Added LANGFILE_INCLUDE_WITHDEFAULT to load language file with defaults being obtained from a default file. This replaces the LANGFILE_DEFAULT setting and makes it easier to use LangFile.nsh for multiple sets of languages file without having to care about the different LANGFILE_DEFAULT settings.</li><li>Minor documentation improvements (including <a href="http://sourceforge.net/support/tracker.php?aid=1891266">bug #1891266</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1894033">bug #1894033</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1896803">bug #1896803</a>)</li><li><a href="#" onclick="parser('../Docs/MultiUser/Readme.html')">MultiUser</a>: Fixed error when a custom installation mode initialization function is used only for the installer</li><li><a href="#" onclick="parser('../Docs/MultiUser/Readme.html')">MultiUser</a>: Fixed default installation mode based on registry key (<a href="http://sourceforge.net/support/tracker.php?aid=1913029">bug #1913029</a>)</li><li><a href="#" onclick="parser('../Docs/MultiUser/Readme.html')">MultiUser</a>: Fixed no uninstaller handling (MULTIUSER_NOUNINSTALL)</li></ul>
+<a name="F.11.2.5"></a><h4>F.11.2.5 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/makensisw/Readme.txt')">MakeNSISW</a>: Avoid opening executables with identical folder names when opening script's folder (<a href="http://sourceforge.net/support/tracker.php?aid=1891066">bug #1891066</a>)</li><li><a href="#" onclick="parser('../Docs/nsExec/nsExec.txt')">nsExec</a>: Fixed return code handling so 259 won't cause an infinite loop (<a href="http://sourceforge.net/support/tracker.php?aid=1909458">bug #1909458</a>)</li><li><a href="#" onclick="parser('../Docs/VPatch/Readme.html')">VPatch</a>: Added MD5 functions (<a href="http://sourceforge.net/support/tracker.php?aid=1900226">RFE #1900226</a>)</li></ul>
+<a name="F.11.2.6"></a><h4>F.11.2.6 Translation</h4>
+<ul>
+<li>Albanian updates (<a href="http://sourceforge.net/support/tracker.php?aid=1919360">patch #1919360</a>)</li><li>French fixes (<a href="http://sourceforge.net/support/tracker.php?aid=1916564">patch #1916564</a>)</li><li>Polish updates (<a href="http://sourceforge.net/support/tracker.php?aid=1894983">patch #1894983</a>)</li></ul>
+<a name="F.11.2.7"></a><h4>F.11.2.7 Build System</h4>
+<ul>
+<li>Fixed build of NSIS Menu with wxGTK (<a href="http://sourceforge.net/support/tracker.php?aid=1900233">bug #1900233</a>)</li><li>Use CRLF for DSW and DSP files to avoid corruption messages</li><li>Various build fixes for GCC 4.3, amd64 and Linux in general</li></ul>
+<p><a href='SectionF.10.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.12.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

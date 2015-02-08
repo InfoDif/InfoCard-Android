@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.29</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.17.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.19.html'>Next</a></p>
+<a name="F.18"></a><h2>F.18 2.29</h2>
+
+<p>Released on July 14th, 2007</p>
+<a name="F.18.1"></a><h3>F.18.1 Release Notes</h3>
+<ul>
+<li>The most notable addition in this release is nsDialogs - a faster and far more capable replacement for InstallOptions. It allows creating controls of any type directly from the script and removes the need to mess with slow INI files. It integrates directly into the script by calling functions for notification, including change notification for edit boxes. <a href="http://nsis.sourceforge.net/Community">Speak up</a> if you have any suggestions/comments/patches for it.</li></ul>
+<a name="F.18.2"></a><h3>F.18.2 Changelog</h3>
+<a name="F.18.2.1"></a><h4>F.18.2.1 Major Changes</h4>
+<ul>
+<li>Added <a href="#" onclick="parser('../Examples/nsDialogs')">nsDialogs</a> - a replacement for InstallOptions</li></ul>
+<a name="F.18.2.2"></a><h4>F.18.2.2 Minor Changes</h4>
+<ul>
+<li>Disable Windows error messages for the entire installer and not just for an incomplete list of fail-points (<a href="http://sourceforge.net/support/tracker.php?aid=1741061">bug #1741061</a>)</li><li>Fixed incorrect large version handling of <a href="SectionE.1.html#E.1.8">GetFileVersion</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1742255">bug #1742255</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1742562">patch #1742562</a>)</li><li>Fixed the ReverseSection macro in Sections.nsh (<a href="http://sourceforge.net/support/tracker.php?aid=1742793">bug #1742793</a>)</li><li>Minor documentation improvements</li><li>Simplified <a href="SectionD.5.html#D.5">REG_MULTI_SZ reader</a></li><li>Use SHGetFolderPath where available to better support all users' folders</li></ul>
+<a name="F.18.2.3"></a><h4>F.18.2.3 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/Banner/Readme.txt')">Banner</a>: Avoid possible hangs when called from page callbacks (<a href="http://sourceforge.net/support/tracker.php?aid=1743801">bug #1743801</a>)</li><li><a href="#" onclick="parser('../Docs/NSISdl/ReadMe.txt')">NSISdl</a>: added /TRANSLATE2 for more &quot;translator-friendly&quot; strings (<a href="http://sourceforge.net/support/tracker.php?aid=1656076">patch #1656076</a>)</li><li><a href="#" onclick="parser('../Docs/NSISdl/ReadMe.txt')">NSISdl</a>: support downloads over 2gb (<a href="http://sourceforge.net/support/tracker.php?aid=1723131">patch #1723131</a>)</li></ul>
+<a name="F.18.2.4"></a><h4>F.18.2.4 Translations</h4>
+<ul>
+<li>Added International Spanish</li></ul>
+<a name="F.18.2.5"></a><h4>F.18.2.5 Build System</h4>
+<ul>
+<li>Added support for HPUX (<a href="http://sourceforge.net/support/tracker.php?aid=1714416">patch #1714416</a>)</li></ul>
+<p><a href='SectionF.17.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.19.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

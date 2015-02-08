@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Multiple Languages</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.9.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.11.html'>Next</a></p>
+<a name="4.10"></a><h2>4.10 Multiple Languages</h2>
+
+<p>As of version 2 NSIS fully supports multiple languages. The interface of one installer can support multiple languages.</p>
+
+<p>Use <a href="Section4.9.html#4.9.15.1">LoadLanguageFile</a> for every language to load the default interface texts and language properties.</p>
+
+<p>The default interface texts can easily be changed using instructions like <a href="Section4.8.html#4.8.1.11">ComponentText</a> etc.</p>
+
+<p>You can also use the contents of the standard language strings in your own strings (for example, $(^Name) contains the installer's name set using the <a href="Section4.8.html#4.8.1.30">Name</a> instruction). The names of all standard language strings are listed as comments just above the strings in the language files. The language files are located in <a href="#" onclick="parser('../Contrib/Language files')">Contrib\Language Files</a>.</p>
+
+<p>To create your own language strings, use <a href="Section4.9.html#4.9.15.2">LangString</a>.</p>
+
+<p>For an example of an installer with multiple languages, see <a href="#" onclick="parser('../Examples/languages.nsi')">languages.nsi</a>.</p>
+<a name="4.10.1"></a><h3>4.10.1 Language Selection</h3>
+
+<p>When the installer starts up it goes through these steps to select the interface language:</p>
+<ol>
+<li>Get user's default Windows UI language</li><li>Find a perfect match for the language</li><li>If there is no perfect match, find a primary language match</li><li>If there is no match, use the first language defined in the script (make sure your first language is a common one like English)</li><li>If the language variable <a href="Section4.2.html#4.2.3">$LANGUAGE</a> has changed during .onInit, NSIS goes through steps 2 to 4 again.</li></ol>
+<a name="4.10.2"></a><h3>4.10.2 LangDLL Plug-in</h3>
+
+<p>The LangDLL plug-in allows you to give the user an option to choose the language of the installer. Just push the language id (${LANG_langfile}) and its name for every language in your installer, then the number of languages pushed, the caption, and the text that tells the user to select the language, call the plug-in function named LangDialog, pop the returned value into $LANGUAGE and you're good to go. If the user clicks on the cancel button the return value will be &quot;cancel&quot;.</p>
+
+<p>For an example of usage see <a href="#" onclick="parser('../Examples/languages.nsi')">languages.nsi</a>.</p>
+<a name="4.10.3"></a><h3>4.10.3 RTL Languages</h3>
+
+<p>RTL languages are languages that are written from right to left (e.g. Arabic and Hebrew). NSIS fully supports RTL languages. In the language file there is a place to specify if the language is RTL or not. To find out at runtime if the current language is RTL or not, check the value of the $(^RTL) language string. It will be 1 if the language is RTL and 0 otherwise. This can be useful when using plug-ins that create dialogs, they usually have RTL settings too.</p>
+<p><a href='Section4.9.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.11.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

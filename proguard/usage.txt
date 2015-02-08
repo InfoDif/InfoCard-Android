@@ -1,0 +1,2817 @@
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoJellyBeanMr2
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompatIcs
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompatJellyBeanMr2
+android.support.v4.app.ActionBarDrawerToggle
+android.support.v4.app.ActionBarDrawerToggle$1
+android.support.v4.app.ActionBarDrawerToggle$ActionBarDrawerToggleImpl
+android.support.v4.app.ActionBarDrawerToggle$ActionBarDrawerToggleImplBase
+android.support.v4.app.ActionBarDrawerToggle$ActionBarDrawerToggleImplHC
+android.support.v4.app.ActionBarDrawerToggle$Delegate
+android.support.v4.app.ActionBarDrawerToggle$DelegateProvider
+android.support.v4.app.ActionBarDrawerToggle$SlideDrawable
+android.support.v4.app.ActionBarDrawerToggleHoneycomb
+android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+android.support.v4.app.ActivityCompat
+android.support.v4.app.ActivityCompatHoneycomb:
+    27:27:ActivityCompatHoneycomb()
+    34:35:static void dump(android.app.Activity,java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+android.support.v4.app.ActivityCompatJB
+android.support.v4.app.ActivityOptionsCompat
+android.support.v4.app.ActivityOptionsCompat$ActivityOptionsImplJB
+android.support.v4.app.ActivityOptionsCompatJB
+android.support.v4.app.BackStackRecord:
+    static final java.lang.String TAG
+    static final int OP_NULL
+    static final int OP_ADD
+    static final int OP_REPLACE
+    static final int OP_REMOVE
+    static final int OP_HIDE
+    static final int OP_SHOW
+    static final int OP_DETACH
+    static final int OP_ATTACH
+    338:338:public int getId()
+    342:342:public int getBreadCrumbTitleRes()
+    346:346:public int getBreadCrumbShortTitleRes()
+    350:353:public java.lang.CharSequence getBreadCrumbTitle()
+    357:360:public java.lang.CharSequence getBreadCrumbShortTitle()
+    379:380:public android.support.v4.app.FragmentTransaction add(android.support.v4.app.Fragment,java.lang.String)
+    384:385:public android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment)
+    421:421:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    425:430:public android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    434:439:public android.support.v4.app.FragmentTransaction remove(android.support.v4.app.Fragment)
+    443:448:public android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    452:457:public android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    479:479:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    484:488:public android.support.v4.app.FragmentTransaction setCustomAnimations(int,int,int,int)
+    492:493:public android.support.v4.app.FragmentTransaction setTransition(int)
+    497:498:public android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    502:508:public android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    512:512:public boolean isAddToBackStackAllowed()
+    516:521:public android.support.v4.app.FragmentTransaction disallowAddToBackStack()
+    525:527:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    531:533:public android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    537:539:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    543:545:public android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    578:578:public int commitAllowingStateLoss()
+    779:779:public int getTransition()
+    783:783:public int getTransitionStyle()
+    787:787:public boolean isEmpty()
+android.support.v4.app.DialogFragment
+android.support.v4.app.Fragment:
+    static final int INITIALIZING
+    static final int CREATED
+    static final int ACTIVITY_CREATED
+    static final int STOPPED
+    static final int STARTED
+    static final int RESUMED
+    511:511:public final int getId()
+    518:518:public final java.lang.String getTag()
+    529:533:public void setArguments(android.os.Bundle)
+    540:540:public final android.os.Bundle getArguments()
+    552:557:public void setInitialSavedState(android.support.v4.app.Fragment$SavedState)
+    571:573:public void setTargetFragment(android.support.v4.app.Fragment,int)
+    579:579:public final android.support.v4.app.Fragment getTargetFragment()
+    586:586:public final int getTargetRequestCode()
+    613:613:public final java.lang.CharSequence getText(int)
+    623:623:public final java.lang.String getString(int)
+    636:636:public final varargs java.lang.String getString(int,java.lang.Object[])
+    650:650:public final android.support.v4.app.FragmentManager getFragmentManager()
+    658:670:public final android.support.v4.app.FragmentManager getChildFragmentManager()
+    678:678:public final android.support.v4.app.Fragment getParentFragment()
+    685:685:public final boolean isAdded()
+    703:703:public final boolean isRemoving()
+    714:714:public final boolean isInLayout()
+    722:722:public final boolean isResumed()
+    731:731:public final boolean isVisible()
+    743:743:public final boolean isHidden()
+    748:748:public final boolean hasOptionsMenu()
+    753:753:public final boolean isMenuVisible()
+    781:786:public void setRetainInstance(boolean)
+    789:789:public final boolean getRetainInstance()
+    800:806:public void setHasOptionsMenu(boolean)
+    818:824:public void setMenuVisibility(boolean)
+    840:845:public void setUserVisibleHint(boolean)
+    852:852:public boolean getUserVisibleHint()
+    859:867:public android.support.v4.app.LoaderManager getLoaderManager()
+    875:879:public void startActivity(android.content.Intent)
+    886:890:public void startActivityForResult(android.content.Intent,int)
+    1041:1041:public android.view.View getView()
+    1328:1329:public void registerForContextMenu(android.view.View)
+    1339:1340:public void unregisterForContextMenu(android.view.View)
+    1450:1456:android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
+android.support.v4.app.Fragment$SavedState:
+    309:311:Fragment$SavedState(android.os.Bundle)
+android.support.v4.app.FragmentActivity:
+    private static final java.lang.String TAG
+    static final java.lang.String FRAGMENTS_TAG
+    private static final int HONEYCOMB
+    static final int MSG_REALLY_STOPPED
+    static final int MSG_RESUME_PENDING
+    632:634:public java.lang.Object getLastCustomNonConfigurationInstance()
+    827:827:public android.support.v4.app.FragmentManager getSupportFragmentManager()
+    847:855:public void startActivityFromFragment(android.support.v4.app.Fragment,android.content.Intent,int)
+    876:881:public android.support.v4.app.LoaderManager getSupportLoaderManager()
+android.support.v4.app.FragmentActivity$FragmentTag:
+    public static final int Fragment_id
+    public static final int Fragment_name
+    public static final int Fragment_tag
+    134:134:FragmentActivity$FragmentTag()
+android.support.v4.app.FragmentManager:
+    public static final int POP_BACK_STACK_INCLUSIVE
+    142:142:public android.support.v4.app.FragmentTransaction openTransaction()
+    public abstract android.support.v4.app.Fragment findFragmentById(int)
+    public abstract void popBackStack()
+    public abstract boolean popBackStackImmediate()
+    public abstract void popBackStack(java.lang.String,int)
+    public abstract boolean popBackStackImmediate(java.lang.String,int)
+    public abstract void popBackStack(int,int)
+    public abstract boolean popBackStackImmediate(int,int)
+    public abstract int getBackStackEntryCount()
+    public abstract android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    public abstract void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    public abstract void putFragment(android.os.Bundle,java.lang.String,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.Fragment getFragment(android.os.Bundle,java.lang.String)
+    public abstract java.util.List getFragments()
+    public abstract android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    345:346:public static void enableDebugLogging(boolean)
+android.support.v4.app.FragmentManager$BackStackEntry
+android.support.v4.app.FragmentManagerImpl:
+    static final java.lang.String TAG
+    static final java.lang.String TARGET_REQUEST_CODE_STATE_TAG
+    static final java.lang.String TARGET_STATE_TAG
+    static final java.lang.String VIEW_STATE_TAG
+    static final java.lang.String USER_VISIBLE_HINT_TAG
+    static final int ANIM_DUR
+    public static final int ANIM_STYLE_OPEN_ENTER
+    public static final int ANIM_STYLE_OPEN_EXIT
+    public static final int ANIM_STYLE_CLOSE_ENTER
+    public static final int ANIM_STYLE_CLOSE_EXIT
+    public static final int ANIM_STYLE_FADE_ENTER
+    public static final int ANIM_STYLE_FADE_EXIT
+    477:482:public void popBackStack()
+    493:498:public void popBackStack(java.lang.String,int)
+    502:504:public boolean popBackStackImmediate(java.lang.String,int)
+    509:517:public void popBackStack(int,int)
+    521:526:public boolean popBackStackImmediate(int,int)
+    531:531:public int getBackStackEntryCount()
+    536:536:public android.support.v4.app.FragmentManager$BackStackEntry getBackStackEntryAt(int)
+    541:545:public void addOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    549:552:public void removeOnBackStackChangedListener(android.support.v4.app.FragmentManager$OnBackStackChangedListener)
+    583:583:public java.util.List getFragments()
+    588:596:public android.support.v4.app.Fragment$SavedState saveFragmentInstanceState(android.support.v4.app.Fragment)
+    1330:1338:public android.support.v4.app.Fragment findFragmentByWho(java.lang.String)
+android.support.v4.app.FragmentManagerImpl$2
+android.support.v4.app.FragmentManagerImpl$3
+android.support.v4.app.FragmentManagerImpl$4
+android.support.v4.app.FragmentPagerAdapter
+android.support.v4.app.FragmentStatePagerAdapter
+android.support.v4.app.FragmentTabHost:
+    private android.widget.FrameLayout mRealTabContent
+    130:132:public FragmentTabHost(android.content.Context)
+    151:174:private void ensureHierarchy(android.content.Context)
+    188:193:public void setup(android.content.Context,android.support.v4.app.FragmentManager)
+    196:209:public void setup(android.content.Context,android.support.v4.app.FragmentManager,int)
+    212:219:private void ensureContent()
+    227:246:public void addTab(android.widget.TabHost$TabSpec,java.lang.Class,android.os.Bundle)
+android.support.v4.app.FragmentTabHost$DummyTabFactory
+android.support.v4.app.FragmentTabHost$TabInfo:
+    67:71:FragmentTabHost$TabInfo(java.lang.String,java.lang.Class,android.os.Bundle)
+android.support.v4.app.FragmentTransaction:
+    public static final int TRANSIT_ENTER_MASK
+    public static final int TRANSIT_EXIT_MASK
+    public static final int TRANSIT_UNSET
+    public static final int TRANSIT_NONE
+    public static final int TRANSIT_FRAGMENT_OPEN
+    public static final int TRANSIT_FRAGMENT_CLOSE
+    public static final int TRANSIT_FRAGMENT_FADE
+    public abstract android.support.v4.app.FragmentTransaction add(android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction add(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction replace(int,android.support.v4.app.Fragment,java.lang.String)
+    public abstract android.support.v4.app.FragmentTransaction remove(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction hide(android.support.v4.app.Fragment)
+    public abstract android.support.v4.app.FragmentTransaction show(android.support.v4.app.Fragment)
+    public abstract boolean isEmpty()
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int)
+    public abstract android.support.v4.app.FragmentTransaction setCustomAnimations(int,int,int,int)
+    public abstract android.support.v4.app.FragmentTransaction setTransition(int)
+    public abstract android.support.v4.app.FragmentTransaction setTransitionStyle(int)
+    public abstract android.support.v4.app.FragmentTransaction addToBackStack(java.lang.String)
+    public abstract boolean isAddToBackStackAllowed()
+    public abstract android.support.v4.app.FragmentTransaction disallowAddToBackStack()
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbTitle(java.lang.CharSequence)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(int)
+    public abstract android.support.v4.app.FragmentTransaction setBreadCrumbShortTitle(java.lang.CharSequence)
+    public abstract int commitAllowingStateLoss()
+android.support.v4.app.ListFragment
+android.support.v4.app.ListFragment$1
+android.support.v4.app.ListFragment$2
+android.support.v4.app.LoaderManager:
+    public abstract android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    public abstract void destroyLoader(int)
+    public abstract android.support.v4.content.Loader getLoader(int)
+    public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
+    177:178:public static void enableDebugLogging(boolean)
+android.support.v4.app.LoaderManagerImpl:
+    static final java.lang.String TAG
+    boolean mRetainingStarted
+    boolean mCreatingLoader
+    489:492:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    498:503:private android.support.v4.app.LoaderManagerImpl$LoaderInfo createAndInstallLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    508:515:void installLoader(android.support.v4.app.LoaderManagerImpl$LoaderInfo)
+    543:565:public android.support.v4.content.Loader initLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    593:647:public android.support.v4.content.Loader restartLoader(int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    658:678:public void destroyLoader(int)
+    686:697:public android.support.v4.content.Loader getLoader(int)
+android.support.v4.app.LoaderManagerImpl$LoaderInfo:
+    228:232:public LoaderManagerImpl$LoaderInfo(android.support.v4.app.LoaderManagerImpl,int,android.os.Bundle,android.support.v4.app.LoaderManager$LoaderCallbacks)
+    362:415:public void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.app.NavUtils
+android.support.v4.app.NavUtils$NavUtilsImpl
+android.support.v4.app.NavUtils$NavUtilsImplBase
+android.support.v4.app.NavUtils$NavUtilsImplJB
+android.support.v4.app.NavUtilsJB
+android.support.v4.app.NotificationCompat
+android.support.v4.app.NotificationCompat$Action
+android.support.v4.app.NotificationCompat$BigPictureStyle
+android.support.v4.app.NotificationCompat$BigTextStyle
+android.support.v4.app.NotificationCompat$Builder
+android.support.v4.app.NotificationCompat$InboxStyle
+android.support.v4.app.NotificationCompat$NotificationCompatImpl
+android.support.v4.app.NotificationCompat$NotificationCompatImplBase
+android.support.v4.app.NotificationCompat$NotificationCompatImplHoneycomb
+android.support.v4.app.NotificationCompat$NotificationCompatImplIceCreamSandwich
+android.support.v4.app.NotificationCompat$NotificationCompatImplJellybean
+android.support.v4.app.NotificationCompat$Style
+android.support.v4.app.NotificationCompatHoneycomb
+android.support.v4.app.NotificationCompatIceCreamSandwich
+android.support.v4.app.NotificationCompatJellybean
+android.support.v4.app.ServiceCompat
+android.support.v4.app.ShareCompat
+android.support.v4.app.ShareCompat$IntentBuilder
+android.support.v4.app.ShareCompat$IntentReader
+android.support.v4.app.ShareCompat$ShareCompatImpl
+android.support.v4.app.ShareCompat$ShareCompatImplBase
+android.support.v4.app.ShareCompat$ShareCompatImplICS
+android.support.v4.app.ShareCompat$ShareCompatImplJB
+android.support.v4.app.ShareCompatICS
+android.support.v4.app.ShareCompatJB
+android.support.v4.app.TaskStackBuilder
+android.support.v4.app.TaskStackBuilder$SupportParentable
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImpl
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplBase
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplHoneycomb
+android.support.v4.app.TaskStackBuilder$TaskStackBuilderImplJellybean
+android.support.v4.app.TaskStackBuilderHoneycomb
+android.support.v4.app.TaskStackBuilderJellybean
+android.support.v4.content.AsyncTaskLoader
+android.support.v4.content.AsyncTaskLoader$LoadTask
+android.support.v4.content.ContextCompat
+android.support.v4.content.ContextCompatFroyo
+android.support.v4.content.ContextCompatHoneycomb
+android.support.v4.content.ContextCompatJellybean
+android.support.v4.content.ContextCompatKitKat
+android.support.v4.content.CursorLoader
+android.support.v4.content.FileProvider:
+    private static final java.lang.String META_DATA_FILE_PROVIDER_PATHS
+    private static final java.lang.String TAG_ROOT_PATH
+    private static final java.lang.String TAG_FILES_PATH
+    private static final java.lang.String TAG_CACHE_PATH
+    private static final java.lang.String TAG_EXTERNAL
+    private static final java.lang.String ATTR_NAME
+    private static final java.lang.String ATTR_PATH
+    376:377:public static android.net.Uri getUriForFile(android.content.Context,java.lang.String,java.io.File)
+android.support.v4.content.FileProvider$PathStrategy:
+    public abstract android.net.Uri getUriForFile(java.io.File)
+android.support.v4.content.FileProvider$SimplePathStrategy:
+    662:692:public android.net.Uri getUriForFile(java.io.File)
+android.support.v4.content.IntentCompat
+android.support.v4.content.IntentCompat$IntentCompatImpl
+android.support.v4.content.IntentCompat$IntentCompatImplBase
+android.support.v4.content.IntentCompat$IntentCompatImplHC
+android.support.v4.content.IntentCompat$IntentCompatImplIcsMr1
+android.support.v4.content.IntentCompatHoneycomb
+android.support.v4.content.IntentCompatIcsMr1
+android.support.v4.content.Loader:
+    android.content.Context mContext
+    91:93:public Loader(android.content.Context)
+    103:106:public void deliverResult(java.lang.Object)
+    112:112:public android.content.Context getContext()
+    119:119:public int getId()
+    158:158:public boolean isStarted()
+    167:167:public boolean isAbandoned()
+    176:176:public boolean isReset()
+    218:219:public void forceLoad()
+    226:226:protected void onForceLoad()
+    262:264:public void abandon()
+    276:276:protected void onAbandon()
+    314:317:public boolean takeContentChanged()
+    328:329:public void commitContentChanged()
+    339:342:public void rollbackContentChanged()
+    353:361:public void onContentChanged()
+android.support.v4.content.Loader$ForceLoadContentObserver
+android.support.v4.content.Loader$OnLoadCompleteListener:
+    public abstract void onLoadComplete(android.support.v4.content.Loader,java.lang.Object)
+android.support.v4.content.LocalBroadcastManager
+android.support.v4.content.LocalBroadcastManager$1
+android.support.v4.content.LocalBroadcastManager$BroadcastRecord
+android.support.v4.content.LocalBroadcastManager$ReceiverRecord
+android.support.v4.content.ModernAsyncTask
+android.support.v4.content.ModernAsyncTask$1
+android.support.v4.content.ModernAsyncTask$2
+android.support.v4.content.ModernAsyncTask$3
+android.support.v4.content.ModernAsyncTask$4
+android.support.v4.content.ModernAsyncTask$AsyncTaskResult
+android.support.v4.content.ModernAsyncTask$InternalHandler
+android.support.v4.content.ModernAsyncTask$Status
+android.support.v4.content.ModernAsyncTask$WorkerRunnable
+android.support.v4.content.WakefulBroadcastReceiver:
+    private static final java.lang.String EXTRA_WAKE_LOCK_ID
+    81:101:public static android.content.ComponentName startWakefulService(android.content.Context,android.content.Intent)
+    113:132:public static boolean completeWakefulIntent(android.content.Intent)
+android.support.v4.content.pm.ActivityInfoCompat
+android.support.v4.database.DatabaseUtilsCompat
+android.support.v4.graphics.drawable.DrawableCompat
+android.support.v4.graphics.drawable.DrawableCompat$BaseDrawableImpl
+android.support.v4.graphics.drawable.DrawableCompat$DrawableImpl
+android.support.v4.graphics.drawable.DrawableCompat$HoneycombDrawableImpl
+android.support.v4.graphics.drawable.DrawableCompat$KitKatDrawableImpl
+android.support.v4.graphics.drawable.DrawableCompatHoneycomb
+android.support.v4.graphics.drawable.DrawableCompatKitKat
+android.support.v4.hardware.display.DisplayManagerCompat
+android.support.v4.hardware.display.DisplayManagerCompat$JellybeanMr1Impl
+android.support.v4.hardware.display.DisplayManagerCompat$LegacyImpl
+android.support.v4.hardware.display.DisplayManagerJellybeanMr1
+android.support.v4.internal.view.SupportMenu
+android.support.v4.internal.view.SupportMenuItem
+android.support.v4.internal.view.SupportSubMenu
+android.support.v4.media.TransportController
+android.support.v4.media.TransportMediator
+android.support.v4.media.TransportMediator$1
+android.support.v4.media.TransportMediator$2
+android.support.v4.media.TransportMediatorCallback
+android.support.v4.media.TransportMediatorJellybeanMR2
+android.support.v4.media.TransportMediatorJellybeanMR2$1
+android.support.v4.media.TransportMediatorJellybeanMR2$2
+android.support.v4.media.TransportMediatorJellybeanMR2$3
+android.support.v4.media.TransportMediatorJellybeanMR2$4
+android.support.v4.media.TransportPerformer
+android.support.v4.media.TransportStateListener
+android.support.v4.net.ConnectivityManagerCompat
+android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$ConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl
+android.support.v4.net.ConnectivityManagerCompatGingerbread
+android.support.v4.net.ConnectivityManagerCompatHoneycombMR2
+android.support.v4.net.ConnectivityManagerCompatJellyBean
+android.support.v4.net.TrafficStatsCompat
+android.support.v4.net.TrafficStatsCompat$1
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl$1
+android.support.v4.net.TrafficStatsCompat$BaseTrafficStatsCompatImpl$SocketTags
+android.support.v4.net.TrafficStatsCompat$IcsTrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompat$TrafficStatsCompatImpl
+android.support.v4.net.TrafficStatsCompatIcs
+android.support.v4.os.EnvironmentCompat
+android.support.v4.os.EnvironmentCompatKitKat
+android.support.v4.os.ParcelableCompat:
+    26:42:public ParcelableCompat()
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2Stub:
+    22:22:ParcelableCompatCreatorHoneycombMR2Stub()
+android.support.v4.print.PrintHelper
+android.support.v4.print.PrintHelper$1
+android.support.v4.print.PrintHelper$PrintHelperKitkatImpl
+android.support.v4.print.PrintHelper$PrintHelperStubImpl
+android.support.v4.print.PrintHelper$PrintHelperVersionImpl
+android.support.v4.print.PrintHelperKitkat
+android.support.v4.print.PrintHelperKitkat$1
+android.support.v4.text.BidiFormatter
+android.support.v4.text.BidiFormatter$1
+android.support.v4.text.BidiFormatter$Builder
+android.support.v4.text.BidiFormatter$DirectionalityEstimator
+android.support.v4.text.ICUCompat
+android.support.v4.text.ICUCompat$ICUCompatImpl
+android.support.v4.text.ICUCompat$ICUCompatImplBase
+android.support.v4.text.ICUCompat$ICUCompatImplIcs
+android.support.v4.text.ICUCompatIcs
+android.support.v4.text.TextDirectionHeuristicCompat
+android.support.v4.text.TextDirectionHeuristicsCompat
+android.support.v4.text.TextDirectionHeuristicsCompat$1
+android.support.v4.text.TextDirectionHeuristicsCompat$AnyStrong
+android.support.v4.text.TextDirectionHeuristicsCompat$FirstStrong
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionAlgorithm
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicLocale
+android.support.v4.text.TextUtilsCompat
+android.support.v4.util.ArrayMap:
+    61:62:public ArrayMap(int)
+    68:69:public ArrayMap(android.support.v4.util.SimpleArrayMap)
+    130:130:public boolean containsAll(java.util.Collection)
+    151:151:public boolean removeAll(java.util.Collection)
+    161:161:public boolean retainAll(java.util.Collection)
+android.support.v4.util.AtomicFile
+android.support.v4.util.ContainerHelpers:
+    19:19:ContainerHelpers()
+    29:29:public static int idealLongArraySize(int)
+    65:80:static int binarySearch(long[],int,long)
+android.support.v4.util.DebugUtils:
+    25:25:public DebugUtils()
+android.support.v4.util.LongSparseArray
+android.support.v4.util.LruCache
+android.support.v4.util.SimpleArrayMap:
+    private static final boolean DEBUG
+    private static final java.lang.String TAG
+    private static final int BASE_SIZE
+    private static final int CACHE_SIZE
+    217:225:public SimpleArrayMap(int)
+    231:235:public SimpleArrayMap(android.support.v4.util.SimpleArrayMap)
+    419:432:public void putAll(android.support.v4.util.SimpleArrayMap)
+android.support.v4.util.SparseArrayCompat:
+    76:76:public java.lang.Object get(int)
+    85:90:public java.lang.Object get(int,java.lang.Object)
+    98:106:public void delete(int)
+    112:113:public void remove(int)
+    119:123:public void removeAt(int)
+    132:136:public void removeAtRange(int,int)
+    172:216:public void put(int,java.lang.Object)
+    263:268:public void setValueAt(int,java.lang.Object)
+    276:280:public int indexOfKey(int)
+    294:302:public int indexOfValue(java.lang.Object)
+    325:352:public void append(int,java.lang.Object)
+android.support.v4.util.TimeUtils
+android.support.v4.view.AccessibilityDelegateCompatIcs:
+    28:30:AccessibilityDelegateCompatIcs()
+android.support.v4.view.AccessibilityDelegateCompatJellyBean:
+    30:32:AccessibilityDelegateCompatJellyBean()
+android.support.v4.view.ActionProvider
+android.support.v4.view.ActionProvider$SubUiVisibilityListener
+android.support.v4.view.ActionProvider$VisibilityListener
+android.support.v4.view.GestureDetectorCompat
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImpl
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplBase
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplBase$GestureHandler
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplJellybeanMr2
+android.support.v4.view.GravityCompat:
+    public static final int RELATIVE_LAYOUT_DIRECTION
+    public static final int START
+    public static final int END
+    public static final int RELATIVE_HORIZONTAL_GRAVITY_MASK
+    27:62:public GravityCompat()
+    132:133:public static void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    162:163:public static void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    186:187:public static void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.GravityCompat$GravityCompatImpl:
+    public abstract void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    public abstract void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    public abstract void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.GravityCompat$GravityCompatImplBase:
+    46:47:public void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    52:53:public void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    58:59:public void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.GravityCompat$GravityCompatImplJellybeanMr1:
+    71:72:public void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    77:79:public void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    83:84:public void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.GravityCompatJellybeanMr1:
+    23:23:GravityCompatJellybeanMr1()
+    31:32:public static void apply(int,int,int,android.graphics.Rect,android.graphics.Rect,int)
+    36:37:public static void apply(int,int,int,android.graphics.Rect,int,int,android.graphics.Rect,int)
+    40:41:public static void applyDisplay(int,android.graphics.Rect,android.graphics.Rect,int)
+android.support.v4.view.KeyEventCompat:
+    26:144:public KeyEventCompat()
+    176:176:public static int normalizeMetaState(int)
+    180:180:public static boolean metaStateHasModifiers(int,int)
+    184:184:public static boolean metaStateHasNoModifiers(int)
+    200:200:public static boolean isTracking(android.view.KeyEvent)
+    204:204:public static java.lang.Object getKeyDispatcherState(android.view.View)
+    209:209:public static boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+android.support.v4.view.KeyEventCompat$BaseKeyEventVersionImpl:
+    private static final int META_MODIFIER_MASK
+    private static final int META_ALL_MASK
+    103:103:public boolean isTracking(android.view.KeyEvent)
+    108:108:public java.lang.Object getKeyDispatcherState(android.view.View)
+    114:114:public boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+android.support.v4.view.KeyEventCompat$EclairKeyEventVersionImpl:
+    126:126:public boolean isTracking(android.view.KeyEvent)
+    131:131:public java.lang.Object getKeyDispatcherState(android.view.View)
+    137:137:public boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+android.support.v4.view.KeyEventCompat$KeyEventVersionImpl:
+    public abstract int normalizeMetaState(int)
+    public abstract boolean isTracking(android.view.KeyEvent)
+    public abstract java.lang.Object getKeyDispatcherState(android.view.View)
+    public abstract boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+android.support.v4.view.KeyEventCompatEclair:
+    23:23:KeyEventCompatEclair()
+    25:25:public static java.lang.Object getKeyDispatcherState(android.view.View)
+    30:30:public static boolean dispatch(android.view.KeyEvent,android.view.KeyEvent$Callback,java.lang.Object,java.lang.Object)
+    38:38:public static boolean isTracking(android.view.KeyEvent)
+android.support.v4.view.KeyEventCompatHoneycomb:
+    24:24:KeyEventCompatHoneycomb()
+android.support.v4.view.MarginLayoutParamsCompat
+android.support.v4.view.MarginLayoutParamsCompat$MarginLayoutParamsCompatImpl
+android.support.v4.view.MarginLayoutParamsCompat$MarginLayoutParamsCompatImplBase
+android.support.v4.view.MarginLayoutParamsCompat$MarginLayoutParamsCompatImplJbMr1
+android.support.v4.view.MarginLayoutParamsCompatJellybeanMr1
+android.support.v4.view.MenuCompat
+android.support.v4.view.MenuItemCompat
+android.support.v4.view.MenuItemCompat$BaseMenuVersionImpl
+android.support.v4.view.MenuItemCompat$HoneycombMenuVersionImpl
+android.support.v4.view.MenuItemCompat$IcsMenuVersionImpl
+android.support.v4.view.MenuItemCompat$IcsMenuVersionImpl$1
+android.support.v4.view.MenuItemCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompat$OnActionExpandListener
+android.support.v4.view.MenuItemCompatHoneycomb
+android.support.v4.view.MenuItemCompatIcs
+android.support.v4.view.MenuItemCompatIcs$OnActionExpandListenerWrapper
+android.support.v4.view.MenuItemCompatIcs$SupportActionExpandProxy
+android.support.v4.view.MotionEventCompat:
+    public static final int ACTION_MASK
+    public static final int ACTION_POINTER_DOWN
+    public static final int ACTION_POINTER_UP
+    public static final int ACTION_HOVER_MOVE
+    public static final int ACTION_SCROLL
+    public static final int ACTION_POINTER_INDEX_MASK
+    public static final int ACTION_POINTER_INDEX_SHIFT
+    public static final int ACTION_HOVER_ENTER
+    public static final int ACTION_HOVER_EXIT
+    25:80:public MotionEventCompat()
+android.support.v4.view.MotionEventCompatEclair:
+    24:24:MotionEventCompatEclair()
+android.support.v4.view.PagerAdapter:
+    public static final int POSITION_UNCHANGED
+    public static final int POSITION_NONE
+    268:268:public int getItemPosition(java.lang.Object)
+    276:277:public void notifyDataSetChanged()
+android.support.v4.view.PagerTabStrip:
+    private static final java.lang.String TAG
+    private static final int INDICATOR_HEIGHT
+    private static final int MIN_PADDING_BOTTOM
+    private static final int TAB_PADDING
+    private static final int TAB_SPACING
+    private static final int MIN_TEXT_SPACING
+    private static final int FULL_UNDERLINE_HEIGHT
+    private static final int MIN_STRIP_HEIGHT
+    76:77:public PagerTabStrip(android.content.Context)
+    129:132:public void setTabIndicatorColor(int)
+    140:141:public void setTabIndicatorColorResource(int)
+    147:147:public int getTabIndicatorColor()
+    197:200:public void setDrawFullUnderline(boolean)
+    210:210:public boolean getDrawFullUnderline()
+android.support.v4.view.PagerTitleStrip:
+    private static final java.lang.String TAG
+    private static final float SIDE_ALPHA
+    private static final int TEXT_SPACING
+    112:113:public PagerTitleStrip(android.content.Context)
+    206:211:public void setTextColor(int)
+    236:238:public void setGravity(int)
+android.support.v4.view.PagerTitleStrip$PageListener:
+    501:502:public void onAdapterChanged(android.support.v4.view.PagerAdapter,android.support.v4.view.PagerAdapter)
+android.support.v4.view.PagerTitleStripIcs:
+    26:31:PagerTitleStripIcs()
+android.support.v4.view.PagerTitleStripIcs$SingleLineAllCapsTransform:
+    private static final java.lang.String TAG
+android.support.v4.view.ScaleGestureDetectorCompat
+android.support.v4.view.ScaleGestureDetectorCompat$1
+android.support.v4.view.ScaleGestureDetectorCompat$BaseScaleGestureDetectorImpl
+android.support.v4.view.ScaleGestureDetectorCompat$ScaleGestureDetectorCompatKitKatImpl
+android.support.v4.view.ScaleGestureDetectorCompat$ScaleGestureDetectorImpl
+android.support.v4.view.ScaleGestureDetectorCompatKitKat
+android.support.v4.view.VelocityTrackerCompat:
+    25:51:public VelocityTrackerCompat()
+android.support.v4.view.VelocityTrackerCompatHoneycomb:
+    24:24:VelocityTrackerCompatHoneycomb()
+android.support.v4.view.ViewCompat:
+    public static final int OVER_SCROLL_ALWAYS
+    public static final int OVER_SCROLL_IF_CONTENT_SCROLLS
+    public static final int OVER_SCROLL_NEVER
+    private static final long FAKE_FRAME_TIME
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_AUTO
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_YES
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_NO
+    public static final int IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS
+    public static final int ACCESSIBILITY_LIVE_REGION_NONE
+    public static final int ACCESSIBILITY_LIVE_REGION_POLITE
+    public static final int ACCESSIBILITY_LIVE_REGION_ASSERTIVE
+    public static final int LAYER_TYPE_NONE
+    public static final int LAYER_TYPE_SOFTWARE
+    public static final int LAYER_TYPE_HARDWARE
+    public static final int LAYOUT_DIRECTION_LTR
+    public static final int LAYOUT_DIRECTION_RTL
+    public static final int LAYOUT_DIRECTION_INHERIT
+    public static final int LAYOUT_DIRECTION_LOCALE
+    public static final int MEASURED_SIZE_MASK
+    public static final int MEASURED_STATE_MASK
+    public static final int MEASURED_HEIGHT_STATE_SHIFT
+    public static final int MEASURED_STATE_TOO_SMALL
+    34:534:public ViewCompat()
+    585:585:public static boolean canScrollVertically(android.view.View,int)
+    614:615:public static void setOverScrollMode(android.view.View,int)
+    651:652:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    684:685:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    720:721:public static void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    747:747:public static boolean hasTransientState(android.view.View)
+    758:759:public static void setHasTransientState(android.view.View,boolean)
+    820:821:public static void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    872:872:public static boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    899:899:public static android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+    910:910:public static float getAlpha(android.view.View)
+    984:984:public static int getLabelFor(android.view.View)
+    995:996:public static void setLabelFor(android.view.View,int)
+    1063:1064:public static void setLayoutDirection(android.view.View,int)
+    1105:1105:public static int resolveSizeAndState(int,int,int)
+    1119:1119:public static int getMeasuredWidthAndState(android.view.View)
+    1133:1133:public static int getMeasuredHeightAndState(android.view.View)
+    1144:1144:public static int getMeasuredState(android.view.View)
+    1156:1156:public int getAccessibilityLiveRegion(android.view.View)
+    1188:1189:public void setAccessibilityLiveRegion(android.view.View,int)
+android.support.v4.view.ViewCompat$BaseViewCompatImpl:
+    239:239:public boolean canScrollVertically(android.view.View,int)
+    246:246:public void setOverScrollMode(android.view.View,int)
+    252:252:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    255:255:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    258:258:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    261:261:public boolean hasTransientState(android.view.View)
+    265:265:public void setHasTransientState(android.view.View,boolean)
+    276:277:public void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    288:288:public boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    291:291:public android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+    294:294:public float getAlpha(android.view.View)
+    303:303:public int getLabelFor(android.view.View)
+    307:307:public void setLabelFor(android.view.View,int)
+    320:320:public void setLayoutDirection(android.view.View,int)
+    337:337:public int resolveSizeAndState(int,int,int)
+    342:342:public int getMeasuredWidthAndState(android.view.View)
+    347:347:public int getMeasuredHeightAndState(android.view.View)
+    352:352:public int getMeasuredState(android.view.View)
+    357:357:public int getAccessibilityLiveRegion(android.view.View)
+    363:363:public void setAccessibilityLiveRegion(android.view.View,int)
+android.support.v4.view.ViewCompat$GBViewCompatImpl:
+    380:381:public void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompat$HCViewCompatImpl:
+    391:391:public float getAlpha(android.view.View)
+    411:411:public int resolveSizeAndState(int,int,int)
+    415:415:public int getMeasuredWidthAndState(android.view.View)
+    419:419:public int getMeasuredHeightAndState(android.view.View)
+    423:423:public int getMeasuredState(android.view.View)
+android.support.v4.view.ViewCompat$ICSViewCompatImpl:
+    434:434:public boolean canScrollVertically(android.view.View,int)
+    438:439:public void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    442:443:public void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    446:447:public void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+android.support.v4.view.ViewCompat$JBViewCompatImpl:
+    457:457:public boolean hasTransientState(android.view.View)
+    461:462:public void setHasTransientState(android.view.View,boolean)
+    477:478:public void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    489:489:public boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    493:497:public android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompat$JbMr1ViewCompatImpl:
+    510:510:public int getLabelFor(android.view.View)
+    515:516:public void setLabelFor(android.view.View,int)
+    530:531:public void setLayoutDirection(android.view.View,int)
+android.support.v4.view.ViewCompat$KitKatViewCompatImpl:
+    537:537:public int getAccessibilityLiveRegion(android.view.View)
+    542:543:public void setAccessibilityLiveRegion(android.view.View,int)
+android.support.v4.view.ViewCompat$ViewCompatImpl:
+    public abstract boolean canScrollVertically(android.view.View,int)
+    public abstract void setOverScrollMode(android.view.View,int)
+    public abstract void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat)
+    public abstract boolean hasTransientState(android.view.View)
+    public abstract void setHasTransientState(android.view.View,boolean)
+    public abstract void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    public abstract boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    public abstract android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View)
+    public abstract float getAlpha(android.view.View)
+    public abstract int getLabelFor(android.view.View)
+    public abstract void setLabelFor(android.view.View,int)
+    public abstract void setLayoutDirection(android.view.View,int)
+    public abstract int resolveSizeAndState(int,int,int)
+    public abstract int getMeasuredWidthAndState(android.view.View)
+    public abstract int getMeasuredHeightAndState(android.view.View)
+    public abstract int getMeasuredState(android.view.View)
+    public abstract int getAccessibilityLiveRegion(android.view.View)
+    public abstract void setAccessibilityLiveRegion(android.view.View,int)
+android.support.v4.view.ViewCompatEclairMr1:
+    22:22:ViewCompatEclairMr1()
+android.support.v4.view.ViewCompatGingerbread:
+    21:21:ViewCompatGingerbread()
+    27:28:public static void setOverScrollMode(android.view.View,int)
+android.support.v4.view.ViewCompatHC:
+    23:23:ViewCompatHC()
+    29:29:public static float getAlpha(android.view.View)
+    41:41:public static int resolveSizeAndState(int,int,int)
+    45:45:public static int getMeasuredWidthAndState(android.view.View)
+    49:49:public static int getMeasuredHeightAndState(android.view.View)
+    53:53:public static int getMeasuredState(android.view.View)
+android.support.v4.view.ViewCompatICS:
+    27:27:ViewCompatICS()
+    34:34:public static boolean canScrollVertically(android.view.View,int)
+    42:43:public static void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    46:47:public static void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent)
+    50:51:public static void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object)
+android.support.v4.view.ViewCompatJB:
+    26:26:ViewCompatJB()
+    29:29:public static boolean hasTransientState(android.view.View)
+    33:34:public static void setHasTransientState(android.view.View,boolean)
+    50:51:public static void postOnAnimationDelayed(android.view.View,java.lang.Runnable,long)
+    62:62:public static boolean performAccessibilityAction(android.view.View,int,android.os.Bundle)
+    66:66:public static java.lang.Object getAccessibilityNodeProvider(android.view.View)
+android.support.v4.view.ViewCompatJellybeanMr1:
+    25:25:ViewCompatJellybeanMr1()
+    28:28:public static int getLabelFor(android.view.View)
+    32:33:public static void setLabelFor(android.view.View,int)
+    44:45:public static void setLayoutDirection(android.view.View,int)
+android.support.v4.view.ViewCompatKitKat
+android.support.v4.view.ViewConfigurationCompat:
+    25:46:public ViewConfigurationCompat()
+android.support.v4.view.ViewConfigurationCompatFroyo:
+    24:24:ViewConfigurationCompatFroyo()
+android.support.v4.view.ViewGroupCompat:
+    public static final int LAYOUT_MODE_CLIP_BOUNDS
+    public static final int LAYOUT_MODE_OPTICAL_BOUNDS
+    120:122:private ViewGroupCompat()
+    141:141:public static boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent)
+    177:177:public static int getLayoutMode(android.view.ViewGroup)
+    190:191:public static void setLayoutMode(android.view.ViewGroup,int)
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatIcsImpl:
+    87:87:public boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent)
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatImpl:
+    public abstract boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent)
+    public abstract int getLayoutMode(android.view.ViewGroup)
+    public abstract void setLayoutMode(android.view.ViewGroup,int)
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatJellybeanMR2Impl:
+    94:94:public int getLayoutMode(android.view.ViewGroup)
+    99:100:public void setLayoutMode(android.view.ViewGroup,int)
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatStubImpl:
+    58:58:public boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent)
+    67:67:public int getLayoutMode(android.view.ViewGroup)
+    73:73:public void setLayoutMode(android.view.ViewGroup,int)
+android.support.v4.view.ViewGroupCompatHC:
+    23:24:private ViewGroupCompatHC()
+android.support.v4.view.ViewGroupCompatIcs
+android.support.v4.view.ViewGroupCompatJellybeanMR2
+android.support.v4.view.ViewPager:
+    private static final java.lang.String TAG
+    private static final boolean DEBUG
+    private static final boolean USE_CACHE
+    private static final int DEFAULT_OFFSCREEN_PAGES
+    private static final int MAX_SETTLE_DURATION
+    private static final int MIN_DISTANCE_FOR_FLING
+    private static final int DEFAULT_GUTTER_SIZE
+    private static final int MIN_FLING_VELOCITY
+    private android.support.v4.view.ViewPager$PagerObserver mObserver
+    private boolean mIgnoreGutter
+    private static final int INVALID_POINTER
+    private static final int CLOSE_ENOUGH
+    private long mFakeDragBeginTime
+    private java.lang.reflect.Method mSetChildrenDrawingOrderEnabled
+    private static final int DRAW_ORDER_DEFAULT
+    private static final int DRAW_ORDER_FORWARD
+    private static final int DRAW_ORDER_REVERSE
+    public static final int SCROLL_STATE_IDLE
+    public static final int SCROLL_STATE_DRAGGING
+    public static final int SCROLL_STATE_SETTLING
+    344:346:public ViewPager(android.content.Context)
+    408:451:public void setAdapter(android.support.v4.view.PagerAdapter)
+    454:462:private void removeNonDecorViews()
+    592:593:public void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+    608:620:public void setPageTransformer(boolean,android.support.v4.view.ViewPager$PageTransformer)
+    623:638:void setChildrenDrawingOrderEnabledCompat(boolean)
+    667:667:public int getOffscreenPageLimit()
+    688:697:public void setOffscreenPageLimit(int)
+    708:715:public void setPageMargin(int)
+    723:723:public int getPageMargin()
+    732:736:public void setPageMarginDrawable(android.graphics.drawable.Drawable)
+    744:745:public void setPageMarginDrawable(int)
+    778:779:void smoothScrollTo(int,int)
+    845:911:void dataSetChanged()
+    2273:2289:public boolean beginFakeDrag()
+    2299:2320:public void endFakeDrag()
+    2330:2368:public void fakeDragBy(float)
+    2380:2380:public boolean isFakeDragging()
+android.support.v4.view.ViewPager$OnAdapterChangeListener:
+    public abstract void onAdapterChanged(android.support.v4.view.PagerAdapter,android.support.v4.view.PagerAdapter)
+android.support.v4.view.ViewPager$PagerObserver
+android.support.v4.view.ViewPager$SimpleOnPageChangeListener
+android.support.v4.view.ViewParentCompat
+android.support.v4.view.ViewParentCompat$ViewParentCompatICSImpl
+android.support.v4.view.ViewParentCompat$ViewParentCompatImpl
+android.support.v4.view.ViewParentCompat$ViewParentCompatStubImpl
+android.support.v4.view.ViewParentCompatICS
+android.support.v4.view.WindowCompat
+android.support.v4.view.accessibility.AccessibilityEventCompat
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventIcsImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventStubImpl
+android.support.v4.view.accessibility.AccessibilityEventCompat$AccessibilityEventVersionImpl
+android.support.v4.view.accessibility.AccessibilityEventCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerIcsImpl$1
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerStubImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityManagerVersionImpl
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$1
+android.support.v4.view.accessibility.AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat:
+    public static final int ACTION_FOCUS
+    public static final int ACTION_CLEAR_FOCUS
+    public static final int ACTION_SELECT
+    public static final int ACTION_CLEAR_SELECTION
+    public static final int ACTION_CLICK
+    public static final int ACTION_LONG_CLICK
+    public static final int ACTION_ACCESSIBILITY_FOCUS
+    public static final int ACTION_CLEAR_ACCESSIBILITY_FOCUS
+    public static final int ACTION_NEXT_AT_MOVEMENT_GRANULARITY
+    public static final int ACTION_PREVIOUS_AT_MOVEMENT_GRANULARITY
+    public static final int ACTION_NEXT_HTML_ELEMENT
+    public static final int ACTION_PREVIOUS_HTML_ELEMENT
+    public static final int ACTION_SCROLL_FORWARD
+    public static final int ACTION_SCROLL_BACKWARD
+    public static final int ACTION_COPY
+    public static final int ACTION_PASTE
+    public static final int ACTION_CUT
+    public static final int ACTION_SET_SELECTION
+    public static final java.lang.String ACTION_ARGUMENT_MOVEMENT_GRANULARITY_INT
+    public static final java.lang.String ACTION_ARGUMENT_HTML_ELEMENT_STRING
+    public static final java.lang.String ACTION_ARGUMENT_EXTEND_SELECTION_BOOLEAN
+    public static final java.lang.String ACTION_ARGUMENT_SELECTION_START_INT
+    public static final java.lang.String ACTION_ARGUMENT_SELECTION_END_INT
+    public static final int FOCUS_INPUT
+    public static final int FOCUS_ACCESSIBILITY
+    public static final int MOVEMENT_GRANULARITY_CHARACTER
+    public static final int MOVEMENT_GRANULARITY_WORD
+    public static final int MOVEMENT_GRANULARITY_LINE
+    public static final int MOVEMENT_GRANULARITY_PARAGRAPH
+    public static final int MOVEMENT_GRANULARITY_PAGE
+    1099:1099:public static android.support.v4.view.accessibility.AccessibilityNodeInfoCompat obtain(android.view.View)
+    1113:1113:public static android.support.v4.view.accessibility.AccessibilityNodeInfoCompat obtain(android.view.View,int)
+    1123:1123:public static android.support.v4.view.accessibility.AccessibilityNodeInfoCompat obtain()
+    1166:1167:public void setSource(android.view.View,int)
+    1181:1181:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat findFocus(int)
+    1199:1199:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat focusSearch(int)
+    1208:1208:public int getWindowId()
+    1217:1217:public int getChildCount()
+    1234:1234:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getChild(int)
+    1267:1268:public void addChild(android.view.View,int)
+    1311:1311:public boolean performAction(int)
+    1328:1328:public boolean performAction(int,android.os.Bundle)
+    1370:1377:public java.util.List findAccessibilityNodeInfosByText(java.lang.String)
+    1391:1391:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getParent()
+    1429:1430:public void setParent(android.view.View,int)
+    1501:1502:public void setCheckable(boolean)
+    1525:1526:public void setChecked(boolean)
+    1743:1744:public void setPassword(boolean)
+    1839:1840:public void setText(java.lang.CharSequence)
+    1889:1890:public void setViewIdResourceName(java.lang.String)
+    1927:1927:public int getLiveRegion()
+    1943:1944:public void setLiveRegion(int)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoIcsImpl:
+    429:429:public java.lang.Object obtain()
+    434:434:public java.lang.Object obtain(android.view.View)
+    454:454:public java.util.List findAccessibilityNodeInfosByText(java.lang.Object,java.lang.String)
+    474:474:public java.lang.Object getChild(java.lang.Object,int)
+    479:479:public int getChildCount(java.lang.Object)
+    499:499:public java.lang.Object getParent(java.lang.Object)
+    509:509:public int getWindowId(java.lang.Object)
+    564:564:public boolean performAction(java.lang.Object,int)
+    579:580:public void setCheckable(java.lang.Object,boolean)
+    584:585:public void setChecked(java.lang.Object,boolean)
+    634:635:public void setPassword(java.lang.Object,boolean)
+    654:655:public void setText(java.lang.Object,java.lang.CharSequence)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl:
+    public abstract java.lang.Object obtain()
+    public abstract java.lang.Object obtain(android.view.View)
+    public abstract java.lang.Object obtain(android.view.View,int)
+    public abstract void setSource(java.lang.Object,android.view.View,int)
+    public abstract java.lang.Object findFocus(java.lang.Object,int)
+    public abstract java.lang.Object focusSearch(java.lang.Object,int)
+    public abstract int getWindowId(java.lang.Object)
+    public abstract int getChildCount(java.lang.Object)
+    public abstract java.lang.Object getChild(java.lang.Object,int)
+    public abstract void addChild(java.lang.Object,android.view.View,int)
+    public abstract boolean performAction(java.lang.Object,int)
+    public abstract boolean performAction(java.lang.Object,int,android.os.Bundle)
+    public abstract java.util.List findAccessibilityNodeInfosByText(java.lang.Object,java.lang.String)
+    public abstract java.lang.Object getParent(java.lang.Object)
+    public abstract void setParent(java.lang.Object,android.view.View,int)
+    public abstract void setCheckable(java.lang.Object,boolean)
+    public abstract void setChecked(java.lang.Object,boolean)
+    public abstract void setPassword(java.lang.Object,boolean)
+    public abstract void setText(java.lang.Object,java.lang.CharSequence)
+    public abstract void setViewIdResourceName(java.lang.Object,java.lang.String)
+    public abstract int getLiveRegion(java.lang.Object)
+    public abstract void setLiveRegion(java.lang.Object,int)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanImpl:
+    666:666:public java.lang.Object obtain(android.view.View,int)
+    671:671:public java.lang.Object findFocus(java.lang.Object,int)
+    676:676:public java.lang.Object focusSearch(java.lang.Object,int)
+    681:682:public void addChild(java.lang.Object,android.view.View,int)
+    686:687:public void setSource(java.lang.Object,android.view.View,int)
+    711:711:public boolean performAction(java.lang.Object,int,android.os.Bundle)
+    726:727:public void setParent(java.lang.Object,android.view.View,int)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanMr2Impl:
+    739:740:public void setViewIdResourceName(java.lang.Object,java.lang.String)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoKitKatImpl:
+    746:746:public int getLiveRegion(java.lang.Object)
+    751:752:public void setLiveRegion(java.lang.Object,int)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoStubImpl:
+    107:107:public java.lang.Object obtain()
+    112:112:public java.lang.Object obtain(android.view.View)
+    117:117:public java.lang.Object obtain(android.view.View,int)
+    138:138:public void addChild(java.lang.Object,android.view.View,int)
+    142:142:public java.util.List findAccessibilityNodeInfosByText(java.lang.Object,java.lang.String)
+    162:162:public java.lang.Object getChild(java.lang.Object,int)
+    167:167:public int getChildCount(java.lang.Object)
+    187:187:public java.lang.Object getParent(java.lang.Object)
+    197:197:public int getWindowId(java.lang.Object)
+    262:262:public boolean performAction(java.lang.Object,int)
+    267:267:public boolean performAction(java.lang.Object,int,android.os.Bundle)
+    293:293:public void setCheckable(java.lang.Object,boolean)
+    298:298:public void setChecked(java.lang.Object,boolean)
+    358:358:public void setPassword(java.lang.Object,boolean)
+    378:378:public void setSource(java.lang.Object,android.view.View,int)
+    382:382:public java.lang.Object findFocus(java.lang.Object,int)
+    387:387:public java.lang.Object focusSearch(java.lang.Object,int)
+    393:393:public void setText(java.lang.Object,java.lang.CharSequence)
+    403:403:public void setParent(java.lang.Object,android.view.View,int)
+    413:413:public void setViewIdResourceName(java.lang.Object,java.lang.String)
+    417:417:public int getLiveRegion(java.lang.Object)
+    423:423:public void setLiveRegion(java.lang.Object,int)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatIcs:
+    28:28:AccessibilityNodeInfoCompatIcs()
+    31:31:public static java.lang.Object obtain()
+    35:35:public static java.lang.Object obtain(android.view.View)
+    52:53:public static java.util.List findAccessibilityNodeInfosByText(java.lang.Object,java.lang.String)
+    69:69:public static java.lang.Object getChild(java.lang.Object,int)
+    73:73:public static int getChildCount(java.lang.Object)
+    89:89:public static java.lang.Object getParent(java.lang.Object)
+    97:97:public static int getWindowId(java.lang.Object)
+    141:141:public static boolean performAction(java.lang.Object,int)
+    153:154:public static void setCheckable(java.lang.Object,boolean)
+    157:158:public static void setChecked(java.lang.Object,boolean)
+    197:198:public static void setPassword(java.lang.Object,boolean)
+    213:214:public static void setText(java.lang.Object,java.lang.CharSequence)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatJellyBean:
+    26:26:AccessibilityNodeInfoCompatJellyBean()
+    29:30:public static void addChild(java.lang.Object,android.view.View,int)
+    33:34:public static void setSource(java.lang.Object,android.view.View,int)
+    45:45:public static boolean performAction(java.lang.Object,int,android.os.Bundle)
+    57:57:public static java.lang.Object obtain(android.view.View,int)
+    61:61:public static java.lang.Object findFocus(java.lang.Object,int)
+    65:65:public static java.lang.Object focusSearch(java.lang.Object,int)
+    69:70:public static void setParent(java.lang.Object,android.view.View,int)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatJellybeanMr2:
+    21:21:AccessibilityNodeInfoCompatJellybeanMr2()
+    24:25:public static void setViewIdResourceName(java.lang.Object,java.lang.String)
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatKitKat
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean:
+    28:29:AccessibilityNodeProviderCompatJellyBean()
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatKitKat:
+    28:29:AccessibilityNodeProviderCompatKitKat()
+android.support.v4.view.accessibility.AccessibilityRecordCompat:
+    539:539:public java.lang.Object getImpl()
+    550:550:public static android.support.v4.view.accessibility.AccessibilityRecordCompat obtain(android.support.v4.view.accessibility.AccessibilityRecordCompat)
+    571:572:public void setSource(android.view.View)
+    589:590:public void setSource(android.view.View,int)
+    605:605:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getSource()
+    614:614:public int getWindowId()
+    623:623:public boolean isChecked()
+    634:635:public void setChecked(boolean)
+    643:643:public boolean isEnabled()
+    654:655:public void setEnabled(boolean)
+    663:663:public boolean isPassword()
+    674:675:public void setPassword(boolean)
+    683:683:public boolean isFullScreen()
+    694:695:public void setFullScreen(boolean)
+    703:703:public boolean isScrollable()
+    723:723:public int getItemCount()
+    743:743:public int getCurrentItemIndex()
+    754:755:public void setCurrentItemIndex(int)
+    766:766:public int getFromIndex()
+    790:790:public int getToIndex()
+    809:809:public int getScrollX()
+    818:819:public void setScrollX(int)
+    827:827:public int getScrollY()
+    836:837:public void setScrollY(int)
+    845:845:public int getMaxScrollX()
+    853:854:public void setMaxScrollX(int)
+    862:862:public int getMaxScrollY()
+    871:872:public void setMaxScrollY(int)
+    880:880:public int getAddedCount()
+    891:892:public void setAddedCount(int)
+    900:900:public int getRemovedCount()
+    911:912:public void setRemovedCount(int)
+    920:920:public java.lang.CharSequence getClassName()
+    931:932:public void setClassName(java.lang.CharSequence)
+    941:941:public java.util.List getText()
+    950:950:public java.lang.CharSequence getBeforeText()
+    961:962:public void setBeforeText(java.lang.CharSequence)
+    970:970:public java.lang.CharSequence getContentDescription()
+    981:982:public void setContentDescription(java.lang.CharSequence)
+    990:990:public android.os.Parcelable getParcelableData()
+    1001:1002:public void setParcelableData(android.os.Parcelable)
+    1014:1015:public void recycle()
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsImpl:
+    276:276:public java.lang.Object obtain(java.lang.Object)
+    281:281:public int getAddedCount(java.lang.Object)
+    286:286:public java.lang.CharSequence getBeforeText(java.lang.Object)
+    291:291:public java.lang.CharSequence getClassName(java.lang.Object)
+    296:296:public java.lang.CharSequence getContentDescription(java.lang.Object)
+    301:301:public int getCurrentItemIndex(java.lang.Object)
+    306:306:public int getFromIndex(java.lang.Object)
+    311:311:public int getItemCount(java.lang.Object)
+    316:316:public android.os.Parcelable getParcelableData(java.lang.Object)
+    321:321:public int getRemovedCount(java.lang.Object)
+    326:326:public int getScrollX(java.lang.Object)
+    331:331:public int getScrollY(java.lang.Object)
+    336:336:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getSource(java.lang.Object)
+    342:342:public java.util.List getText(java.lang.Object)
+    347:347:public int getToIndex(java.lang.Object)
+    352:352:public int getWindowId(java.lang.Object)
+    357:357:public boolean isChecked(java.lang.Object)
+    362:362:public boolean isEnabled(java.lang.Object)
+    367:367:public boolean isFullScreen(java.lang.Object)
+    372:372:public boolean isPassword(java.lang.Object)
+    377:377:public boolean isScrollable(java.lang.Object)
+    382:383:public void recycle(java.lang.Object)
+    387:388:public void setAddedCount(java.lang.Object,int)
+    392:393:public void setBeforeText(java.lang.Object,java.lang.CharSequence)
+    397:398:public void setChecked(java.lang.Object,boolean)
+    402:403:public void setClassName(java.lang.Object,java.lang.CharSequence)
+    407:408:public void setContentDescription(java.lang.Object,java.lang.CharSequence)
+    412:413:public void setCurrentItemIndex(java.lang.Object,int)
+    417:418:public void setEnabled(java.lang.Object,boolean)
+    427:428:public void setFullScreen(java.lang.Object,boolean)
+    437:438:public void setParcelableData(java.lang.Object,android.os.Parcelable)
+    442:443:public void setPassword(java.lang.Object,boolean)
+    447:448:public void setRemovedCount(java.lang.Object,int)
+    452:453:public void setScrollX(java.lang.Object,int)
+    457:458:public void setScrollY(java.lang.Object,int)
+    467:468:public void setSource(java.lang.Object,android.view.View)
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordIcsMr1Impl:
+    479:479:public int getMaxScrollX(java.lang.Object)
+    484:484:public int getMaxScrollY(java.lang.Object)
+    489:490:public void setMaxScrollX(java.lang.Object,int)
+    494:495:public void setMaxScrollY(java.lang.Object,int)
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordImpl:
+    public abstract java.lang.Object obtain(java.lang.Object)
+    public abstract void setSource(java.lang.Object,android.view.View)
+    public abstract void setSource(java.lang.Object,android.view.View,int)
+    public abstract android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getSource(java.lang.Object)
+    public abstract int getWindowId(java.lang.Object)
+    public abstract boolean isChecked(java.lang.Object)
+    public abstract void setChecked(java.lang.Object,boolean)
+    public abstract boolean isEnabled(java.lang.Object)
+    public abstract void setEnabled(java.lang.Object,boolean)
+    public abstract boolean isPassword(java.lang.Object)
+    public abstract void setPassword(java.lang.Object,boolean)
+    public abstract boolean isFullScreen(java.lang.Object)
+    public abstract void setFullScreen(java.lang.Object,boolean)
+    public abstract boolean isScrollable(java.lang.Object)
+    public abstract int getItemCount(java.lang.Object)
+    public abstract int getCurrentItemIndex(java.lang.Object)
+    public abstract void setCurrentItemIndex(java.lang.Object,int)
+    public abstract int getFromIndex(java.lang.Object)
+    public abstract int getToIndex(java.lang.Object)
+    public abstract int getScrollX(java.lang.Object)
+    public abstract void setScrollX(java.lang.Object,int)
+    public abstract int getScrollY(java.lang.Object)
+    public abstract void setScrollY(java.lang.Object,int)
+    public abstract int getMaxScrollX(java.lang.Object)
+    public abstract void setMaxScrollX(java.lang.Object,int)
+    public abstract int getMaxScrollY(java.lang.Object)
+    public abstract void setMaxScrollY(java.lang.Object,int)
+    public abstract int getAddedCount(java.lang.Object)
+    public abstract void setAddedCount(java.lang.Object,int)
+    public abstract int getRemovedCount(java.lang.Object)
+    public abstract void setRemovedCount(java.lang.Object,int)
+    public abstract java.lang.CharSequence getClassName(java.lang.Object)
+    public abstract void setClassName(java.lang.Object,java.lang.CharSequence)
+    public abstract java.util.List getText(java.lang.Object)
+    public abstract java.lang.CharSequence getBeforeText(java.lang.Object)
+    public abstract void setBeforeText(java.lang.Object,java.lang.CharSequence)
+    public abstract java.lang.CharSequence getContentDescription(java.lang.Object)
+    public abstract void setContentDescription(java.lang.Object,java.lang.CharSequence)
+    public abstract android.os.Parcelable getParcelableData(java.lang.Object)
+    public abstract void setParcelableData(java.lang.Object,android.os.Parcelable)
+    public abstract void recycle(java.lang.Object)
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordJellyBeanImpl:
+    501:502:public void setSource(java.lang.Object,android.view.View,int)
+android.support.v4.view.accessibility.AccessibilityRecordCompat$AccessibilityRecordStubImpl:
+    88:88:public java.lang.Object obtain(java.lang.Object)
+    92:92:public int getAddedCount(java.lang.Object)
+    96:96:public java.lang.CharSequence getBeforeText(java.lang.Object)
+    100:100:public java.lang.CharSequence getClassName(java.lang.Object)
+    104:104:public java.lang.CharSequence getContentDescription(java.lang.Object)
+    108:108:public int getCurrentItemIndex(java.lang.Object)
+    112:112:public int getFromIndex(java.lang.Object)
+    116:116:public int getItemCount(java.lang.Object)
+    120:120:public int getMaxScrollX(java.lang.Object)
+    124:124:public int getMaxScrollY(java.lang.Object)
+    128:128:public android.os.Parcelable getParcelableData(java.lang.Object)
+    132:132:public int getRemovedCount(java.lang.Object)
+    136:136:public int getScrollX(java.lang.Object)
+    140:140:public int getScrollY(java.lang.Object)
+    144:144:public android.support.v4.view.accessibility.AccessibilityNodeInfoCompat getSource(java.lang.Object)
+    148:148:public java.util.List getText(java.lang.Object)
+    152:152:public int getToIndex(java.lang.Object)
+    156:156:public int getWindowId(java.lang.Object)
+    160:160:public boolean isChecked(java.lang.Object)
+    164:164:public boolean isEnabled(java.lang.Object)
+    168:168:public boolean isFullScreen(java.lang.Object)
+    172:172:public boolean isPassword(java.lang.Object)
+    176:176:public boolean isScrollable(java.lang.Object)
+    181:181:public void recycle(java.lang.Object)
+    185:185:public void setAddedCount(java.lang.Object,int)
+    189:189:public void setBeforeText(java.lang.Object,java.lang.CharSequence)
+    193:193:public void setChecked(java.lang.Object,boolean)
+    197:197:public void setClassName(java.lang.Object,java.lang.CharSequence)
+    201:201:public void setContentDescription(java.lang.Object,java.lang.CharSequence)
+    205:205:public void setCurrentItemIndex(java.lang.Object,int)
+    209:209:public void setEnabled(java.lang.Object,boolean)
+    217:217:public void setFullScreen(java.lang.Object,boolean)
+    225:225:public void setMaxScrollX(java.lang.Object,int)
+    229:229:public void setMaxScrollY(java.lang.Object,int)
+    233:233:public void setParcelableData(java.lang.Object,android.os.Parcelable)
+    237:237:public void setPassword(java.lang.Object,boolean)
+    241:241:public void setRemovedCount(java.lang.Object,int)
+    245:245:public void setScrollX(java.lang.Object,int)
+    249:249:public void setScrollY(java.lang.Object,int)
+    257:257:public void setSource(java.lang.Object,android.view.View)
+    261:261:public void setSource(java.lang.Object,android.view.View,int)
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcs:
+    28:28:AccessibilityRecordCompatIcs()
+    35:35:public static java.lang.Object obtain(java.lang.Object)
+    39:39:public static int getAddedCount(java.lang.Object)
+    43:43:public static java.lang.CharSequence getBeforeText(java.lang.Object)
+    47:47:public static java.lang.CharSequence getClassName(java.lang.Object)
+    51:51:public static java.lang.CharSequence getContentDescription(java.lang.Object)
+    55:55:public static int getCurrentItemIndex(java.lang.Object)
+    59:59:public static int getFromIndex(java.lang.Object)
+    63:63:public static int getItemCount(java.lang.Object)
+    67:67:public static android.os.Parcelable getParcelableData(java.lang.Object)
+    71:71:public static int getRemovedCount(java.lang.Object)
+    75:75:public static int getScrollX(java.lang.Object)
+    79:79:public static int getScrollY(java.lang.Object)
+    83:83:public static java.lang.Object getSource(java.lang.Object)
+    87:87:public static java.util.List getText(java.lang.Object)
+    91:91:public static int getToIndex(java.lang.Object)
+    95:95:public static int getWindowId(java.lang.Object)
+    99:99:public static boolean isChecked(java.lang.Object)
+    103:103:public static boolean isEnabled(java.lang.Object)
+    107:107:public static boolean isFullScreen(java.lang.Object)
+    111:111:public static boolean isPassword(java.lang.Object)
+    115:115:public static boolean isScrollable(java.lang.Object)
+    119:120:public static void recycle(java.lang.Object)
+    123:124:public static void setAddedCount(java.lang.Object,int)
+    127:128:public static void setBeforeText(java.lang.Object,java.lang.CharSequence)
+    131:132:public static void setChecked(java.lang.Object,boolean)
+    135:136:public static void setClassName(java.lang.Object,java.lang.CharSequence)
+    139:140:public static void setContentDescription(java.lang.Object,java.lang.CharSequence)
+    143:144:public static void setCurrentItemIndex(java.lang.Object,int)
+    147:148:public static void setEnabled(java.lang.Object,boolean)
+    155:156:public static void setFullScreen(java.lang.Object,boolean)
+    163:164:public static void setParcelableData(java.lang.Object,android.os.Parcelable)
+    167:168:public static void setPassword(java.lang.Object,boolean)
+    171:172:public static void setRemovedCount(java.lang.Object,int)
+    175:176:public static void setScrollX(java.lang.Object,int)
+    179:180:public static void setScrollY(java.lang.Object,int)
+    187:188:public static void setSource(java.lang.Object,android.view.View)
+android.support.v4.view.accessibility.AccessibilityRecordCompatIcsMr1
+android.support.v4.view.accessibility.AccessibilityRecordCompatJellyBean
+android.support.v4.widget.AutoScrollHelper
+android.support.v4.widget.AutoScrollHelper$1
+android.support.v4.widget.AutoScrollHelper$ClampedScroller
+android.support.v4.widget.AutoScrollHelper$ScrollAnimationRunnable
+android.support.v4.widget.ContentLoadingProgressBar:
+    private static final int MIN_SHOW_TIME
+    private static final int MIN_DELAY
+    65:66:public ContentLoadingProgressBar(android.content.Context)
+    95:112:public void hide()
+    120:127:public void show()
+android.support.v4.widget.CursorAdapter
+android.support.v4.widget.CursorAdapter$1
+android.support.v4.widget.CursorAdapter$ChangeObserver
+android.support.v4.widget.CursorAdapter$MyDataSetObserver
+android.support.v4.widget.CursorFilter
+android.support.v4.widget.CursorFilter$CursorFilterClient
+android.support.v4.widget.DrawerLayout:
+    private static final java.lang.String TAG
+    public static final int STATE_IDLE
+    public static final int STATE_DRAGGING
+    public static final int STATE_SETTLING
+    public static final int LOCK_MODE_UNLOCKED
+    public static final int LOCK_MODE_LOCKED_CLOSED
+    public static final int LOCK_MODE_LOCKED_OPEN
+    private static final int MIN_DRAWER_MARGIN
+    private static final int DEFAULT_SCRIM_COLOR
+    private static final int PEEK_DELAY
+    private static final int MIN_FLING_VELOCITY
+    private static final boolean ALLOW_EDGE_LOCK
+    private static final boolean CHILDREN_DISALLOW_INTERCEPT
+    private static final float TOUCH_SLOP_SENSITIVITY
+    217:218:public DrawerLayout(android.content.Context)
+    265:275:public void setDrawerShadow(android.graphics.drawable.Drawable,int)
+    285:286:public void setDrawerShadow(int,int)
+    294:296:public void setScrimColor(int)
+    305:306:public void setDrawerListener(android.support.v4.widget.DrawerLayout$DrawerListener)
+    322:324:public void setDrawerLockMode(int)
+    394:400:public void setDrawerLockMode(int,android.view.View)
+    410:417:public int getDrawerLockMode(int)
+    540:549:void moveDrawerToOffset(android.view.View,float)
+    1044:1050:public void openDrawer(int)
+    1084:1090:public void closeDrawer(int)
+    1103:1106:public boolean isDrawerOpen(android.view.View)
+    1119:1123:public boolean isDrawerOpen(int)
+    1150:1154:public boolean isDrawerVisible(int)
+android.support.v4.widget.DrawerLayout$LayoutParams:
+    1509:1511:public DrawerLayout$LayoutParams(int,int,int)
+android.support.v4.widget.DrawerLayout$SimpleDrawerListener
+android.support.v4.widget.EdgeEffectCompat:
+    204:204:public boolean onAbsorb(int)
+android.support.v4.widget.EdgeEffectCompat$BaseEdgeEffectImpl:
+    82:82:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectIcsImpl:
+    116:116:public boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl:
+    public abstract boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.EdgeEffectCompatIcs:
+    28:28:EdgeEffectCompatIcs()
+    57:58:public static boolean onAbsorb(java.lang.Object,int)
+android.support.v4.widget.ExploreByTouchHelper
+android.support.v4.widget.ExploreByTouchHelper$1
+android.support.v4.widget.ExploreByTouchHelper$ExploreByTouchNodeProvider
+android.support.v4.widget.ListPopupWindowCompat
+android.support.v4.widget.ListPopupWindowCompat$BaseListPopupWindowImpl
+android.support.v4.widget.ListPopupWindowCompat$KitKatListPopupWindowImpl
+android.support.v4.widget.ListPopupWindowCompat$ListPopupWindowImpl
+android.support.v4.widget.ListPopupWindowCompatKitKat
+android.support.v4.widget.ListViewAutoScrollHelper
+android.support.v4.widget.PopupMenuCompat
+android.support.v4.widget.PopupMenuCompat$BasePopupMenuImpl
+android.support.v4.widget.PopupMenuCompat$KitKatPopupMenuImpl
+android.support.v4.widget.PopupMenuCompat$PopupMenuImpl
+android.support.v4.widget.PopupMenuCompatKitKat
+android.support.v4.widget.ResourceCursorAdapter
+android.support.v4.widget.ScrollerCompat:
+    251:251:public static android.support.v4.widget.ScrollerCompat create(android.content.Context)
+    314:314:public float getCurrVelocity()
+    341:342:public void startScroll(int,int,int,int)
+    382:383:public void fling(int,int,int,int,int,int,int,int)
+    410:412:public void fling(int,int,int,int,int,int,int,int,int,int)
+    437:438:public void notifyHorizontalEdgeReached(int,int,int)
+    454:455:public void notifyVerticalEdgeReached(int,int,int)
+    471:471:public boolean isOverScrolled()
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImpl:
+    public abstract float getCurrVelocity(java.lang.Object)
+    public abstract void startScroll(java.lang.Object,int,int,int,int)
+    public abstract void fling(java.lang.Object,int,int,int,int,int,int,int,int)
+    public abstract void fling(java.lang.Object,int,int,int,int,int,int,int,int,int,int)
+    public abstract void notifyHorizontalEdgeReached(java.lang.Object,int,int,int)
+    public abstract void notifyVerticalEdgeReached(java.lang.Object,int,int,int)
+    public abstract boolean isOverScrolled(java.lang.Object)
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImplBase:
+    79:79:public float getCurrVelocity(java.lang.Object)
+    89:90:public void startScroll(java.lang.Object,int,int,int,int)
+    101:102:public void fling(java.lang.Object,int,int,int,int,int,int,int,int)
+    107:108:public void fling(java.lang.Object,int,int,int,int,int,int,int,int,int,int)
+    119:119:public void notifyHorizontalEdgeReached(java.lang.Object,int,int,int)
+    124:124:public void notifyVerticalEdgeReached(java.lang.Object,int,int,int)
+    129:129:public boolean isOverScrolled(java.lang.Object)
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImplGingerbread:
+    166:166:public float getCurrVelocity(java.lang.Object)
+    176:177:public void startScroll(java.lang.Object,int,int,int,int)
+    188:190:public void fling(java.lang.Object,int,int,int,int,int,int,int,int)
+    195:197:public void fling(java.lang.Object,int,int,int,int,int,int,int,int,int,int)
+    207:208:public void notifyHorizontalEdgeReached(java.lang.Object,int,int,int)
+    212:213:public void notifyVerticalEdgeReached(java.lang.Object,int,int,int)
+    217:217:public boolean isOverScrolled(java.lang.Object)
+android.support.v4.widget.ScrollerCompat$ScrollerCompatImplIcs:
+    234:234:public float getCurrVelocity(java.lang.Object)
+android.support.v4.widget.ScrollerCompatGingerbread:
+    24:24:ScrollerCompatGingerbread()
+    47:48:public static void startScroll(java.lang.Object,int,int,int,int)
+    57:58:public static void fling(java.lang.Object,int,int,int,int,int,int,int,int)
+    62:64:public static void fling(java.lang.Object,int,int,int,int,int,int,int,int,int,int)
+    72:73:public static void notifyHorizontalEdgeReached(java.lang.Object,int,int,int)
+    76:77:public static void notifyVerticalEdgeReached(java.lang.Object,int,int,int)
+    80:80:public static boolean isOverScrolled(java.lang.Object)
+android.support.v4.widget.ScrollerCompatIcs
+android.support.v4.widget.SearchViewCompat
+android.support.v4.widget.SearchViewCompat$OnCloseListenerCompat
+android.support.v4.widget.SearchViewCompat$OnQueryTextListenerCompat
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl$1
+android.support.v4.widget.SearchViewCompat$SearchViewCompatHoneycombImpl$2
+android.support.v4.widget.SearchViewCompat$SearchViewCompatIcsImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatImpl
+android.support.v4.widget.SearchViewCompat$SearchViewCompatStubImpl
+android.support.v4.widget.SearchViewCompatHoneycomb
+android.support.v4.widget.SearchViewCompatHoneycomb$1
+android.support.v4.widget.SearchViewCompatHoneycomb$2
+android.support.v4.widget.SearchViewCompatHoneycomb$OnCloseListenerCompatBridge
+android.support.v4.widget.SearchViewCompatHoneycomb$OnQueryTextListenerCompatBridge
+android.support.v4.widget.SearchViewCompatIcs
+android.support.v4.widget.SearchViewCompatIcs$MySearchView
+android.support.v4.widget.SimpleCursorAdapter
+android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter
+android.support.v4.widget.SimpleCursorAdapter$ViewBinder
+android.support.v4.widget.SlidingPaneLayout:
+    private static final java.lang.String TAG
+    private static final int DEFAULT_OVERHANG_SIZE
+    private static final int DEFAULT_FADE_COLOR
+    private static final int MIN_FLING_VELOCITY
+    244:245:public SlidingPaneLayout(android.content.Context)
+    277:279:public void setParallaxDistance(int)
+    287:287:public int getParallaxDistance()
+    296:297:public void setSliderFadeColor(int)
+    303:303:public int getSliderFadeColor()
+    313:314:public void setCoveredFadeColor(int)
+    320:320:public int getCoveredFadeColor()
+    324:325:public void setPanelSlideListener(android.support.v4.widget.SlidingPaneLayout$PanelSlideListener)
+    848:849:public void smoothSlideOpen()
+    866:867:public void smoothSlideClosed()
+    895:895:public boolean canSlide()
+    1038:1039:public void setShadowDrawable(android.graphics.drawable.Drawable)
+    1048:1049:public void setShadowResource(int)
+    1103:1122:protected boolean canScroll(android.view.View,boolean,int,int,int)
+android.support.v4.widget.SlidingPaneLayout$LayoutParams:
+    1277:1278:public SlidingPaneLayout$LayoutParams(int,int)
+    1289:1291:public SlidingPaneLayout$LayoutParams(android.support.v4.widget.SlidingPaneLayout$LayoutParams)
+android.support.v4.widget.SlidingPaneLayout$SimplePanelSlideListener
+android.support.v4.widget.ViewDragHelper:
+    private static final java.lang.String TAG
+    public static final int INVALID_POINTER
+    public static final int STATE_IDLE
+    public static final int STATE_DRAGGING
+    public static final int STATE_SETTLING
+    public static final int EDGE_LEFT
+    public static final int EDGE_RIGHT
+    public static final int EDGE_TOP
+    public static final int EDGE_BOTTOM
+    public static final int EDGE_ALL
+    public static final int DIRECTION_HORIZONTAL
+    public static final int DIRECTION_VERTICAL
+    public static final int DIRECTION_ALL
+    private static final int EDGE_SIZE
+    private static final int BASE_SETTLE_DURATION
+    private static final int MAX_SETTLE_DURATION
+    412:412:public float getMinVelocity()
+    483:483:public int getActivePointerId()
+    690:701:public void flingCapturedView(int,int,int,int)
+    908:927:protected boolean canScroll(android.view.View,boolean,int,int,int,int)
+    1331:1337:public boolean isEdgeTouched(int)
+    1351:1351:public boolean isEdgeTouched(int,int)
+org.my.scanExample.BuildConfig
+org.my.scanExample.R
+org.my.scanExample.R$attr
+org.my.scanExample.R$drawable
+org.my.scanExample.R$id
+org.my.scanExample.R$layout
+org.my.scanExample.R$string
+org.my.scanExample.R$style
+org.opencv.android.AsyncServiceHelper
+org.opencv.android.AsyncServiceHelper$1
+org.opencv.android.AsyncServiceHelper$1$1
+org.opencv.android.AsyncServiceHelper$1$2
+org.opencv.android.AsyncServiceHelper$2
+org.opencv.android.AsyncServiceHelper$3
+org.opencv.android.CameraBridgeViewBase:
+    private static final java.lang.String TAG
+    private static final int MAX_UNSPECIFIED
+    private static final int STOPPED
+    private static final int STARTED
+    public static final int CAMERA_ID_ANY
+    public static final int CAMERA_ID_BACK
+    public static final int CAMERA_ID_FRONT
+    253:257:public void enableFpsMeter()
+    260:261:public void disableFpsMeter()
+    273:276:public void setCvCameraViewListener(org.opencv.android.CameraBridgeViewBase$CvCameraViewListener)
+org.opencv.android.CameraBridgeViewBase$CvCameraViewListenerAdapter:
+    final synthetic org.opencv.android.CameraBridgeViewBase this$0
+    144:146:public CameraBridgeViewBase$CvCameraViewListenerAdapter(org.opencv.android.CameraBridgeViewBase,org.opencv.android.CameraBridgeViewBase$CvCameraViewListener)
+org.opencv.android.FpsMeter:
+    private static final java.lang.String TAG
+    private static final int STEP
+    12:12:public FpsMeter()
+org.opencv.android.InstallCallbackInterface:
+    public static final int NEW_INSTALLATION
+    public static final int INSTALLATION_PROGRESS
+org.opencv.android.JavaCameraView:
+    private static final int MAGIC_TEXTURE_ID
+    private static final java.lang.String TAG
+org.opencv.android.LoaderCallbackInterface
+org.opencv.android.NativeCameraView:
+    public static final java.lang.String TAG
+    27:28:public NativeCameraView(android.content.Context,int)
+org.opencv.android.OpenCVLoader:
+    public static final java.lang.String OPENCV_VERSION_2_4_2
+    public static final java.lang.String OPENCV_VERSION_2_4_3
+    public static final java.lang.String OPENCV_VERSION_2_4_4
+    public static final java.lang.String OPENCV_VERSION_2_4_5
+    public static final java.lang.String OPENCV_VERSION_2_4_6
+    public static final java.lang.String OPENCV_VERSION_2_4_7
+    public static final java.lang.String OPENCV_VERSION_2_4_8
+    8:8:public OpenCVLoader()
+    64:64:public static boolean initAsync(java.lang.String,android.content.Context,org.opencv.android.LoaderCallbackInterface)
+org.opencv.android.StaticHelper:
+    private static final java.lang.String TAG
+    8:8:StaticHelper()
+org.opencv.android.Utils:
+    17:17:public Utils()
+    20:20:public static java.lang.String exportResource(android.content.Context,int)
+    24:44:public static java.lang.String exportResource(android.content.Context,int,java.lang.String)
+    51:51:public static org.opencv.core.Mat loadResource(android.content.Context,int)
+    56:73:public static org.opencv.core.Mat loadResource(android.content.Context,int,int)
+    89:94:public static void bitmapToMat(android.graphics.Bitmap,org.opencv.core.Mat,boolean)
+    102:103:public static void bitmapToMat(android.graphics.Bitmap,org.opencv.core.Mat)
+    private static native void nBitmapToMat2(android.graphics.Bitmap,long,boolean)
+org.opencv.calib3d.Calib3d
+org.opencv.calib3d.StereoBM
+org.opencv.calib3d.StereoSGBM
+org.opencv.contrib.Contrib
+org.opencv.contrib.FaceRecognizer
+org.opencv.contrib.StereoVar
+org.opencv.core.Algorithm
+org.opencv.core.Core:
+    private static final int CV_8U
+    private static final int CV_8S
+    private static final int CV_16U
+    private static final int CV_16S
+    private static final int CV_32S
+    private static final int CV_32F
+    private static final int CV_64F
+    private static final int CV_USRTYPE1
+    public static final int SVD_MODIFY_A
+    public static final int SVD_NO_UV
+    public static final int SVD_FULL_UV
+    public static final int FILLED
+    public static final int LINE_AA
+    public static final int LINE_8
+    public static final int LINE_4
+    public static final int REDUCE_SUM
+    public static final int REDUCE_AVG
+    public static final int REDUCE_MAX
+    public static final int REDUCE_MIN
+    public static final int DECOMP_LU
+    public static final int DECOMP_SVD
+    public static final int DECOMP_EIG
+    public static final int DECOMP_CHOLESKY
+    public static final int DECOMP_QR
+    public static final int DECOMP_NORMAL
+    public static final int NORM_INF
+    public static final int NORM_L1
+    public static final int NORM_L2
+    public static final int NORM_L2SQR
+    public static final int NORM_HAMMING
+    public static final int NORM_HAMMING2
+    public static final int NORM_TYPE_MASK
+    public static final int NORM_RELATIVE
+    public static final int NORM_MINMAX
+    public static final int CMP_EQ
+    public static final int CMP_GT
+    public static final int CMP_GE
+    public static final int CMP_LT
+    public static final int CMP_LE
+    public static final int CMP_NE
+    public static final int GEMM_1_T
+    public static final int GEMM_2_T
+    public static final int GEMM_3_T
+    public static final int DFT_INVERSE
+    public static final int DFT_SCALE
+    public static final int DFT_ROWS
+    public static final int DFT_COMPLEX_OUTPUT
+    public static final int DFT_REAL_OUTPUT
+    public static final int DCT_INVERSE
+    public static final int DCT_ROWS
+    public static final int DEPTH_MASK_8U
+    public static final int DEPTH_MASK_8S
+    public static final int DEPTH_MASK_16U
+    public static final int DEPTH_MASK_16S
+    public static final int DEPTH_MASK_32S
+    public static final int DEPTH_MASK_32F
+    public static final int DEPTH_MASK_64F
+    public static final int DEPTH_MASK_ALL
+    public static final int DEPTH_MASK_ALL_BUT_8S
+    public static final int DEPTH_MASK_FLT
+    public static final int MAGIC_MASK
+    public static final int TYPE_MASK
+    public static final int DEPTH_MASK
+    public static final int SORT_EVERY_ROW
+    public static final int SORT_EVERY_COLUMN
+    public static final int SORT_ASCENDING
+    public static final int SORT_DESCENDING
+    public static final int COVAR_SCRAMBLED
+    public static final int COVAR_NORMAL
+    public static final int COVAR_USE_AVG
+    public static final int COVAR_SCALE
+    public static final int COVAR_ROWS
+    public static final int COVAR_COLS
+    public static final int KMEANS_RANDOM_CENTERS
+    public static final int KMEANS_PP_CENTERS
+    public static final int KMEANS_USE_INITIAL_LABELS
+    public static final int FONT_HERSHEY_SIMPLEX
+    public static final int FONT_HERSHEY_PLAIN
+    public static final int FONT_HERSHEY_DUPLEX
+    public static final int FONT_HERSHEY_COMPLEX
+    public static final int FONT_HERSHEY_TRIPLEX
+    public static final int FONT_HERSHEY_COMPLEX_SMALL
+    public static final int FONT_HERSHEY_SCRIPT_SIMPLEX
+    public static final int FONT_HERSHEY_SCRIPT_COMPLEX
+    public static final int FONT_ITALIC
+    12:12:public Core()
+    153:155:public static void LUT(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    186:188:public static void LUT(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    217:219:public static double Mahalanobis(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    230:232:public static void PCABackProject(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    243:245:public static void PCACompute(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    251:253:public static void PCACompute(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    264:266:public static void PCAComputeVar(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,double)
+    277:279:public static void PCAProject(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    290:292:public static void SVBackSubst(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    303:305:public static void SVDecomp(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    311:313:public static void SVDecomp(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    365:367:public static void absdiff(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    419:421:public static void absdiff(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat)
+    499:501:public static void add(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    573:575:public static void add(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    645:647:public static void add(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    725:727:public static void add(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    799:801:public static void add(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,org.opencv.core.Mat)
+    871:873:public static void add(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat)
+    923:925:public static void addWeighted(org.opencv.core.Mat,double,org.opencv.core.Mat,double,double,org.opencv.core.Mat,int)
+    967:969:public static void addWeighted(org.opencv.core.Mat,double,org.opencv.core.Mat,double,double,org.opencv.core.Mat)
+    980:982:public static void batchDistance(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,int,int,org.opencv.core.Mat,int,boolean)
+    988:990:public static void batchDistance(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,int,int)
+    996:998:public static void batchDistance(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat)
+    1048:1050:public static void bitwise_and(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1093:1095:public static void bitwise_and(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1124:1126:public static void bitwise_not(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1148:1150:public static void bitwise_not(org.opencv.core.Mat,org.opencv.core.Mat)
+    1200:1202:public static void bitwise_or(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1245:1247:public static void bitwise_or(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1298:1300:public static void bitwise_xor(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1344:1346:public static void bitwise_xor(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1421:1423:public static void calcCovarMatrix(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    1492:1494:public static void calcCovarMatrix(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    1533:1535:public static void cartToPolar(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,boolean)
+    1567:1569:public static void cartToPolar(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1600:1602:public static boolean checkRange(org.opencv.core.Mat,boolean,double,double)
+    1624:1626:public static boolean checkRange(org.opencv.core.Mat)
+    1655:1657:public static void circle(org.opencv.core.Mat,org.opencv.core.Point,int,org.opencv.core.Scalar,int,int,int)
+    1678:1680:public static void circle(org.opencv.core.Mat,org.opencv.core.Point,int,org.opencv.core.Scalar,int)
+    1699:1701:public static void circle(org.opencv.core.Mat,org.opencv.core.Point,int,org.opencv.core.Scalar)
+    1725:1730:public static boolean clipLine(org.opencv.core.Rect,org.opencv.core.Point,org.opencv.core.Point)
+    1803:1805:public static void compare(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    1878:1880:public static void compare(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,int)
+    1909:1911:public static void completeSymm(org.opencv.core.Mat,boolean)
+    1933:1935:public static void completeSymm(org.opencv.core.Mat)
+    1982:1984:public static void convertScaleAbs(org.opencv.core.Mat,org.opencv.core.Mat,double,double)
+    2024:2026:public static void convertScaleAbs(org.opencv.core.Mat,org.opencv.core.Mat)
+    2053:2055:public static int countNonZero(org.opencv.core.Mat)
+    2077:2079:public static float cubeRoot(float)
+    2176:2178:public static void dct(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    2260:2262:public static void dct(org.opencv.core.Mat,org.opencv.core.Mat)
+    2293:2295:public static double determinant(org.opencv.core.Mat)
+    2561:2563:public static void dft(org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    2786:2788:public static void dft(org.opencv.core.Mat,org.opencv.core.Mat)
+    2831:2833:public static void divide(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,double,int)
+    2867:2869:public static void divide(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,double)
+    2902:2904:public static void divide(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    2946:2948:public static void divide(double,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    2981:2983:public static void divide(double,org.opencv.core.Mat,org.opencv.core.Mat)
+    3026:3028:public static void divide(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,double,int)
+    3062:3064:public static void divide(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,double)
+    3097:3099:public static void divide(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat)
+    3137:3139:public static boolean eigen(org.opencv.core.Mat,boolean,org.opencv.core.Mat,org.opencv.core.Mat)
+    3179:3181:public static void ellipse(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Size,double,double,double,org.opencv.core.Scalar,int,int,int)
+    3213:3215:public static void ellipse(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Size,double,double,double,org.opencv.core.Scalar,int)
+    3245:3247:public static void ellipse(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Size,double,double,double,org.opencv.core.Scalar)
+    3283:3285:public static void ellipse(org.opencv.core.Mat,org.opencv.core.RotatedRect,org.opencv.core.Scalar,int,int)
+    3315:3317:public static void ellipse(org.opencv.core.Mat,org.opencv.core.RotatedRect,org.opencv.core.Scalar,int)
+    3345:3347:public static void ellipse(org.opencv.core.Mat,org.opencv.core.RotatedRect,org.opencv.core.Scalar)
+    3376:3379:public static void ellipse2Poly(org.opencv.core.Point,org.opencv.core.Size,int,int,int,int,org.opencv.core.MatOfPoint)
+    3415:3417:public static void exp(org.opencv.core.Mat,org.opencv.core.Mat)
+    3428:3430:public static void extractChannel(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    3453:3455:public static float fastAtan2(float,float)
+    3483:3486:public static void fillConvexPoly(org.opencv.core.Mat,org.opencv.core.MatOfPoint,org.opencv.core.Scalar,int,int)
+    3507:3510:public static void fillConvexPoly(org.opencv.core.Mat,org.opencv.core.MatOfPoint,org.opencv.core.Scalar)
+    3537:3541:public static void fillPoly(org.opencv.core.Mat,java.util.List,org.opencv.core.Scalar,int,int,org.opencv.core.Point)
+    3560:3564:public static void fillPoly(org.opencv.core.Mat,java.util.List,org.opencv.core.Scalar)
+    3575:3577:public static void findNonZero(org.opencv.core.Mat,org.opencv.core.Mat)
+    3678:3680:public static void gemm(org.opencv.core.Mat,org.opencv.core.Mat,double,org.opencv.core.Mat,double,org.opencv.core.Mat,int)
+    3718:3720:public static void gemm(org.opencv.core.Mat,org.opencv.core.Mat,double,org.opencv.core.Mat,double,org.opencv.core.Mat)
+    3771:3773:public static long getCPUTickCount()
+    3789:3791:public static int getNumberOfCPUs()
+    3835:3837:public static int getOptimalDFTSize(int)
+    3900:3903:public static void hconcat(java.util.List,org.opencv.core.Mat)
+    3930:3932:public static void idct(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    3953:3955:public static void idct(org.opencv.core.Mat,org.opencv.core.Mat)
+    3993:3995:public static void idft(org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    4024:4026:public static void idft(org.opencv.core.Mat,org.opencv.core.Mat)
+    4074:4076:public static void inRange(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Scalar,org.opencv.core.Mat)
+    4087:4089:public static void insertChannel(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    4138:4140:public static double invert(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    4177:4179:public static double invert(org.opencv.core.Mat,org.opencv.core.Mat)
+    4244:4246:public static double kmeans(org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.TermCriteria,int,int,org.opencv.core.Mat)
+    4304:4306:public static double kmeans(org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.TermCriteria,int,int)
+    4343:4345:public static void line(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Point,org.opencv.core.Scalar,int,int,int)
+    4370:4372:public static void line(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Point,org.opencv.core.Scalar,int)
+    4396:4398:public static void line(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Point,org.opencv.core.Scalar)
+    4435:4437:public static void log(org.opencv.core.Mat,org.opencv.core.Mat)
+    4468:4470:public static void magnitude(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    4510:4512:public static void max(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    4552:4554:public static void max(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat)
+    4586:4588:public static org.opencv.core.Scalar mean(org.opencv.core.Mat,org.opencv.core.Mat)
+    4614:4616:public static org.opencv.core.Scalar mean(org.opencv.core.Mat)
+    4658:4662:public static void meanStdDev(org.opencv.core.Mat,org.opencv.core.MatOfDouble,org.opencv.core.MatOfDouble,org.opencv.core.Mat)
+    4698:4702:public static void meanStdDev(org.opencv.core.Mat,org.opencv.core.MatOfDouble,org.opencv.core.MatOfDouble)
+    4734:4737:public static void merge(java.util.List,org.opencv.core.Mat)
+    4777:4779:public static void min(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    4819:4821:public static void min(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat)
+    4891:4896:public static void mixChannels(java.util.List,java.util.List,org.opencv.core.MatOfInt)
+    4932:4934:public static void mulSpectrums(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,boolean)
+    4963:4965:public static void mulSpectrums(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    5017:5019:public static void mulTransposed(org.opencv.core.Mat,org.opencv.core.Mat,boolean,org.opencv.core.Mat,double,int)
+    5062:5064:public static void mulTransposed(org.opencv.core.Mat,org.opencv.core.Mat,boolean,org.opencv.core.Mat,double)
+    5098:5100:public static void mulTransposed(org.opencv.core.Mat,org.opencv.core.Mat,boolean)
+    5146:5148:public static void multiply(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,double,int)
+    5188:5190:public static void multiply(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,double)
+    5229:5231:public static void multiply(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    5277:5279:public static void multiply(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,double,int)
+    5319:5321:public static void multiply(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,double)
+    5360:5362:public static void multiply(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat)
+    5414:5416:public static double norm(org.opencv.core.Mat,int,org.opencv.core.Mat)
+    5461:5463:public static double norm(org.opencv.core.Mat,int)
+    5507:5509:public static double norm(org.opencv.core.Mat)
+    5563:5565:public static double norm(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat)
+    5612:5614:public static double norm(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    5660:5662:public static double norm(org.opencv.core.Mat,org.opencv.core.Mat)
+    5713:5715:public static void normalize(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int,int,org.opencv.core.Mat)
+    5760:5762:public static void normalize(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int,int)
+    5804:5806:public static void normalize(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int)
+    5843:5845:public static void normalize(org.opencv.core.Mat,org.opencv.core.Mat)
+    5856:5858:public static void patchNaNs(org.opencv.core.Mat,double)
+    5864:5866:public static void patchNaNs(org.opencv.core.Mat)
+    5914:5916:public static void perspectiveTransform(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    5949:5951:public static void phase(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,boolean)
+    5977:5979:public static void phase(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    6024:6026:public static void polarToCart(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,boolean)
+    6064:6066:public static void polarToCart(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    6093:6097:public static void polylines(org.opencv.core.Mat,java.util.List,boolean,org.opencv.core.Scalar,int,int,int)
+    6117:6121:public static void polylines(org.opencv.core.Mat,java.util.List,boolean,org.opencv.core.Scalar,int)
+    6140:6144:public static void polylines(org.opencv.core.Mat,java.util.List,boolean,org.opencv.core.Scalar)
+    6192:6194:public static void pow(org.opencv.core.Mat,double,org.opencv.core.Mat)
+    6232:6234:public static void putText(org.opencv.core.Mat,java.lang.String,org.opencv.core.Point,int,double,org.opencv.core.Scalar,int,int,boolean)
+    6264:6266:public static void putText(org.opencv.core.Mat,java.lang.String,org.opencv.core.Point,int,double,org.opencv.core.Scalar,int)
+    6295:6297:public static void putText(org.opencv.core.Mat,java.lang.String,org.opencv.core.Point,int,double,org.opencv.core.Scalar)
+    6308:6310:public static void randShuffle(org.opencv.core.Mat,double)
+    6316:6318:public static void randShuffle(org.opencv.core.Mat)
+    6347:6349:public static void randn(org.opencv.core.Mat,double,double)
+    6382:6384:public static void randu(org.opencv.core.Mat,double,double)
+    6414:6416:public static void rectangle(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Point,org.opencv.core.Scalar,int,int,int)
+    6439:6441:public static void rectangle(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Point,org.opencv.core.Scalar,int)
+    6461:6463:public static void rectangle(org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Point,org.opencv.core.Scalar)
+    6509:6511:public static void reduce(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int)
+    6549:6551:public static void reduce(org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    6583:6585:public static void repeat(org.opencv.core.Mat,int,int,org.opencv.core.Mat)
+    6625:6627:public static void scaleAdd(org.opencv.core.Mat,double,org.opencv.core.Mat,org.opencv.core.Mat)
+    6638:6640:public static void setErrorVerbosity(boolean)
+    6674:6676:public static void setIdentity(org.opencv.core.Mat,org.opencv.core.Scalar)
+    6704:6706:public static void setIdentity(org.opencv.core.Mat)
+    6760:6762:public static boolean solve(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    6795:6797:public static boolean solve(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    6832:6834:public static int solveCubic(org.opencv.core.Mat,org.opencv.core.Mat)
+    6860:6862:public static double solvePoly(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    6882:6884:public static double solvePoly(org.opencv.core.Mat,org.opencv.core.Mat)
+    6920:6922:public static void sort(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    6971:6973:public static void sortIdx(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7004:7007:public static void split(org.opencv.core.Mat,java.util.List)
+    7033:7035:public static void sqrt(org.opencv.core.Mat,org.opencv.core.Mat)
+    7120:7122:public static void subtract(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7201:7203:public static void subtract(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    7280:7282:public static void subtract(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    7367:7369:public static void subtract(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7448:7450:public static void subtract(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat,org.opencv.core.Mat)
+    7527:7529:public static void subtract(org.opencv.core.Mat,org.opencv.core.Scalar,org.opencv.core.Mat)
+    7556:7558:public static org.opencv.core.Scalar sumElems(org.opencv.core.Mat)
+    7581:7583:public static org.opencv.core.Scalar trace(org.opencv.core.Mat)
+    7634:7636:public static void transform(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    7674:7677:public static void vconcat(java.util.List,org.opencv.core.Mat)
+    7723:7735:public static org.opencv.core.Core$MinMaxLocResult minMaxLoc(org.opencv.core.Mat,org.opencv.core.Mat)
+    7763:7763:public static org.opencv.core.Core$MinMaxLocResult minMaxLoc(org.opencv.core.Mat)
+    7834:7837:public static org.opencv.core.Size getTextSize(java.lang.String,int,double,int,int[])
+    private static native void LUT_0(long,long,long,int)
+    private static native void LUT_1(long,long,long)
+    private static native double Mahalanobis_0(long,long,long)
+    private static native void PCABackProject_0(long,long,long,long)
+    private static native void PCACompute_0(long,long,long,int)
+    private static native void PCACompute_1(long,long,long)
+    private static native void PCAComputeVar_0(long,long,long,double)
+    private static native void PCAProject_0(long,long,long,long)
+    private static native void SVBackSubst_0(long,long,long,long,long)
+    private static native void SVDecomp_0(long,long,long,long,int)
+    private static native void SVDecomp_1(long,long,long,long)
+    private static native void absdiff_0(long,long,long)
+    private static native void absdiff_1(long,double,double,double,double,long)
+    private static native void add_0(long,long,long,long,int)
+    private static native void add_1(long,long,long,long)
+    private static native void add_2(long,long,long)
+    private static native void add_3(long,double,double,double,double,long,long,int)
+    private static native void add_4(long,double,double,double,double,long,long)
+    private static native void add_5(long,double,double,double,double,long)
+    private static native void addWeighted_0(long,double,long,double,double,long,int)
+    private static native void addWeighted_1(long,double,long,double,double,long)
+    private static native void batchDistance_0(long,long,long,int,long,int,int,long,int,boolean)
+    private static native void batchDistance_1(long,long,long,int,long,int,int)
+    private static native void batchDistance_2(long,long,long,int,long)
+    private static native void bitwise_and_0(long,long,long,long)
+    private static native void bitwise_and_1(long,long,long)
+    private static native void bitwise_not_0(long,long,long)
+    private static native void bitwise_not_1(long,long)
+    private static native void bitwise_or_0(long,long,long,long)
+    private static native void bitwise_or_1(long,long,long)
+    private static native void bitwise_xor_0(long,long,long,long)
+    private static native void bitwise_xor_1(long,long,long)
+    private static native void calcCovarMatrix_0(long,long,long,int,int)
+    private static native void calcCovarMatrix_1(long,long,long,int)
+    private static native void cartToPolar_0(long,long,long,long,boolean)
+    private static native void cartToPolar_1(long,long,long,long)
+    private static native boolean checkRange_0(long,boolean,double,double)
+    private static native boolean checkRange_1(long)
+    private static native void circle_0(long,double,double,int,double,double,double,double,int,int,int)
+    private static native void circle_1(long,double,double,int,double,double,double,double,int)
+    private static native void circle_2(long,double,double,int,double,double,double,double)
+    private static native boolean clipLine_0(int,int,int,int,double,double,double[],double,double,double[])
+    private static native void compare_0(long,long,long,int)
+    private static native void compare_1(long,double,double,double,double,long,int)
+    private static native void completeSymm_0(long,boolean)
+    private static native void completeSymm_1(long)
+    private static native void convertScaleAbs_0(long,long,double,double)
+    private static native void convertScaleAbs_1(long,long)
+    private static native int countNonZero_0(long)
+    private static native float cubeRoot_0(float)
+    private static native void dct_0(long,long,int)
+    private static native void dct_1(long,long)
+    private static native double determinant_0(long)
+    private static native void dft_0(long,long,int,int)
+    private static native void dft_1(long,long)
+    private static native void divide_0(long,long,long,double,int)
+    private static native void divide_1(long,long,long,double)
+    private static native void divide_2(long,long,long)
+    private static native void divide_3(double,long,long,int)
+    private static native void divide_4(double,long,long)
+    private static native void divide_5(long,double,double,double,double,long,double,int)
+    private static native void divide_6(long,double,double,double,double,long,double)
+    private static native void divide_7(long,double,double,double,double,long)
+    private static native boolean eigen_0(long,boolean,long,long)
+    private static native void ellipse_0(long,double,double,double,double,double,double,double,double,double,double,double,int,int,int)
+    private static native void ellipse_1(long,double,double,double,double,double,double,double,double,double,double,double,int)
+    private static native void ellipse_2(long,double,double,double,double,double,double,double,double,double,double,double)
+    private static native void ellipse_3(long,double,double,double,double,double,double,double,double,double,int,int)
+    private static native void ellipse_4(long,double,double,double,double,double,double,double,double,double,int)
+    private static native void ellipse_5(long,double,double,double,double,double,double,double,double,double)
+    private static native void ellipse2Poly_0(double,double,double,double,int,int,int,int,long)
+    private static native void exp_0(long,long)
+    private static native void extractChannel_0(long,long,int)
+    private static native float fastAtan2_0(float,float)
+    private static native void fillConvexPoly_0(long,long,double,double,double,double,int,int)
+    private static native void fillConvexPoly_1(long,long,double,double,double,double)
+    private static native void fillPoly_0(long,long,double,double,double,double,int,int,double,double)
+    private static native void fillPoly_1(long,long,double,double,double,double)
+    private static native void findNonZero_0(long,long)
+    private static native void gemm_0(long,long,double,long,double,long,int)
+    private static native void gemm_1(long,long,double,long,double,long)
+    private static native long getCPUTickCount_0()
+    private static native int getNumberOfCPUs_0()
+    private static native int getOptimalDFTSize_0(int)
+    private static native void hconcat_0(long,long)
+    private static native void idct_0(long,long,int)
+    private static native void idct_1(long,long)
+    private static native void idft_0(long,long,int,int)
+    private static native void idft_1(long,long)
+    private static native void inRange_0(long,double,double,double,double,double,double,double,double,long)
+    private static native void insertChannel_0(long,long,int)
+    private static native double invert_0(long,long,int)
+    private static native double invert_1(long,long)
+    private static native double kmeans_0(long,int,long,int,int,double,int,int,long)
+    private static native double kmeans_1(long,int,long,int,int,double,int,int)
+    private static native void line_0(long,double,double,double,double,double,double,double,double,int,int,int)
+    private static native void line_1(long,double,double,double,double,double,double,double,double,int)
+    private static native void line_2(long,double,double,double,double,double,double,double,double)
+    private static native void log_0(long,long)
+    private static native void magnitude_0(long,long,long)
+    private static native void max_0(long,long,long)
+    private static native void max_1(long,double,double,double,double,long)
+    private static native double[] mean_0(long,long)
+    private static native double[] mean_1(long)
+    private static native void meanStdDev_0(long,long,long,long)
+    private static native void meanStdDev_1(long,long,long)
+    private static native void merge_0(long,long)
+    private static native void min_0(long,long,long)
+    private static native void min_1(long,double,double,double,double,long)
+    private static native void mixChannels_0(long,long,long)
+    private static native void mulSpectrums_0(long,long,long,int,boolean)
+    private static native void mulSpectrums_1(long,long,long,int)
+    private static native void mulTransposed_0(long,long,boolean,long,double,int)
+    private static native void mulTransposed_1(long,long,boolean,long,double)
+    private static native void mulTransposed_2(long,long,boolean)
+    private static native void multiply_0(long,long,long,double,int)
+    private static native void multiply_1(long,long,long,double)
+    private static native void multiply_2(long,long,long)
+    private static native void multiply_3(long,double,double,double,double,long,double,int)
+    private static native void multiply_4(long,double,double,double,double,long,double)
+    private static native void multiply_5(long,double,double,double,double,long)
+    private static native double norm_0(long,int,long)
+    private static native double norm_1(long,int)
+    private static native double norm_2(long)
+    private static native double norm_3(long,long,int,long)
+    private static native double norm_4(long,long,int)
+    private static native double norm_5(long,long)
+    private static native void normalize_0(long,long,double,double,int,int,long)
+    private static native void normalize_1(long,long,double,double,int,int)
+    private static native void normalize_2(long,long,double,double,int)
+    private static native void normalize_3(long,long)
+    private static native void patchNaNs_0(long,double)
+    private static native void patchNaNs_1(long)
+    private static native void perspectiveTransform_0(long,long,long)
+    private static native void phase_0(long,long,long,boolean)
+    private static native void phase_1(long,long,long)
+    private static native void polarToCart_0(long,long,long,long,boolean)
+    private static native void polarToCart_1(long,long,long,long)
+    private static native void polylines_0(long,long,boolean,double,double,double,double,int,int,int)
+    private static native void polylines_1(long,long,boolean,double,double,double,double,int)
+    private static native void polylines_2(long,long,boolean,double,double,double,double)
+    private static native void pow_0(long,double,long)
+    private static native void putText_0(long,java.lang.String,double,double,int,double,double,double,double,double,int,int,boolean)
+    private static native void putText_1(long,java.lang.String,double,double,int,double,double,double,double,double,int)
+    private static native void putText_2(long,java.lang.String,double,double,int,double,double,double,double,double)
+    private static native void randShuffle_0(long,double)
+    private static native void randShuffle_1(long)
+    private static native void randn_0(long,double,double)
+    private static native void randu_0(long,double,double)
+    private static native void rectangle_0(long,double,double,double,double,double,double,double,double,int,int,int)
+    private static native void rectangle_1(long,double,double,double,double,double,double,double,double,int)
+    private static native void rectangle_2(long,double,double,double,double,double,double,double,double)
+    private static native void reduce_0(long,long,int,int,int)
+    private static native void reduce_1(long,long,int,int)
+    private static native void repeat_0(long,int,int,long)
+    private static native void scaleAdd_0(long,double,long,long)
+    private static native void setErrorVerbosity_0(boolean)
+    private static native void setIdentity_0(long,double,double,double,double)
+    private static native void setIdentity_1(long)
+    private static native boolean solve_0(long,long,long,int)
+    private static native boolean solve_1(long,long,long)
+    private static native int solveCubic_0(long,long)
+    private static native double solvePoly_0(long,long,int)
+    private static native double solvePoly_1(long,long)
+    private static native void sort_0(long,long,int)
+    private static native void sortIdx_0(long,long,int)
+    private static native void split_0(long,long)
+    private static native void sqrt_0(long,long)
+    private static native void subtract_0(long,long,long,long,int)
+    private static native void subtract_1(long,long,long,long)
+    private static native void subtract_2(long,long,long)
+    private static native void subtract_3(long,double,double,double,double,long,long,int)
+    private static native void subtract_4(long,double,double,double,double,long,long)
+    private static native void subtract_5(long,double,double,double,double,long)
+    private static native double[] sumElems_0(long)
+    private static native double[] trace_0(long)
+    private static native void transform_0(long,long,long)
+    private static native void vconcat_0(long,long)
+    private static native double[] n_minMaxLocManual(long,long)
+    private static native double[] n_getTextSize(java.lang.String,int,double,int,int[])
+org.opencv.core.Core$MinMaxLocResult
+org.opencv.core.CvException
+org.opencv.core.CvType:
+    public static final int CV_8U
+    public static final int CV_8S
+    public static final int CV_16U
+    public static final int CV_16S
+    public static final int CV_32S
+    public static final int CV_32F
+    public static final int CV_64F
+    public static final int CV_USRTYPE1
+    private static final int CV_CN_MAX
+    private static final int CV_CN_SHIFT
+    private static final int CV_DEPTH_MAX
+    3:3:public CvType()
+    75:75:public static final boolean isInteger(int)
+    79:92:public static final int ELEM_SIZE(int)
+org.opencv.core.Mat:
+    505:510:public Mat(org.opencv.core.Size,int)
+    538:543:public Mat(int,int,int,org.opencv.core.Scalar)
+    572:577:public Mat(org.opencv.core.Size,int,org.opencv.core.Scalar)
+    609:614:public Mat(org.opencv.core.Mat,org.opencv.core.Range,org.opencv.core.Range)
+    640:645:public Mat(org.opencv.core.Mat,org.opencv.core.Range)
+    673:678:public Mat(org.opencv.core.Mat,org.opencv.core.Rect)
+    725:727:public org.opencv.core.Mat adjustROI(int,int,int,int)
+    748:750:public void assignTo(org.opencv.core.Mat,int)
+    765:767:public void assignTo(org.opencv.core.Mat)
+    784:786:public int channels()
+    797:799:public int checkVector(int,int,boolean)
+    805:807:public int checkVector(int,int)
+    813:815:public int checkVector(int)
+    858:860:public org.opencv.core.Mat col(int)
+    881:883:public org.opencv.core.Mat colRange(int,int)
+    903:905:public org.opencv.core.Mat colRange(org.opencv.core.Range)
+    915:917:public int dims()
+    959:961:public void convertTo(org.opencv.core.Mat,int,double,double)
+    985:987:public void convertTo(org.opencv.core.Mat,int,double)
+    1010:1012:public void convertTo(org.opencv.core.Mat,int)
+    1046:1048:public void copyTo(org.opencv.core.Mat)
+    1084:1086:public void copyTo(org.opencv.core.Mat,org.opencv.core.Mat)
+    1142:1144:public void create(int,int,int)
+    1200:1202:public void create(org.opencv.core.Size,int)
+    1223:1225:public org.opencv.core.Mat cross(org.opencv.core.Mat)
+    1268:1270:public int depth()
+    1299:1301:public org.opencv.core.Mat diag(int)
+    1316:1318:public org.opencv.core.Mat diag()
+    1347:1349:public static org.opencv.core.Mat diag(org.opencv.core.Mat)
+    1372:1374:public double dot(org.opencv.core.Mat)
+    1393:1395:public long elemSize()
+    1414:1416:public long elemSize1()
+    1467:1469:public static org.opencv.core.Mat eye(int,int,int)
+    1498:1500:public static org.opencv.core.Mat eye(org.opencv.core.Size,int)
+    1530:1532:public org.opencv.core.Mat inv(int)
+    1548:1550:public org.opencv.core.Mat inv()
+    1713:1718:public void locateROI(org.opencv.core.Size,org.opencv.core.Point)
+    1746:1748:public org.opencv.core.Mat mul(org.opencv.core.Mat,double)
+    1771:1773:public org.opencv.core.Mat mul(org.opencv.core.Mat)
+    1805:1807:public static org.opencv.core.Mat ones(int,int,int)
+    1839:1841:public static org.opencv.core.Mat ones(org.opencv.core.Size,int)
+    1863:1865:public void push_back(org.opencv.core.Mat)
+    1946:1948:public org.opencv.core.Mat reshape(int,int)
+    1993:1995:public org.opencv.core.Mat reshape(int)
+    2054:2056:public org.opencv.core.Mat row(int)
+    2077:2079:public org.opencv.core.Mat rowRange(int,int)
+    2099:2101:public org.opencv.core.Mat rowRange(org.opencv.core.Range)
+    2123:2125:public org.opencv.core.Mat setTo(org.opencv.core.Scalar)
+    2145:2147:public org.opencv.core.Mat setTo(org.opencv.core.Scalar,org.opencv.core.Mat)
+    2167:2169:public org.opencv.core.Mat setTo(org.opencv.core.Mat,org.opencv.core.Mat)
+    2182:2184:public org.opencv.core.Mat setTo(org.opencv.core.Mat)
+    2202:2204:public org.opencv.core.Size size()
+    2224:2226:public long step1(int)
+    2240:2242:public long step1()
+    2299:2301:public org.opencv.core.Mat submat(org.opencv.core.Range,org.opencv.core.Range)
+    2325:2327:public org.opencv.core.Mat submat(org.opencv.core.Rect)
+    2353:2355:public org.opencv.core.Mat t()
+    2373:2375:public long total()
+    2431:2433:public static org.opencv.core.Mat zeros(int,int,int)
+    2468:2470:public static org.opencv.core.Mat zeros(org.opencv.core.Size,int)
+    2490:2490:public java.lang.String dump()
+    2494:2501:public varargs int put(int,int,double[])
+    2505:2515:public int put(int,int,float[])
+    2519:2529:public int put(int,int,int[])
+    2533:2543:public int put(int,int,short[])
+    2561:2571:public int get(int,int,byte[])
+    2575:2585:public int get(int,int,short[])
+    2589:2599:public int get(int,int,int[])
+    2603:2613:public int get(int,int,float[])
+    2617:2627:public int get(int,int,double[])
+    2631:2631:public double[] get(int,int)
+    private static native long n_Mat(double,double,int)
+    private static native long n_Mat(int,int,int,double,double,double,double)
+    private static native long n_Mat(double,double,int,double,double,double,double)
+    private static native long n_Mat(long,int,int,int,int)
+    private static native long n_Mat(long,int,int)
+    private static native long n_adjustROI(long,int,int,int,int)
+    private static native void n_assignTo(long,long,int)
+    private static native void n_assignTo(long,long)
+    private static native int n_channels(long)
+    private static native int n_checkVector(long,int,int,boolean)
+    private static native int n_checkVector(long,int,int)
+    private static native int n_checkVector(long,int)
+    private static native long n_col(long,int)
+    private static native long n_colRange(long,int,int)
+    private static native int n_dims(long)
+    private static native void n_convertTo(long,long,int,double,double)
+    private static native void n_convertTo(long,long,int,double)
+    private static native void n_convertTo(long,long,int)
+    private static native void n_copyTo(long,long)
+    private static native void n_copyTo(long,long,long)
+    private static native void n_create(long,int,int,int)
+    private static native void n_create(long,double,double,int)
+    private static native long n_cross(long,long)
+    private static native int n_depth(long)
+    private static native long n_diag(long,int)
+    private static native long n_diag(long)
+    private static native double n_dot(long,long)
+    private static native long n_elemSize(long)
+    private static native long n_elemSize1(long)
+    private static native long n_eye(int,int,int)
+    private static native long n_eye(double,double,int)
+    private static native long n_inv(long,int)
+    private static native long n_inv(long)
+    private static native void locateROI_0(long,double[],double[])
+    private static native long n_mul(long,long,double)
+    private static native long n_mul(long,long)
+    private static native long n_ones(int,int,int)
+    private static native long n_ones(double,double,int)
+    private static native void n_push_back(long,long)
+    private static native long n_reshape(long,int,int)
+    private static native long n_reshape(long,int)
+    private static native long n_row(long,int)
+    private static native long n_rowRange(long,int,int)
+    private static native long n_setTo(long,double,double,double,double)
+    private static native long n_setTo(long,double,double,double,double,long)
+    private static native long n_setTo(long,long,long)
+    private static native long n_setTo(long,long)
+    private static native double[] n_size(long)
+    private static native long n_step1(long,int)
+    private static native long n_step1(long)
+    private static native long n_submat(long,int,int,int,int)
+    private static native long n_t(long)
+    private static native long n_total(long)
+    private static native long n_zeros(int,int,int)
+    private static native long n_zeros(double,double,int)
+    private static native int nPutD(long,int,int,int,double[])
+    private static native int nPutF(long,int,int,int,float[])
+    private static native int nPutI(long,int,int,int,int[])
+    private static native int nPutS(long,int,int,int,short[])
+    private static native int nGetB(long,int,int,int,byte[])
+    private static native int nGetS(long,int,int,int,short[])
+    private static native int nGetI(long,int,int,int,int[])
+    private static native int nGetF(long,int,int,int,float[])
+    private static native int nGetD(long,int,int,int,double[])
+    private static native double[] nGet(long,int,int)
+    private static native java.lang.String nDump(long)
+org.opencv.core.MatOfByte
+org.opencv.core.MatOfDMatch
+org.opencv.core.MatOfDouble
+org.opencv.core.MatOfFloat
+org.opencv.core.MatOfFloat4
+org.opencv.core.MatOfFloat6
+org.opencv.core.MatOfInt
+org.opencv.core.MatOfInt4
+org.opencv.core.MatOfKeyPoint
+org.opencv.core.MatOfPoint
+org.opencv.core.MatOfPoint2f
+org.opencv.core.MatOfPoint3
+org.opencv.core.MatOfPoint3f
+org.opencv.core.MatOfRect
+org.opencv.core.Point
+org.opencv.core.Point3
+org.opencv.core.Range
+org.opencv.core.Rect
+org.opencv.core.RotatedRect
+org.opencv.core.Scalar
+org.opencv.core.Size:
+    78:81:public Size(org.opencv.core.Point)
+    83:85:public Size(double[])
+    88:95:public void set(double[])
+    98:98:public double area()
+org.opencv.core.TermCriteria
+org.opencv.engine.OpenCVEngineInterface
+org.opencv.engine.OpenCVEngineInterface$Stub
+org.opencv.engine.OpenCVEngineInterface$Stub$Proxy
+org.opencv.features2d.DMatch
+org.opencv.features2d.DescriptorExtractor
+org.opencv.features2d.DescriptorMatcher
+org.opencv.features2d.FeatureDetector
+org.opencv.features2d.Features2d
+org.opencv.features2d.GenericDescriptorMatcher
+org.opencv.features2d.KeyPoint
+org.opencv.gpu.DeviceInfo
+org.opencv.gpu.Gpu
+org.opencv.gpu.TargetArchs
+org.opencv.highgui.Highgui
+org.opencv.highgui.VideoCapture:
+    81:83:protected VideoCapture(long)
+    151:153:public double get(int)
+    240:242:public boolean open(int)
+    271:273:public boolean read(org.opencv.core.Mat)
+    349:351:public boolean retrieve(org.opencv.core.Mat)
+    private static native long n_VideoCapture(java.lang.String)
+    private static native double n_get(long,int)
+    private static native boolean n_open(long,java.lang.String)
+    private static native boolean n_open(long,int)
+    private static native boolean n_read(long,long)
+    private static native boolean n_retrieve(long,long)
+org.opencv.imgproc.CLAHE
+org.opencv.imgproc.Imgproc:
+    private static final int IPL_BORDER_CONSTANT
+    private static final int IPL_BORDER_REPLICATE
+    private static final int IPL_BORDER_REFLECT
+    private static final int IPL_BORDER_WRAP
+    private static final int IPL_BORDER_REFLECT_101
+    private static final int IPL_BORDER_TRANSPARENT
+    private static final int CV_INTER_NN
+    private static final int CV_INTER_LINEAR
+    private static final int CV_INTER_CUBIC
+    private static final int CV_INTER_AREA
+    private static final int CV_INTER_LANCZOS4
+    private static final int CV_MOP_ERODE
+    private static final int CV_MOP_DILATE
+    private static final int CV_MOP_OPEN
+    private static final int CV_MOP_CLOSE
+    private static final int CV_MOP_GRADIENT
+    private static final int CV_MOP_TOPHAT
+    private static final int CV_MOP_BLACKHAT
+    private static final int CV_RETR_EXTERNAL
+    private static final int CV_RETR_LIST
+    private static final int CV_RETR_CCOMP
+    private static final int CV_RETR_TREE
+    private static final int CV_RETR_FLOODFILL
+    private static final int CV_CHAIN_APPROX_NONE
+    private static final int CV_CHAIN_APPROX_SIMPLE
+    private static final int CV_CHAIN_APPROX_TC89_L1
+    private static final int CV_CHAIN_APPROX_TC89_KCOS
+    private static final int CV_THRESH_BINARY
+    private static final int CV_THRESH_BINARY_INV
+    private static final int CV_THRESH_TRUNC
+    private static final int CV_THRESH_TOZERO
+    private static final int CV_THRESH_TOZERO_INV
+    private static final int CV_THRESH_MASK
+    private static final int CV_THRESH_OTSU
+    public static final int CV_BLUR_NO_SCALE
+    public static final int CV_BLUR
+    public static final int CV_GAUSSIAN
+    public static final int CV_MEDIAN
+    public static final int CV_BILATERAL
+    public static final int CV_GAUSSIAN_5x5
+    public static final int CV_SCHARR
+    public static final int CV_MAX_SOBEL_KSIZE
+    public static final int CV_RGBA2mRGBA
+    public static final int CV_mRGBA2RGBA
+    public static final int CV_WARP_FILL_OUTLIERS
+    public static final int CV_WARP_INVERSE_MAP
+    public static final int CV_SHAPE_RECT
+    public static final int CV_SHAPE_CROSS
+    public static final int CV_SHAPE_ELLIPSE
+    public static final int CV_SHAPE_CUSTOM
+    public static final int CV_CHAIN_CODE
+    public static final int CV_LINK_RUNS
+    public static final int CV_POLY_APPROX_DP
+    public static final int CV_CONTOURS_MATCH_I1
+    public static final int CV_CONTOURS_MATCH_I2
+    public static final int CV_CONTOURS_MATCH_I3
+    public static final int CV_CLOCKWISE
+    public static final int CV_COUNTER_CLOCKWISE
+    public static final int CV_COMP_CORREL
+    public static final int CV_COMP_CHISQR
+    public static final int CV_COMP_INTERSECT
+    public static final int CV_COMP_BHATTACHARYYA
+    public static final int CV_COMP_HELLINGER
+    public static final int CV_DIST_MASK_3
+    public static final int CV_DIST_MASK_5
+    public static final int CV_DIST_MASK_PRECISE
+    public static final int CV_DIST_LABEL_CCOMP
+    public static final int CV_DIST_LABEL_PIXEL
+    public static final int CV_DIST_USER
+    public static final int CV_DIST_L1
+    public static final int CV_DIST_L2
+    public static final int CV_DIST_C
+    public static final int CV_DIST_L12
+    public static final int CV_DIST_FAIR
+    public static final int CV_DIST_WELSCH
+    public static final int CV_DIST_HUBER
+    public static final int CV_CANNY_L2_GRADIENT
+    public static final int CV_HOUGH_STANDARD
+    public static final int CV_HOUGH_PROBABILISTIC
+    public static final int CV_HOUGH_MULTI_SCALE
+    public static final int CV_HOUGH_GRADIENT
+    public static final int BORDER_REPLICATE
+    public static final int BORDER_CONSTANT
+    public static final int BORDER_REFLECT
+    public static final int BORDER_WRAP
+    public static final int BORDER_REFLECT_101
+    public static final int BORDER_REFLECT101
+    public static final int BORDER_TRANSPARENT
+    public static final int BORDER_DEFAULT
+    public static final int BORDER_ISOLATED
+    public static final int KERNEL_GENERAL
+    public static final int KERNEL_SYMMETRICAL
+    public static final int KERNEL_ASYMMETRICAL
+    public static final int KERNEL_SMOOTH
+    public static final int KERNEL_INTEGER
+    public static final int MORPH_ERODE
+    public static final int MORPH_DILATE
+    public static final int MORPH_OPEN
+    public static final int MORPH_CLOSE
+    public static final int MORPH_GRADIENT
+    public static final int MORPH_TOPHAT
+    public static final int MORPH_BLACKHAT
+    public static final int MORPH_RECT
+    public static final int MORPH_CROSS
+    public static final int MORPH_ELLIPSE
+    public static final int GHT_POSITION
+    public static final int GHT_SCALE
+    public static final int GHT_ROTATION
+    public static final int INTER_NEAREST
+    public static final int INTER_LINEAR
+    public static final int INTER_CUBIC
+    public static final int INTER_AREA
+    public static final int INTER_LANCZOS4
+    public static final int INTER_MAX
+    public static final int WARP_INVERSE_MAP
+    public static final int INTER_BITS
+    public static final int INTER_BITS2
+    public static final int INTER_TAB_SIZE
+    public static final int INTER_TAB_SIZE2
+    public static final int THRESH_BINARY
+    public static final int THRESH_BINARY_INV
+    public static final int THRESH_TRUNC
+    public static final int THRESH_TOZERO
+    public static final int THRESH_TOZERO_INV
+    public static final int THRESH_MASK
+    public static final int THRESH_OTSU
+    public static final int ADAPTIVE_THRESH_MEAN_C
+    public static final int ADAPTIVE_THRESH_GAUSSIAN_C
+    public static final int PROJ_SPHERICAL_ORTHO
+    public static final int PROJ_SPHERICAL_EQRECT
+    public static final int GC_BGD
+    public static final int GC_FGD
+    public static final int GC_PR_BGD
+    public static final int GC_PR_FGD
+    public static final int GC_INIT_WITH_RECT
+    public static final int GC_INIT_WITH_MASK
+    public static final int GC_EVAL
+    public static final int DIST_LABEL_CCOMP
+    public static final int DIST_LABEL_PIXEL
+    public static final int FLOODFILL_FIXED_RANGE
+    public static final int FLOODFILL_MASK_ONLY
+    public static final int COLOR_BGR2BGRA
+    public static final int COLOR_RGB2RGBA
+    public static final int COLOR_BGRA2BGR
+    public static final int COLOR_RGBA2RGB
+    public static final int COLOR_BGR2RGBA
+    public static final int COLOR_RGB2BGRA
+    public static final int COLOR_RGBA2BGR
+    public static final int COLOR_BGRA2RGB
+    public static final int COLOR_BGR2RGB
+    public static final int COLOR_RGB2BGR
+    public static final int COLOR_BGRA2RGBA
+    public static final int COLOR_RGBA2BGRA
+    public static final int COLOR_BGR2GRAY
+    public static final int COLOR_RGB2GRAY
+    public static final int COLOR_GRAY2BGR
+    public static final int COLOR_GRAY2RGB
+    public static final int COLOR_GRAY2BGRA
+    public static final int COLOR_GRAY2RGBA
+    public static final int COLOR_BGRA2GRAY
+    public static final int COLOR_RGBA2GRAY
+    public static final int COLOR_BGR2BGR565
+    public static final int COLOR_RGB2BGR565
+    public static final int COLOR_BGR5652BGR
+    public static final int COLOR_BGR5652RGB
+    public static final int COLOR_BGRA2BGR565
+    public static final int COLOR_RGBA2BGR565
+    public static final int COLOR_BGR5652BGRA
+    public static final int COLOR_BGR5652RGBA
+    public static final int COLOR_GRAY2BGR565
+    public static final int COLOR_BGR5652GRAY
+    public static final int COLOR_BGR2BGR555
+    public static final int COLOR_RGB2BGR555
+    public static final int COLOR_BGR5552BGR
+    public static final int COLOR_BGR5552RGB
+    public static final int COLOR_BGRA2BGR555
+    public static final int COLOR_RGBA2BGR555
+    public static final int COLOR_BGR5552BGRA
+    public static final int COLOR_BGR5552RGBA
+    public static final int COLOR_GRAY2BGR555
+    public static final int COLOR_BGR5552GRAY
+    public static final int COLOR_BGR2XYZ
+    public static final int COLOR_RGB2XYZ
+    public static final int COLOR_XYZ2BGR
+    public static final int COLOR_XYZ2RGB
+    public static final int COLOR_BGR2YCrCb
+    public static final int COLOR_RGB2YCrCb
+    public static final int COLOR_YCrCb2BGR
+    public static final int COLOR_YCrCb2RGB
+    public static final int COLOR_BGR2HSV
+    public static final int COLOR_RGB2HSV
+    public static final int COLOR_BGR2Lab
+    public static final int COLOR_RGB2Lab
+    public static final int COLOR_BayerBG2BGR
+    public static final int COLOR_BayerGB2BGR
+    public static final int COLOR_BayerRG2BGR
+    public static final int COLOR_BayerGR2BGR
+    public static final int COLOR_BayerBG2RGB
+    public static final int COLOR_BayerGB2RGB
+    public static final int COLOR_BayerRG2RGB
+    public static final int COLOR_BayerGR2RGB
+    public static final int COLOR_BGR2Luv
+    public static final int COLOR_RGB2Luv
+    public static final int COLOR_BGR2HLS
+    public static final int COLOR_RGB2HLS
+    public static final int COLOR_HSV2BGR
+    public static final int COLOR_HSV2RGB
+    public static final int COLOR_Lab2BGR
+    public static final int COLOR_Lab2RGB
+    public static final int COLOR_Luv2BGR
+    public static final int COLOR_Luv2RGB
+    public static final int COLOR_HLS2BGR
+    public static final int COLOR_HLS2RGB
+    public static final int COLOR_BayerBG2BGR_VNG
+    public static final int COLOR_BayerGB2BGR_VNG
+    public static final int COLOR_BayerRG2BGR_VNG
+    public static final int COLOR_BayerGR2BGR_VNG
+    public static final int COLOR_BayerBG2RGB_VNG
+    public static final int COLOR_BayerGB2RGB_VNG
+    public static final int COLOR_BayerRG2RGB_VNG
+    public static final int COLOR_BayerGR2RGB_VNG
+    public static final int COLOR_BGR2HSV_FULL
+    public static final int COLOR_RGB2HSV_FULL
+    public static final int COLOR_BGR2HLS_FULL
+    public static final int COLOR_RGB2HLS_FULL
+    public static final int COLOR_HSV2BGR_FULL
+    public static final int COLOR_HSV2RGB_FULL
+    public static final int COLOR_HLS2BGR_FULL
+    public static final int COLOR_HLS2RGB_FULL
+    public static final int COLOR_LBGR2Lab
+    public static final int COLOR_LRGB2Lab
+    public static final int COLOR_LBGR2Luv
+    public static final int COLOR_LRGB2Luv
+    public static final int COLOR_Lab2LBGR
+    public static final int COLOR_Lab2LRGB
+    public static final int COLOR_Luv2LBGR
+    public static final int COLOR_Luv2LRGB
+    public static final int COLOR_BGR2YUV
+    public static final int COLOR_RGB2YUV
+    public static final int COLOR_YUV2BGR
+    public static final int COLOR_YUV2RGB
+    public static final int COLOR_BayerBG2GRAY
+    public static final int COLOR_BayerGB2GRAY
+    public static final int COLOR_BayerRG2GRAY
+    public static final int COLOR_BayerGR2GRAY
+    public static final int COLOR_YUV2RGB_NV12
+    public static final int COLOR_YUV2BGR_NV12
+    public static final int COLOR_YUV2RGB_NV21
+    public static final int COLOR_YUV2BGR_NV21
+    public static final int COLOR_YUV420sp2RGB
+    public static final int COLOR_YUV420sp2BGR
+    public static final int COLOR_YUV2RGBA_NV12
+    public static final int COLOR_YUV2BGRA_NV12
+    public static final int COLOR_YUV2RGBA_NV21
+    public static final int COLOR_YUV2BGRA_NV21
+    public static final int COLOR_YUV420sp2RGBA
+    public static final int COLOR_YUV420sp2BGRA
+    public static final int COLOR_YUV2RGB_YV12
+    public static final int COLOR_YUV2BGR_YV12
+    public static final int COLOR_YUV2RGB_IYUV
+    public static final int COLOR_YUV2BGR_IYUV
+    public static final int COLOR_YUV2RGB_I420
+    public static final int COLOR_YUV2BGR_I420
+    public static final int COLOR_YUV420p2RGB
+    public static final int COLOR_YUV420p2BGR
+    public static final int COLOR_YUV2RGBA_YV12
+    public static final int COLOR_YUV2BGRA_YV12
+    public static final int COLOR_YUV2RGBA_IYUV
+    public static final int COLOR_YUV2BGRA_IYUV
+    public static final int COLOR_YUV2RGBA_I420
+    public static final int COLOR_YUV2BGRA_I420
+    public static final int COLOR_YUV420p2RGBA
+    public static final int COLOR_YUV420p2BGRA
+    public static final int COLOR_YUV2GRAY_420
+    public static final int COLOR_YUV2GRAY_NV21
+    public static final int COLOR_YUV2GRAY_NV12
+    public static final int COLOR_YUV2GRAY_YV12
+    public static final int COLOR_YUV2GRAY_IYUV
+    public static final int COLOR_YUV2GRAY_I420
+    public static final int COLOR_YUV420sp2GRAY
+    public static final int COLOR_YUV420p2GRAY
+    public static final int COLOR_YUV2RGB_UYVY
+    public static final int COLOR_YUV2BGR_UYVY
+    public static final int COLOR_YUV2RGB_Y422
+    public static final int COLOR_YUV2BGR_Y422
+    public static final int COLOR_YUV2RGB_UYNV
+    public static final int COLOR_YUV2BGR_UYNV
+    public static final int COLOR_YUV2RGBA_UYVY
+    public static final int COLOR_YUV2BGRA_UYVY
+    public static final int COLOR_YUV2RGBA_Y422
+    public static final int COLOR_YUV2BGRA_Y422
+    public static final int COLOR_YUV2RGBA_UYNV
+    public static final int COLOR_YUV2BGRA_UYNV
+    public static final int COLOR_YUV2RGB_YUY2
+    public static final int COLOR_YUV2BGR_YUY2
+    public static final int COLOR_YUV2RGB_YVYU
+    public static final int COLOR_YUV2BGR_YVYU
+    public static final int COLOR_YUV2RGB_YUYV
+    public static final int COLOR_YUV2BGR_YUYV
+    public static final int COLOR_YUV2RGB_YUNV
+    public static final int COLOR_YUV2BGR_YUNV
+    public static final int COLOR_YUV2RGBA_YUY2
+    public static final int COLOR_YUV2BGRA_YUY2
+    public static final int COLOR_YUV2RGBA_YVYU
+    public static final int COLOR_YUV2BGRA_YVYU
+    public static final int COLOR_YUV2RGBA_YUYV
+    public static final int COLOR_YUV2BGRA_YUYV
+    public static final int COLOR_YUV2RGBA_YUNV
+    public static final int COLOR_YUV2BGRA_YUNV
+    public static final int COLOR_YUV2GRAY_UYVY
+    public static final int COLOR_YUV2GRAY_YUY2
+    public static final int COLOR_YUV2GRAY_Y422
+    public static final int COLOR_YUV2GRAY_UYNV
+    public static final int COLOR_YUV2GRAY_YVYU
+    public static final int COLOR_YUV2GRAY_YUYV
+    public static final int COLOR_YUV2GRAY_YUNV
+    public static final int COLOR_RGBA2mRGBA
+    public static final int COLOR_mRGBA2RGBA
+    public static final int COLOR_RGB2YUV_I420
+    public static final int COLOR_BGR2YUV_I420
+    public static final int COLOR_RGB2YUV_IYUV
+    public static final int COLOR_BGR2YUV_IYUV
+    public static final int COLOR_RGBA2YUV_I420
+    public static final int COLOR_BGRA2YUV_I420
+    public static final int COLOR_RGBA2YUV_IYUV
+    public static final int COLOR_BGRA2YUV_IYUV
+    public static final int COLOR_RGB2YUV_YV12
+    public static final int COLOR_BGR2YUV_YV12
+    public static final int COLOR_RGBA2YUV_YV12
+    public static final int COLOR_BGRA2YUV_YV12
+    public static final int COLOR_COLORCVT_MAX
+    public static final int TM_SQDIFF
+    public static final int TM_SQDIFF_NORMED
+    public static final int TM_CCORR
+    public static final int TM_CCORR_NORMED
+    public static final int TM_CCOEFF
+    public static final int TM_CCOEFF_NORMED
+    public static final int RETR_EXTERNAL
+    public static final int RETR_LIST
+    public static final int RETR_CCOMP
+    public static final int RETR_TREE
+    public static final int RETR_FLOODFILL
+    public static final int CHAIN_APPROX_NONE
+    public static final int CHAIN_APPROX_SIMPLE
+    public static final int CHAIN_APPROX_TC89_L1
+    public static final int CHAIN_APPROX_TC89_KCOS
+    23:23:public Imgproc()
+    415:417:public static void Canny(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int,boolean)
+    448:450:public static void Canny(org.opencv.core.Mat,org.opencv.core.Mat,double,double)
+    494:496:public static void GaussianBlur(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,double,double,int)
+    533:535:public static void GaussianBlur(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,double,double)
+    565:567:public static void GaussianBlur(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,double)
+    680:682:public static void HoughCircles(org.opencv.core.Mat,org.opencv.core.Mat,int,double,double,double,double,int,int)
+    781:783:public static void HoughCircles(org.opencv.core.Mat,org.opencv.core.Mat,int,double,double)
+    830:832:public static void HoughLines(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int,double,double)
+    866:868:public static void HoughLines(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int)
+    994:996:public static void HoughLinesP(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int,double,double)
+    1113:1115:public static void HoughLinesP(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int)
+    1160:1162:public static void HuMoments(org.opencv.imgproc.Moments,org.opencv.core.Mat)
+    1210:1212:public static void Laplacian(org.opencv.core.Mat,org.opencv.core.Mat,int,int,double,double,int)
+    1253:1255:public static void Laplacian(org.opencv.core.Mat,org.opencv.core.Mat,int,int,double,double)
+    1290:1292:public static void Laplacian(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    1303:1305:public static double PSNR(org.opencv.core.Mat,org.opencv.core.Mat)
+    1346:1348:public static void Scharr(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int,double,double,int)
+    1382:1384:public static void Scharr(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int,double,double)
+    1414:1416:public static void Scharr(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int)
+    1512:1514:public static void Sobel(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int,int,double,double,int)
+    1603:1605:public static void Sobel(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int,int,double,double)
+    1689:1691:public static void Sobel(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int)
+    1727:1729:public static void accumulate(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1759:1761:public static void accumulate(org.opencv.core.Mat,org.opencv.core.Mat)
+    1796:1798:public static void accumulateProduct(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1827:1829:public static void accumulateProduct(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1861:1863:public static void accumulateSquare(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    1889:1891:public static void accumulateSquare(org.opencv.core.Mat,org.opencv.core.Mat)
+    1928:1930:public static void accumulateWeighted(org.opencv.core.Mat,org.opencv.core.Mat,double,org.opencv.core.Mat)
+    1961:1963:public static void accumulateWeighted(org.opencv.core.Mat,org.opencv.core.Mat,double)
+    2005:2007:public static void adaptiveBilateralFilter(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,double,double,org.opencv.core.Point,int)
+    2043:2045:public static void adaptiveBilateralFilter(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,double,double,org.opencv.core.Point)
+    2074:2076:public static void adaptiveBilateralFilter(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,double)
+    2138:2140:public static void adaptiveThreshold(org.opencv.core.Mat,org.opencv.core.Mat,double,int,int,int,double)
+    2177:2181:public static void approxPolyDP(org.opencv.core.MatOfPoint2f,org.opencv.core.MatOfPoint2f,double,boolean)
+    2202:2205:public static double arcLength(org.opencv.core.MatOfPoint2f,boolean)
+    2254:2256:public static void bilateralFilter(org.opencv.core.Mat,org.opencv.core.Mat,int,double,double,int)
+    2299:2301:public static void bilateralFilter(org.opencv.core.Mat,org.opencv.core.Mat,int,double,double)
+    2342:2344:public static void blur(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,org.opencv.core.Point,int)
+    2378:2380:public static void blur(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,org.opencv.core.Point)
+    2412:2414:public static void blur(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size)
+    2458:2460:public static int borderInterpolate(int,int,int)
+    2481:2484:public static org.opencv.core.Rect boundingRect(org.opencv.core.MatOfPoint)
+    2532:2534:public static void boxFilter(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Size,org.opencv.core.Point,boolean,int)
+    2575:2577:public static void boxFilter(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Size,org.opencv.core.Point,boolean)
+    2614:2616:public static void boxFilter(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Size)
+    2670:2675:public static void calcBackProject(java.util.List,org.opencv.core.MatOfInt,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.MatOfFloat,double)
+    2826:2832:public static void calcHist(java.util.List,org.opencv.core.MatOfInt,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.MatOfInt,org.opencv.core.MatOfFloat,boolean)
+    2974:2980:public static void calcHist(java.util.List,org.opencv.core.MatOfInt,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.MatOfInt,org.opencv.core.MatOfFloat)
+    3051:3053:public static double compareHist(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    3111:3113:public static double contourArea(org.opencv.core.Mat,boolean)
+    3161:3163:public static double contourArea(org.opencv.core.Mat)
+    3210:3212:public static void convertMaps(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,boolean)
+    3252:3254:public static void convertMaps(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    3293:3297:public static void convexHull(org.opencv.core.MatOfPoint,org.opencv.core.MatOfInt,boolean)
+    3327:3331:public static void convexHull(org.opencv.core.MatOfPoint,org.opencv.core.MatOfInt)
+    3382:3387:public static void convexityDefects(org.opencv.core.MatOfPoint,org.opencv.core.MatOfInt,org.opencv.core.MatOfInt4)
+    3459:3461:public static void copyMakeBorder(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int,int,int,org.opencv.core.Scalar)
+    3527:3529:public static void copyMakeBorder(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int,int,int)
+    3585:3587:public static void cornerEigenValsAndVecs(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int)
+    3637:3639:public static void cornerEigenValsAndVecs(org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    3673:3675:public static void cornerHarris(org.opencv.core.Mat,org.opencv.core.Mat,int,int,double,int)
+    3703:3705:public static void cornerHarris(org.opencv.core.Mat,org.opencv.core.Mat,int,int,double)
+    3733:3735:public static void cornerMinEigenVal(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int)
+    3757:3759:public static void cornerMinEigenVal(org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    3780:3782:public static void cornerMinEigenVal(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    3839:3842:public static void cornerSubPix(org.opencv.core.Mat,org.opencv.core.MatOfPoint2f,org.opencv.core.Size,org.opencv.core.Size,org.opencv.core.TermCriteria)
+    3882:3884:public static void createHanningWindow(org.opencv.core.Mat,org.opencv.core.Size,int)
+    4590:4592:public static void cvtColor(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    4639:4641:public static void dilate(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Point,int,int,org.opencv.core.Scalar)
+    4679:4681:public static void dilate(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Point,int)
+    4716:4718:public static void dilate(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    4810:4812:public static void distanceTransform(org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    4912:4914:public static void distanceTransformWithLabels(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,int,int)
+    5004:5006:public static void distanceTransformWithLabels(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    5114:5118:public static void drawContours(org.opencv.core.Mat,java.util.List,int,org.opencv.core.Scalar,int,int,org.opencv.core.Mat,int,org.opencv.core.Point)
+    5211:5215:public static void drawContours(org.opencv.core.Mat,java.util.List,int,org.opencv.core.Scalar,int)
+    5305:5309:public static void drawContours(org.opencv.core.Mat,java.util.List,int,org.opencv.core.Scalar)
+    5347:5349:public static void equalizeHist(org.opencv.core.Mat,org.opencv.core.Mat)
+    5396:5398:public static void erode(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Point,int,int,org.opencv.core.Scalar)
+    5436:5438:public static void erode(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Point,int)
+    5473:5475:public static void erode(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    5543:5545:public static void filter2D(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.Point,double,int)
+    5606:5608:public static void filter2D(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.Point,double)
+    5664:5666:public static void filter2D(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat)
+    5760:5763:public static void findContours(org.opencv.core.Mat,java.util.List,org.opencv.core.Mat,int,int,org.opencv.core.Point)
+    5849:5852:public static void findContours(org.opencv.core.Mat,java.util.List,org.opencv.core.Mat,int,int)
+    5887:5890:public static org.opencv.core.RotatedRect fitEllipse(org.opencv.core.MatOfPoint2f)
+    5973:5975:public static void fitLine(org.opencv.core.Mat,org.opencv.core.Mat,int,double,double,double)
+    6096:6099:public static int floodFill(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Scalar,org.opencv.core.Rect,org.opencv.core.Scalar,org.opencv.core.Scalar,int)
+    6196:6198:public static int floodFill(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Point,org.opencv.core.Scalar)
+    6231:6235:public static org.opencv.core.Mat getAffineTransform(org.opencv.core.MatOfPoint2f,org.opencv.core.MatOfPoint2f)
+    6278:6280:public static org.opencv.core.Mat getDefaultNewCameraMatrix(org.opencv.core.Mat,org.opencv.core.Size,boolean)
+    6314:6316:public static org.opencv.core.Mat getDefaultNewCameraMatrix(org.opencv.core.Mat)
+    6355:6357:public static void getDerivKernels(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int,boolean,int)
+    6382:6384:public static void getDerivKernels(org.opencv.core.Mat,org.opencv.core.Mat,int,int,int)
+    6395:6397:public static org.opencv.core.Mat getGaborKernel(org.opencv.core.Size,double,double,double,double,double,int)
+    6403:6405:public static org.opencv.core.Mat getGaborKernel(org.opencv.core.Size,double,double,double,double)
+    6446:6448:public static org.opencv.core.Mat getGaussianKernel(int,double,int)
+    6482:6484:public static org.opencv.core.Mat getGaussianKernel(int,double)
+    6521:6523:public static org.opencv.core.Mat getPerspectiveTransform(org.opencv.core.Mat,org.opencv.core.Mat)
+    6561:6563:public static void getRectSubPix(org.opencv.core.Mat,org.opencv.core.Size,org.opencv.core.Point,org.opencv.core.Mat,int)
+    6594:6596:public static void getRectSubPix(org.opencv.core.Mat,org.opencv.core.Size,org.opencv.core.Point,org.opencv.core.Mat)
+    6634:6636:public static org.opencv.core.Mat getRotationMatrix2D(org.opencv.core.Point,double,double)
+    6688:6690:public static org.opencv.core.Mat getStructuringElement(int,org.opencv.core.Size,org.opencv.core.Point)
+    6732:6734:public static org.opencv.core.Mat getStructuringElement(int,org.opencv.core.Size)
+    6797:6800:public static void goodFeaturesToTrack(org.opencv.core.Mat,org.opencv.core.MatOfPoint,int,double,double,org.opencv.core.Mat,int,boolean,double)
+    6850:6853:public static void goodFeaturesToTrack(org.opencv.core.Mat,org.opencv.core.MatOfPoint,int,double,double)
+    6913:6915:public static void grabCut(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Rect,org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    6959:6961:public static void grabCut(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Rect,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7048:7050:public static void initUndistortRectifyMap(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int,org.opencv.core.Mat,org.opencv.core.Mat)
+    7061:7063:public static float initWideAngleProjMap(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int,int,org.opencv.core.Mat,org.opencv.core.Mat,int,double)
+    7069:7071:public static float initWideAngleProjMap(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int,int,org.opencv.core.Mat,org.opencv.core.Mat)
+    7123:7125:public static void integral(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7170:7172:public static void integral(org.opencv.core.Mat,org.opencv.core.Mat)
+    7226:7228:public static void integral2(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7275:7277:public static void integral2(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    7333:7335:public static void integral3(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7384:7386:public static void integral3(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    7397:7399:public static float intersectConvexConvex(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,boolean)
+    7405:7407:public static float intersectConvexConvex(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    7435:7437:public static void invertAffineTransform(org.opencv.core.Mat,org.opencv.core.Mat)
+    7463:7466:public static boolean isContourConvex(org.opencv.core.MatOfPoint)
+    7519:7521:public static double matchShapes(org.opencv.core.Mat,org.opencv.core.Mat,int,double)
+    7613:7615:public static void matchTemplate(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7647:7649:public static void medianBlur(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    7678:7681:public static org.opencv.core.RotatedRect minAreaRect(org.opencv.core.MatOfPoint2f)
+    7708:7714:public static void minEnclosingCircle(org.opencv.core.MatOfPoint2f,org.opencv.core.Point,float[])
+    7806:7808:public static org.opencv.imgproc.Moments moments(org.opencv.core.Mat,boolean)
+    7893:7895:public static org.opencv.imgproc.Moments moments(org.opencv.core.Mat)
+    7966:7968:public static void morphologyEx(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.Point,int,int,org.opencv.core.Scalar)
+    8030:8032:public static void morphologyEx(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.Point,int)
+    8092:8094:public static void morphologyEx(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat)
+    8168:8170:public static org.opencv.core.Point phaseCorrelate(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    8237:8239:public static org.opencv.core.Point phaseCorrelate(org.opencv.core.Mat,org.opencv.core.Mat)
+    8249:8252:public static org.opencv.core.Point phaseCorrelateRes(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,double[])
+    8258:8260:public static org.opencv.core.Point phaseCorrelateRes(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    8291:8294:public static double pointPolygonTest(org.opencv.core.MatOfPoint2f,org.opencv.core.Point,boolean)
+    8342:8344:public static void preCornerDetect(org.opencv.core.Mat,org.opencv.core.Mat,int,int)
+    8386:8388:public static void preCornerDetect(org.opencv.core.Mat,org.opencv.core.Mat,int)
+    8426:8428:public static void pyrDown(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int)
+    8460:8462:public static void pyrDown(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size)
+    8488:8490:public static void pyrDown(org.opencv.core.Mat,org.opencv.core.Mat)
+    8555:8557:public static void pyrMeanShiftFiltering(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int,org.opencv.core.TermCriteria)
+    8615:8617:public static void pyrMeanShiftFiltering(org.opencv.core.Mat,org.opencv.core.Mat,double,double)
+    8656:8658:public static void pyrUp(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int)
+    8691:8693:public static void pyrUp(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size)
+    8720:8722:public static void pyrUp(org.opencv.core.Mat,org.opencv.core.Mat)
+    8776:8778:public static void remap(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int,int,org.opencv.core.Scalar)
+    8821:8823:public static void remap(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,int)
+    8898:8900:public static void resize(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,double,double,int)
+    8951:8953:public static void resize(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size)
+    9006:9008:public static void sepFilter2D(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Point,double,int)
+    9054:9056:public static void sepFilter2D(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Point,double)
+    9099:9101:public static void sepFilter2D(org.opencv.core.Mat,org.opencv.core.Mat,int,org.opencv.core.Mat,org.opencv.core.Mat)
+    9172:9174:public static double threshold(org.opencv.core.Mat,org.opencv.core.Mat,double,double,int)
+    9226:9228:public static void undistort(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    9272:9274:public static void undistort(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    9351:9355:public static void undistortPoints(org.opencv.core.MatOfPoint2f,org.opencv.core.MatOfPoint2f,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat)
+    9421:9425:public static void undistortPoints(org.opencv.core.MatOfPoint2f,org.opencv.core.MatOfPoint2f,org.opencv.core.Mat,org.opencv.core.Mat)
+    9474:9476:public static void warpAffine(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int,int,org.opencv.core.Scalar)
+    9514:9516:public static void warpAffine(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int)
+    9551:9553:public static void warpAffine(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size)
+    9598:9600:public static void warpPerspective(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int,int,org.opencv.core.Scalar)
+    9636:9638:public static void warpPerspective(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size,int)
+    9671:9673:public static void warpPerspective(org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Mat,org.opencv.core.Size)
+    9724:9726:public static void watershed(org.opencv.core.Mat,org.opencv.core.Mat)
+    private static native void Canny_0(long,long,double,double,int,boolean)
+    private static native void Canny_1(long,long,double,double)
+    private static native void GaussianBlur_0(long,long,double,double,double,double,int)
+    private static native void GaussianBlur_1(long,long,double,double,double,double)
+    private static native void GaussianBlur_2(long,long,double,double,double)
+    private static native void HoughCircles_0(long,long,int,double,double,double,double,int,int)
+    private static native void HoughCircles_1(long,long,int,double,double)
+    private static native void HoughLines_0(long,long,double,double,int,double,double)
+    private static native void HoughLines_1(long,long,double,double,int)
+    private static native void HoughLinesP_0(long,long,double,double,int,double,double)
+    private static native void HoughLinesP_1(long,long,double,double,int)
+    private static native void HuMoments_0(long,long)
+    private static native void Laplacian_0(long,long,int,int,double,double,int)
+    private static native void Laplacian_1(long,long,int,int,double,double)
+    private static native void Laplacian_2(long,long,int)
+    private static native double PSNR_0(long,long)
+    private static native void Scharr_0(long,long,int,int,int,double,double,int)
+    private static native void Scharr_1(long,long,int,int,int,double,double)
+    private static native void Scharr_2(long,long,int,int,int)
+    private static native void Sobel_0(long,long,int,int,int,int,double,double,int)
+    private static native void Sobel_1(long,long,int,int,int,int,double,double)
+    private static native void Sobel_2(long,long,int,int,int)
+    private static native void accumulate_0(long,long,long)
+    private static native void accumulate_1(long,long)
+    private static native void accumulateProduct_0(long,long,long,long)
+    private static native void accumulateProduct_1(long,long,long)
+    private static native void accumulateSquare_0(long,long,long)
+    private static native void accumulateSquare_1(long,long)
+    private static native void accumulateWeighted_0(long,long,double,long)
+    private static native void accumulateWeighted_1(long,long,double)
+    private static native void adaptiveBilateralFilter_0(long,long,double,double,double,double,double,double,int)
+    private static native void adaptiveBilateralFilter_1(long,long,double,double,double,double,double,double)
+    private static native void adaptiveBilateralFilter_2(long,long,double,double,double)
+    private static native void adaptiveThreshold_0(long,long,double,int,int,int,double)
+    private static native void approxPolyDP_0(long,long,double,boolean)
+    private static native double arcLength_0(long,boolean)
+    private static native void bilateralFilter_0(long,long,int,double,double,int)
+    private static native void bilateralFilter_1(long,long,int,double,double)
+    private static native void blur_0(long,long,double,double,double,double,int)
+    private static native void blur_1(long,long,double,double,double,double)
+    private static native void blur_2(long,long,double,double)
+    private static native int borderInterpolate_0(int,int,int)
+    private static native double[] boundingRect_0(long)
+    private static native void boxFilter_0(long,long,int,double,double,double,double,boolean,int)
+    private static native void boxFilter_1(long,long,int,double,double,double,double,boolean)
+    private static native void boxFilter_2(long,long,int,double,double)
+    private static native void calcBackProject_0(long,long,long,long,long,double)
+    private static native void calcHist_0(long,long,long,long,long,long,boolean)
+    private static native void calcHist_1(long,long,long,long,long,long)
+    private static native double compareHist_0(long,long,int)
+    private static native double contourArea_0(long,boolean)
+    private static native double contourArea_1(long)
+    private static native void convertMaps_0(long,long,long,long,int,boolean)
+    private static native void convertMaps_1(long,long,long,long,int)
+    private static native void convexHull_0(long,long,boolean)
+    private static native void convexHull_1(long,long)
+    private static native void convexityDefects_0(long,long,long)
+    private static native void copyMakeBorder_0(long,long,int,int,int,int,int,double,double,double,double)
+    private static native void copyMakeBorder_1(long,long,int,int,int,int,int)
+    private static native void cornerEigenValsAndVecs_0(long,long,int,int,int)
+    private static native void cornerEigenValsAndVecs_1(long,long,int,int)
+    private static native void cornerHarris_0(long,long,int,int,double,int)
+    private static native void cornerHarris_1(long,long,int,int,double)
+    private static native void cornerMinEigenVal_0(long,long,int,int,int)
+    private static native void cornerMinEigenVal_1(long,long,int,int)
+    private static native void cornerMinEigenVal_2(long,long,int)
+    private static native void cornerSubPix_0(long,long,double,double,double,double,int,int,double)
+    private static native void createHanningWindow_0(long,double,double,int)
+    private static native void cvtColor_1(long,long,int)
+    private static native void dilate_0(long,long,long,double,double,int,int,double,double,double,double)
+    private static native void dilate_1(long,long,long,double,double,int)
+    private static native void dilate_2(long,long,long)
+    private static native void distanceTransform_0(long,long,int,int)
+    private static native void distanceTransformWithLabels_0(long,long,long,int,int,int)
+    private static native void distanceTransformWithLabels_1(long,long,long,int,int)
+    private static native void drawContours_0(long,long,int,double,double,double,double,int,int,long,int,double,double)
+    private static native void drawContours_1(long,long,int,double,double,double,double,int)
+    private static native void drawContours_2(long,long,int,double,double,double,double)
+    private static native void equalizeHist_0(long,long)
+    private static native void erode_0(long,long,long,double,double,int,int,double,double,double,double)
+    private static native void erode_1(long,long,long,double,double,int)
+    private static native void erode_2(long,long,long)
+    private static native void filter2D_0(long,long,int,long,double,double,double,int)
+    private static native void filter2D_1(long,long,int,long,double,double,double)
+    private static native void filter2D_2(long,long,int,long)
+    private static native void findContours_0(long,long,long,int,int,double,double)
+    private static native void findContours_1(long,long,long,int,int)
+    private static native double[] fitEllipse_0(long)
+    private static native void fitLine_0(long,long,int,double,double,double)
+    private static native int floodFill_0(long,long,double,double,double,double,double,double,double[],double,double,double,double,double,double,double,double,int)
+    private static native int floodFill_1(long,long,double,double,double,double,double,double)
+    private static native long getAffineTransform_0(long,long)
+    private static native long getDefaultNewCameraMatrix_0(long,double,double,boolean)
+    private static native long getDefaultNewCameraMatrix_1(long)
+    private static native void getDerivKernels_0(long,long,int,int,int,boolean,int)
+    private static native void getDerivKernels_1(long,long,int,int,int)
+    private static native long getGaborKernel_0(double,double,double,double,double,double,double,int)
+    private static native long getGaborKernel_1(double,double,double,double,double,double)
+    private static native long getGaussianKernel_0(int,double,int)
+    private static native long getGaussianKernel_1(int,double)
+    private static native long getPerspectiveTransform_0(long,long)
+    private static native void getRectSubPix_0(long,double,double,double,double,long,int)
+    private static native void getRectSubPix_1(long,double,double,double,double,long)
+    private static native long getRotationMatrix2D_0(double,double,double,double)
+    private static native long getStructuringElement_0(int,double,double,double,double)
+    private static native long getStructuringElement_1(int,double,double)
+    private static native void goodFeaturesToTrack_0(long,long,int,double,double,long,int,boolean,double)
+    private static native void goodFeaturesToTrack_1(long,long,int,double,double)
+    private static native void grabCut_0(long,long,int,int,int,int,long,long,int,int)
+    private static native void grabCut_1(long,long,int,int,int,int,long,long,int)
+    private static native void initUndistortRectifyMap_0(long,long,long,long,double,double,int,long,long)
+    private static native float initWideAngleProjMap_0(long,long,double,double,int,int,long,long,int,double)
+    private static native float initWideAngleProjMap_1(long,long,double,double,int,int,long,long)
+    private static native void integral_0(long,long,int)
+    private static native void integral_1(long,long)
+    private static native void integral2_0(long,long,long,int)
+    private static native void integral2_1(long,long,long)
+    private static native void integral3_0(long,long,long,long,int)
+    private static native void integral3_1(long,long,long,long)
+    private static native float intersectConvexConvex_0(long,long,long,boolean)
+    private static native float intersectConvexConvex_1(long,long,long)
+    private static native void invertAffineTransform_0(long,long)
+    private static native boolean isContourConvex_0(long)
+    private static native double matchShapes_0(long,long,int,double)
+    private static native void matchTemplate_0(long,long,long,int)
+    private static native void medianBlur_0(long,long,int)
+    private static native double[] minAreaRect_0(long)
+    private static native void minEnclosingCircle_0(long,double[],double[])
+    private static native long moments_0(long,boolean)
+    private static native long moments_1(long)
+    private static native void morphologyEx_0(long,long,int,long,double,double,int,int,double,double,double,double)
+    private static native void morphologyEx_1(long,long,int,long,double,double,int)
+    private static native void morphologyEx_2(long,long,int,long)
+    private static native double[] phaseCorrelate_0(long,long,long)
+    private static native double[] phaseCorrelate_1(long,long)
+    private static native double[] phaseCorrelateRes_0(long,long,long,double[])
+    private static native double[] phaseCorrelateRes_1(long,long,long)
+    private static native double pointPolygonTest_0(long,double,double,boolean)
+    private static native void preCornerDetect_0(long,long,int,int)
+    private static native void preCornerDetect_1(long,long,int)
+    private static native void pyrDown_0(long,long,double,double,int)
+    private static native void pyrDown_1(long,long,double,double)
+    private static native void pyrDown_2(long,long)
+    private static native void pyrMeanShiftFiltering_0(long,long,double,double,int,int,int,double)
+    private static native void pyrMeanShiftFiltering_1(long,long,double,double)
+    private static native void pyrUp_0(long,long,double,double,int)
+    private static native void pyrUp_1(long,long,double,double)
+    private static native void pyrUp_2(long,long)
+    private static native void remap_0(long,long,long,long,int,int,double,double,double,double)
+    private static native void remap_1(long,long,long,long,int)
+    private static native void resize_0(long,long,double,double,double,double,int)
+    private static native void resize_1(long,long,double,double)
+    private static native void sepFilter2D_0(long,long,int,long,long,double,double,double,int)
+    private static native void sepFilter2D_1(long,long,int,long,long,double,double,double)
+    private static native void sepFilter2D_2(long,long,int,long,long)
+    private static native double threshold_0(long,long,double,double,int)
+    private static native void undistort_0(long,long,long,long,long)
+    private static native void undistort_1(long,long,long,long)
+    private static native void undistortPoints_0(long,long,long,long,long,long)
+    private static native void undistortPoints_1(long,long,long,long)
+    private static native void warpAffine_0(long,long,long,double,double,int,int,double,double,double,double)
+    private static native void warpAffine_1(long,long,long,double,double,int)
+    private static native void warpAffine_2(long,long,long,double,double)
+    private static native void warpPerspective_0(long,long,long,double,double,int,int,double,double,double,double)
+    private static native void warpPerspective_1(long,long,long,double,double,int)
+    private static native void warpPerspective_2(long,long,long,double,double)
+    private static native void watershed_0(long,long)
+org.opencv.imgproc.Moments
+org.opencv.imgproc.Subdiv2D
+org.opencv.ml.CvANN_MLP
+org.opencv.ml.CvANN_MLP_TrainParams
+org.opencv.ml.CvBoost
+org.opencv.ml.CvBoostParams
+org.opencv.ml.CvDTree
+org.opencv.ml.CvDTreeParams
+org.opencv.ml.CvERTrees
+org.opencv.ml.CvGBTrees
+org.opencv.ml.CvGBTreesParams
+org.opencv.ml.CvKNearest
+org.opencv.ml.CvNormalBayesClassifier
+org.opencv.ml.CvParamGrid
+org.opencv.ml.CvRTParams
+org.opencv.ml.CvRTrees
+org.opencv.ml.CvSVM
+org.opencv.ml.CvSVMParams
+org.opencv.ml.CvStatModel
+org.opencv.ml.EM
+org.opencv.ml.Ml
+org.opencv.objdetect.CascadeClassifier
+org.opencv.objdetect.HOGDescriptor
+org.opencv.objdetect.Objdetect
+org.opencv.photo.Photo
+org.opencv.utils.Converters
+org.opencv.video.BackgroundSubtractor
+org.opencv.video.BackgroundSubtractorMOG
+org.opencv.video.BackgroundSubtractorMOG2
+org.opencv.video.KalmanFilter
+org.opencv.video.Video

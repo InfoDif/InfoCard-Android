@@ -1,0 +1,19 @@
+/*******************************************************************************
+ * Copyright (c) 2004-2010 Sunil Kamath (IcemanK).
+ * All rights reserved.
+ * This program is made available under the terms of the Common Public License
+ * v1.0 which is available at http://www.eclipse.org/legal/cpl-v10.html
+ *
+ * Contributors:
+ *     Sunil Kamath (IcemanK) - initial API and implementation
+ *******************************************************************************/
+body { overflow: auto; margin-top: 0; margin-bottom: 0;
+       font-family: Arial, Helvetica, sans-serif;	font-size: 8pt; }
+em { font-style: italic}
+p, li {	font-size: 100%; }
+.heading { font-size: 120%; font-weight: bold; }
+.link {	font-weight: bold; }
+pre { font-family: Courier New, Courier, mono; padding: 1px; }
+pre b {	text-decoration: underline; }
+a { text-decoration: none; }
+a:hover { color: #303030; text-decoration: underline}

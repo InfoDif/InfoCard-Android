@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Functions</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.6.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.8.html'>Next</a></p>
+<a name="4.7"></a><h2>4.7 Functions</h2>
+
+<p>Functions are similar to Sections in that they contain zero or more instructions. User functions are not called by the installer directly, instead they are called from Sections using the Call instruction. Callback functions will be called by the installer when a certain event occurs.</p>
+
+<p>Functions must be declared outside of Sections or other Functions.</p>
+<a name="4.7.1"></a><h3>4.7.1 Function Commands</h3>
+<a name="4.7.1.1"></a><h4>4.7.1.1 Function</h4>
+<pre>[function_name]
+</pre>
+
+<p>Begins and opens a new function. Function names beginning with &quot;.&quot; (e.g. &quot;.Whatever&quot;) are generally reserved for callback functions. Function names beginning with &quot;un.&quot; are functions that will be generated in the Uninstaller. Hence, normal install Sections and functions cannot call uninstall functions, and the Uninstall Section and uninstall functions cannot call normal functions.</p>
+<pre>Function func
+  # some commands
+FunctionEnd
+
+Section
+  Call func
+SectionEnd
+</pre>
+<a name="4.7.1.2"></a><h4>4.7.1.2 FunctionEnd</h4>
+
+<p>This command closes the current open function.</p>
+<a name="4.7.2"></a><h3>4.7.2 Callback Functions</h3>
+
+<p>You can create callback functions which have special names, that will be called by the installer at certain points in the install. Below is a list of currently available callbacks:</p>
+<a name="4.7.2.1"></a><h4>4.7.2.1 Install Callbacks</h4>
+<a name="4.7.2.1.1"></a><h5>4.7.2.1.1 .onGUIInit</h5>
+
+<p>This callback will be called just before the first page is loaded and the installer dialog is shown, allowing you to tweak the user interface.</p>
+
+<p>Example:</p>
+<pre> !include &quot;WinMessages.nsh&quot;
+
+ Function .onGUIInit
+   # 1028 is the id of the branding text control
+   GetDlgItem $R0 $HWNDPARENT 1028
+   CreateFont $R1 &quot;Tahoma&quot; 10 700
+   SendMessage $R0 ${WM_SETFONT} $R1 0
+   # set background color to white and text color to red
+   SetCtlColors $R0 FFFFFF FF0000
+ FunctionEnd
+</pre>
+<a name="4.7.2.1.2"></a><h5>4.7.2.1.2 .onInit</h5>
+
+<p>This callback will be called when the installer is nearly finished initializing. If the '.onInit' function calls <a href="Section4.9.html#4.9.4.1">Abort</a>, the installer will quit instantly.</p>
+
+<p>Here are two examples of how this might be used:</p>
+<pre> Function .onInit
+   MessageBox MB_YESNO &quot;This will install. Continue?&quot; IDYES NoAbort
+     Abort ; causes installer to quit.
+   NoAbort:
+ FunctionEnd
+</pre>
+
+<p>or:</p>
+<pre> Function .onInit
+   ReadINIStr $INSTDIR $WINDIR\wincmd.ini Configuration InstallDir
+   StrCmp $INSTDIR &quot;&quot; 0 NoAbort
+     MessageBox MB_OK &quot;Windows Commander not found. Unable to get install path.&quot;
+     Abort ; causes installer to quit.
+   NoAbort:
+ FunctionEnd
+</pre>
+<a name="4.7.2.1.3"></a><h5>4.7.2.1.3 .onInstFailed</h5>
+
+<p>This callback is called when the user hits the 'cancel' button after the install has failed (if it could not extract a file, or the install script used the <a href="Section4.9.html#4.9.4.1">Abort</a> command).</p>
+
+<p>Example:</p>
+<pre>  Function .onInstFailed
+    MessageBox MB_OK &quot;Better luck next time.&quot;
+  FunctionEnd
+</pre>
+<a name="4.7.2.1.4"></a><h5>4.7.2.1.4 .onInstSuccess</h5>
+
+<p>This callback is called when the install was successful, right before the install window closes (which may be after the user clicks 'Close' if <a href="Section4.8.html#4.8.1.3">AutoCloseWindow</a> or <a href="Section4.9.html#4.9.14.11">SetAutoClose</a> is set to false).</p>
+
+<p>Example:</p>
+<pre>  Function .onInstSuccess
+    MessageBox MB_YESNO &quot;Congrats, it worked. View readme?&quot; IDNO NoReadme
+      Exec notepad.exe ; view readme or whatever, if you want.
+    NoReadme:
+  FunctionEnd
+</pre>
+<a name="4.7.2.1.5"></a><h5>4.7.2.1.5 .onGUIEnd</h5>
+
+<p>This callback is called right after the installer window closes. Use it to free any user interface related plug-ins if needed.</p>
+<a name="4.7.2.1.6"></a><h5>4.7.2.1.6 .onMouseOverSection</h5>
+
+<p>This callback is called whenever the mouse position over the sections tree has changed. This allows you to set a description for each section for example. The section id on which the mouse is over currently is stored, temporarily, in $0.</p>
+
+<p>Example:</p>
+<pre>  Function .onMouseOverSection
+    FindWindow $R0 &quot;#32770&quot; &quot;&quot; $HWNDPARENT
+    GetDlgItem $R0 $R0 1043 ; description item (must be added to the UI)
+
+    StrCmp $0 0 &quot;&quot; +2
+      SendMessage $R0 ${WM_SETTEXT} 0 &quot;STR:first section description&quot;
+
+    StrCmp $0 1 &quot;&quot; +2
+      SendMessage $R0 ${WM_SETTEXT} 0 &quot;STR:second section description&quot;
+  FunctionEnd
+</pre>
+<a name="4.7.2.1.7"></a><h5>4.7.2.1.7 .onRebootFailed</h5>
+
+<p>This callback is called if <a href="Section4.9.html#4.9.11.1">Reboot</a> fails. <a href="Section4.9.html#4.9.6.1">WriteUninstaller</a>, <a href="Section4.11.html#4.11">plug-ins</a>, <a href="Section4.9.html#4.9.1.5">File</a> and <a href="Section4.9.html#4.9.2.14">WriteRegBin</a> should not be used in this callback.</p>
+
+<p>Example:</p>
+<pre> Function .onRebootFailed
+   MessageBox MB_OK|MB_ICONSTOP &quot;Reboot failed. Please reboot manually.&quot; /SD IDOK
+ FunctionEnd
+</pre>
+<a name="4.7.2.1.8"></a><h5>4.7.2.1.8 .onSelChange</h5>
+
+<p>Called when the selection changes on the <a href="Section4.5.html#4.5">component page</a>. Useful for using with <a href="Section4.9.html#4.9.13.1">SectionSetFlags</a> and <a href="Section4.9.html#4.9.13.2">SectionGetFlags</a>.</p>
+
+<p>Selection changes include both section selection and installation type change.</p>
+<a name="4.7.2.1.9"></a><h5>4.7.2.1.9 .onUserAbort</h5>
+
+<p>This callback is called when the user hits the 'cancel' button, and the install hasn't already failed. If this function calls <a href="Section4.9.html#4.9.4.1">Abort</a>, the install will not be aborted.</p>
+
+<p>Example:</p>
+<pre> Function .onUserAbort
+   MessageBox MB_YESNO &quot;Abort install?&quot; IDYES NoCancelAbort
+     Abort ; causes installer to not quit.
+   NoCancelAbort:
+ FunctionEnd
+</pre>
+<a name="4.7.2.1.10"></a><h5>4.7.2.1.10 .onVerifyInstDir</h5>
+
+<p>This callback enables control over whether or not an installation path is valid for your installer. This code will be called every time the user changes the install directory, so it shouldn't do anything crazy with <a href="Section4.9.html#4.9.4.15">MessageBox</a> or the likes. If this function calls <a href="Section4.9.html#4.9.4.1">Abort</a>, the installation path in $INSTDIR is deemed invalid.</p>
+
+<p>Example:</p>
+<pre>  Function .onVerifyInstDir
+    IfFileExists $INSTDIR\Winamp.exe PathGood
+      Abort ; if $INSTDIR is not a winamp directory, don't let us install there
+    PathGood:
+  FunctionEnd
+</pre>
+<a name="4.7.2.2"></a><h4>4.7.2.2 Uninstall Callbacks</h4>
+<a name="4.7.2.2.1"></a><h5>4.7.2.2.1 un.onGUIInit</h5>
+
+<p>This callback will be called just before the first page is loaded and the installer dialog is shown, allowing you to tweak the user interface.</p>
+
+<p>Have a look at <a href="Section4.7.html#4.7.2.1.1">.onGUIInit</a> for an example.</p>
+<a name="4.7.2.2.2"></a><h5>4.7.2.2.2 un.onInit</h5>
+
+<p>This callback will be called when the uninstaller is nearly finished initializing. If the 'un.onInit' function calls Abort, the uninstaller will quit instantly. Note that this function can verify and/or modify $INSTDIR if necessary.</p>
+
+<p>Here are two examples of how this might be used:</p>
+<pre>  Function un.onInit
+    MessageBox MB_YESNO &quot;This will uninstall. Continue?&quot; IDYES NoAbort
+      Abort ; causes uninstaller to quit.
+    NoAbort:
+  FunctionEnd
+</pre>
+
+<p>or:</p>
+<pre>  Function un.onInit
+    IfFileExists $INSTDIR\myfile.exe found
+      Messagebox MB_OK &quot;Uninstall path incorrect&quot;
+      Abort
+    found:
+  FunctionEnd
+</pre>
+<a name="4.7.2.2.3"></a><h5>4.7.2.2.3 un.onUninstFailed</h5>
+
+<p>This callback is called when the user hits the 'cancel' button after the uninstall has failed (if it used the <a href="Section4.9.html#4.9.4.1">Abort command</a> or otherwise failed).</p>
+
+<p>Example:</p>
+<pre>  Function un.onUninstFailed
+    MessageBox MB_OK &quot;Better luck next time.&quot;
+  FunctionEnd
+</pre>
+<a name="4.7.2.2.4"></a><h5>4.7.2.2.4 un.onUninstSuccess</h5>
+
+<p>This callback is called when the uninstall was successful, right before the install window closes (which may be after the user clicks 'Close' if <a href="Section4.9.html#4.9.14.11">SetAutoClose</a> is set to false)..</p>
+
+<p>Example:</p>
+<pre>  Function un.onUninstSuccess
+    MessageBox MB_OK &quot;Congrats, it's gone.&quot;
+  FunctionEnd
+</pre>
+<a name="4.7.2.2.5"></a><h5>4.7.2.2.5 un.onGUIEnd</h5>
+
+<p>This callback is called right after the uninstaller window closes. Use it to free any user interface related plug-ins if needed.</p>
+<a name="4.7.2.2.6"></a><h5>4.7.2.2.6 un.onRebootFailed</h5>
+
+<p>This callback is called if <a href="Section4.9.html#4.9.11.1">Reboot</a> fails. <a href="Section4.9.html#4.9.6.1">WriteUninstaller</a>, <a href="Section4.11.html#4.11">plug-ins</a>, <a href="Section4.9.html#4.9.1.5">File</a> and <a href="Section4.9.html#4.9.2.14">WriteRegBin</a> should not be used in this callback.</p>
+
+<p>Example:</p>
+<pre> Function un.onRebootFailed
+   MessageBox MB_OK|MB_ICONSTOP &quot;Reboot failed. Please reboot manually.&quot; /SD IDOK
+ FunctionEnd
+</pre>
+<a name="4.7.2.2.7"></a><h5>4.7.2.2.7 un.onSelChange</h5>
+
+<p>Called when the selection changes on the <a href="Section4.5.html#4.5">component page</a>. Useful for using with <a href="Section4.9.html#4.9.13.1">SectionSetFlags</a> and <a href="Section4.9.html#4.9.13.2">SectionGetFlags</a>.</p>
+
+<p>Selection changes include both section selection and installation type change.</p>
+<a name="4.7.2.2.8"></a><h5>4.7.2.2.8 un.onUserAbort</h5>
+
+<p>This callback is called when the user hits the 'cancel' button and the uninstall hasn't already failed. If this function calls Abort, the install will not be aborted.</p>
+
+<p>Example:</p>
+<pre>  Function un.onUserAbort
+    MessageBox MB_YESNO &quot;Abort uninstall?&quot; IDYES NoCancelAbort
+      Abort ; causes uninstaller to not quit.
+    NoCancelAbort:
+  FunctionEnd
+</pre>
+<p><a href='Section4.6.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.8.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

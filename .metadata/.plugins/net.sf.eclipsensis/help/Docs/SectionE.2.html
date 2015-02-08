@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Text Functions Header</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionE.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionE.3.html'>Next</a></p>
+<a name="E.2"></a><h2>E.2 Text Functions Header</h2>
+<a name="E.2.1"></a><h3>E.2.1 Introduction</h3>
+
+<p>Include header:</p>
+<pre>!include &quot;TextFunc.nsh&quot;
+</pre>
+
+<p>Call functions:</p>
+<pre>Section Install
+&#0009;${LineRead} &quot;C:\a.log&quot; &quot;-1&quot; $R0
+&#0009;; $R0=&quot;Last line$\r$\n&quot;
+SectionEnd
+</pre>
+<pre>Section un.Install
+&#0009;${TrimNewLines} &quot;Last line$\r$\n&quot; $R0
+&#0009;; $R0=&quot;Last line&quot;
+SectionEnd
+</pre>
+<a name="E.2.2"></a><h3>E.2.2 LineFind</h3>
+<ul>
+<li>Find specified lines in text file, and edit or view these lines in callback function.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${LineFind} &quot;[File1]&quot; &quot;[File2|/NUL]&quot; &quot;[LineNumbers]&quot; &quot;Function&quot;
+</pre>
+<pre>&quot;[File1]&quot;         ; Input text file
+                  ;
+&quot;[File2|/NUL]&quot;    ; [File2]
+                  ;   Output text file
+                  ;   If empty then File2=File1
+                  ; [/NUL]
+                  ;   No output text file (only read File1)
+                  ;
+&quot;[LineNumbers]&quot;   ; [No|-No|No:No|{No}|{-No}|{No:No}]
+                  ;   1:-1     all lines to change (default)
+                  ;   2        second line from start
+                  ;   -3       third line from end
+                  ;   5:9      range of lines from 5 to 9
+                  ;   {2}      only second line from start to output
+                  ;   {-3}     only third line from end to output
+                  ;   {5:9}    only range of lines from 5 to 9 to output
+                  ;
+&quot;Function&quot;        ; Callback function for specified lines
+
+Function &quot;Function&quot;
+&#0009;; $R9       current line
+&#0009;; $R8       current line number
+&#0009;; $R7       current line negative number
+&#0009;; $R6       current range of lines
+&#0009;; $R5       handle of a file opened to read
+&#0009;; $R4       handle of a file opened to write ($R4=&quot;&quot; if &quot;/NUL&quot;)
+
+&#0009;; you can use any string functions
+&#0009;; $R0-$R3  are not used (save data in them).
+&#0009;; ...
+
+&#0009;Push $var      ; If $var=&quot;StopLineFind&quot;  Then exit from function
+&#0009;               ; If $var=&quot;SkipWrite&quot;     Then skip current line (ignored if &quot;/NUL&quot;)
+FunctionEnd
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if input file doesn't exist <br>- Error flag if output file path doesn't exist <br>- Ranges must be specified on growth (2 4:5 9:-8 -5:-4 -2:-1) <br>- Output file will not be updated if no changes made.</p>
+
+<p><b>Example1 (delete first two symbols):</b></p>
+<pre>Section
+&#0009;${LineFind} &quot;C:\a.log&quot; &quot;C:\a-edited.log&quot; &quot;3:-1&quot; &quot;Example1&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example1
+&#0009;${TrimNewLines} '$R9' $R9
+&#0009;StrCpy $R9 $R9 '' 2
+&#0009;StrCpy $R9 '$R9$\r$\n'
+&#0009;;start from 3 line and delete first two symbols
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example2 (show changed lines):</b></p>
+<pre>Section
+&#0009;${LineFind} &quot;C:\a.log&quot; &quot;a.log&quot; &quot;{5:12 15 -6:-5 -1}&quot; &quot;Example2&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example2
+&#0009;${TrimNewLines} '$R9' $R9
+&#0009;StrCpy $R9 &quot;$R9   ~Changed line ($R8)~$\r$\n&quot;
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example3 (delete lines):</b></p>
+<pre>Section
+&#0009;${LineFind} &quot;C:\a.log&quot; &quot;\logs\a.log&quot; &quot;2:3 10:-5 -3:-2&quot; &quot;Example3&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example3
+&#0009;StrCpy $0 SkipWrite
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example4 (insert lines):</b></p>
+<pre>Section
+&#0009;${LineFind} &quot;C:\a.log&quot; &quot;&quot; &quot;10&quot; &quot;Example4
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example4
+&#0009;FileWrite $R4 &quot;---First Line---$\r$\n&quot;
+&#0009;FileWrite $R4 &quot;---Second Line ...---$\r$\n&quot;
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example5 (replace in file with count of changes - &quot;WordFunc.nsh&quot; required):</b></p>
+<pre>!include &quot;WordFunc.nsh&quot;
+
+Section
+&#0009;StrCpy $R0 0
+&#0009;${LineFind} &quot;C:\a.log&quot; &quot;C:\logs\a.log&quot; &quot;1:-1&quot; &quot;Example5&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+&#0009;MessageBox MB_OK &quot;Changed lines=$R0&quot;
+SectionEnd
+
+Function Example5
+&#0009;StrCpy $1 $R9
+
+&#0009;${WordReplace} '$R9' ' ' '_' '+*' $R9
+
+&#0009;StrCmp $1 $R9 +2
+&#0009;IntOp $R0 $R0 + 1
+&#0009;;$R0   count of changed lines
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example6 (line string to cut or delete):</b></p>
+<pre>Section
+&#0009;${LineFind} &quot;\a.log&quot; &quot;C:\logs\a.log&quot; &quot;&quot; &quot;Example6&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+&#0009;MessageBox MB_OK &quot;Processed lines=$R1:$R2&quot;
+SectionEnd
+
+Function Example6
+&#0009;;(Cut lines from a line to another line (also including that line))
+&#0009;StrCmp $R0 finish stop
+&#0009;StrCmp $R0 start finish
+&#0009;StrCmp $R9 'Start Line$\r$\n' 0 skip
+&#0009;StrCpy $R0 start
+&#0009;StrCpy $R1 $R8
+&#0009;goto code
+&#0009;finish:
+&#0009;StrCmp $R9 'Finish Line$\r$\n' 0 code
+&#0009;StrCpy $R0 finish
+&#0009;StrCpy $R2 $R8
+&#0009;goto code
+&#0009;skip:
+&#0009;StrCpy $0 SkipWrite
+&#0009;goto output
+&#0009;stop:
+&#0009;StrCpy $0 StopLineFind
+&#0009;goto output
+
+&#0009;;;(Delete lines from a line to another line (also including that line))
+&#0009;; StrCmp $R0 finish code
+&#0009;; StrCmp $R0 start finish
+&#0009;; StrCmp $R9 'Start Line$\r$\n' 0 code
+&#0009;; StrCpy $R0 start
+&#0009;; StrCpy $R1 $R8
+&#0009;; goto skip
+&#0009;; finish:
+&#0009;; StrCmp $R9 'Finish Line$\r$\n' 0 skip
+&#0009;; StrCpy $R0 finish
+&#0009;; StrCpy $R2 $R8
+&#0009;; skip:
+&#0009;; StrCpy $0 SkipWrite
+&#0009;; goto output
+
+&#0009;code:
+&#0009;;...
+
+&#0009;output:
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example7 (read lines):</b></p>
+<pre>Section
+&#0009;${LineFind} &quot;C:\a.log&quot; &quot;/NUL&quot; &quot;1:-1&quot; &quot;Example7&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example7
+&#0009;MessageBox MB_OKCANCEL '$$R9  &quot;Line&quot;=[$R9]$\n$$R8     &quot;#&quot; =[$R8]' IDOK +2
+&#0009;StrCpy $0 StopLineFind
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+<a name="E.2.3"></a><h3>E.2.3 LineRead</h3>
+<ul>
+<li>Get line in file specified with number.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${LineRead} &quot;[File]&quot; &quot;[LineNumber]&quot; $var
+</pre>
+<pre>&quot;[File]&quot;         ; Input text file
+                 ;
+&quot;[LineNumber]&quot;   ; [No|-No]
+                 ;   3    line number from start
+                 ;   -5   line number from end
+                 ;
+$var             ; Result: Line
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if input file doesn't exist <br>- Error flag if line number not found</p>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${LineRead} &quot;C:\a.log&quot; &quot;-1&quot; $R0
+&#0009;; $R0=&quot;Last line$\r$\n&quot;
+SectionEnd
+</pre>
+<a name="E.2.4"></a><h3>E.2.4 FileReadFromEnd</h3>
+<ul>
+<li>Read text file from end line by line.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${FileReadFromEnd} &quot;[File]&quot; &quot;Function&quot;
+</pre>
+<pre>&quot;[File]&quot;      ; Input text file
+&quot;Function&quot;    ; Callback function
+
+Function &quot;Function&quot;
+&#0009;; $9       current line
+&#0009;; $8       current line number
+&#0009;; $7       current line negative number
+
+&#0009;; $R0-$R9  are not used (save data in them).
+&#0009;; ...
+
+&#0009;Push $var      ; If $var=&quot;StopFileReadFromEnd&quot;  Then exit from function
+FunctionEnd
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if input file doesn't exist</p>
+
+<p><b>Example1:</b></p>
+<pre>Section
+&#0009;${FileReadFromEnd} &quot;C:\a.log&quot; &quot;Example1&quot;
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example1
+&#0009;MessageBox MB_OKCANCEL '&quot;Line&quot;=[$9]$\n   &quot;#&quot;=[$8]$\n  &quot;-#&quot;=[$7]' IDOK +2
+&#0009;StrCpy $0 StopFileReadFromEnd
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example2 (Reverse text file):</b></p>
+<pre>Section
+&#0009;GetTempFileName $R0
+&#0009;FileOpen $R1 $R0 w
+&#0009;${FileReadFromEnd} &quot;C:\a.log&quot; &quot;Example2&quot;
+&#0009;FileClose $R1
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+&#0009;Exec '&quot;notepad.exe&quot; &quot;$R0&quot;'
+SectionEnd
+
+Function Example2
+&#0009;StrCmp $7 -1 0 +5
+&#0009;StrCpy $1 $9 1 -1
+&#0009;StrCmp $1 '$\n' +3
+&#0009;StrCmp $1 '$\r' +2
+&#0009;StrCpy $9 '$9$\r$\n'
+
+&#0009;FileWrite $R1 &quot;$9&quot;
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+<a name="E.2.5"></a><h3>E.2.5 LineSum</h3>
+<ul>
+<li>Get sum of lines in text file.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${LineSum} &quot;[File]&quot; $var
+</pre>
+<pre>&quot;[File]&quot;      ; Input file
+$var          ; Result: Sum of lines
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if input file doesn't exist</p>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${LineSum} &quot;C:\a.log&quot; $R0
+&#0009;; $R0=&quot;54&quot;
+SectionEnd
+</pre>
+<a name="E.2.6"></a><h3>E.2.6 FileJoin</h3>
+<ul>
+<li>Join two files in one (File1 + File2 = File3).</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${FileJoin} &quot;[File1]&quot; &quot;[File2]&quot; &quot;[File3]&quot;
+</pre>
+<pre>&quot;[File1]&quot;     ; Input File1
+&quot;[File2]&quot;     ; Input File2
+&quot;[File3]&quot;     ; Output File3
+              ;  If [File3]=&quot;&quot; Then add [File2] to [File1]
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if input files don't exist <br>- Error flag if output file path doesn't exist</p>
+
+<p><b>Example1 (Join: a.log + b.log = Z.log):</b></p>
+<pre>Section
+&#0009;${FileJoin} &quot;C:\a.log&quot; &quot;C:\logs\b.log&quot; &quot;C:\Z.log&quot;
+SectionEnd
+</pre>
+
+<p><b>Example2 (Add: a.log + b.log = a.log):</b></p>
+<pre>Section
+&#0009;${FileJoin} &quot;C:\a.log&quot; &quot;C:\logs\b.log&quot; &quot;C:\a.log&quot;
+SectionEnd
+</pre>
+<a name="E.2.7"></a><h3>E.2.7 TextCompare</h3>
+<ul>
+<li>Compare two text files.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${TextCompare} &quot;[File1]&quot; &quot;[File2]&quot; &quot;[Option]&quot; &quot;Function&quot;
+</pre>
+<pre>&quot;[File1]&quot;     ; File1      Compare these lines
+&quot;[File2]&quot;     ; File2      Compare with these lines
+&quot;[Options]&quot;   ; (line-by-line):
+              ; FastDiff   Compare line N (File1) with line N (File2)
+              ;            Call function if Different lines found
+              ; FastEqual  Compare line N (File1) with line N (File2)
+              ;            Call function if Equal lines found
+              ; (line number independent):
+              ; SlowDiff   Compare line N (File1) with all lines (File2)
+              ;            Call function if line N (File1) Different
+              ; SlowEqual  Compare line N (File1) with all lines (File2)
+              ;            Call function if line N (File1) Equal
+&quot;Function&quot;    ; Callback function
+
+Function &quot;Function&quot;
+&#0009;; $9    &quot;Line File1&quot;
+&#0009;; $8    &quot;Line number&quot;
+&#0009;; $7    &quot;Line File2&quot;  (empty if SlowDiff)
+&#0009;; $6    &quot;Line number&quot; (empty if SlowDiff)
+
+&#0009;; $R0-$R9  are not used (save data in them).
+&#0009;; ...
+
+&#0009;Push $var    ; If $var=&quot;StopTextCompare&quot;  Then exit from function
+FunctionEnd
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if File1 or File2 doesn't exist <br>- Error flag if syntax error</p>
+
+<p><b>Example (Different or Equal):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 ''
+&#0009;${TextCompare} &quot;C:\1.txt&quot; &quot;C:\2.txt&quot; &quot;FastDiff&quot; &quot;Example1&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +4
+
+&#0009;StrCmp $R0 NotEqual 0 +2
+&#0009;MessageBox MB_OK &quot;Files differ&quot; IDOK +2
+&#0009;MessageBox MB_OK &quot;Files identical&quot;
+SectionEnd
+
+Function Example1
+&#0009;StrCpy $R0 NotEqual
+&#0009;StrCpy $0 StopTextCompare
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Compare line-by-line - Different):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 'Text1.txt'
+&#0009;StrCpy $R1 'Text2.txt'
+
+&#0009;GetTempFileName $R2
+&#0009;FileOpen $R3 $R2 w
+&#0009;FileWrite $R3 &quot;$R0 | $R1$\r$\n&quot;
+&#0009;${TextCompare} &quot;$R0&quot; &quot;$R1&quot; &quot;FastDiff&quot; &quot;Example2&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+
+&#0009;Exec &quot;notepad.exe $R2&quot;
+FunctionEnd
+
+Function Example2
+&#0009;FileWrite $R3 '$8=$9'
+&#0009;FileWrite $R3 '$6=$7$\r$\n'
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Compare line-by-line - Equal):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 'Text1.txt'
+&#0009;StrCpy $R1 'Text2.txt'
+
+&#0009;GetTempFileName $R2
+&#0009;FileOpen $R3 $R2 w
+&#0009;FileWrite $R3 &quot;$R0 | $R1$\r$\n&quot;
+&#0009;${TextCompare} &quot;$R0&quot; &quot;$R1&quot; &quot;FastEqual&quot; &quot;Example3&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+
+&#0009;Exec &quot;notepad.exe $R2&quot;
+FunctionEnd
+
+Function Example3
+&#0009;FileWrite $R3 '$8|$6=$9'
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Compare all lines - Different):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 'Text1.txt'
+&#0009;StrCpy $R1 'Text2.txt'
+
+&#0009;GetTempFileName $R2
+&#0009;FileOpen $R3 $R2 w
+&#0009;FileWrite $R3 &quot;$R0 | $R1$\r$\n&quot;
+&#0009;${TextCompare} &quot;$R0&quot; &quot;$R1&quot; &quot;SlowDiff&quot; &quot;Example4&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK end
+
+&#0009;FileWrite $R3 &quot;$\r$\n$R1 | $R0$\r$\n&quot;
+&#0009;${TextCompare} &quot;$R1&quot; &quot;$R0&quot; &quot;SlowDiff&quot; &quot;Example4&quot;
+&#0009;FileClose $R3
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK end
+
+&#0009;Exec &quot;notepad.exe $R2&quot;
+
+&#0009;end:
+FunctionEnd
+
+Function Example4
+&#0009;FileWrite $R3 '$8=$9'
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Compare all lines - Equal):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 'Text1.txt'
+&#0009;StrCpy $R1 'Text2.txt'
+
+&#0009;GetTempFileName $R2
+&#0009;FileOpen $R3 $R2 w
+&#0009;FileWrite $R3 &quot;$R0 | $R1$\r$\n&quot;
+&#0009;${TextCompare} &quot;$R0&quot; &quot;$R1&quot; &quot;SlowEqual&quot; &quot;Example5&quot;
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot; IDOK +2
+
+&#0009;Exec &quot;notepad.exe $R2&quot;
+FunctionEnd
+
+Function Example5
+&#0009;FileWrite $R3 '$8|$6=$9'
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+
+<p><b>Example (Show variables):</b></p>
+<pre>Section
+&#0009;${TextCompare} &quot;C:\1.txt&quot; &quot;C:\2.txt&quot; &quot;FastDiff&quot; &quot;Example6&quot;
+
+&#0009;IfErrors 0 +2
+&#0009;MessageBox MB_OK &quot;Error&quot;
+SectionEnd
+
+Function Example6
+&#0009;MessageBox MB_OKCANCEL '$$9    &quot;Line File1&quot; =[$9]$\n$$8    &quot;Line #&quot;      =[$8]$\n$$7    &quot;Line File2&quot; =[$7]$\n$$6    &quot;Line #&quot;      =[$6]' IDOK +2
+&#0009;StrCpy $0 StopTextCompare
+
+&#0009;Push $0
+FunctionEnd
+</pre>
+<a name="E.2.8"></a><h3>E.2.8 TextCompareS</h3>
+<ul>
+<li>Same as <a href="SectionE.2.html#E.2.7">TextCompare</a>, but case sensitive.</li></ul>
+<a name="E.2.9"></a><h3>E.2.9 ConfigRead</h3>
+<ul>
+<li>Read value from entry name in config file.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${ConfigRead} &quot;[File]&quot; &quot;[Entry]&quot; $var
+</pre>
+<pre>&quot;[File]&quot;      ; config file
+              ;
+&quot;[Entry]&quot;     ; entry name
+              ;
+$var          ; Result:  Value
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if entry not found <br>- Error flag if file doesn't exist</p>
+
+<p><b>Example1:</b></p>
+<pre>Section
+&#0009;${ConfigRead} &quot;C:\AUTOEXEC.BAT&quot; &quot;SET winbootdir=&quot; $R0
+&#0009;;$R0=C:\WINDOWS
+SectionEnd
+</pre>
+
+<p><b>Example2:</b></p>
+<pre>Section
+&#0009;${ConfigRead} &quot;C:\apache\conf\httpd.conf&quot; &quot;Timeout &quot; $R0
+&#0009;;$R0=30
+SectionEnd
+</pre>
+<a name="E.2.10"></a><h3>E.2.10 ConfigReadS</h3>
+<ul>
+<li>Same as <a href="SectionE.2.html#E.2.9">ConfigRead</a>, but case sensitive.</li></ul>
+<a name="E.2.11"></a><h3>E.2.11 ConfigWrite</h3>
+<ul>
+<li>Write value from entry name in config file.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${ConfigWrite} &quot;[File]&quot; &quot;[Entry]&quot; &quot;[Value]&quot; $var
+</pre>
+<pre>&quot;[File]&quot;      ; config file
+              ;
+&quot;[Entry]&quot;     ; entry name
+              ;
+&quot;[Value]&quot;     ; value name
+              ;  if &quot;&quot; then delete Entry
+              ;
+$var          ; Result:
+              ;    $var=CHANGED  Value is written
+              ;    $var=DELETED  Entry is deleted
+              ;    $var=ADDED    Entry and Value are added
+              ;    $var=SAME     Entry and Value already exist
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if file doesn't exist <br>- Error flag if file can't be opened</p>
+
+<p><b>Example1:</b></p>
+<pre>Section
+&#0009;${ConfigWrite} &quot;C:\AUTOEXEC.BAT&quot; &quot;SET winbootdir=&quot; &quot;D:\WINDOWS&quot; $R0
+&#0009;;$R0=CHANGED
+SectionEnd
+</pre>
+
+<p><b>Example2:</b></p>
+<pre>Section
+&#0009;${ConfigWrite} &quot;C:\apache\conf\httpd.conf&quot; &quot;Timeout &quot; &quot;30&quot; $R0
+&#0009;;$R0=SAME
+SectionEnd
+</pre>
+
+<p><b>Example3:</b></p>
+<pre>Section
+&#0009;${ConfigWrite} &quot;C:\apache\conf\httpd.conf&quot; &quot;Timeout &quot; &quot;&quot; $R0
+&#0009;;$R0=DELETED
+SectionEnd
+</pre>
+<a name="E.2.12"></a><h3>E.2.12 ConfigWriteS</h3>
+<ul>
+<li>Same as <a href="SectionE.2.html#E.2.11">ConfigWrite</a>, but case sensitive.</li></ul>
+<a name="E.2.13"></a><h3>E.2.13 FileRecode</h3>
+<ul>
+<li>Recode text file from DOS to Windows format and vice-versa.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${FileRecode} &quot;[File]&quot; &quot;[Format]&quot;
+</pre>
+<pre>&quot;[File]&quot;        ;
+                ;
+&quot;[Format]&quot;      ; OemToChar   -from DOS to Windows
+                ; CharToOem   -from Windows to DOS
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if file doesn't exist <br>- Error flag if syntax error</p>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${FileRecode} &quot;C:\SCANDISK.LOG&quot; &quot;CharToOem&quot;
+SectionEnd
+</pre>
+<a name="E.2.14"></a><h3>E.2.14 TrimNewLines</h3>
+<ul>
+<li>Trim newlines in a string.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${TrimNewLines} &quot;[string]&quot; $var
+</pre>
+<pre>&quot;[string]&quot;    ; Input string
+$var          ; Result: String without '$\r' and '$\n' at the end
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${TrimNewLines} &quot;Text line$\r$\n&quot; $R0
+&#0009;; $R0=&quot;Text line&quot;
+SectionEnd
+</pre>
+<p><a href='SectionE.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionE.3.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

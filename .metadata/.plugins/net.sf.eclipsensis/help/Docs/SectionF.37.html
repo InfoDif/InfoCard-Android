@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.10</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.36.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.38.html'>Next</a></p>
+<a name="F.37"></a><h2>F.37 2.10</h2>
+
+<p>Released on October 4th, 2005</p>
+<a name="F.37.1"></a><h3>F.37.1 Changelog</h3>
+<a name="F.37.1.1"></a><h4>F.37.1.1 Major Changes</h4>
+<ul>
+<li>Added auto completion to the directory page</li><li>Fixed a bug, introduced in 2.09, that caused <a href="Section4.8.html#4.8.1.2">AllowRootDirInstall</a> to fail</li><li>Fixed a thread leak in the POSIX implementation of LZMA</li><li><a href="#" onclick="parser('../Docs/VPatch/Readme.html')">VPatch 3.1</a>: MD5 checksums, better performance, and some bug fixes (including <a href="http://sourceforge.net/support/tracker.php?aid=1219806">bug #1219806</a>)</li></ul>
+<a name="F.37.1.2"></a><h4>F.37.1.2 Minor Changes</h4>
+<ul>
+<li>Added rounding of required and available size on the directory page (1.59 =&gt; 1.6 instead of 1.5)</li><li>Added WS_EX_LEFTSCROLLBAR style in RTL mode (<a href="http://sourceforge.net/support/tracker.php?aid=1283528">bug #1283528</a>)</li><li>Fixed alteration of the working directory by FileRequest in InstallOptions (<a href="http://sourceforge.net/support/tracker.php?aid=1287731">bug #1287731</a>)</li><li>Fixed bad mnemonic key in MakeNSISw menu (<a href="http://sourceforge.net/support/tracker.php?aid=1288159">bug #1288159</a>)</li><li>Fixed negative size values showing up after the decimal point in the directory page for very big sizes</li><li>Minor documentation improvements and fixes</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.74</a>: Fixed compile error when checkboxes are used on multiple finish pages</li></ul>
+<a name="F.37.1.3"></a><h4>F.37.1.3 Translations</h4>
+<ul>
+<li>Fixed a bug in Slovenian translation that caused lots of missing language string warnings</li><li>Fixed typos in Serbian translation</li><li>Fixed typos in Thai translation</li><li>Updated Simple Chinese translation</li></ul>
+<a name="F.37.1.4"></a><h4>F.37.1.4 Build System</h4>
+<ul>
+<li>Automatic fix for <a href="http://forums.winamp.com/showthread.php?s=&threadid=179848">VC6 SP6 compile error</a></li><li>Moved most of the configuration from config.h to the build system</li><li>Removed all optimizations and symbol stripping in debug mode</li><li>SCons requirement updated to 0.96.91</li><li>VPatch can be built on POSIX as well</li></ul>
+<p><a href='SectionF.36.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.38.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

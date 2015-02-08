@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Compiler Utility Commands</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Chapter5.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section5.2.html'>Next</a></p>
+<a name="5.1"></a><h2>5.1 Compiler Utility Commands</h2>
+
+<p>These commands are similar to the C preprocessor in terms of purpose and functionality. They allow file inclusion, conditional compilation, executable header packing, and processes execution during the build process. Note: none of these commands allow use of variables.</p>
+<a name="5.1.1"></a><h3>5.1.1 !include</h3>
+<pre>[/NONFATAL] file
+</pre>
+
+<p>This command will include 'file' as if it was part of the original script. Note that if a file is included in another directory, the current directory is still where the script was compiled from (not where the included file resides). If the compiler can't find the file it will look for it in every include directory. See <a href="Section5.1.html#5.1.2">!addincludedir</a> for more information. If the /nonfatal switch is used and no files are found, a warning will be issued instead of an error.</p>
+<pre>!include WinMessages.nsh
+!include Library.nsh
+!include C:\MyConfig.nsi
+!include ..\MyConfig.nsh
+!include /NONFATAL file_that_may_exist_or_not.nsh
+</pre>
+<a name="5.1.2"></a><h3>5.1.2 !addincludedir</h3>
+<pre>directory
+</pre>
+
+<p>Adds another include directory to the include directories list. This list is searched when !include is used. This list's initial value is ${NSISDIR}\Include alone.</p>
+<pre>!addincludedir ..\include
+!include something.nsh
+</pre>
+<a name="5.1.3"></a><h3>5.1.3 !addplugindir</h3>
+<pre>directory
+</pre>
+
+<p>Causes the NSIS compiler to scan the given directory for plug-in DLLs.</p>
+<pre>!addplugindir myplugin
+MyPlugin::SomeFunction
+</pre>
+<a name="5.1.4"></a><h3>5.1.4 !appendfile</h3>
+<pre>file text
+</pre>
+
+<p>Appends <em>text</em> to <em>file</em>.</p>
+<pre>!tempfile FILE
+!appendfile &quot;${FILE}&quot; &quot;XPStyle on$\n&quot;
+!appendfile &quot;${FILE}&quot; &quot;Name 'test'$\n&quot;
+!include &quot;${FILE}&quot;
+!delfile &quot;${FILE}&quot;
+!undef FILE
+</pre>
+<a name="5.1.5"></a><h3>5.1.5 !cd</h3>
+<pre>new_path
+</pre>
+
+<p>This command will change the compiler to the new directory, new_path. new_path can be relative or absolute.</p>
+<pre>!cd ..\more-scripts\new
+</pre>
+<a name="5.1.6"></a><h3>5.1.6 !delfile</h3>
+<pre>file
+</pre>
+
+<p>This command deletes a file.</p>
+<pre>!tempfile FILE
+!delfile &quot;${FILE}&quot;
+!undef FILE
+</pre>
+<a name="5.1.7"></a><h3>5.1.7 !echo</h3>
+<pre>message
+</pre>
+
+<p>This command will echo a message to the user compiling the script.</p>
+<pre>!echo &quot;hello world&quot;
+</pre>
+<a name="5.1.8"></a><h3>5.1.8 !error</h3>
+<pre>[message]
+</pre>
+
+<p>This command will issue an error to the script compiler and will stop execution of the script. You can also add a message to this error.</p>
+<pre>!ifdef VERSION &amp; NOVERSION
+  !error &quot;both VERSION and NOVERSION are defined&quot;
+!endif
+</pre>
+<a name="5.1.9"></a><h3>5.1.9 !execute</h3>
+<pre>command
+</pre>
+
+<p>This command will execute 'command' using a call to CreateProcess(). Unlike <a href="Section5.1.html#5.1.11">!system</a>, it does not use the command line processor, so input/output redirection and commands like 'cd', 'dir' and 'type' can not be used. !execute also ignores the return value of the executed command. Currently, the only known advantage of !execute over <a href="Section5.1.html#5.1.11">!system</a> is that it does not give trouble when the current working directory is specified using UNC.</p>
+
+<p>On POSIX platforms, !execute will use system() just like <a href="Section5.1.html#5.1.11">!system</a>.</p>
+<pre>!execute '&quot;%WINDIR%\notepad.exe&quot; &quot;${NSISDIR}\license.txt&quot;'
+</pre>
+<a name="5.1.10"></a><h3>5.1.10 !packhdr</h3>
+<pre>tempfile command
+</pre>
+
+<p>This option makes the compiler use an external EXE packer (such as <a href="http://www.un4seen.com/petite/">Petite</a> or <a href="http://upx.sourceforge.net/">UPX</a>) to compress the executable header. Specify a temporary file name (such as &quot;temp.dat&quot;) and a command line (such as &quot;C:\program files\upx\upx -9 temp.dat&quot;) to compress the header.</p>
+<pre>!packhdr &quot;$%TEMP%\exehead.tmp&quot; '&quot;C:\Program Files\UPX\upx.exe&quot; &quot;$%TEMP%\exehead.tmp&quot;'
+</pre>
+<a name="5.1.11"></a><h3>5.1.11 !system</h3>
+<pre>command [compare comparevalue]
+</pre>
+
+<p>This command will execute 'command' using a call to system(), and if the return value compared (using 'compare') to 'comparevalue' is false, execution will halt. 'compare' can be '&lt;' or '&gt;' or '&lt;&gt;' or '='.</p>
+<pre>!system '&quot;%WINDIR%\notepad.exe&quot; &quot;${NSISDIR}\license.txt&quot;'
+!system 'echo !define something &gt; newinclude.nsh'
+!include newinclude.nsh
+!ifdef something
+  !echo &quot;something is defined&quot;
+!endif
+</pre>
+<a name="5.1.12"></a><h3>5.1.12 !tempfile</h3>
+<pre>symbol
+</pre>
+
+<p>This command creates a temporary file. It puts its path into a define, named <em>symbol</em>.</p>
+<pre>!tempfile PACKHDRTEMP
+!packhdr &quot;${PACKHDRTEMP}&quot; '&quot;C:\Program Files\UPX\upx.exe&quot; &quot;${PACKHDRTEMP}&quot;'
+</pre>
+<pre>!tempfile FILE
+!define /date DATE &quot;%H:%M:%S %d %b, %Y&quot;
+!system 'echo built on ${DATE} &gt; &quot;${FILE}&quot;'
+File /oname=build.txt &quot;${FILE}&quot;
+!delfile &quot;${FILE}&quot;
+!undef FILE
+!undef DATE
+</pre>
+<a name="5.1.13"></a><h3>5.1.13 !warning</h3>
+<pre>[message]
+</pre>
+
+<p>This command will issue a warning to the script compiler. You can also add a message to this warning.</p>
+<pre>!ifdef USE_DANGEROUS_STUFF
+  !warning &quot;using dangerous stuff&quot;
+!endif
+</pre>
+<a name="5.1.14"></a><h3>5.1.14 !verbose</h3>
+<pre>level | push | pop
+</pre>
+
+<p>This command will set the level of verbosity. 4=all, 3=no script, 2=no info, 1=no warnings, 0=none.</p>
+
+<p>Passing push will cause !verbose to push the current verbosity level on a special stack. Passing pop will cause !verbose to pop the current verbosity level from the same stack and use it.</p>
+<pre>!verbose push
+!verbose 1
+!include WinMessages.nsh
+!verbose pop
+</pre>
+<p><a href='Chapter5.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section5.2.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

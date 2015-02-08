@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.09</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.37.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.39.html'>Next</a></p>
+<a name="F.38"></a><h2>F.38 2.09</h2>
+
+<p>Released on August 26th, 2005</p>
+<a name="F.38.1"></a><h3>F.38.1 Changelog</h3>
+<a name="F.38.1.1"></a><h4>F.38.1.1 Major Changes</h4>
+<ul>
+<li>Fixed a bug introduced in 2.08, that prevented uninstallers from deleting $INSTDIR</li><li>Fixed a bug that caused &quot;C:\ &quot; to be considered a valid installation directory, even without <a href="Section4.8.html#4.8.1.2">AllowRootDirInstall</a></li></ul>
+<a name="F.38.1.2"></a><h4>F.38.1.2 New/Changed Commands</h4>
+<ul>
+<li><a href="Section4.2.html#4.2.1.1">Var</a> can now be used in sections and functions, but only with the /GLOBAL flag</li></ul>
+<a name="F.38.1.3"></a><h4>F.38.1.3 Minor Changes</h4>
+<ul>
+<li>Applied <a href="http://sourceforge.net/support/tracker.php?aid=1248335">patch #1248335</a> for greater portability of examples</li><li><a href="SectionE.1.html#E.1">FileFunc</a>: workaround for GetLongPathName which is not available on Windows 95 (Instructor)</li><li>Fixed an unused label warning in <a href="AppendixB.html#B">Library</a></li><li>Fixed duplicate label errors in <a href="#" onclick="parser('../Examples/LogicLib.nsi')">LogicLib</a> and <a href="AppendixB.html#B">Library</a> when used in different files (<a href="http://sourceforge.net/support/tracker.php?aid=1243865">bug #1243865</a>)</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.73</a>: fixed checkboxes on uninstaller finish page or multiple finish pages</li><li><a href="SectionE.3.html#E.3">WordFunc</a>: fixed incorrect replacement of first word in WordReplace, under some conditions (Instructor)</li></ul>
+<a name="F.38.1.4"></a><h4>F.38.1.4 Translations</h4>
+<ul>
+<li>Renamed Malaysian to Malay</li><li>Update Thai translation to the latest version</li><li>Updated Kurdish MUI translation to the latest version</li></ul>
+<a name="F.38.1.5"></a><h4>F.38.1.5 Build System</h4>
+<ul>
+<li>Fixed a number of build problems on POSIX platforms which caused plug-ins to malfunction and installers to crash</li></ul>
+<p><a href='SectionF.37.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.39.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

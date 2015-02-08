@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Compiler</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section2.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section2.5.html'>Next</a></p>
+<a name="2.4"></a><h2>2.4 Compiler</h2>
+
+<p>The second thing you need to do in order to create your installer after you have created your script is to compile your script. MakeNSIS.exe is the NSIS compiler. It reads your script, parses it and creates an installer for you.</p>
+
+<p>To compile you have to right-click your .nsi file and select Compile NSIS Script. This will cause MakeNSISW, the NSIS Compiler Interface, to launch and call MakeNSIS to compile your script. MakeNSISW will get the output of MakeNSIS and present it to you in a window where you can see it, copy it, test the installer, browse for it and more. Using makensis.exe from the command prompt is also possible.</p>
+
+<p>The compiler will check your script and give you warnings or an error. If an error occurs (i.e. 2 parameters required but only 1 given) the compiler will abort and a short error message including the line number will be displayed. For non-critical errors the compiler will give a warning (i.e. two DirText commands in one script). If your script has no errors the compiler will output an installer for you to distribute.</p>
+
+<p>NSIS supports different compression methods, as explained <a href="Section4.8.html#4.8.2.4">here</a>. ZLIB is the default compression method, which is fast and uses only a little bit of memory. LZMA is a good method for the creation of small installers for internet distribution. BZIP2 usually compresses better than ZLIB but not as good as LZMA, it is useful if you need lower memory usage or fast script compilation.</p>
+
+<p>It it also possible to compile Windows installer on Linux, BSD or Mac OS X servers. See <a href="AppendixG.html#G">Building NSIS</a> for details.</p>
+<p><a href='Section2.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section2.5.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

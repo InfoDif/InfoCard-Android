@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Silent Installers/Uninstallers</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.11.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Chapter5.html'>Next</a></p>
+<a name="4.12"></a><h2>4.12 Silent Installers/Uninstallers</h2>
+
+<p>Silent installers are installers which require no user intervention and have no user interface. The user doesn't see any dialog and isn't asked any questions. This is useful for network administrators who wish to install or uninstall something without user intervention so they can perform the operation quickly over any number of computers. It is also useful for other developers who wish to embed another installer in their own and collect all of the required information on their installer instead of showing two installers.</p>
+
+<p>NSIS installers and uninstallers can be both silent and not silent. When an installer or an uninstaller is silent, not all callback functions are called. <a href="Section4.7.html#4.7.2.1.1">.onGUIInit</a>, <a href="Section4.7.html#4.7.2.1.5">.onGUIEnd</a>, their uninstaller equivalents and any callback related to a specific page or page type will not be called.</p>
+
+<p>There are several methods to make an installer or an uninstaller silent:</p>
+<ol>
+<li><a href="Section4.8.html#4.8.1.36">SilentInstall</a> and <a href="Section4.8.html#4.8.1.37">SilentUninstall</a></li><li><a href="Section4.9.html#4.9.14.16">SetSilent</a></li><li>Passing /S on the command line (case sensitive)</li></ol>
+
+<p>To check if the installer/uninstaller is silent use <a href="Section4.9.html#4.9.4.12">IfSilent</a>.</p>
+
+<p>To make sure your installer will be silent when it needs to, you should check with <a href="Section4.9.html#4.9.4.12">IfSilent</a> before each command that might require user intervention or create a window. The <a href="Section4.9.html#4.9.4.15">MessageBox</a> command, which is the most common culprit in silent installers, has the /SD switch to set a default answer for silent installers. If you want your installer/uninstaller to be able to be completely silent you should use this switch. All internal NSIS message boxes have defaults for silent installers. The <a href="#" onclick="parser('../Examples/silent.nsi')">silent.nsi example</a> demonstrates all aspects of this topic.</p>
+
+<p>Since the directory page can not be shown on silent installers, the user has an option to specify the installation directory on the command line (this also works on non-silent installers/uninstallers). To do that, the user uses the /D switch as in the following example:</p>
+<pre>foo.exe /S /D=C:\Program Files\Foo
+</pre>
+
+<p>If your installer/uninstaller requires some more information that can not be gathered when silent, you can allow the user to specify that information on the command line and process it in .onInit. You can use <a href="SectionE.1.html#E.1.12">GetOptions</a>.</p>
+<pre>!include FileFunc.nsh
+!insertmacro GetParameters
+!insertmacro GetOptions
+
+Function .onInit
+  ${GetParameters} $R0
+  ClearErrors
+  ${GetOptions} $R0 /USERNAME= $0
+FunctionEnd
+</pre>
+
+<p>The above example will copy the value the user passes on after /USERNAME= into $0. This allows the user to specify the required information on the command line instead of using the interactive user interface. The user can use:</p>
+<pre>foo.exe /S /USERNAME=Bar /D=C:\Program Files\Foo
+</pre>
+
+<p>or:</p>
+<pre>foo.exe /S /USERNAME=string with spaces /D=C:\Program Files\Foo
+</pre>
+
+<p>or:</p>
+<pre>foo.exe /S /USERNAME=&quot;string with spaces&quot; /D=C:\Program Files\Foo
+</pre>
+
+<p>If your installer/uninstaller requires a lot of information and you want it to be able to be silent, you should allow the user to pass on a path to an answers file. This would be much more comfortable than writing all of the information on the command line.</p>
+<p><a href='Section4.11.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Chapter5.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

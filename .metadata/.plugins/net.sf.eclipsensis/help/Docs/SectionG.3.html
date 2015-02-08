@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Building on POSIX</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionG.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionG.4.html'>Next</a></p>
+<a name="G.3"></a><h2>G.3 Building on POSIX</h2>
+
+<p>As of NSIS 2.01, the compiler, makensis, also compiles on POSIX platforms. POSIX platforms include Linux, *BSD, Mac OS X and others. Since the generated installer will eventually run on Windows, a <a href="http://www.libsdl.org/extras/win32/cross/README.txt">cross-compiler</a> is needed in order to compile them.</p>
+
+<p>If no cross-compiler is available, use the following:</p>
+<pre>scons SKIPSTUBS=all SKIPPLUGINS=all SKIPUTILS=all SKIPMISC=all
+      NSIS_CONFIG_CONST_DATA_PATH=no PREFIX=/path/to/extracted/zip
+      install-compiler
+
+scons NSIS_CONFIG_CONST_DATA_PATH=no PREFIX=/path/to/extracted/zip
+      /path/to/extracted/zip/LibraryLocal
+</pre>
+
+<p>This should only build makensis and install it to the directory where a precompiled package, such as the <a href="SectionG.4.html#G.4">nightly build</a> or a <a href="http://sourceforge.net/project/showfiles.php?group_id=22049">zipped release version</a> (nsis-x.xx.zip), is extracted. Note that the in order for this to work, the precompiled package must be compiled using the exact same sources as makensis. In particular, <code>Source\exehead\config.h</code>, the options passed to scons and <code>Source\exehead\fileform.h</code> must be identical. Nightly builds and zipped release versions are built with the default options.</p>
+
+<p>To build a native version of NSIS Menu, install <a href="http://www.wxwidgets.org/">wxWidgets 2.8</a> and build as usual. <code>wx-config</code> must be in the path.</p>
+<p><a href='SectionG.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionG.4.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

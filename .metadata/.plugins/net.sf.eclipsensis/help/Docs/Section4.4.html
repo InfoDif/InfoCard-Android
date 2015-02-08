@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Relative Jumps</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.5.html'>Next</a></p>
+<a name="4.4"></a><h2>4.4 Relative Jumps</h2>
+
+<p>Unlike labels, relative jumps are, as the name suggests, relative to the place they are called from. You can use relative jumps wherever you can use labels. Relative jumps are marked by numbers. +1 jumps to the next instruction (the default advancement), +2 will skip one instruction and go to the second instruction from the current instruction, -2 will jump two instructions backward, and +10 will skip 9 instructions, jumping to the tenth instruction from the current instruction.</p>
+
+<p>An instruction is every command that is executed at run-time, when the installer is running. <a href="Section4.9.html#4.9.4.15">MessageBox</a>, <a href="Section4.9.html#4.9.4.7">Goto</a>, <a href="Section4.9.html#4.9.3.5">GetDLLVersion</a>, <a href="Section4.9.html#4.9.5.3">FileRead</a>, <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> are all instructions. <a href="Section4.6.html#4.6.1.1">AddSize</a>, <a href="Section4.6.html#4.6.1.2">Section</a>, <a href="Section4.6.html#4.6.1.5">SectionGroup</a>, <a href="Section4.6.html#4.6.1.3">SectionEnd</a>, <a href="Section4.8.html#4.8.2.8">SetOverwrite</a> (and everything under <a href="Section4.8.html#4.8.2">Compiler Flags</a>), <a href="Section4.8.html#4.8.1.30">Name</a>, <a href="Section4.8.html#4.8.1.33">SetFont</a>, <a href="Section4.9.html#4.9.15.2">LangString</a>, are not instructions because they are executed at compile time.</p>
+
+<p>Examples:</p>
+<pre> Goto +2
+   MessageBox MB_OK &quot;You will never ever see this message box&quot;
+ MessageBox MB_OK &quot;The last message was skipped, this one should be shown&quot;
+</pre>
+<pre> Goto +4
+ MessageBox MB_OK &quot;The following message will be skipped&quot;
+ Goto +3
+ MessageBox MB_OK &quot;You will never ever see this message box&quot;
+ Goto -3
+ MessageBox MB_OK &quot;Done&quot;
+</pre>
+
+<p>Note that <a href="Section5.4.html#5.4.10">macro insertion</a> is not considered as one instruction when it comes to relative jumps. The macro is expanded before relative jumps are applied, and so relative jumps can jump into code inside an inserted macro. The following code, for example, will not skip the macro. It will show a message box.</p>
+<pre>!macro relative_jump_test
+  MessageBox MB_OK &quot;first macro line&quot;
+  MessageBox MB_OK &quot;second macro line&quot;
+!macroend
+
+Goto +2
+!insertmacro relative_jump_test
+</pre>
+<p><a href='Section4.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.5.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

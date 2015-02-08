@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Variables</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.3.html'>Next</a></p>
+<a name="4.2"></a><h2>4.2 Variables</h2>
+
+<p>All variables are global and can be used in Sections or Functions. Note that, by default, variables are limited to 1024 characters. To extend this limit, <a href="AppendixG.html#G">build NSIS</a> with a bigger value of the NSIS_MAX_STRLEN build setting or use the <a href="http://nsis.sourceforge.net/download/specialbuilds/">special build</a>.</p>
+<a name="4.2.1"></a><h3>4.2.1 User Variables</h3>
+
+<p><em>$VARNAME</em></p>
+
+<p>User variables can be declared with the <a href="Section4.2.html#4.2.1.1">Var</a> command. You can use these variables to store values, work with string manipulation etc.</p>
+<a name="4.2.1.1"></a><h4>4.2.1.1 Var</h4>
+<pre>[/GLOBAL] var_name
+</pre>
+
+<p>Declare a user variable. Allowed characters for variables names: [a-z][A-Z][0-9] and '_'. All defined variables are global, even if defined in a section or a function. To make this clear, variables defined in a section or a function must use the /GLOBAL flag. The /GLOBAL flag is not required outside of sections and functions.</p>
+<pre>Var example
+
+Function testVar
+  Var /GLOBAL example2
+
+  StrCpy $example &quot;example value&quot;
+  StrCpy $example2 &quot;another example value&quot;
+FunctionEnd
+</pre>
+<a name="4.2.2"></a><h3>4.2.2 Other Writable Variables</h3>
+
+<p><em>$0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $R0, $R1, $R2, $R3, $R4, $R5, $R6, $R7, $R8, $R9</em></p>
+
+<p>Registers. These variables can be used just like user variables, but are usually used in shared functions or macros. You don't have to declare these variables, so you won't get any name conflicts when using them in shared code. When using these variables in shared code, it's recommended that you use the stack to save and restore their original values. These variables can also be used for communication with plug-ins, because they can be read and written by the plug-in DLLs.</p>
+
+<p><em>$INSTDIR</em></p>
+
+<p>The installation directory ($INSTDIR is modifiable using <a href="Section4.9.html#4.9.8.1">StrCpy</a>, <a href="Section4.9.html#4.9.2.12">ReadRegStr</a>, <a href="Section4.9.html#4.9.2.10">ReadINIStr</a>, etc. - This could be used, for example, in the <a href="Section4.7.html#4.7.2.1.2">.onInit</a> function to do a more advanced detection of install location).</p>
+
+<p>Note that in uninstaller code, $INSTDIR contains the directory where the uninstaller lies. It does <b>not</b> necessarily contain the same value it contained in the installer. For example, if you write the uninstaller to $WINDIR and the user doesn't move it, $INSTDIR will be $WINDIR in the uninstaller. If you write the uninstaller to another location, you should keep the installer's $INSTDIR in the registry or an alternative storing facility and read it in the uninstaller.</p>
+
+<p><em>$OUTDIR</em></p>
+
+<p>The current output directory (set implicitly via <a href="Section4.9.html#4.9.1.9">SetOutPath</a> or explicitly via <a href="Section4.9.html#4.9.8.1">StrCpy</a>, <a href="Section4.9.html#4.9.2.12">ReadRegStr</a>, <a href="Section4.9.html#4.9.2.10">ReadINIStr</a>, etc)</p>
+
+<p><em>$CMDLINE</em></p>
+
+<p>The command line of the installer. The format of the command line can be one of the following:</p>
+<ul>
+<li>&quot;full\path to\installer.exe&quot; PARAMETER PARAMETER PARAMETER</li><li>installer.exe PARAMETER PARAMETER PARAMETER</li><li>For parsing out the PARAMETER portion, see <a href="SectionE.1.html#E.1.11">GetParameters</a>. If /D= is specified on the command line (to override the install directory) it won't show up in $CMDLINE.</li></ul>
+
+<p><em>$LANGUAGE</em></p>
+
+<p>The identifier of the language that is currently used. For example, English is 1033. You can change this variable in <a href="Section4.7.html#4.7.2.1.2">.onInit</a>.</p>
+<a name="4.2.3"></a><h3>4.2.3 Constants</h3>
+
+<p>Constants can also be used in the <a href="Section4.8.html#4.8.1.21">InstallDir</a> attribute.</p>
+
+<p>Note that some of the new constants will not work on every OS. For example, $CDBURN_AREA will only work on Windows XP and above. If it's used on Windows 98, it'll be empty. Unless mentioned otherwise, a constant should be available on every OS.</p>
+
+<p><em>$PROGRAMFILES</em>, <em>$PROGRAMFILES32</em>, <em>$PROGRAMFILES64</em></p>
+
+<p>The program files directory (usually <code>C:\Program Files</code> but detected at runtime). On Windows x64, $PROGRAMFILES and $PROGRAMFILES32 point to <code>C:\Program Files (x86)</code> while $PROGRAMFILES64 points to <code>C:\Program Files</code>. Use $PROGRAMFILES64 when installing x64 applications.</p>
+
+<p><em>$COMMONFILES</em>, <em>$COMMONFILES32</em>, <em>$COMMONFILES64</em></p>
+
+<p>The common files directory. This is a directory for components that are shared across applications (usually <code>C:\Program Files\Common Files</code> but detected at runtime). On Windows x64, $COMMONFILES and $COMMONFILES32 point to <code>C:\Program Files (x86)\Common Files</code> while $COMMONFILES64 points to <code>C:\Program Files\Common Files</code>. Use $COMMONFILES64 when installing x64 applications.</p>
+
+<p><em>$DESKTOP</em></p>
+
+<p>The Windows desktop directory (usually <code>C:\Windows\Desktop</code> but detected at runtime). The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p><em>$EXEDIR</em></p>
+
+<p>The directory containing the installer executable (technically you can modify this variable, but it is probably not a good idea).</p>
+
+<p><em>$EXEFILE</em></p>
+
+<p>The base name of the installer executable.</p>
+
+<p><em>$EXEPATH</em></p>
+
+<p>The full path of the installer executable.</p>
+
+<p><em>${NSISDIR}</em></p>
+
+<p>A symbol that contains the path where NSIS is installed. Useful if you want to call resources that are in NSIS directory e.g. Icons, UIs etc.</p>
+
+<p>When compiled with support for keeping makensis and the data in the same place (the default on Windows), it is in the same place as makensis, on other platforms it is set at compile time (See the INSTALL file for info). In both instances you can modify it at runtime by setting the NSISDIR environment variable. See <a href="Section3.1.html#3.1.3">section 3.1.3</a> for more info.</p>
+
+<p><em>$WINDIR</em></p>
+
+<p>The Windows directory (usually <code>C:\Windows</code> or <code>C:\WinNT</code> but detected at runtime).</p>
+
+<p><em>$SYSDIR</em></p>
+
+<p>The Windows system directory (usually <code>C:\Windows\System</code> or <code>C:\WinNT\System32</code> but detected at runtime).</p>
+
+<p><em>$TEMP</em></p>
+
+<p>The system temporary directory (usually <code>C:\Windows\Temp</code> but detected at runtime).</p>
+
+<p><em>$STARTMENU</em></p>
+
+<p>The start menu folder (useful in adding start menu items using <a href="Section4.9.html#4.9.3.4">CreateShortCut</a>). The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p><em>$SMPROGRAMS</em></p>
+
+<p>The start menu programs folder (use this whenever you want $STARTMENU\Programs). The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p><em>$SMSTARTUP</em></p>
+
+<p>The start menu programs / startup folder. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p><em>$QUICKLAUNCH</em></p>
+
+<p>The quick launch folder for IE4 active desktop and above. If quick launch is not available, simply returns the same as $TEMP.</p>
+
+<p><em>$DOCUMENTS</em></p>
+
+<p>The documents directory. A typical path for the current user is <code>C:\Documents and Settings\Foo\My Documents</code>. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p>This constant is not available on Windows 95 with Internet Explorer 4 not installed.</p>
+
+<p><em>$SENDTO</em></p>
+
+<p>The directory that contains Send To menu shortcut items.</p>
+
+<p><em>$RECENT</em></p>
+
+<p>The directory that contains shortcuts to the user's recently used documents.</p>
+
+<p><em>$FAVORITES</em></p>
+
+<p>The directory that contains shortcuts to the user's favorite websites, documents, etc. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p>This constant is not available on Windows 95 with Internet Explorer 4 not installed.</p>
+
+<p><em>$MUSIC</em></p>
+
+<p>The user's music files directory. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p>This constant is available on Windows XP, ME and above.</p>
+
+<p><em>$PICTURES</em></p>
+
+<p>The user's picture files directory. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p>This constant is available on Windows 2000, XP, ME and above.</p>
+
+<p><em>$VIDEOS</em></p>
+
+<p>The user's video files directory. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p>This constant is available on Windows XP, ME and above.</p>
+
+<p><em>$NETHOOD</em></p>
+
+<p>The directory that contains link objects that may exist in the My Network Places/Network Neighborhood folder.</p>
+
+<p>This constant is not available on Windows 95 with Internet Explorer 4 and Active Desktop not installed.</p>
+
+<p><em>$FONTS</em></p>
+
+<p>The system's fonts directory.</p>
+
+<p><em>$TEMPLATES</em></p>
+
+<p>The document templates directory. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p><em>$APPDATA</em></p>
+
+<p>The application data directory. Detection of the current user path requires Internet Explorer 4 and above. Detection of the all users path requires Internet Explorer 5 and above. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p>This constant is not available on Windows 95 with Internet Explorer 4 and Active Desktop not installed.</p>
+
+<p><em>$LOCALAPPDATA</em></p>
+
+<p>The local (nonroaming) application data directory.</p>
+
+<p>This constant is available on Windows 2000 and above.</p>
+
+<p><em>$PRINTHOOD</em></p>
+
+<p>The directory that contains link objects that may exist in the Printers folder.</p>
+
+<p>This constant is not available on Windows 95 and Windows 98.</p>
+
+<p><em>$INTERNET_CACHE</em></p>
+
+<p>Internet Explorer's temporary internet files directory.</p>
+
+<p>This constant is not available on Windows 95 and Windows NT with Internet Explorer 4 and Active Desktop not installed.</p>
+
+<p><em>$COOKIES</em></p>
+
+<p>Internet Explorer's cookies directory.</p>
+
+<p>This constant is not available on Windows 95 and Windows NT with Internet Explorer 4 and Active Desktop not installed.</p>
+
+<p><em>$HISTORY</em></p>
+
+<p>Internet Explorer's history directory.</p>
+
+<p>This constant is not available on Windows 95 and Windows NT with Internet Explorer 4 and Active Desktop not installed.</p>
+
+<p><em>$PROFILE</em></p>
+
+<p>The user's profile directory. A typical path is <code>C:\Documents and Settings\Foo</code>.</p>
+
+<p>This constant is available on Windows 2000 and above.</p>
+
+<p><em>$ADMINTOOLS</em></p>
+
+<p>A directory where administrative tools are kept. The context of this constant (All Users or Current user) depends on the <a href="Section4.9.html#4.9.7.7">SetShellVarContext</a> setting. The default is the current user.</p>
+
+<p>This constant is available on Windows 2000, ME and above.</p>
+
+<p><em>$RESOURCES</em></p>
+
+<p>The resources directory that stores themes and other Windows resources (usually <code>C:\Windows\Resources</code> but detected at runtime).</p>
+
+<p>This constant is available on Windows XP and above.</p>
+
+<p><em>$RESOURCES_LOCALIZED</em></p>
+
+<p>The localized resources directory that stores themes and other Windows resources (usually <code>C:\Windows\Resources\1033</code> but detected at runtime).</p>
+
+<p>This constant is available on Windows XP and above.</p>
+
+<p><em>$CDBURN_AREA</em></p>
+
+<p>A directory where files awaiting to be burned to CD are stored.</p>
+
+<p>This constant is available on Windows XP and above.</p>
+
+<p><em>$HWNDPARENT</em></p>
+
+<p>The decimal HWND of the parent window.</p>
+
+<p><em>$PLUGINSDIR</em></p>
+
+<p>The path to a temporary folder created upon the first usage of a plug-in or a call to <a href="Section4.9.html#4.9.7.3">InitPluginsDir</a>. This folder is automatically deleted when the installer exits. This makes this folder the ideal folder to hold INI files for <a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions</a>, bitmaps for the splash plug-in, or any other file that a plug-in needs to work.</p>
+<a name="4.2.4"></a><h3>4.2.4 Constants Used in Strings</h3>
+
+<p><em>$$</em></p>
+
+<p>Use to represent $.</p>
+
+<p><em>$\r</em></p>
+
+<p>Use to represent a carriage return (\r).</p>
+
+<p><em>$\n</em></p>
+
+<p>Use to represent a newline (\n).</p>
+
+<p><em>$\t</em></p>
+
+<p>Use to represent a tab (\t).</p>
+<p><a href='Section4.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.3.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

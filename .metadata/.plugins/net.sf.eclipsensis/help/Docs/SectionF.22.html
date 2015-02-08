@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.25</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.21.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.23.html'>Next</a></p>
+<a name="F.22"></a><h2>F.22 2.25</h2>
+
+<p>Released on March 31st, 2007</p>
+<a name="F.22.1"></a><h3>F.22.1 Changelog</h3>
+<a name="F.22.1.1"></a><h4>F.22.1.1 Major Changes</h4>
+<ul>
+<li>Added <a href="#" onclick="parser('../Include/Memento.nsh')">Memento.nsh</a> for easy persistency of user selections across different runs of the installer (<a href="http://sourceforge.net/support/tracker.php?aid=1677624">RFE #1677624</a>)</li><li>Fixed a bug introduced in 2.24 that allowed the license page to be skipped even with agreement check box or radio buttons (<a href="http://sourceforge.net/support/tracker.php?aid=1664428">bug #1664428</a>)</li></ul>
+<a name="F.22.1.2"></a><h4>F.22.1.2 Minor Changes</h4>
+<ul>
+<li>Added Vista manifest to StartMenu.nsi example to avoid backward compatibility mode that moves shortcuts (<a href="http://sourceforge.net/support/tracker.php?aid=1664957">bug #1664957</a>)</li><li>Both dashes and slashes are supported as switch prefixes on makensis.exe (<a href="http://sourceforge.net/support/tracker.php?aid=1661503">bug #1661503</a>)</li><li>Delete uninstaller temporary directory on reboot (<a href="http://sourceforge.net/support/tracker.php?aid=1660626">patch #1660626</a>)</li><li>Distribute <a href="#" onclick="parser('../Examples/Plugin')">Plug-in example</a> with the NSIS package and not only with the source code</li><li>Fixed lossy Unicode conversion of dialog template strings (<a href="http://sourceforge.net/support/tracker.php?aid=1662190">bug #1662190</a>)</li><li>Fixed <a href="#" onclick="parser('../Include/Sections.nsh')">Sections.nsh</a> macros support for $0 as input (<a href="http://sourceforge.net/support/tracker.php?aid=1664648">bug #1664648</a>)</li><li>Fixed uninstallers support for the /D= command line switch</li><li>Improved logging of WriteReg commands</li><li>Minor documentation updates and fixes (including <a href="http://sourceforge.net/support/tracker.php?aid=1662419">patch #1662419</a>)</li></ul>
+<a name="F.22.1.3"></a><h4>F.22.1.3 New/Changed Commands</h4>
+<ul>
+<li>Added bitwise operators support for <a href="Section5.4.html#5.4.1">!define</a> /math (<a href="http://sourceforge.net/support/tracker.php?aid=1669513">RFE #1669513</a>)</li><li><a href="Section5.2.html#5.2.7">__PAGEEX__</a> contains the page type (<a href="http://sourceforge.net/support/tracker.php?aid=1644712">patch #1644712</a>)</li></ul>
+<a name="F.22.1.4"></a><h4>F.22.1.4 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions 2.46</a>: Use installer's name for message boxes (<a href="http://sourceforge.net/support/tracker.php?aid=1661677">bug #1661677</a>)</li><li><a href="#" onclick="parser('../Docs/makensisw/Readme.txt')">MakeNSISW</a>: Use Escape button to close (<a href="http://sourceforge.net/support/tracker.php?aid=1666501">RFE #1666501</a>)</li><li><a href="#" onclick="parser('../Docs/Math/Math.txt')">Math</a>: Removed mathcrt.lib</li><li><a href="#" onclick="parser('../Docs/StartMenu/Readme.txt')">StartMenu</a>: Refuse empty paths (<a href="http://sourceforge.net/support/tracker.php?aid=1684751">bug #1684751</a>)</li></ul>
+<a name="F.22.1.5"></a><h4>F.22.1.5 Translations</h4>
+<ul>
+<li>Fixed Galician language files (<a href="http://sourceforge.net/support/tracker.php?aid=1663795">bug #1663795</a>)</li></ul>
+<a name="F.22.1.6"></a><h4>F.22.1.6 Build System</h4>
+<ul>
+<li>Added APPEND_LIBPATH and APPEND_CPPATH instead of the malfunctioning CPPPATH and LIBPATH</li><li>Added ChangeLog to source code package (<a href="http://sourceforge.net/support/tracker.php?aid=1680508">patch #1680508</a>)</li><li>Avoid some warnings on VS2005 (<a href="http://sourceforge.net/support/tracker.php?aid=1667950">patch #1667950</a>)</li><li>Fixed lzma test segfault on POSIX (<a href="http://sourceforge.net/support/tracker.php?aid=1666873">bug #1666873</a>)</li><li>More strict-aliasing compatibility (<a href="http://sourceforge.net/support/tracker.php?aid=1635841">bug #1635841</a>)</li><li>NSIS Menu finally built from source</li></ul>
+<p><a href='SectionF.21.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.23.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.26</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.20.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.22.html'>Next</a></p>
+<a name="F.21"></a><h2>F.21 2.26</h2>
+
+<p>Released on April 27th, 2007</p>
+<a name="F.21.1"></a><h3>F.21.1 Release Notes</h3>
+<ul>
+<li>Installation on x64 systems is now fully supported with $PROGRAMFILES64, <a href="Section4.9.html#4.9.7.6">SetRegView</a> and <a href="AppendixB.html#B">Library</a>'s LIBRARY_X64 option.</li></ul>
+<a name="F.21.2"></a><h3>F.21.2 Changelog</h3>
+<a name="F.21.2.1"></a><h4>F.21.2.1 Major Changes</h4>
+<ul>
+<li>Added LIBRARY_X64 option for <a href="SectionB.2.html#B.2">InstallLib</a> and <a href="SectionB.3.html#B.3">UnInstallLib</a> for installing and uninstalling x64 libraries</li><li>Added <a href="Section4.2.html#4.2.3">$PROGRAMFILES32</a>, <a href="Section4.2.html#4.2.3">$PROGRAMFILES64</a>, <a href="Section4.2.html#4.2.3">$COMMONFILES32</a> and <a href="Section4.2.html#4.2.3">$COMMONFILES64</a></li></ul>
+<a name="F.21.2.2"></a><h4>F.21.2.2 Minor Changes</h4>
+<ul>
+<li>Added <a href="Section4.2.html#4.2.3">$EXEPATH</a> and <a href="Section4.2.html#4.2.3">$EXEFILE</a></li><li>Added $(^Language) language string which holds the language name (<a href="http://sourceforge.net/support/tracker.php?aid=1235616">RFE #1235616</a>)</li><li>Added LIBRARY_IGNORE_VERSION option for <a href="SectionB.2.html#B.2">InstallLib</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1699435">patch #1699435</a>)</li><li>Added VXD support for <a href="Section4.9.html#4.9.3.6">GetDLLVersionLocal</a> on Windows NT/2000/XP/Vista (<a href="http://sourceforge.net/support/tracker.php?aid=1706624">patch #1706624</a>)</li><li>Avoid <a href="AppendixB.html#B">Library</a> warning when UnInstallLib is unused (<a href="http://sourceforge.net/support/tracker.php?aid=1692761">bug #1692761</a>)</li><li>Fixed error handling of <a href="Section4.9.html#4.9.3.2">CopyFiles</a> on Windows NT4 (<a href="http://sourceforge.net/support/tracker.php?aid=774966">bug #774966</a>)</li><li>Fixed font name encoding broken since 2.24</li><li>Fixed <a href="#" onclick="parser('../Examples/LogicLib.nsi')">LogicLib</a> duplicate labels across included files</li><li>Fixed preservation of folder attributes with <a href="Section4.9.html#4.9.1.5"><code>File</code></a><code> /a</code> (<a href="http://sourceforge.net/support/tracker.php?aid=1699474">bug #1699474</a>)</li><li>Improved unused variable warning (<a href="http://sourceforge.net/support/tracker.php?aid=1701050">bug #1701050</a>)</li><li><a href="AppendixB.html#B">Library</a> macros no longer require version information for DLL files on POSIX</li><li>Minor documentation improvements (including <a href="http://sourceforge.net/support/tracker.php?aid=971467">RFE #971467</a>)</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI</a>: added MUI_FINISHPAGE_CANCEL_ENABLED</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI</a>: added MUI_FINISHPAGE_REBOOTLATER_DEFAULT (<a href="http://sourceforge.net/support/tracker.php?aid=1143843">RFE #1143843</a>)</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI</a>: block unsupported languages in the language selection dialog (<a href="http://sourceforge.net/support/tracker.php?aid=1564986">RFE #1564986</a>)</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI</a>: disable Cancel button on the finish page (<a href="http://sourceforge.net/support/tracker.php?aid=1267491">bug #1267491</a>)</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI</a>: reduce flicker caused by MUI_HEADER_TRANSPARENT_TEXT (<a href="http://sourceforge.net/support/tracker.php?aid=1696610">patch #1696610</a>)</li><li>Support <a href="Section4.9.html#4.9.4.17">Quit</a> in <a href="Section4.5.html#4.5.3">show page functions</a></li></ul>
+<a name="F.21.2.3"></a><h4>F.21.2.3 New/Changed Commands</h4>
+<ul>
+<li>Added <a href="Section4.9.html#4.9.7.6">SetRegView</a> to allow access to the x64 registry view</li><li>Installer icon support for <a href="Section4.9.html#4.9.4.15">MessageBox</a> using MB_USERICON (<a href="http://sourceforge.net/support/tracker.php?aid=1682748">patch #1682748</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1530388">RFE #1530388</a>)</li></ul>
+<a name="F.21.2.4"></a><h4>F.21.2.4 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions 2.47</a>: line breaks support in Link controls (<a href="http://sourceforge.net/support/tracker.php?aid=1683186">patch #1683186</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1495949">RFE #1495949</a>), added HLine and VLine controls (<a href="http://sourceforge.net/support/tracker.php?aid=1683189">patch #1683189</a>)</li><li><a href="#" onclick="parser('../Docs/makensisw/Readme.txt')">MakeNSISW</a>: fixed broken command line parameter handling introduced in the last version (<a href="http://sourceforge.net/support/tracker.php?aid=1696534">bug #1696534</a>)</li><li><a href="#" onclick="parser('../Examples/UserInfo/UserInfo.nsi')">UserInfo</a>: return effective user group on Vista, added GetOriginalAccountType (<a href="http://sourceforge.net/support/tracker.php?aid=1687456">patch #1687456</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1684777">bug #1684777</a>)</li></ul>
+<a name="F.21.2.5"></a><h4>F.21.2.5 Translations</h4>
+<ul>
+<li>Added Afrikaans translation (<a href="http://sourceforge.net/support/tracker.php?aid=1699558">patch #1699558</a>)</li><li>French corrections (<a href="http://sourceforge.net/support/tracker.php?aid=1676101">patch #1676101</a>)</li><li>German corrections</li></ul>
+<a name="F.21.2.6"></a><h4>F.21.2.6 Build System</h4>
+<ul>
+<li>Added SKIPTESTS option</li><li>Avoid a lot of code warnings (<a href="http://sourceforge.net/support/tracker.php?aid=1676243">bug #1676243</a>)</li><li>Detect wxWidgets instead of assuming its existence on POSIX (<a href="http://sourceforge.net/support/tracker.php?aid=1672315">bug #1672315</a>)</li><li>Fixed big-endian platform support broken since 2.24</li></ul>
+<p><a href='SectionF.20.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.22.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Calling an external DLL using the System.dll plug-in</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionD.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionD.4.html'>Next</a></p>
+<a name="D.3"></a><h2>D.3 Calling an external DLL using the System.dll plug-in</h2>
+
+<p>Some install processes are required to call functions contained inside third party DLLs. A prime example of this is when installing a Palm(TM) conduit.</p>
+
+<p><b>Some background about System.dll</b> <br> The System.dll plug-in (by Brainsucker) enables calling of external DLLs by providing the 'Call' function. There are a number of other functions provided by System.dll, but they will not be covered here. For more details about the other functions, lock the doors, take the phone off the hook, screw your head on *real* tight and head on over to the <a href="#" onclick="parser('../Docs/System/System.html')">System readme</a>.</p>
+
+<p><u>Data Types</u> <br> System.dll recognises the following data types:</p>
+<ul>
+<li>v - void (generally for return)</li><li>i - int (includes char, byte, short, handles, pointers and so on)</li><li>l - long &amp; large integer (known as int64)</li><li>t - text, string (LPCSTR, pointer to first character)</li><li>b - boolean (needs/returns 'true':'false') - by the fact this type is senseless -&gt; usual integer can be used ('0':'1')</li><li>k - callback. See Callback section in system.html.</li><li>* - pointer specifier -&gt; the proc needs the pointer to type, affects next char (parameter) [ex: '*i' - pointer to int]</li></ul>
+
+<p><u>Mapping System.dll variables to NSIS script variables</u> <br> There's not much point in being able to call an external function if you can't get any data back. System.dll maps function variables to NSIS script variables in the following way:</p>
+
+<p>NSIS $0..$9 become System.dll r0..r9 NSIS $R0..$R9 become System.dll r10..r19</p>
+
+<p>Each parameter is specified by type, input and output. To skip input or output use a dot. Examples:</p>
+
+<p>String (pointer to a characters array), input is 'happy calling':</p>
+<pre>t 'happy calling'
+</pre>
+
+<p>String (pointer to a characters array), input is taken from $5 and changes to the array made by the call are saved into $R8:</p>
+<pre>t r5R8
+</pre>
+
+<p>Pointer to an integer, value taken from $1 and put into $2:</p>
+<pre>*i r1r2
+</pre>
+
+<p>Pointer to a 64-bit integer, output pushed on stack, no input:</p>
+<pre>*l .s
+</pre>
+
+<p>Using System.dll::Call To call a function in a third party DLL, the Call function is used like this:</p>
+<pre>System::Call 'YourDllName::YourDllFunction(i, *i, t) i(r0, .r1, r2) .r3'
+</pre>
+
+<p>The '(r0, .r1, r2) .r3' section at the end are the parameters that are passed between your DLL and your NSIS script. As can be seen in this parameters list type and input/output can be seperated. Each block of &quot;(parms list) return value&quot; overrides and/or adds to the last one. In this case, the first block specifies the types and the second specifies input and output.</p>
+
+<p><b>Before starting to code the NSIS script</b> <br> Before you start to code any NSIS code, you need to know the full prototype of the function you are going to call. For the purposes of this example, we will use the 'CmGetHotSyncExecPath' function from the Palm 'CondMgr.dll'. This function is used to return the full path of 'HotSync.exe'.</p>
+
+<p><u>Function Definition</u> <br></p>
+
+<p>int CmGetHotSyncExecPath(TCHAR *pPath, int *piSize);</p>
+
+<p>where</p>
+<ul>
+<li>pPath is a pointer to a character buffer. Upon return, this is the path &amp; file name of the installed HotSync manager.</li><li>piSize is a pointer to an integer that specifies the size (in TCHAR's), of the buffer referenced by the pPath parameter.</li></ul>
+
+<p>return values:</p>
+<ul>
+<li>0: No error</li><li>-1: A non-specific error occurred</li><li>ERR_REGISTRY_ACCESS(-1006):Unable to access the Palm configuration entries</li><li>ERR_BUFFER_TOO_SMALL(-1010): The buffer is too small to hold the requested information</li><li>ERR_INVALID_POINTER(-1013):The specified pointer is not a valid pointer</li></ul>
+
+<p>Also, if the buffer is too small the value in *int is the size (in TCHARs) that the buffer should be.</p>
+
+<p>This function definition maps to the following System.dll definition:</p>
+
+<p>CmGetHotSyncExecPath(t, *i) i</p>
+
+<p>i.e. It takes a text variable, a pointer to int, and returns an int value.</p>
+
+<p><u>Using the external dll function</u> <br> Now that we've sorted out what the function does, and how it maps to the System.dll format, we can use the function in a NSIS script.</p>
+
+<p>First, you have to change the output directory to that where the DLL you want to use is. It may also work if the DLL is on the system path, but this hasn't been tested.</p>
+
+<p>The following code fragment will install 'condmgr.dll' to a temporary directory, execute the CmGetHotSyncExecPath function and display returned data. Save this script</p>
+<pre>; **** snip ****
+Function loadDll
+
+  SetOutPath $TEMP\eInspect             ; create temp directory
+  File bin\CondMgr.dll                  ; copy dll there
+  StrCpy $1 ${NSIS_MAX_STRLEN}          ; assign memory to $0
+  System::Call 'CondMgr::CmGetHotSyncExecPath(t, *i) i(.r0, r1r1).r2'
+  DetailPrint 'Path: &quot;$0&quot;'
+  DetailPrint &quot;Path length: $1&quot;
+  DetailPrint &quot;Return value: $2&quot;
+
+FunctionEnd
+; **** snip ****
+</pre>
+
+<p>and this function produces the following output in the 'details' page:</p>
+
+<p>Output folder: c:\windows\TEMP\eInspect <br> Extract: CondMgr.dll <br> Path: &quot;C:\Dave\palm\Hotsync.exe&quot; <br> Path length: 24 <br> Return value: 0</p>
+
+<p>Written by <a href="http://nsis.sourceforge.net/archive/profile.php?userid=78">djc</a></p>
+
+<p><u>Acknowledgements &amp; Thanks</u> <br> Lots of thanks go to <b>kichik</b> and <b>Sunjammer</b> for spending a lot of time assisting in solving this problem. Also to <b>brainsucker</b> for creating the System.dll plug-in in the first place. Good Luck!</p>
+<p><a href='SectionD.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionD.4.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

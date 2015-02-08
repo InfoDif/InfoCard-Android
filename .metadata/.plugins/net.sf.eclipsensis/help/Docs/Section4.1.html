@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Script File Format</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Chapter4.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.2.html'>Next</a></p>
+<a name="4.1"></a><h2>4.1 Script File Format</h2>
+
+<p>A NSIS Script File (.nsi) is just a text file with script code.</p>
+
+<p><b>Commands</b></p>
+
+<p>Commands lines are in the format 'command [parameters]'</p>
+<pre>File &quot;myfile&quot;
+</pre>
+
+<p><b>Comments</b></p>
+
+<p>Lines beginning with ; or # are comments. You can put comments after commands. You can also use C-style comments to comment one or more lines.</p>
+<pre>; Comment
+# Comment
+
+# Comment \
+    Another comment line (see `Long commands` section below)
+
+/*
+Comment
+Comment
+*/
+
+Name /* comment */ mysetup
+
+File &quot;myfile&quot; ; Comment
+</pre>
+
+<p>If you want a parameter to start with ; or # put it in quotes.</p>
+
+<p><b>Plug-ins</b></p>
+
+<p>To call a plug-in, use 'plugin::command [parameters]'. For more info see <a href="Section4.11.html#4.11">Plug-in DLLs</a>.</p>
+<pre>nsExec::Exec &quot;myfile&quot;
+</pre>
+
+<p><b>Numbers</b></p>
+
+<p>For parameters that are treated as numbers, use decimal (the number) or hexadecimal (with 0x prepended to it, i.e. 0x12345AB), or octal (numbers beginning with a 0 and no x).</p>
+
+<p>Colors should be set in hexadecimal RGB format, like HTML but without the #.</p>
+<pre>IntCmp 1 0x1 lbl_equal
+
+SetCtlColors $HWND CCCCCC
+</pre>
+
+<p><b>Strings</b></p>
+
+<p>To represent strings that have spaces, use quotes:</p>
+<pre>MessageBox MB_OK &quot;Hi there!&quot;
+</pre>
+
+<p>Quotes only have the property of containing a parameter if they begin the parameter. They can be either single quotes, double quotes, or the backward single quote.</p>
+
+<p>You can escape quotes using $\:</p>
+<pre>MessageBox MB_OK &quot;I'll be happy&quot; ; this one puts a ' inside a string
+MessageBox MB_OK 'And he said to me &quot;Hi there!&quot;' ; this one puts a &quot; inside a string
+MessageBox MB_OK `And he said to me &quot;I'll be happy!&quot;` ; this one puts both ' and &quot;s inside a string
+MessageBox MB_OK &quot;$\&quot;A quote from a wise man$\&quot; said the wise man&quot; ; this one shows escaping of quotes
+</pre>
+
+<p>It is also possible to put newlines, tabs etc. in a string using $\r, $\n, $\t etc. <a href="Section4.2.html#4.2.4">More information...</a></p>
+
+<p><b>Variables</b></p>
+
+<p>Variables start with $. User variables should be declared.</p>
+<pre>Var MYVAR
+
+StrCpy $MYVAR &quot;myvalue&quot;
+</pre>
+
+<p><a href="Section4.2.html#4.2">More information...</a></p>
+
+<p><b>Long commands</b></p>
+
+<p>To extend a command over multiple lines, use a backslash (\) at the end of the line. The next line will effectively be concatenated to the end of it. For example:</p>
+<pre>CreateShortCut &quot;$SMPROGRAMS\NSIS\ZIP2EXE project workspace.lnk&quot; \
+    &quot;$INSTDIR\source\zip2exe\zip2exe.dsw&quot;
+
+MessageBox MB_YESNO|MB_ICONQUESTION \
+    &quot;Do you want to remove all files in the folder? \
+    (If you have anything you created that you want \
+     to keep, click No)&quot; \
+    IDNO NoRemoveLabel
+</pre>
+
+<p>Line extension for long commands works for comments as well. It can be a bit confusing, so it should be avoided.</p>
+<pre># A comment \
+    still a comment here...
+</pre>
+
+<p><b>Configuration file</b></p>
+
+<p>If a file named &quot;nsisconf.nsh&quot; in the config directory exists, it will be included by default before any scripts (unless the /NOCONFIG command line parameter is used). The config directory on Windows is the same directory as makensis.exe is in. On other platforms this is set at install time and defaults to $PREFIX/etc/. You can alter this at runtime, see <a href="Section3.1.html#3.1.3">section 3.1.3</a> for more information.</p>
+<p><a href='Chapter4.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.2.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

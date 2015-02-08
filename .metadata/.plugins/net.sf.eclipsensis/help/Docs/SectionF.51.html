@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.0 Release Candidate 1</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.50.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.52.html'>Next</a></p>
+<a name="F.51"></a><h2>F.51 2.0 Release Candidate 1</h2>
+
+<p>Released on Decemeber 27th, 2003</p>
+<a name="F.51.1"></a><h3>F.51.1 Release Notes</h3>
+<ul>
+<li>Trying the LZMA compression method for your installer is recommended. It often gives a 20% better compression ratio.</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.68</a>: The setting to change the title size on the Welcome page and Finish page has been changed</li></ul>
+<a name="F.51.2"></a><h3>F.51.2 Changelog</h3>
+<a name="F.51.2.1"></a><h4>F.51.2.1 Major Changes</h4>
+<ul>
+<li>LZMA compression support. Added <a href="Section4.8.html#4.8.2.5">SetCompresssorDictSize</a>.</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.68</a>: New settings for extra space for title and text on Welcome page and Finish page, improved handling of verbose settings, language file string for uninstaller reboot information, more</li><li>Shell folders are now detected using shell API functions and not the registry. This is the recommended method by Microsoft. New constants have been added in the process ($FONTS, $SENDTO and more...). See <a href="Section4.2.html#4.2.3">section 4.2.3</a> for more details.</li><li>Added <a href="#" onclick="parser('../Examples/LogicLib.nsi')">LogicLib</a> to distribution (easier conditional execution etc.)</li><li>Added <a href="Section4.8.html#4.8.1.16">DirVerify</a> and <a href="Section4.9.html#4.9.7.2">GetInstDirError</a> to allow custom error checking when the installation directory is invalid or the drive does not have enough space</li><li>Support for reading environmental variables on compile time: <a href="Section5.3.html#5.3.1">$%envVarName%</a></li><li>Added /SD parameter for <a href="Section4.9.html#4.9.4.15">MessageBox</a>. Allows to set default for silent installers.</li><li>New conditional compilation options: <a href="Section5.4.html#5.4.6">!ifmacrodef</a> and <a href="Section5.4.html#5.4.7">!ifmacrondef</a>.</li><li>New sections macros for mutually exclusive section selection</li><li>Improved RTL support by adding WS_EX_RTLREADING wherever possible</li></ul>
+<a name="F.51.2.2"></a><h4>F.51.2.2 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions 2.3</a>: Added new control type &quot;Button&quot;, added new flag &quot;NOTIFY&quot;, added new flag &quot;NOWORDWRAP&quot; for multi-line text boxes, reduced size down to 12K</li><li><a href="#" onclick="parser('../Docs/makensisw/Readme.txt')">MakeNSISW</a>: More options to set the compression method</li><li>Zip2Exe 0.31: Fixed compression setting, LZMA compression support</li><li><a href="#" onclick="parser('../Docs/VPatch/Readme.html')">VPatch 2.1</a>: Better error handling and exit code for GenPat</li></ul>
+<p><a href='SectionF.50.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.52.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

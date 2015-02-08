@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.08</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.38.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.40.html'>Next</a></p>
+<a name="F.39"></a><h2>F.39 2.08</h2>
+
+<p>Released on July 23rd, 2005</p>
+<a name="F.39.1"></a><h3>F.39.1 Release Notes</h3>
+<ul>
+<li>The Archive has been replaced with a <a href="http://nsis.sourceforge.net/wiki/">Wiki</a>. The new Wiki allows everyone to edit all pages so there's no longer need to hunt for the original author. It also allows everyone to upload plug-ins and not just administrators. And as if that's not enough, it looks better and provides easier and more feature-rich syntax.</li></ul>
+<a name="F.39.2"></a><h3>F.39.2 Changelog</h3>
+<a name="F.39.2.1"></a><h4>F.39.2.1 Major Changes</h4>
+<ul>
+<li>Added Instructor's <a href="AppendixE.html#E">header files of useful functions</a></li><li><a href="AppendixB.html#B">Library</a> improvements: ordered registration after reboot, smaller RegTool and separate process for each registration to avoid conflicts (thanks stb)</li></ul>
+<a name="F.39.2.2"></a><h4>F.39.2.2 Minor Changes</h4>
+<ul>
+<li>Added Bosnian and Kurdish translations</li><li>Added per-user nsisconf.nsh file in %APPDATA% or $HOME, depending on the platform (<a href="http://sourceforge.net/support/tracker.php?aid=1223041">patch #1223041</a>)</li><li>Documentation improvements and fixes (including <a href="http://sourceforge.net/support/tracker.php?aid=1202495">bug #1202495</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1227610">bug #1227610</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1238686">bug #1238686</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1225167">patch #1225167</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1240601">RFE #1240601</a>)</li><li>Fixed _?= being ignored, if the uninstaller path is not quoted and is separated with only space from _?=</li><li>Fixed <a href="AppendixB.html#B">Library</a> failing on paths with spaces (<a href="http://sourceforge.net/support/tracker.php?aid=1234283">bug #1234283</a>)</li><li>Fixed UpgradeDLL compilation error (<a href="http://sourceforge.net/support/tracker.php?aid=1230336">bug #1230336</a>)</li><li>Improved French, Ukrainian and Luxembourgish translation</li><li>Made <a href="Section4.9.html#4.9.1.8">RMDir</a> set the error flag, if passed an invalid directory path (<a href="http://sourceforge.net/support/tracker.php?aid=1227553">bug #1227553</a>)</li><li>Made uninstallers copy themselves into a subdirectory of the temporary directory to avoid DLLs left in the temporary directory from being loaded by the uninstaller (<a href="http://sourceforge.net/support/tracker.php?aid=1214319">patch #1214319</a>)</li><li>Missing <a href="Section4.9.html#4.9.15.2">LangString</a> warning now uses the language name, if possible</li><li>zip2exe: fixed restriction of extraction path length and updated to <a href="http://www.zlib.net/">zlib</a> 1.2.3 (<a href="http://sourceforge.net/support/tracker.php?aid=1226381">bug #1226381</a>)</li></ul>
+<a name="F.39.2.3"></a><h4>F.39.2.3 Build System</h4>
+<ul>
+<li>Added linker script to assure correct order of sections when building using GNU tools</li><li>Added <code>test</code> target</li><li>UIs are now built from source</li></ul>
+<p><a href='SectionF.38.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.40.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

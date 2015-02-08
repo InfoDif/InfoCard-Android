@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.11</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.35.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.37.html'>Next</a></p>
+<a name="F.36"></a><h2>F.36 2.11</h2>
+
+<p>Released on November 12th, 2005</p>
+<a name="F.36.1"></a><h3>F.36.1 Release Notes</h3>
+<ul>
+<li>Rebuilding existing installers that use <a href="Section4.8.html#4.8.2.8"><code>SetOverwrite</code></a><code> ifdiff</code>, might falsely overwrite files once</li></ul>
+<a name="F.36.2"></a><h3>F.36.2 Changelog</h3>
+<a name="F.36.2.1"></a><h4>F.36.2.1 Major Changes</h4>
+<ul>
+<li>Added a workaround for a bug that prevented detection of some special folders (e.g. <a href="Section4.2.html#4.2.2">$DESKTOP</a> for all users) on Windows 9x (<a href="http://sourceforge.net/support/tracker.php?aid=1008632">bug #1008632</a>)</li><li>Fixed a crash caused by copying very long details to clipboard in the installation log page (<a href="http://sourceforge.net/support/tracker.php?aid=1314004">bug #1314004</a>)</li></ul>
+<a name="F.36.2.2"></a><h4>F.36.2.2 New/Changed Commands</h4>
+<ul>
+<li>Added <a href="Section5.1.html#5.1.12">!tempfile</a>, <a href="Section5.1.html#5.1.6">!delfile</a> and <a href="Section5.1.html#5.1.4">!appendfile</a> for cross-platform handling of text files during compilation</li><li>Fixed <a href="Section4.8.html#4.8.1.8">ChangeUI</a> input handling (<a href="http://sourceforge.net/support/tracker.php?aid=1348473">patch #1348473</a>)</li><li><a href="Section4.6.html#4.6.1.4">SectionIn</a> RO is no longer case sensitive</li></ul>
+<a name="F.36.2.3"></a><h4>F.36.2.3 Minor Changes</h4>
+<ul>
+<li>Added support URL to the NSIS package entry in the Add/Remove control panel (<a href="http://sourceforge.net/support/tracker.php?aid=1349867">RFE #1349867</a>)</li><li>Fixed comment handling (<a href="http://sourceforge.net/support/tracker.php?aid=1324898">patch #1324898</a>)</li><li>Fixed duplicate RegTool test in <a href="AppendixB.html#B">Library</a></li><li>Fixed invalid language selection according to <a href="Section4.2.html#4.2.2">$LANGUAGE</a> in <a href="Section4.7.html#4.7.2.1.2">.onInit</a> when only primary language match is found (<a href="http://sourceforge.net/support/tracker.php?aid=1328629">bug #1328629</a>)</li><li>Fixed missing RegTool error after install-reboot-install-reboot sequence with <a href="AppendixB.html#B">Library</a></li><li>Fixed portability issues with <a href="#" onclick="parser('../Examples/LogicLib.nsi')">LogicLib</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1320297">bug #1320297</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1248336">patch #1248336</a>)</li><li>Fixed <a href="Section4.8.html#4.8.2.8"><code>SetOverwrite</code></a><code> ifdiff</code> always overwriting on FAT file system (<a href="http://sourceforge.net/support/tracker.php?aid=1338423">bug #1338423</a>)</li><li>Fixed wrong size of red.bmp check box image</li><li>Larger browse button for localized texts (<a href="http://sourceforge.net/support/tracker.php?aid=1314682">bug #1314682</a>)</li><li>Minor documentation improvements and fixes (including <a href="http://sourceforge.net/support/tracker.php?aid=1349810">bug #1349810</a>)</li><li>Sort language names in language selection dialog</li><li>Use the temporary directory for <a href="AppendixB.html#B">Library</a> temporary files, instead of the possibly write-protected installation directory</li></ul>
+<a name="F.36.2.4"></a><h4>F.36.2.4 Utilities and Plug-ins</h4>
+<ul>
+<li>Added /OEM switch for OEM to ANSI conversion in <a href="#" onclick="parser('../Docs/nsExec/nsExec.txt')">nsExec</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1346737">patch #1346737</a>)</li><li>Added /PROXY switch for manual proxy configuration in <a href="#" onclick="parser('../Docs/NSISdl/ReadMe.txt')">NSISdl</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1334166">patch #1334166</a>)</li><li>Added solid compression check box to zip2exe (<a href="http://sourceforge.net/support/tracker.php?aid=1334155">patch #1334155</a>)</li><li>Added stdin in MakeNSISw to allow xcopy to run</li><li>Added timestamp handling to zip2exe (<a href="http://sourceforge.net/support/tracker.php?aid=1349853">bug #1349853</a>)</li><li>Fixed input validation of <a href="#" onclick="parser('../Docs/nsExec/nsExec.txt')">nsExec</a></li><li><a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions 2.44</a>: Added HWND and HWND2 entries to the INI file to avoid messy calculations of the correct control id</li></ul>
+<a name="F.36.2.5"></a><h4>F.36.2.5 Translations</h4>
+<ul>
+<li>Slovenian translation fixes and improvements</li></ul>
+<a name="F.36.2.6"></a><h4>F.36.2.6 Build System</h4>
+<ul>
+<li>Added a workaround for linking errors caused by a bad library included in recent Platform SDK versions</li><li>Check for and use -pthread linker flag</li><li>Improved FreeBSD portability</li><li>Nicer error message for SCons version older than 0.96.90</li></ul>
+<p><a href='SectionF.35.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.37.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

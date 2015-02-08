@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Installer Attributes</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.7.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.9.html'>Next</a></p>
+<a name="4.8"></a><h2>4.8 Installer Attributes</h2>
+<a name="4.8.1"></a><h3>4.8.1 General Attributes</h3>
+
+<p>The commands below all adjust attributes of the installer. These attributes control how the installer looks and functions, including which pages are present in the installer, as what text is displayed in each part of each page, how the installer is named, what icon the installer uses, the default installation directory, what file it writes out, and more. Note that these attributes can be set anywhere in the file except in a Section or Function.</p>
+
+<p><b><u>Defaults are bold and underlined</u></b></p>
+<a name="4.8.1.1"></a><h4>4.8.1.1 AddBrandingImage</h4>
+<pre>(left|right|top|bottom) (width|height) [padding]
+</pre>
+
+<p>Adds a branding image on the top, bottom, left, or right of the installer. Its size will be set according to the width/height specified, the installer width/height and the installer font. The final size will not always be what you requested; have a look at the output of the command for the actual size. Because this depends on the installer font, you should use SetFont before AddBrandingImage. The default padding value is 2.</p>
+
+<p>AddBrandingImage only adds a placeholder for an image. To set the image itself on runtime, use <a href="Section4.9.html#4.9.14.12">SetBrandingImage</a>.</p>
+<pre>AddBrandingImage left 100
+AddBrandingImage right 50
+AddBrandingImage top 20
+AddBrandingImage bottom 35
+AddBrandingImage left 100 5
+</pre>
+<a name="4.8.1.2"></a><h4>4.8.1.2 AllowRootDirInstall</h4>
+<pre>true|<b>false</b>
+</pre>
+
+<p>Controls whether or not installs are enabled to the root directory of a drive, or directly into a network share. Set to 'true' to change the safe behavior, which prevents users from selecting C:\ or \\Server\Share as an install (and later on, uninstall) directory. For additional directory selection page customizability, see <a href="Section4.7.html#4.7.2.1.10">.onVerifyInstDir</a>.</p>
+<a name="4.8.1.3"></a><h4>4.8.1.3 AutoCloseWindow</h4>
+<pre>true|<b>false</b>
+</pre>
+
+<p>Sets whether or not the install window automatically closes when completed. This is overrideable from a section using <a href="Section4.9.html#4.9.14.11">SetAutoClose</a>.</p>
+<a name="4.8.1.4"></a><h4>4.8.1.4 BGFont</h4>
+<pre>[font_face [height [weight] [/ITALIC] [/UNDERLINE] [/STRIKE]]]
+</pre>
+
+<p>Specifies the font used to show the text on the background gradient. To set the color use <a href="Section4.8.html#4.8.1.5">BGGradient</a>. If no parameters are specified, the default font will be used. The default font is bold and italic Times New Roman.</p>
+<a name="4.8.1.5"></a><h4>4.8.1.5 BGGradient</h4>
+<pre>[<b>off</b>|(topc botc [textcolor|notext])]
+</pre>
+
+<p>Specifies whether or not to use a gradient background window. If 'off', the installer will not show a background window, if no parameters are specified, the default black to blue gradient is used, and otherwise the top_color or bottom_color are used to make a gradient. Top_color and bottom_color are specified using the form RRGGBB (in hexadecimal, as in HTML, only minus the leading '#', since # can be used for comments). 'textcolor' can be specified as well, or 'notext' can be specified to turn the big background text off.</p>
+<a name="4.8.1.6"></a><h4>4.8.1.6 BrandingText</h4>
+<pre>/TRIM(LEFT|RIGHT|CENTER) text
+</pre>
+
+<p>Sets the text that is shown (by default it is 'Nullsoft Install System vX.XX') at the bottom of the install window. Setting this to an empty string (&quot;&quot;) uses the default; to set the string to blank, use &quot; &quot; (a space). If it doesn't matter to you, leave it the default so that everybody can know why the installer didn't suck. heh. Use /TRIMLEFT, /TRIMRIGHT or /TRIMCENTER to trim down the size of the control to the size of the string.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized on <a href="Section4.7.html#4.7.2.1.2">.onInit</a>.</p>
+<a name="4.8.1.7"></a><h4>4.8.1.7 Caption</h4>
+<pre>caption
+</pre>
+
+<p>When used outside a <a href="Section4.5.html#4.5.6">PageEx</a> block: Sets the text for the titlebar of the installer. the By default, it is 'Name Setup', where Name is specified with the <a href="Section4.8.html#4.8.1.30">Name</a> instruction. You can, however, override it with 'MyApp Installer' or whatever. If you specify an empty string (&quot;&quot;), the default will be used (you can however specify &quot; &quot; to achieve a blank string).</p>
+
+<p>When used inside a <a href="Section4.5.html#4.5.6">PageEx</a> block: Sets the subcaption of the current page.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized on <a href="Section4.7.html#4.7.2.1.2">.onInit</a>.</p>
+<a name="4.8.1.8"></a><h4>4.8.1.8 ChangeUI</h4>
+<pre>dialog ui_file.exe
+</pre>
+
+<p>Replaces dialog (<em>IDD_LICENSE</em>, <em>IDD_DIR</em>, <em>IDD_SELCOM</em>, <em>IDD_INST</em>, <em>IDD_INSTFILES</em>, <em>IDD_UNINST</em> or <em>IDD_VERIFY</em>) by a dialog with the same resource ID in ui_file.exe. You can also specify 'all' as the dialog if you wish to replace all 7 of the dialogs at once from the same UI file. For some example UIs look at Contrib\UIs under your NSIS directory.</p>
+<ul>
+<li><em>IDD_LICENSE</em> must contain <em>IDC_EDIT1</em> (RICHEDIT control).</li><li><em>IDD_DIR</em> must contain <em>IDC_DIR</em> (edit box), <em>IDC_BROWSE</em> (button) and <em>IDC_CHECK1</em> (checkbox).</li><li><em>IDD_SELCOM</em> must contain <em>IDC_TREE1</em> (SysTreeView32 control), and <em>IDC_COMBO1</em> (combo box).</li><li><em>IDD_INST</em> must contain <em>IDC_BACK</em> (button), <em>IDC_CHILDRECT</em> (static control the size of all other dialogs), <em>IDC_VERSTR</em> (static), <em>IDOK</em> (button), and <em>IDCANCEL</em> (button). If an image control (static with <em>SS_BITMAP</em> style) will be found in this dialog it will be used as the default for <a href="Section4.9.html#4.9.14.12">SetBrandingImage</a>.</li><li><em>IDD_INSTFILES</em> must contain <em>IDC_LIST1</em> (SysListView32 control), <em>IDC_PROGRESS</em> (msctls_progress32 control), and <em>IDC_SHOWDETAILS</em> (button).</li><li><em>IDD_UNINST</em> must contain <em>IDC_EDIT1</em> (edit box).</li><li><em>IDD_VERIFY</em> must contain <em>IDC_STR</em> (static).</li></ul>
+<pre>ChangeUI all &quot;${NSISDIR}\Contrib\UIs\sdbarker_tiny.exe&quot;
+</pre>
+<a name="4.8.1.9"></a><h4>4.8.1.9 CheckBitmap</h4>
+<pre>bitmap.bmp
+</pre>
+
+<p>Specifies the bitmap with the images used for the checks of the component-selection page treeview.</p>
+
+<p>This bitmap should have a size of 96x16 pixels, no more than 8bpp (256 colors) and contain six 16x16 images for the different states (in order: selection mask, not checked, checked, greyed out, unchecked &amp; read-only, checked &amp; read-only). Use magenta as mask color (this area will be transparent).</p>
+<a name="4.8.1.10"></a><h4>4.8.1.10 CompletedText</h4>
+<pre>text
+</pre>
+
+<p>Replaces the default text (&quot;Completed&quot;) that is printed at the end of the install if parameter is specified. Otherwise, the default is used.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the message is printed.</p>
+<a name="4.8.1.11"></a><h4>4.8.1.11 ComponentText</h4>
+<pre>[text [subtext] [subtext2]]
+</pre>
+
+<p>Used to change the default text on the component page.</p>
+
+<p>text: Text above the controls, to the right of the installation icon.</p>
+
+<p>subtext: Text next to the installation type selection.</p>
+
+<p>subtext2: Text to the left of the components list and below the installation type.</p>
+
+<p>The default string will be used if a string is empty (&quot;&quot;).</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the components page is created.</p>
+<a name="4.8.1.12"></a><h4>4.8.1.12 CRCCheck</h4>
+<pre><b>on</b>|off|force
+</pre>
+
+<p>Specifies whether or not the installer will perform a CRC on itself before allowing an install. Note that if the user uses /NCRC on the command line when executing the installer, and you didn't specify 'force', the CRC will not occur, and the user will be allowed to install a (potentially) corrupted installer.</p>
+<a name="4.8.1.13"></a><h4>4.8.1.13 DetailsButtonText</h4>
+<pre>show details text
+</pre>
+
+<p>Replaces the default details button text of &quot;Show details&quot;, if parameter is specified (otherwise the default is used).</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the install log (instfiles) page is created.</p>
+<a name="4.8.1.14"></a><h4>4.8.1.14 DirText</h4>
+<pre>[text] [subtext] [browse_button_text] [browse_dlg_text]
+</pre>
+
+<p>Used to change the default text on the directory page.</p>
+
+<p>text: Text above the controls, to the right of the installation icon.</p>
+
+<p>subtext: Text on the directory selection frame.</p>
+
+<p>browse_button_text: Text on the Browse button.</p>
+
+<p>browse_dlg_text: Text on the &quot;Browse For Folder&quot; dialog, appears after clicking on &quot;Browse&quot; button.</p>
+
+<p>The default string will be used if a string is empty (&quot;&quot;).</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the directory page is created.</p>
+<a name="4.8.1.15"></a><h4>4.8.1.15 DirVar</h4>
+<pre>user_var(dir input/output)
+</pre>
+
+<p>Specifies which variable is to be used to contain the directory selected. This variable should contain the default value too. This allows to easily create two different directory pages that will not require you to move values in and out of $INSTDIR. The default variable is $INSTDIR. This can only be used in <a href="Section4.5.html#4.5.6">PageEx</a> and for directory and uninstConfirm pages.</p>
+<pre>Var ANOTHER_DIR
+PageEx directory
+  DirVar $ANOTHER_DIR
+PageExEnd
+
+Section
+  SetOutPath $INSTDIR
+  File &quot;a file.dat&quot;
+  SetOutPath $ANOTHER_DIR
+  File &quot;another file.dat&quot;
+SectionEnd
+</pre>
+<a name="4.8.1.16"></a><h4>4.8.1.16 DirVerify</h4>
+<pre><b>auto</b>|leave
+</pre>
+
+<p>If `DirVerify leave' is used, the Next button will not be disabled if the installation directory is not valid or there is not enough space. A flag that you can read in the leave function using <a href="Section4.9.html#4.9.7.2">GetInstDirError</a> will be set instead.</p>
+<pre>PageEx directory
+  DirVerify leave
+  PageCallbacks &quot;&quot; &quot;&quot; dirLeave
+PageExEnd
+</pre>
+<a name="4.8.1.17"></a><h4>4.8.1.17 FileErrorText</h4>
+<pre>file error text
+</pre>
+
+<p>Replaces the default text that comes up when a file cannot be written to. This string can contain a reference to $0, which is the filename ($0 is temporarily changed to this value). Example: &quot;Can not write to file $\r$\n$0$\r$\ngood luck.&quot;.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before <a href="Section4.9.html#4.9.1.5">File</a> is used.</p>
+<a name="4.8.1.18"></a><h4>4.8.1.18 Icon</h4>
+<pre>[path\]icon.ico
+</pre>
+
+<p>Sets the icon of the installer. Every icon in the icon file will be included in the installer. Use <a href="Section4.8.html#4.8.1.42">UninstallIcon</a> to set the uninstaller icon.</p>
+<a name="4.8.1.19"></a><h4>4.8.1.19 InstallButtonText</h4>
+<pre>install button text
+</pre>
+
+<p>If parameter is specified, overrides the default install button text (of &quot;Install&quot;) with the specified text.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the install button shows.</p>
+<a name="4.8.1.20"></a><h4>4.8.1.20 InstallColors</h4>
+<pre>/windows | (foreground_color background_color)
+</pre>
+
+<p>Sets the colors to use for the install info screen (the default is 00FF00 000000. Use the form RRGGBB (in hexadecimal, as in HTML, only minus the leading '#', since # can be used for comments). Note that if &quot;/windows&quot; is specified as the only parameter, the default windows colors will be used.</p>
+<a name="4.8.1.21"></a><h4>4.8.1.21 InstallDir</h4>
+<pre>definstdir
+</pre>
+
+<p>Sets the default installation directory. See the <a href="Section4.2.html#4.2">variables section</a> for variables that can be used to make this string (especially $PROGRAMFILES). Note that the part of this string following the last \ will be used if the user selects 'browse', and may be appended back on to the string at install time (to disable this, end the directory with a \ (which will require the entire parameter to be enclosed with quotes). If this doesn't make any sense, play around with the browse button a bit.</p>
+<a name="4.8.1.22"></a><h4>4.8.1.22 InstallDirRegKey</h4>
+<pre>root_key subkey key_name
+</pre>
+
+<p>This attribute tells the installer to check a string in the registry, and use it for the install dir if that string is valid. If this attribute is present, it will override the InstallDir attribute if the registry key is valid, otherwise it will fall back to the InstallDir default. When querying the registry, this command will automatically remove any quotes. If the string ends in &quot;.exe&quot;, it will automatically remove the filename component of the string (i.e. if the string is &quot;C:\program files\poop\poop.exe&quot;, it will know to use &quot;C:\program files\poop&quot;). For more advanced install directory configuration, set $INSTDIR in .onInit.</p>
+
+<p>Language strings and variables cannot be used with InstallDirRegKey.</p>
+<pre>InstallDirRegKey HKLM Software\NSIS &quot;&quot;
+InstallDirRegKey HKLM Software\ACME\Thingy InstallLocation
+</pre>
+<a name="4.8.1.23"></a><h4>4.8.1.23 InstProgressFlags</h4>
+<pre>[flag [...]]
+</pre>
+
+<p>Valid values for flag are &quot;smooth&quot; (smooth the progress bar) or &quot;colored&quot; (color the progress bar with the colors set by InstallColors. Examples: &quot;InstProgressFlags&quot; (default old-school windows look), &quot;InstProgressFlags smooth&quot; (new smooth look), &quot;InstProgressFlags smooth colored&quot; (colored smooth look whee). Note: neither &quot;smooth&quot; or &quot;colored&quot; work with <a href="Section4.8.html#4.8.1.46">XPStyle</a> on when the installer runs on Windows XP with a modern theme.</p>
+<a name="4.8.1.24"></a><h4>4.8.1.24 InstType</h4>
+<pre>install_type_name | /NOCUSTOM | /CUSTOMSTRING=str | /COMPONENTSONLYONCUSTOM
+</pre>
+
+<p>Adds an install type to the install type list, or disables the custom install type. There can be as many as 32 types, each one specifying the name of the install type. If the name is prefixed with 'un.' it is an uninstaller install type. The name can contain variables which will be processed at runtime before the components page shows. Another way of changing the InstType name during runtime is the <a href="Section4.9.html#4.9.13.11">InstTypeSetText</a> command. The difference is that with <a href="Section4.9.html#4.9.13.11">InstTypeSetText</a> you are saving your precious user variables. The first type is the default (generally 'Typical'). If the /NOCUSTOM switch is specified, then the &quot;custom&quot; install type is disabled, and the user has to choose one of the pre-defined install types. Alternatively, if the /CUSTOMSTRING switch is specified, the parameter will override the &quot;Custom&quot; install type text. Alternatively, if the /COMPONENTSONLYONCUSTOM flag is specified, the component list will only be shown if the &quot;Custom&quot; install type is selected.</p>
+
+<p>Accepts variables for type names. If variables are used, they must be initialized before the components page is created.</p>
+<a name="4.8.1.25"></a><h4>4.8.1.25 LicenseBkColor</h4>
+<pre>color | <b>/gray</b> | /windows
+</pre>
+
+<p>Sets the background color of the license data. Color is specified using the form RRGGBB (in hexadecimal, as in HTML, only minus the leading '#', since # can be used for comments). Default is '/gray'. You can also use the Windows OS defined color by using '/windows'.</p>
+<a name="4.8.1.26"></a><h4>4.8.1.26 LicenseData</h4>
+<pre>licdata.(txt|rtf)
+</pre>
+
+<p>Specifies a text file or a RTF file to use for the license that the user can read. Omit this to not have a license displayed. Note that the file must be in the evil DOS text format (\r\n, yeah!). To define a multilingual license data use <a href="Section4.9.html#4.9.15.3">LicenseLangString</a>.</p>
+
+<p>If you make your license file a RTF file it is recommended you edit it with WordPad and not MS Word. Using WordPad will result in a much smaller file.</p>
+
+<p>Use <a href="Section4.9.html#4.9.15.3">LicenseLangString</a> to show a different license for every language.</p>
+<a name="4.8.1.27"></a><h4>4.8.1.27 LicenseForceSelection</h4>
+<pre>(checkbox [accept_text] | radiobuttons [accept_text] [decline_text] | <b>off</b>)
+</pre>
+
+<p>Specifies if the displayed license must be accept explicit or not. This can be done either by a checkbox or by radiobuttons. By default the &quot;next button&quot; is disabled and will only be enabled if the checkbox is enabled or the right radio button is selected. If off is specified the &quot;next button&quot; is enabled by default.</p>
+<pre>LicenseForceSelection checkbox
+LicenseForceSelection checkbox &quot;i accept&quot;
+LicenseForceSelection radiobuttons
+LicenseForceSelection radiobuttons &quot;i accept&quot;
+LicenseForceSelection radiobuttons &quot;i accept&quot; &quot;i decline&quot;
+LicenseForceSelection radiobuttons &quot;&quot; &quot;i decline&quot;
+LicenseForceSelection off
+</pre>
+<a name="4.8.1.28"></a><h4>4.8.1.28 LicenseText</h4>
+<pre>[text [button_text]]
+</pre>
+
+<p>Used to change the default text on the license page.</p>
+
+<p>text: Text above the controls, to the right of the installation icon.</p>
+
+<p>button_text: Text on the &quot;I Agree&quot; button.</p>
+
+<p>The default string will be used if a string is empty (&quot;&quot;).</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the license page is created.</p>
+<a name="4.8.1.29"></a><h4>4.8.1.29 MiscButtonText</h4>
+<pre>[back button text [next button text] [cancel button text] [close button text]]
+</pre>
+
+<p>Replaces the default text strings for the four buttons (&lt; Back, Next &gt;, Cancel and Close). If parameters are omitted, the defaults are used.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized in <a href="Section4.7.html#4.7.2.1.2">.onInit</a>.</p>
+<a name="4.8.1.30"></a><h4>4.8.1.30 Name</h4>
+<pre>name [name_doubled_ampersands]
+</pre>
+
+<p>Sets the name of the installer. The name is usually simply the product name such as 'MyApp' or 'CrapSoft MyApp'. If you have one or more ampersands (&amp;) in the name, set the second parameter to the same name, only with doubled ampersands. For example, if your product's name is &quot;Foo &amp; Bar&quot;, use:</p>
+<pre> Name &quot;Foo &amp; Bar&quot; &quot;Foo &amp;&amp; Bar&quot;
+</pre>
+
+<p>If you have ampersands in the name and use a <a href="Section4.9.html#4.9.15.2">LangString</a> for the name, you will have to create another one with doubled ampersands to use as the second parameter.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized in <a href="Section4.7.html#4.7.2.1.2">.onInit</a>.</p>
+<a name="4.8.1.31"></a><h4>4.8.1.31 OutFile</h4>
+<pre>[path\]install.exe
+</pre>
+
+<p>Specifies the output file that the MakeNSIS should write the installer to. This is just the file that MakeNSIS writes, it doesn't affect the contents of the installer.</p>
+<a name="4.8.1.32"></a><h4>4.8.1.32 RequestExecutionLevel</h4>
+<pre><b>none</b>|user|highest|admin
+</pre>
+
+<p>Specifies the requested execution level for Windows Vista and Windows 7. The value is embedded in the installer and uninstaller's XML manifest and tells Vista/7, and probably future versions of Windows, what privileges level the installer requires. <em>user</em> requests the a normal user's level with no administrative privileges. <em>highest</em> will request the highest execution level available for the current user and will cause Windows to prompt the user to verify privilege escalation. The prompt might request for the user's password. <em>admin</em> requests administrator level and will cause Windows to prompt the user as well. Specifying <em>none</em>, which is also the default, will keep the manifest empty and let Windows decide which execution level is required. Windows Vista/7 automatically identifies NSIS installers and decides administrator privileges are required. Because of this, <em>none</em> and <em>admin</em> have virtually the same effect.</p>
+
+<p>It's recommended, at least by Microsoft, that every application will be marked with the required execution level. Unmarked installers are subject to compatibility mode. Workarounds of this mode include automatically moving any shortcuts created in the user's start menu to all users' start menu. Installers that need not install anything into system folders or write to the local machine registry (HKLM) should specify <em>user</em> execution level.</p>
+
+<p>More information about this topic can be found at MSDN. Keywords include &quot;UAC&quot;, &quot;requested execution level&quot;, &quot;vista manifest&quot; and &quot;vista security&quot;.</p>
+<a name="4.8.1.33"></a><h4>4.8.1.33 SetFont</h4>
+<pre>[/LANG=lang_id] font_face_name font_size
+</pre>
+
+<p>Sets the installer font. Please remember that the font you choose must be present on the user's machine as well. Don't use rare fonts that only you have.</p>
+
+<p>Use the /LANG switch if you wish to set a different font for each language. For example:</p>
+<pre> SetFont /LANG=${LANG_ENGLISH} &quot;English Font&quot; 9
+ SetFont /LANG=${LANG_FRENCH} &quot;French Font&quot; 10
+</pre>
+
+<p>There are two <a href="Section4.9.html#4.9.15.2">LangString</a>s named ^Font and ^FontSize which contain the font and font size for every language.</p>
+<a name="4.8.1.34"></a><h4>4.8.1.34 ShowInstDetails</h4>
+<pre><b>hide</b>|show|nevershow
+</pre>
+
+<p>Sets whether or not the details of the install are shown. Can be 'hide' to hide the details by default, allowing the user to view them, or 'show' to show them by default, or 'nevershow', to prevent the user from ever seeing them. Note that sections can override this using <a href="Section4.9.html#4.9.14.13">SetDetailsView</a>.</p>
+<a name="4.8.1.35"></a><h4>4.8.1.35 ShowUninstDetails</h4>
+<pre><b>hide</b>|show|nevershow
+</pre>
+
+<p>Sets whether or not the details of the uninstall are shown. Can be 'hide' to hide the details by default, allowing the user to view them, or 'show' to show them by default, or 'nevershow', to prevent the user from ever seeing them. Note that sections can override this using <a href="Section4.9.html#4.9.14.13">SetDetailsView</a>.</p>
+<a name="4.8.1.36"></a><h4>4.8.1.36 SilentInstall</h4>
+<pre><b>normal</b>|silent|silentlog
+</pre>
+
+<p>Specifies whether or not the installer should be silent. If it is 'silent' or 'silentlog', all sections that have the SF_SELECTED flag are installed quietly (you can set this flag using <a href="Section4.9.html#4.9.13.1">SectionSetFlags</a>), with no screen output from the installer itself (the script can still display whatever it wants, use <a href="Section4.9.html#4.9.4.15">MessageBox</a>'s /SD to specify a default for silent installers). Note that if this is set to 'normal' and the user runs the installer with /S (case sensitive) on the command line, it will behave as if SilentInstall 'silent' was used. Note: see also <a href="Section4.9.html#4.9.12.1">LogSet</a>.</p>
+
+<p>See <a href="Section4.12.html#4.12">section 4.12</a> for more information.</p>
+<a name="4.8.1.37"></a><h4>4.8.1.37 SilentUnInstall</h4>
+<pre><b>normal</b>|silent
+</pre>
+
+<p>Specifies whether or not the uninstaller should be silent. If it is 'silent' or 'silentlog', the uninstall section will run quietly, with no screen output from the uninstaller itself (the script can still display whatever it wants, use <a href="Section4.9.html#4.9.4.15">MessageBox</a>'s /SD to specify a default for silent installers). Note that if this is set to 'normal' and the user runs the uninstaller with /S on the command line, it will behave as if SilentUnInstall 'silent' was used. Note: see also <a href="Section4.9.html#4.9.12.1">LogSet</a>.</p>
+
+<p>See <a href="Section4.12.html#4.12">section 4.12</a> for more information.</p>
+<a name="4.8.1.38"></a><h4>4.8.1.38 SpaceTexts</h4>
+<pre>[req text [avail text]]
+</pre>
+
+<p>If parameters are specified, overrides the space required and space available text (&quot;Space required: &quot; and &quot;Space available: &quot; by default). If 'none' is specified as the required text no space texts will be shown.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the components page is created.</p>
+<a name="4.8.1.39"></a><h4>4.8.1.39 SubCaption</h4>
+<pre>[page_number subcaption]
+</pre>
+
+<p>Overrides the subcaptions for each of the installer pages (0=&quot;: License Agreement&quot;,1=&quot;: Installation Options&quot;,2=&quot;: Installation Directory&quot;, 3=&quot;: Installing Files&quot;, 4=&quot;: Completed&quot;). If you specify an empty string (&quot;&quot;), the default will be used (you can however specify &quot; &quot; to achieve a blank string).</p>
+
+<p>You can also set a subcaption (or override the default) using <a href="Section4.8.html#4.8.1.7">Caption</a> inside a <a href="Section4.5.html#4.5.6">PageEx</a> block.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the relevant page is created.</p>
+<a name="4.8.1.40"></a><h4>4.8.1.40 UninstallButtonText</h4>
+<pre>text
+</pre>
+
+<p>Changes the text of the button that by default says &quot;Uninstall&quot; in the uninstaller. If no parameter is specified, the default text is used. See also <a href="Section4.9.html#4.9.6.1">WriteUninstaller</a> (replaces UninstallEXEName).</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the uninstall button shows.</p>
+<a name="4.8.1.41"></a><h4>4.8.1.41 UninstallCaption</h4>
+<pre>caption
+</pre>
+
+<p>Sets what the titlebars of the uninstaller will display. By default, it is 'Name Uninstall', where Name is specified with the Name command. You can, however, override it with 'MyApp uninstaller' or whatever. If you specify an empty string (&quot;&quot;), the default will be used (you can however specify &quot; &quot; to achieve a blank string).</p>
+
+<p>Accepts variables. If variables are used, they must be initialized in <a href="Section4.7.html#4.7.2.2.2">un.onInit</a>.</p>
+<a name="4.8.1.42"></a><h4>4.8.1.42 UninstallIcon</h4>
+<pre>[path\]icon.ico
+</pre>
+
+<p>Sets the icon of the uninstaller.</p>
+<a name="4.8.1.43"></a><h4>4.8.1.43 UninstallSubCaption</h4>
+<pre>page_number subcaption
+</pre>
+
+<p>Sets the default subcaptions for the uninstaller pages (0=&quot;: Confirmation&quot;,1=&quot;: Uninstalling Files&quot;,2=&quot;: Completed&quot;). If you specify an empty string (&quot;&quot;), the default will be used (you can however specify &quot; &quot; to achieve a blank string).</p>
+
+<p>You can also set a subcaption (or override the default) using <a href="Section4.8.html#4.8.1.7">Caption</a> inside a <a href="Section4.5.html#4.5.6">PageEx</a> block.</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the relevant page is created.</p>
+<a name="4.8.1.44"></a><h4>4.8.1.44 UninstallText</h4>
+<pre>text [subtext]
+</pre>
+
+<p>Specifies the texts on the uninstaller confirm page.</p>
+
+<p>text: Text above the controls</p>
+
+<p>subtext: Text next to the uninstall location</p>
+
+<p>Accepts variables. If variables are used, they must be initialized before the uninstaller confirm page is created.</p>
+<a name="4.8.1.45"></a><h4>4.8.1.45 WindowIcon</h4>
+<pre><b>on</b>|off
+</pre>
+
+<p>Sets whether or not the installer's icon is being displayed.</p>
+<a name="4.8.1.46"></a><h4>4.8.1.46 XPStyle</h4>
+<pre>on|<b>off</b>
+</pre>
+
+<p>Sets whether or not an XP manifest will be added to the installer. An XP manifest makes the installer controls use the new XP style when running on Windows XP. This affects the uninstaller too.</p>
+<a name="4.8.2"></a><h3>4.8.2 Compiler Flags</h3>
+
+<p>The following commands affect how the compiler generates code and compresses data. Unless otherwise noted, these commands are valid anywhere in the script, and effect every line below where each one is placed (until overridden by another command). They cannot be jumped over using <a href="Section4.9.html#4.9.4">flow control insutrctions</a>.</p>
+
+<p>For example, in the following script, blah.dat will never be overwritten.</p>
+<pre>${If} $0 == 0
+  SetOverwrite on
+${Else}
+  SetOverwrite off
+${EndIf}
+File blah.dat # overwrite is always off here!
+</pre>
+
+<p>Instead, the following should be used.</p>
+<pre>${If} $0 == 0
+  SetOverwrite on
+  File blah.dat
+${Else}
+  SetOverwrite off
+  File blah.dat
+${EndIf}
+</pre>
+<a name="4.8.2.1"></a><h4>4.8.2.1 AllowSkipFiles</h4>
+<pre><b>on</b>|off
+</pre>
+
+<p>This command specifies whether the user should be able to skip a file or not. A user has an option to skip a file if <a href="Section4.8.html#4.8.2.8">SetOverwrite</a> is set to on (default) and the installer fails to open a file for writing when trying to extract a file. If <em>off</em> is used the ignore button which allows the user to skip the file will not show and the user will only have an option to abort the installation (Cancel button) or retry opening the file for writing (Retry button). If <em>on</em> is used the user will have an option to skip the file (error flag will be set - see <a href="Section4.8.html#4.8.2.8">SetOverwrite</a>).</p>
+<a name="4.8.2.2"></a><h4>4.8.2.2 FileBufSize</h4>
+<pre>buffer_size_in_mb
+</pre>
+
+<p>This command sets the size of the compiler's internal file buffers. This command allows you to control the compiler's memory usage by limiting how much of a given file it will load into memory at once. Since the compiler needs both input and output, twice the memory size specified could be used at any given time for file buffers. This command does not limit the compression buffers which could take another couple of MB, neither does it limit the compiler's other internal buffers, but those shouldn't normally top 1MB anyway. Specifying a very small number could decrease performance. Specifying a very large number could exhaust system resources and force the compiler to cancel the compilation process. The default value is 32MB.</p>
+<a name="4.8.2.3"></a><h4>4.8.2.3 SetCompress</h4>
+<pre><b>auto</b>|force|off
+</pre>
+
+<p>This command sets the compress flag which is used by the installer to determine whether or not data should be compressed. Typically the SetCompress flag will affect the commands after it, and the last SetCompress command in the file also determines whether or not the install info section and uninstall data of the installer is compressed. If compressflag is 'auto', then files are compressed if the compressed size is smaller than the uncompressed size. If compressflag is set to 'force', then the compressed version is always used. If compressflag is 'off' then compression is not used (which can be faster).</p>
+
+<p>Note that this option has no effect when solid compression is used.</p>
+<a name="4.8.2.4"></a><h4>4.8.2.4 SetCompressor</h4>
+<pre>[/SOLID] [/FINAL] <b>zlib</b>|bzip2|lzma
+</pre>
+
+<p>This command sets the compression algorithm used to compress files/data in the installer. It can only be used outside of sections and functions and before any data is compressed. Different compression methods can not be used for different files in the same installer. It is recommended to use it on the very top of the script to avoid compilation errors.</p>
+
+<p>Three compression methods are supported: ZLIB, BZIP2 and LZMA.</p>
+
+<p>ZLIB (the default) uses the deflate algorithm, it is a quick and simple method. With the default compression level it uses about 300 KB of memory.</p>
+
+<p>BZIP2 usually gives better compression ratios than ZLIB, but it is a bit slower and uses more memory. With the default compression level it uses about 4 MB of memory.</p>
+
+<p>LZMA is a new compression method that gives very good compression ratios. The decompression speed is high (10-20 MB/s on a 2 GHz CPU), the compression speed is lower. The memory size that will be used for decompression is the dictionary size plus a few KBs, the default is 8 MB.</p>
+
+<p>If <em>/FINAL</em> is used, subsequent calls to SetCompressor will be ignored.</p>
+
+<p>If <em>/SOLID</em> is used, all of the installer data is compressed in one block. This results in greater compression ratios.</p>
+<a name="4.8.2.5"></a><h4>4.8.2.5 SetCompressorDictSize</h4>
+<pre>dict_size_mb
+</pre>
+
+<p>Sets the dictionary size in megabytes (MB) used by the LZMA compressor (default is 8 MB).</p>
+<a name="4.8.2.6"></a><h4>4.8.2.6 SetDatablockOptimize</h4>
+<pre><b>on</b>|off
+</pre>
+
+<p>This command tells the compiler whether or not to do datablock optimizations. Datablock optimizations have the compiler check to see if any data being added to the data block is already in the data block, and if so, it is simply referenced as opposed to added (can save a little bit of size). It is highly recommended to leave this option on.</p>
+<a name="4.8.2.7"></a><h4>4.8.2.7 SetDateSave</h4>
+<pre><b>on</b>|off
+</pre>
+
+<p>This command sets the file date/time saving flag which is used by the File command to determine whether or not to save the last write date and time of the file, so that it can be restored on installation. Valid flags are 'on' and 'off'. 'on' is the default.</p>
+<a name="4.8.2.8"></a><h4>4.8.2.8 SetOverwrite</h4>
+<pre><b>on</b>|off|try|ifnewer|ifdiff|lastused
+</pre>
+
+<p>This command sets the overwrite flag which is used by the <a href="Section4.9.html#4.9.1.5">File</a> command to determine whether or not the file should overwrite any existing files that are present. If overwriteflag is 'on', files are overwritten (this is the default). If overwriteflag is 'off', files that are already present are not overwritten. If overwriteflag is 'try', files are overwritten if possible (meaning that if the file is not able to be written to, it is skipped without any user interaction). If overwriteflag is 'ifnewer', then files are only overwritten if the existing file is older than the new file. If overwriteflag is 'ifdiff', then files are only overwritten if the existing file is older or newer than the new file. Note that when in 'ifnewer' or 'ifdiff' mode, the destination file's date is set, regardless of what SetDateSave is set to.</p>
+<pre>SetOverwrite off
+File program.cfg # config file we don't want to overwrite
+SetOverwrite on
+</pre>
+<a name="4.8.3"></a><h3>4.8.3 Version Information</h3>
+<a name="4.8.3.1"></a><h4>4.8.3.1 VIAddVersionKey</h4>
+<pre> [/LANG=lang_id] keyname value
+</pre>
+
+<p>Adds a field in the Version Tab of the File Properties. This can either be a field provided by the system or a user defined field. The following fields are provided by the System:</p>
+<ul>
+<li>ProductName</li><li>Comments</li><li>CompanyName</li><li>LegalCopyright</li><li>FileDescription</li><li>FileVersion</li><li>ProductVersion</li><li>InternalName</li><li>LegalTrademarks</li><li>OriginalFilename</li><li>PrivateBuild</li><li>SpecialBuild</li></ul>
+
+<p>The name of these fields are translated on the target system, whereas user defined fields remain untranslated.</p>
+<pre>VIAddVersionKey /LANG=${LANG_ENGLISH} &quot;ProductName&quot; &quot;Test Application&quot;
+VIAddVersionKey /LANG=${LANG_ENGLISH} &quot;Comments&quot; &quot;A test comment&quot;
+VIAddVersionKey /LANG=${LANG_ENGLISH} &quot;CompanyName&quot; &quot;Fake company&quot;
+VIAddVersionKey /LANG=${LANG_ENGLISH} &quot;LegalTrademarks&quot; &quot;Test Application is a trademark of Fake company&quot;
+VIAddVersionKey /LANG=${LANG_ENGLISH} &quot;LegalCopyright&quot; &quot;&#0169; Fake company&quot;
+VIAddVersionKey /LANG=${LANG_ENGLISH} &quot;FileDescription&quot; &quot;Test Application&quot;
+VIAddVersionKey /LANG=${LANG_ENGLISH} &quot;FileVersion&quot; &quot;1.2.3&quot;
+</pre>
+<a name="4.8.3.2"></a><h4>4.8.3.2 VIProductVersion</h4>
+<pre>[version_string_X.X.X.X]
+</pre>
+
+<p>Adds the Product Version on top of the Version Tab in the Properties of the file.</p>
+<pre>VIProductVersion &quot;1.2.3.4&quot;
+</pre>
+<p><a href='Section4.7.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.9.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

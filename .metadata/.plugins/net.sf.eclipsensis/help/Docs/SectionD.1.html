@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Error Levels</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='AppendixD.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionD.2.html'>Next</a></p>
+<a name="D.1"></a><h2>D.1 Error Levels</h2>
+
+<p>Like other applications, installers made by NSIS return error levels as a result of their execution. Checking the error level can be useful if you call an NSIS installer from another application or installer.</p>
+<ul>
+<li>0 - Normal execution (no error)</li><li>1 - Installation aborted by user (cancel button)</li><li>2 - Installation aborted by script</li></ul>
+
+<p>As of NSIS 2.01, you can set the error level to other values using <a href="Section4.9.html#4.9.7.5">SetErrorLevel</a>.</p>
+
+<p>Note that uninstallers copy themselves to the temporary directory and execute from there so the original uninstaller can be deleted. This means the error level the uninstaller sets is not available to the executing process, unless it simulates this copy process and executes the copied uninstaller. To simulate this process, use:</p>
+<pre>CopyFiles $INSTDIR\uninstaller.exe $TEMP
+ExecWait '&quot;$TEMP\uninstaller.exe&quot; _?=$INSTDIR' $0
+DetailPrint &quot;uninstaller set error level $0&quot;
+</pre>
+
+<p>If you don't do this, you'll only be able to know if the uninstaller failed copying itself to the temporary directory.</p>
+<p><a href='AppendixD.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionD.2.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

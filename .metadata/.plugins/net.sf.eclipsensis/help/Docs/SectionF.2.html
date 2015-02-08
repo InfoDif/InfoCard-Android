@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.45</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.3.html'>Next</a></p>
+<a name="F.2"></a><h2>F.2 2.45</h2>
+
+<p>Released on June 6th, 2009</p>
+<a name="F.2.1"></a><h3>F.2.1 Release Notes</h3>
+<ul>
+<li>Support for Microsoft's upcoming release of Windows 7 has been added based on RC1 testing and documentation. Please report any related issues and don't forget to use <a href="Section4.8.html#4.8.1.32">RequestExecutionLevel</a>.</li></ul>
+<a name="F.2.2"></a><h3>F.2.2 Changelog</h3>
+<a name="F.2.2.1"></a><h4>F.2.2.1 Major Changes</h4>
+<ul>
+<li>Added support for Windows 7 installers - use <a href="Section4.8.html#4.8.1.32">RequestExecutionLevel</a>, just like with Vista (<a href="http://sourceforge.net/support/tracker.php?aid=2725883">bug #2725883</a>)</li><li>Added WinVer.nsh Windows 7 and Windows 2008 R2 support</li><li>Installers now identify as Terminal Services aware (IMAGE_DLLCHARACTERISTICS_TERMINAL_SERVER_AWARE) so $WINDIR will no longer be under the user's profile when installing on Terminal Services</li><li>Less UAC annoyance in Add/Remove control panel (<a href="http://sourceforge.net/support/tracker.php?aid=2697027">bug #2697027</a>)</li></ul>
+<a name="F.2.2.2"></a><h4>F.2.2.2 Minor Changes</h4>
+<ul>
+<li>Added wildcard and /nonfatal suppport for <a href="Section5.1.html#5.1.6">!delfile</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1505425">RFE #1505425</a>)</li><li>Fixed <a href="Section5.4.html#5.4.13">!searchparse</a> (<a href="http://sourceforge.net/support/tracker.php?aid=2680110">bug #2680110</a>)</li><li>Fixed input validation for <a href="Section4.9.html#4.9.14.2">CreateFont</a> (<a href="http://sourceforge.net/support/tracker.php?aid=2801024">bug #2801024</a>)</li><li>Fixed NSIS Menu handling of working directory (<a href="http://sourceforge.net/support/tracker.php?aid=2781948">bug #2781948</a>)</li><li>Fixed Vista issues with shell folders ($DOCUMENTS, $PROFILE, etc.) on root directories (<a href="http://sourceforge.net/support/tracker.php?aid=2138075">bug #2138075</a>)</li><li>Minor documentation improvements (including <a href="http://sourceforge.net/support/tracker.php?aid=2705878">bug #2705878</a>, <a href="http://sourceforge.net/support/tracker.php?aid=2606525">bug #2606525</a>)</li><li>Use SW_SHOWDEFAULT for <a href="Section4.9.html#4.9.1.3">ExecShell</a> by default (<a href="http://sourceforge.net/support/tracker.php?aid=2796189">bug #2796189</a>)</li></ul>
+<a name="F.2.2.3"></a><h4>F.2.2.3 Modern UI</h4>
+<ul>
+<li>Call finish page show function only after the page is fully initialized (<a href="http://sourceforge.net/support/tracker.php?aid=2720968">bug #2720968</a>)</li><li>Fixed translation of uninstaller directory page (<a href="http://sourceforge.net/support/tracker.php?aid=2690112">bug #2690112</a>)</li><li>Fixed installation type text position in components page (<a href="http://sourceforge.net/support/tracker.php?aid=2801317">patch #2801317</a>)</li><li>Fixed missing MUI_INNERTEXT_COMPONENTS_DESCRIPTION_TITLE (<a href="http://sourceforge.net/support/tracker.php?aid=2788620">bug #2788620</a>)</li></ul>
+<a name="F.2.2.4"></a><h4>F.2.2.4 Translations</h4>
+<ul>
+<li>Updated Indonesian (<a href="http://sourceforge.net/support/tracker.php?aid=2790571">patch #2790571</a>)</li><li>Updated Portuguese BR (<a href="http://sourceforge.net/support/tracker.php?aid=2642542">patch #2642542</a>)</li></ul>
+<a name="F.2.2.5"></a><h4>F.2.2.5 Build System</h4>
+<ul>
+<li>Fixed some GCC warnings</li></ul>
+<p><a href='SectionF.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.3.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

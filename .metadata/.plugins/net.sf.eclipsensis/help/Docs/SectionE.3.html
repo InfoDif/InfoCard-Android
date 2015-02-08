@@ -1,0 +1,952 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Word Functions Header</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionE.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='AppendixF.html'>Next</a></p>
+<a name="E.3"></a><h2>E.3 Word Functions Header</h2>
+<a name="E.3.1"></a><h3>E.3.1 Introduction</h3>
+
+<p>Include header:</p>
+<pre>!include &quot;WordFunc.nsh&quot;
+</pre>
+
+<p>Call functions:</p>
+<pre>Section Install
+&#0009;${WordFind} &quot;A--H---S&quot; &quot;-&quot; &quot;+2&quot; $R0
+&#0009;; $R0=&quot;H&quot;
+SectionEnd
+</pre>
+<pre>Section un.Install
+&#0009;${WordReplace} &quot;A--H---S&quot; &quot;-&quot; &quot;x&quot; &quot;+3*&quot; $R0
+&#0009;; $R0=&quot;A--HxS&quot;
+SectionEnd
+</pre>
+<a name="E.3.2"></a><h3>E.3.2 WordFind</h3>
+<ul>
+<li>Multi-features string function.</li></ul>
+<pre>Strings:
+&quot;[word+1][delimiter][word+2][delimiter][word+3]...&quot;
+&quot;[delimiter][word+1][delimiter][word+2][delimiter]...&quot;
+&quot;[delimiter][delimiter][word+1][delimiter][delimiter][delimiter]...&quot;
+&quot;...[word-3][delimiter][word-2][delimiter][word-1]&quot;
+&quot;...[delimiter][word-2][delimiter][word-1][delimiter]&quot;
+&quot;...[delimiter][delimiter][word-1][delimiter][delimiter][delimiter]&quot;
+</pre>
+
+<p><b>Syntax: </b></p>
+<pre>${WordFind} &quot;[string]&quot; &quot;[delimiter]&quot; &quot;[E][options]&quot; $var
+</pre>
+<pre>&quot;[string]&quot;         ;[string]
+                   ;  input string
+&quot;[delimiter]&quot;      ;[delimiter]
+                   ;  one or several symbols
+&quot;[E][options]&quot;     ;[options]
+                   ;  +number   : word number from start
+                   ;  -number   : word number from end
+                   ;  +number}  : delimiter number from start
+                   ;              all space after this
+                   ;              delimiter to output
+                   ;  +number{  : delimiter number from start
+                   ;              all space before this
+                   ;              delimiter to output
+                   ;  +number}} : word number from start
+                   ;              all space after this word
+                   ;              to output
+                   ;  +number{{ : word number from start
+                   ;              all space before this word
+                   ;              to output
+                   ;  +number{} : word number from start
+                   ;              all space before and after
+                   ;              this word (word exclude)
+                   ;  +number*} : word number from start
+                   ;              all space after this
+                   ;              word to output with word
+                   ;  +number{* : word number from start
+                   ;              all space before this
+                   ;              word to output with word
+                   ;  #         : sum of words to output
+                   ;  *         : sum of delimiters to output
+                   ;  /word     : number of word to output
+                   ;
+                   ;[E]
+                   ;  with errorlevel output
+                   ;  IfErrors:
+                   ;     $var=1  delimiter not found
+                   ;     $var=2  no such word number
+                   ;     $var=3  syntax error (Use: +1,-1},#,*,/word,...)
+                   ;[]
+                   ;  no errorlevel output (default)
+                   ;  If some errors found then (result=input string)
+                   ;
+$var               ;output (result)
+</pre>
+
+<p><b>Note:</b> <br>- Accepted numbers 1,01,001,...</p>
+
+<p><b>Example (Find word by number):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\Program Files C:\WINDOWS&quot; &quot; C:\&quot; &quot;-02&quot; $R0
+&#0009;; $R0=&quot;Program Files&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (Delimiter exclude):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;sys&quot; &quot;-2}&quot; $R0
+&#0009;; $R0=&quot; C:\logo.sys C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (Sum of words):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; C:\&quot; &quot;#&quot; $R0
+&#0009;; $R0=&quot;3&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (Sum of delimiters):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;sys&quot; &quot;*&quot; $R0
+&#0009;; $R0=&quot;2&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (Find word number):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\Program Files C:\WINDOWS&quot; &quot; &quot; &quot;/Files&quot; $R0
+&#0009;; $R0=&quot;3&quot;
+SectionEnd
+</pre>
+
+<p><b>Example ( }} ):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;+2}}&quot; $R0
+&#0009;; $R0=&quot; C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example ( {} ):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;+2{}&quot; $R0
+&#0009;; $R0=&quot;C:\io.sys C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example ( *} ):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;+2*}&quot; $R0
+&#0009;; $R0=&quot;C:\logo.sys C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (Get parent directory):</b></p>
+<pre>Section
+&#0009;StrCpy $R0 &quot;C:\Program Files\NSIS\NSIS.chm&quot;
+;&#0009;           &quot;C:\Program Files\NSIS\Include\&quot;
+;&#0009;           &quot;C:\\Program Files\\NSIS\\NSIS.chm&quot;
+
+&#0009;${WordFind} &quot;$R0&quot; &quot;\&quot; &quot;-2{*&quot; $R0
+&#0009;; $R0=&quot;C:\Program Files\NSIS&quot;
+&#0009;;     &quot;C:\\Program Files\\NSIS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (Coordinates):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;:\lo&quot; &quot;E+1{&quot; $R0
+&#0009;; $R0=&quot;C:\io.sys C&quot;
+&#0009;IfErrors end
+
+&#0009;StrLen $0 $R0             ; $0 = Start position of word (11)
+&#0009;StrLen $1 ':\lo'          ; $1 = Word length (4)
+&#0009;; StrCpy $R0 $R1 $1 $0    ; $R0 = :\lo
+
+&#0009;end:
+SectionEnd
+</pre>
+
+<p><b>Example (With errorlevel output):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;[string]&quot; &quot;[delimiter]&quot; &quot;E[options]&quot; $R0
+
+&#0009;IfErrors 0 end
+&#0009;StrCmp $R0 1 0 +2       ; errorlevel 1?
+&#0009;MessageBox MB_OK 'delimiter not found' IDOK end
+&#0009;StrCmp $R0 2 0 +2       ; errorlevel 2?
+&#0009;MessageBox MB_OK 'no such word number' IDOK end
+&#0009;StrCmp $R0 3 0 +2       ; errorlevel 3?
+&#0009;MessageBox MB_OK 'syntax error'
+
+&#0009;end:
+SectionEnd
+</pre>
+
+<p><b>Example (Without errorlevel output):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys&quot; &quot;_&quot; &quot;+1&quot; $R0
+
+&#0009;; $R0=&quot;C:\io.sys C:\logo.sys&quot; (error: delimiter &quot;_&quot; not found)
+SectionEnd
+</pre>
+
+<p><b>Example (If found):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys&quot; &quot;:\lo&quot; &quot;E+1{&quot; $R0
+
+&#0009;IfErrors notfound found
+&#0009;found:
+&#0009;MessageBox MB_OK 'Found' IDOK end
+&#0009;notfound:
+&#0009;MessageBox MB_OK 'Not found'
+
+&#0009;end:
+SectionEnd
+</pre>
+
+<p><b>Example (If found 2):</b></p>
+<pre>Section
+&#0009;${WordFind} &quot;C:\io.sys C:\logo.sys&quot; &quot;:\lo&quot; &quot;+1{&quot; $R0
+
+&#0009;StrCmp $R0 &quot;C:\io.sys C:\logo.sys&quot; notfound found        ; error?
+&#0009;found:
+&#0009;MessageBox MB_OK 'Found' IDOK end
+&#0009;notfound:
+&#0009;MessageBox MB_OK 'Not found'
+
+&#0009;end:
+SectionEnd
+</pre>
+
+<p><b>Example (To accept one word in string if delimiter not found):</b></p>
+<pre>Section
+&#0009;StrCpy $0 'OneWord'
+&#0009;StrCpy $1 1
+
+&#0009;loop:
+&#0009;${WordFind} &quot;$0&quot; &quot; &quot; &quot;E+$1&quot; $R0
+&#0009;IfErrors 0 code
+&#0009;StrCmp $1$R0 11 0 error
+&#0009;StrCpy $R0 $0
+&#0009;goto end
+
+&#0009;code:
+&#0009;; ...
+&#0009;IntOp $1 $1 + 1
+&#0009;goto loop
+
+&#0009;error:
+&#0009;StrCpy $1 ''
+&#0009;StrCpy $R0 ''
+
+&#0009;end:
+&#0009;; $R0=&quot;OneWord&quot;
+SectionEnd
+</pre>
+<a name="E.3.3"></a><h3>E.3.3 WordFindS</h3>
+<ul>
+<li>Same as <a href="SectionE.3.html#E.3.2">WordFind</a>, but case sensitive.</li></ul>
+<a name="E.3.4"></a><h3>E.3.4 WordFind2X</h3>
+<ul>
+<li>Find word between two delimiters.</li></ul>
+<pre>Strings:
+&quot;[delimiter1][word+1][delimiter2][delimiter1][word+2][delimiter2]...&quot;
+&quot;[text][delimiter1][text][delimiter1][word+1][delimiter2][text]...&quot;
+&quot;...[delimiter1][word-2][delimiter2][delimiter1][word-1][delimiter2]&quot;
+&quot;...[text][delimiter1][text][delimiter1][word-1][delimiter2][text]&quot;
+</pre>
+
+<p><b>Syntax:</b></p>
+<pre>${WordFind2X} &quot;[string]&quot; &quot;[delimiter1]&quot; &quot;[delimiter2]&quot; &quot;[E][options]&quot; $var
+</pre>
+<pre>&quot;[string]&quot;         ;[string]
+                   ;  input string
+&quot;[delimiter1]&quot;     ;[delimiter1]
+                   ;  first delimiter
+&quot;[delimiter2]&quot;     ;[delimiter2]
+                   ;  second delimiter
+&quot;[E][options]&quot;     ;[options]
+                   ;  +number   : word number from start
+                   ;  -number   : word number from end
+                   ;  +number}} : word number from start all space
+                   ;              after this word to output
+                   ;  +number{{ : word number from end all space
+                   ;              before this word to output
+                   ;  +number{} : word number from start
+                   ;              all space before and after
+                   ;              this word (word exclude)
+                   ;  +number*} : word number from start
+                   ;              all space after this
+                   ;              word to output with word
+                   ;  +number{* : word number from start
+                   ;              all space before this
+                   ;              word to output with word
+                   ;  #         : sum of words to output
+                   ;  /word     : number of word to output
+                   ;
+                   ;[E]
+                   ;  with errorlevel output
+                   ;  IfErrors:
+                   ;     $var=1  no words found
+                   ;     $var=2  no such word number
+                   ;     $var=3  syntax error (Use: +1,-1,#)
+                   ;[]
+                   ;  no errorlevel output (default)
+                   ;  If some errors found then (result=input string)
+                   ;
+$var               ;output (result)
+</pre>
+
+<p><b>Example (1):</b></p>
+<pre>Section
+&#0009;${WordFind2X} &quot;[C:\io.sys];[C:\logo.sys];[C:\WINDOWS]&quot; &quot;[C:\&quot; &quot;];&quot; &quot;+2&quot; $R0
+&#0009;; $R0=&quot;logo.sys&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (2):</b></p>
+<pre>Section
+&#0009;${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1&quot; $R0
+&#0009;; $R0=&quot;logo&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (3):</b></p>
+<pre>Section
+&#0009;${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{{&quot; $R0
+&#0009;; $R0=&quot;C:\WINDOWS C:\io.sys C:&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (4):</b></p>
+<pre>Section
+&#0009;${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{}&quot; $R0
+&#0009;; $R0=&quot;C:\WINDOWS C:\io.sys C:sys&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (5):</b></p>
+<pre>Section
+&#0009;${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;-1{*&quot; $R0
+&#0009;; $R0=&quot;C:\WINDOWS C:\io.sys C:\logo.&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (6):</b></p>
+<pre>Section
+&#0009;${WordFind2X} &quot;C:\WINDOWS C:\io.sys C:\logo.sys&quot; &quot;\&quot; &quot;.&quot; &quot;/logo&quot; $R0
+&#0009;; $R0=&quot;2&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (With errorlevel output):</b></p>
+<pre>Section
+&#0009;${WordFind2X} &quot;[io.sys];[C:\logo.sys]&quot; &quot;\&quot; &quot;];&quot; &quot;E+1&quot; $R0
+&#0009;; $R0=&quot;1&quot; (&quot;\...];&quot; not found)
+
+&#0009;IfErrors 0 noerrors
+&#0009;MessageBox MB_OK 'Errorlevel=$R0' IDOK end
+
+&#0009;noerrors:
+&#0009;MessageBox MB_OK 'No errors'
+
+&#0009;end:
+SectionEnd
+</pre>
+<a name="E.3.5"></a><h3>E.3.5 WordFind2XS</h3>
+<ul>
+<li>Same as <a href="SectionE.3.html#E.3.4">WordFind2X</a>, but case sensitive.</li></ul>
+<a name="E.3.6"></a><h3>E.3.6 WordFind3X</h3>
+<ul>
+<li>Find a word that contains a string, between two delimiters.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${WordFind3X} &quot;[string]&quot; &quot;[delimiter1]&quot; &quot;[center]&quot; &quot;[delimiter2]&quot; &quot;[E][options]&quot; $var
+</pre>
+<pre>&quot;[string]&quot;         ;[string]
+                   ;  input string
+&quot;[delimiter1]&quot;     ;[delimiter1]
+                   ;  first delimiter
+&quot;[center]&quot;         ;[center]
+                   ;  center string
+&quot;[delimiter2]&quot;     ;[delimiter2]
+                   ;  second delimiter
+&quot;[E][options]&quot;     ;[options]
+                   ;  +number   : word number from start
+                   ;  -number   : word number from end
+                   ;  +number}} : word number from start all space
+                   ;              after this word to output
+                   ;  +number{{ : word number from end all space
+                   ;              before this word to output
+                   ;  +number{} : word number from start
+                   ;              all space before and after
+                   ;              this word (word exclude)
+                   ;  +number*} : word number from start
+                   ;              all space after this
+                   ;              word to output with word
+                   ;  +number{* : word number from start
+                   ;              all space before this
+                   ;              word to output with word
+                   ;  #         : sum of words to output
+                   ;  /word     : number of word to output
+                   ;
+                   ;[E]
+                   ;  with errorlevel output
+                   ;  IfErrors:
+                   ;     $var=1  no words found
+                   ;     $var=2  no such word number
+                   ;     $var=3  syntax error (Use: +1,-1,#)
+                   ;[]
+                   ;  no errorlevel output (default)
+                   ;  If some errors found then (result=input string)
+                   ;
+$var               ;output (result)
+</pre>
+
+<p><b>Example (1):</b></p>
+<pre>Section
+&#0009;${WordFind3X} &quot;[1.AAB];[2.BAA];[3.BBB];&quot; &quot;[&quot; &quot;AA&quot; &quot;];&quot; &quot;+1&quot; $R0
+&#0009;; $R0=&quot;1.AAB&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (2):</b></p>
+<pre>Section
+&#0009;${WordFind3X} &quot;[1.AAB];[2.BAA];[3.BBB];&quot; &quot;[&quot; &quot;AA&quot; &quot;];&quot; &quot;-1&quot; $R0
+&#0009;; $R0=&quot;2.BAA&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (3):</b></p>
+<pre>Section
+&#0009;${WordFind3X} &quot;[1.AAB];[2.BAA];[3.BBB];&quot; &quot;[&quot; &quot;AA&quot; &quot;];&quot; &quot;-1{{&quot; $R0
+&#0009;; $R0=&quot;[1.AAB];&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (4):</b></p>
+<pre>Section
+&#0009;${WordFind3X} &quot;[1.AAB];[2.BAA];[3.BBB];&quot; &quot;[&quot; &quot;AA&quot; &quot;];&quot; &quot;-1{}&quot; $R0
+&#0009;; $R0=&quot;[1.AAB];[3.BBB];&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (5):</b></p>
+<pre>Section
+&#0009;${WordFind3X} &quot;[1.AAB];[2.BAA];[3.BBB];&quot; &quot;[&quot; &quot;AA&quot; &quot;];&quot; &quot;-1{*&quot; $R0
+&#0009;; $R0=&quot;[1.AAB];[2.BAA];&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (6):</b></p>
+<pre>Section
+&#0009;${WordFind3X} &quot;[1.AAB];[2.BAA];[3.BBB];&quot; &quot;[&quot; &quot;AA&quot; &quot;];&quot; &quot;/2.BAA&quot; $R0
+&#0009;; $R0=&quot;2&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (With errorlevel output):</b></p>
+<pre>Section
+&#0009;${WordFind3X} &quot;[1.AAB];[2.BAA];[3.BBB];&quot; &quot;[&quot; &quot;XX&quot; &quot;];&quot; &quot;E+1&quot; $R0
+&#0009;; $R0=&quot;1&quot; (&quot;[...XX...];&quot; not found)
+
+&#0009;IfErrors 0 noerrors
+&#0009;MessageBox MB_OK 'Errorlevel=$R0' IDOK end
+
+&#0009;noerrors:
+&#0009;MessageBox MB_OK 'No errors'
+
+&#0009;end:
+SectionEnd
+</pre>
+<a name="E.3.7"></a><h3>E.3.7 WordFind3XS</h3>
+<ul>
+<li>Same as <a href="SectionE.3.html#E.3.6">WordFind3X</a>, but case sensitive.</li></ul>
+<a name="E.3.8"></a><h3>E.3.8 WordReplace</h3>
+<ul>
+<li>Replace or delete word from string.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${WordReplace} &quot;[string]&quot; &quot;[word1]&quot; &quot;[word2]&quot; &quot;[E][options]&quot; $var
+</pre>
+<pre>&quot;[string]&quot;         ;[string]
+                   ;  input string
+&quot;[word1]&quot;          ;[word1]
+                   ;  word to replace or delete
+&quot;[word2]&quot;          ;[word2]
+                   ;  replace with (if empty delete)
+&quot;[E][options]&quot;     ;[options]
+                   ;  +number  : word number from start
+                   ;  -number  : word number from end
+                   ;  +number* : word number from start multiple-replace
+                   ;  -number* : word number from end multiple-replace
+                   ;  +        : replace all results
+                   ;  +*       : multiple-replace all results
+                   ;  {        : if exists replace all delimiters
+                   ;               from left edge
+                   ;  }        : if exists replace all delimiters
+                   ;               from right edge
+                   ;  {}       : if exists replace all delimiters
+                   ;               from edges
+                   ;  {*       : if exists multiple-replace all
+                   ;               delimiters from left edge
+                   ;  }*       : if exists multiple-replace all
+                   ;               delimiters from right edge
+                   ;  {}*      : if exists multiple-replace all
+                   ;               delimiters from edges
+                   ;
+                   ;[E]
+                   ;  with errorlevel output
+                   ;  IfErrors:
+                   ;     $var=1  word to replace not found
+                   ;     $var=2  no such word number
+                   ;     $var=3  syntax error (Use: +1,-1,+1*,-1*,+,+*,{},{}*)
+                   ;[]
+                   ;  no errorlevel output (default)
+                   ;  If some errors found then (result=input string)
+                   ;
+$var               ;output (result)
+</pre>
+
+<p><b>Example (replace):</b></p>
+<pre>Section
+&#0009;${WordReplace} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;SYS&quot; &quot;bmp&quot; &quot;+2&quot; $R0
+&#0009;; $R0=&quot;C:\io.sys C:\logo.bmp C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (delete):</b></p>
+<pre>Section
+&#0009;${WordReplace} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot;SYS&quot; &quot;&quot; &quot;+&quot; $R0
+&#0009;; $R0=&quot;C:\io. C:\logo. C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (multiple-replace 1):</b></p>
+<pre>Section
+&#0009;${WordReplace} &quot;C:\io.sys      C:\logo.sys   C:\WINDOWS&quot; &quot; &quot; &quot; &quot; &quot;+1*&quot; $R0
+&#0009;; +1* or +2* or +3* or +4* or +5* or +6*
+&#0009;; $R0=&quot;C:\io.sys C:\logo.sys   C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (multiple-replace 2):</b></p>
+<pre>Section
+&#0009;${WordReplace} &quot;C:\io.sys C:\logo.sysSYSsys C:\WINDOWS&quot; &quot;sys&quot; &quot;bmp&quot; &quot;+*&quot; $R0
+&#0009;; $R0=&quot;C:\io.bmp C:\logo.bmp C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (multiple-replace 3):</b></p>
+<pre>Section
+&#0009;${WordReplace} &quot;sysSYSsysC:\io.sys C:\logo.sys C:\WINDOWSsysSYSsys&quot; &quot;sys&quot; &quot;|&quot; &quot;{}*&quot; $R0
+&#0009;; $R0=&quot;|C:\io.sys C:\logo.sys C:\WINDOWS|&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (With errorlevel output):</b></p>
+<pre>Section
+&#0009;${WordReplace} &quot;C:\io.sys C:\logo.sys&quot; &quot;sys&quot; &quot;bmp&quot; &quot;E+3&quot; $R0
+&#0009;; $R0=&quot;2&quot; (no such word number &quot;+3&quot;)
+
+&#0009;IfErrors 0 noerrors
+&#0009;MessageBox MB_OK 'Errorlevel=$R0' IDOK end
+
+&#0009;noerrors:
+&#0009;MessageBox MB_OK 'No errors'
+
+&#0009;end:
+SectionEnd
+</pre>
+<a name="E.3.9"></a><h3>E.3.9 WordReplaceS</h3>
+<ul>
+<li>Same as <a href="SectionE.3.html#E.3.8">WordReplace</a>, but case sensitive.</li></ul>
+<a name="E.3.10"></a><h3>E.3.10 WordAdd</h3>
+<ul>
+<li>Add words to string1 from string2 if not exist or delete words if exist.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${WordAdd} &quot;[string1]&quot; &quot;[delimiter]&quot; &quot;[E][options]&quot; $var
+</pre>
+<pre>&quot;[string1]&quot;          ;[string1]
+                     ;  string for addition or removing
+&quot;[delimiter]&quot;        ;[delimiter]
+                     ;  one or several symbols
+&quot;[E][options]&quot;       ;[options]
+                     ;  +string2 : words to add
+                     ;  -string2 : words to delete
+                     ;
+                     ;[E]
+                     ;  with errorlevel output
+                     ;  IfErrors:
+                     ;     $var=1  delimiter is empty
+                     ;     $var=3  syntax error (use: +text,-text)
+                     ;[]
+                     ;  no errorlevel output (default)
+                     ;  If some errors found then (result=input string)
+                     ;
+$var                 ;output (result)
+</pre>
+
+<p><b>Example (add):</b></p>
+<pre>Section
+&#0009;${WordAdd} &quot;C:\io.sys C:\WINDOWS&quot; &quot; &quot; &quot;+C:\WINDOWS C:\config.sys&quot; $R0
+&#0009;; $R0=&quot;C:\io.sys C:\WINDOWS C:\config.sys&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (delete):</b></p>
+<pre>Section
+&#0009;${WordAdd} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;-C:\WINDOWS C:\config.sys C:\IO.SYS&quot; $R0
+&#0009;; $R0=&quot;C:\logo.sys&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (add to one):</b></p>
+<pre>Section
+&#0009;${WordAdd} &quot;C:\io.sys&quot; &quot; &quot; &quot;+C:\WINDOWS C:\config.sys C:\IO.SYS&quot; $R0
+&#0009;; $R0=&quot;C:\io.sys C:\WINDOWS C:\config.sys&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (delete one):</b></p>
+<pre>Section
+&#0009;${WordAdd} &quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot; &quot; &quot; &quot;-C:\WINDOWS&quot; $R0
+&#0009;; $R0=&quot;C:\io.sys C:\logo.sys&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (No new words found):</b></p>
+<pre>Section
+&#0009;${WordAdd} &quot;C:\io.sys C:\logo.sys&quot; &quot; &quot; &quot;+C:\logo.sys&quot; $R0
+&#0009;StrCmp $R0 &quot;C:\io.sys C:\logo.sys&quot; 0 +2
+&#0009;MessageBox MB_OK &quot;No new words found to add&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (No words deleted):</b></p>
+<pre>Section
+&#0009;${WordAdd} &quot;C:\io.sys C:\logo.sys&quot; &quot; &quot; &quot;-C:\config.sys&quot; $R0
+&#0009;StrCmp $R0 &quot;C:\io.sys C:\logo.sys&quot; 0 +2
+&#0009;MessageBox MB_OK &quot;No words found to delete&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (With errorlevel output):</b></p>
+<pre>Section
+&#0009;${WordAdd} &quot;C:\io.sys C:\logo.sys&quot; &quot;&quot; &quot;E-C:\logo.sys&quot; $R0
+&#0009;; $R0=&quot;1&quot; (delimiter is empty &quot;&quot;)
+
+&#0009;IfErrors 0 noerrors
+&#0009;MessageBox MB_OK 'Errorlevel=$R0' IDOK end
+
+&#0009;noerrors:
+&#0009;MessageBox MB_OK 'No errors'
+
+&#0009;end:
+SectionEnd
+</pre>
+<a name="E.3.11"></a><h3>E.3.11 WordAddS</h3>
+<ul>
+<li>Same as <a href="SectionE.3.html#E.3.10">WordAdd</a>, but case sensitive.</li></ul>
+<a name="E.3.12"></a><h3>E.3.12 WordInsert</h3>
+<ul>
+<li>Insert word in string.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${WordInsert} &quot;[string]&quot; &quot;[delimiter]&quot; &quot;[word]&quot; &quot;[E][options]&quot; $var
+</pre>
+<pre>&quot;[string]&quot;          ;[string]
+                    ;  input string
+&quot;[delimiter]&quot;       ;[delimiter]
+                    ;  one or several symbols
+&quot;[word]&quot;            ;[word]
+                    ;  word to insert
+&quot;[E][options]&quot;      ;[options]
+                    ;  +number  : word number from start
+                    ;  -number  : word number from end
+                    ;
+                    ;[E]
+                    ;  with errorlevel output
+                    ;  IfErrors:
+                    ;     $var=1  delimiter is empty
+                    ;     $var=2  wrong word number
+                    ;     $var=3  syntax error (Use: +1,-1)
+                    ;[]
+                    ;  no errorlevel output (default)
+                    ;  If some errors found then (result=input string)
+                    ;
+$var                ;output (result)
+</pre>
+
+<p><b>Example (1):</b></p>
+<pre>Section
+&#0009;${WordInsert} &quot;C:\io.sys C:\WINDOWS&quot; &quot; &quot; &quot;C:\logo.sys&quot; &quot;-2&quot; $R0
+&#0009;; $R0=&quot;C:\io.sys C:\logo.sys C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (2):</b></p>
+<pre>Section
+&#0009;${WordInsert} &quot;C:\io.sys&quot; &quot; &quot; &quot;C:\WINDOWS&quot; &quot;+2&quot; $R0
+&#0009;; $R0=&quot;C:\io.sys C:\WINDOWS&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (3):</b></p>
+<pre>Section
+&#0009;${WordInsert} &quot;&quot; &quot; &quot; &quot;C:\WINDOWS&quot; &quot;+1&quot; $R0
+&#0009;; $R0=&quot;C:\WINDOWS &quot;
+SectionEnd
+</pre>
+
+<p><b>Example (With errorlevel output):</b></p>
+<pre>Section
+&#0009;${WordInsert} &quot;C:\io.sys C:\logo.sys&quot; &quot; &quot; &quot;C:\logo.sys&quot; &quot;E+4&quot; $R0
+&#0009;; $R0=&quot;2&quot; (wrong word number &quot;+4&quot;)
+
+&#0009;IfErrors 0 noerrors
+&#0009;MessageBox MB_OK 'Errorlevel=$R0' IDOK end
+
+&#0009;noerrors:
+&#0009;MessageBox MB_OK 'No errors'
+
+&#0009;end:
+SectionEnd
+</pre>
+<a name="E.3.13"></a><h3>E.3.13 WordInsertS</h3>
+<ul>
+<li>Same as <a href="SectionE.3.html#E.3.12">WordInsert</a>, but case sensitive.</li></ul>
+<a name="E.3.14"></a><h3>E.3.14 StrFilter</h3>
+<ul>
+<li>Convert string to uppercase or lowercase.</li><li>Set symbol filter.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${StrFilter} &quot;[string]&quot; &quot;[options]&quot; &quot;[symbols1]&quot; &quot;[symbols2]&quot; $var
+</pre>
+<pre>&quot;[string]&quot;       ;[string]
+                 ;  input string
+                 ;
+&quot;[options]&quot;      ;[+|-][1|2|3|12|23|31][eng|rus]
+                 ;  +   : convert string to uppercase
+                 ;  -   : convert string to lowercase
+                 ;  1   : only Digits
+                 ;  2   : only Letters
+                 ;  3   : only Special
+                 ;  12  : only Digits  + Letters
+                 ;  23  : only Letters + Special
+                 ;  31  : only Special + Digits
+                 ;  eng : English symbols (default)
+                 ;  rus : Russian symbols
+                 ;
+&quot;[symbols1]&quot;     ;[symbols1]
+                 ;  symbols include (not changeable)
+                 ;
+&quot;[symbols2]&quot;     ;[symbols2]
+                 ;  symbols exclude
+                 ;
+$var             ;output (result)
+</pre>
+
+<p><b>Note:</b> <br>- Error flag if syntax error <br>- Same symbol to include &amp; to exclude = to exclude</p>
+
+<p><b>Example (UpperCase):</b></p>
+<pre>Section
+&#0009;${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;+&quot; &quot;&quot; &quot;&quot; $R0
+&#0009;; $R0=&quot;123ABC 456DEF 7890|%#&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (LowerCase):</b></p>
+<pre>Section
+&#0009;${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;-&quot; &quot;ef&quot; &quot;&quot; $R0
+&#0009;; $R0=&quot;123abc 456dEF 7890|%#&quot;
+SectionEnd
+</pre>
+
+<p><b>Example (Filter1):</b></p>
+<pre>Section
+&#0009;${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;2&quot; &quot;|%&quot; &quot;&quot; $R0
+&#0009;; $R0=&quot;abcDEF|%&quot;       ;only Letters + |%
+SectionEnd
+</pre>
+
+<p><b>Example (Filter2):</b></p>
+<pre>Section
+&#0009;${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;13&quot; &quot;af&quot; &quot;4590&quot; $R0
+&#0009;; $R0=&quot;123a 6F 78|%#&quot;  ;only Digits + Special + af - 4590
+SectionEnd
+</pre>
+
+<p><b>Example (Filter3):</b></p>
+<pre>Section
+&#0009;${StrFilter} &quot;123abc 456DEF 7890|%#&quot; &quot;+12&quot; &quot;b&quot; &quot;def&quot; $R0
+&#0009;; $R0=&quot;123AbC4567890&quot;  ;only Digits + Letters + b - def
+SectionEnd
+</pre>
+
+<p><b>Example (Filter4):</b></p>
+<pre>Section
+&#0009;${StrFilter} &quot;123abc&#0192;&#0193;&#0194; 456DEF&#0227;&#0228;&#0229; 7890|%#&quot; &quot;+12rus&quot; &quot;&#0228;&quot; &quot;&#0227;&#0229;&quot; $R0
+&#0009;; $R0=&quot;123&#0192;&#0193;&#0194;456&#0228;7890&quot;  ;only Digits + Letters + &#0228; - &#0227;&#0229;
+SectionEnd
+</pre>
+
+<p><b>Example (English + Russian Letters):</b></p>
+<pre>Section
+&#0009;${StrFilter} &quot;123abc&#0192;&#0193;&#0194; 456DEF&#0227;&#0228;&#0229; 7890|%#&quot; &quot;2rus&quot; &quot;&quot; &quot;&quot; $R0
+&#0009;; $R0=&quot;&#0192;&#0193;&#0194;&#0227;&#0228;&#0229;&quot;        ;only Russian Letters
+&#0009;${StrFilter} &quot;123abc&#0192;&#0193;&#0194; 456DEF&#0227;&#0228;&#0229; 7890|%#&quot; &quot;2&quot; &quot;$R0&quot; &quot;&quot; $R0
+&#0009;; $R0=&quot;abc&#0192;&#0193;&#0194;DEF&#0227;&#0228;&#0229;&quot;  ;only English + Russian Letters
+SectionEnd
+</pre>
+
+<p><b>Example (Word Capitalize):</b></p>
+<pre>Section
+&#0009;Push &quot;_01-PERPETUOUS_DREAMER__-__THE_SOUND_OF_GOODBYE_(ORIG._MIX).MP3_&quot;
+&#0009;Call Capitalize
+&#0009;Pop $R0
+&#0009;; $R0=&quot;_01-Perpetuous_Dreamer__-__The_Sound_Of_Goodbye_(Orig._Mix).mp3_&quot;
+
+&#0009;${WordReplace} &quot;$R0&quot; &quot;_&quot; &quot; &quot; &quot;+*&quot; $R0
+&#0009;; $R0=&quot; 01-Perpetuous Dreamer - The Sound Of Goodbye (Orig. Mix).mp3 &quot;
+
+&#0009;${WordReplace} &quot;$R0&quot; &quot; &quot; &quot;&quot; &quot;{}&quot; $R0
+&#0009;; $R0=&quot;01-Perpetuous Dreamer - The Sound Of Goodbye (Orig. Mix).mp3&quot;
+SectionEnd
+
+Function Capitalize
+&#0009;Exch $R0
+&#0009;Push $0
+&#0009;Push $1
+&#0009;Push $2
+
+&#0009;${StrFilter} '$R0' '-eng' '' '' $R0
+&#0009;${StrFilter} '$R0' '-rus' '' '' $R0
+
+&#0009;StrCpy $0 0
+
+&#0009;loop:
+&#0009;IntOp $0 $0 + 1
+&#0009;StrCpy $1 $R0 1 $0
+&#0009;StrCmp $1 '' end
+&#0009;StrCmp $1 ' ' +5
+&#0009;StrCmp $1 '_' +4
+&#0009;StrCmp $1 '-' +3
+&#0009;StrCmp $1 '(' +2
+&#0009;StrCmp $1 '[' 0 loop
+&#0009;IntOp $0 $0 + 1
+&#0009;StrCpy $1 $R0 1 $0
+&#0009;StrCmp $1 '' end
+
+&#0009;${StrFilter} '$1' '+eng' '' '' $1
+&#0009;${StrFilter} '$1' '+rus' '' '' $1
+
+&#0009;StrCpy $2 $R0 $0
+&#0009;IntOp $0 $0 + 1
+&#0009;StrCpy $R0 $R0 '' $0
+&#0009;IntOp $0 $0 - 2
+&#0009;StrCpy $R0 '$2$1$R0'
+&#0009;goto loop
+
+&#0009;end:
+&#0009;Pop $2
+&#0009;Pop $1
+&#0009;Pop $0
+&#0009;Exch $R0
+FunctionEnd
+</pre>
+<a name="E.3.15"></a><h3>E.3.15 StrFilterS</h3>
+<ul>
+<li>Same as <a href="SectionE.3.html#E.3.14">StrFilter</a>, but case sensitive.</li></ul>
+<a name="E.3.16"></a><h3>E.3.16 VersionCompare</h3>
+<ul>
+<li>Compare version numbers.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${VersionCompare} &quot;[Version1]&quot; &quot;[Version2]&quot; $var
+</pre>
+<pre>&quot;[Version1]&quot;        ; First version
+&quot;[Version2]&quot;        ; Second version
+$var                ; Result:
+                    ;    $var=0  Versions are equal
+                    ;    $var=1  Version1 is newer
+                    ;    $var=2  Version2 is newer
+</pre>
+
+<p><b>Example:</b></p>
+<pre>Section
+&#0009;${VersionCompare} &quot;1.1.1.9&quot; &quot;1.1.1.01&quot; $R0
+&#0009;; $R0=&quot;1&quot;
+SectionEnd
+</pre>
+<a name="E.3.17"></a><h3>E.3.17 VersionConvert</h3>
+<ul>
+<li>Convert version in the numerical format which can be compared.</li></ul>
+
+<p><b>Syntax:</b></p>
+<pre>${VersionConvert} &quot;[Version]&quot; &quot;[CharList]&quot; $var
+</pre>
+<pre>&quot;[Version]&quot;         ; Version
+                    ;
+&quot;[CharList]&quot;        ; List of characters, which will be replaced by numbers
+                    ; &quot;abcdefghijklmnopqrstuvwxyz&quot; (default)
+                    ;
+$var                ; Result: converted version
+</pre>
+
+<p><b>Note:</b> <br>- Converted letters are separated with dot <br>- If character is non-digit and not in list then it will be converted to dot</p>
+
+<p><b>Example1:</b></p>
+<pre>Section
+&#0009;${VersionConvert} &quot;9.0a&quot; &quot;&quot; $R0
+&#0009;; $R0=&quot;9.0.01&quot;
+
+&#0009;${VersionConvert} &quot;9.0c&quot; &quot;&quot; $R1
+&#0009;; $R1=&quot;9.0.03&quot;
+
+&#0009;${VersionCompare} &quot;$R0&quot; &quot;$R1&quot; $R2
+&#0009;; $R2=&quot;2&quot;   version2 is newer
+SectionEnd
+</pre>
+
+<p><b>Example2:</b></p>
+<pre>Section
+&#0009;${VersionConvert} &quot;0.15c-9m&quot; &quot;&quot; $R0
+&#0009;; $R0=&quot;0.15.03.9.13&quot;
+
+&#0009;${VersionConvert} &quot;0.15c-1n&quot; &quot;&quot; $R1
+&#0009;; $R1=&quot;0.15.03.1.14&quot;
+
+&#0009;${VersionCompare} &quot;$R0&quot; &quot;$R1&quot; $R2
+&#0009;; $R2=&quot;1&quot;   version1 is newer
+SectionEnd
+</pre>
+
+<p><b>Example3:</b></p>
+<pre>Section
+&#0009;${VersionConvert} &quot;0.15c+&quot; &quot;abcdefghijklmnopqrstuvwxyz+&quot; $R0
+&#0009;; $R0=&quot;0.15.0327&quot;
+
+&#0009;${VersionConvert} &quot;0.15c&quot; &quot;abcdefghijklmnopqrstuvwxyz+&quot; $R1
+&#0009;; $R1=&quot;0.15.03&quot;
+
+&#0009;${VersionCompare} &quot;$R0&quot; &quot;$R1&quot; $R2
+&#0009;; $R2=&quot;1&quot;   version1 is newer
+SectionEnd
+</pre>
+<p><a href='SectionE.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='AppendixF.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

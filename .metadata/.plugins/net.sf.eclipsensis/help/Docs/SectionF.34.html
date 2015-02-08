@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.13</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.33.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.35.html'>Next</a></p>
+<a name="F.34"></a><h2>F.34 2.13</h2>
+
+<p>Released on January 21st, 2006</p>
+<a name="F.34.1"></a><h3>F.34.1 Release Notes</h3>
+<ul>
+<li>Language detection has changed. The default language is now set to the user's user-interface language instead of the locale language, as suggested by <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/intl/nls_0xrn.asp">MSDN</a>. To restore the old behavior, use <code>System::Call &quot;kernel32::GetUserDefaultLangID()i.a&quot;</code> in <a href="Section4.7.html#4.7.2.1.2">.onInit</a>.</li></ul>
+<a name="F.34.2"></a><h3>F.34.2 Changelog</h3>
+<a name="F.34.2.1"></a><h4>F.34.2.1 Major Changes</h4>
+<ul>
+<li>Default $LANGUAGE value is now based on user's UI language instead of locale (<a href="http://sourceforge.net/support/tracker.php?aid=1324734">bug #1324734</a>)</li></ul>
+<a name="F.34.2.2"></a><h4>F.34.2.2 New/Changed Commands</h4>
+<ul>
+<li>Added <a href="Section4.9.html#4.9.4.20">StrCmpS</a> for case sensitive string comparison (<a href="http://sourceforge.net/support/tracker.php?aid=1381929">patch #1381929</a>)</li></ul>
+<a name="F.34.2.3"></a><h4>F.34.2.3 Minor Changes</h4>
+<ul>
+<li>Added system time support to <a href="SectionE.1.html#E.1">GetTime</a></li><li>Fixed components page checkbox redraw problem under Windows 95 (<a href="http://sourceforge.net/support/tracker.php?aid=1397031">bug #1397031</a>)</li><li>Fixed constant maximum string length in <a href="Section4.9.html#4.9.5.3">FileRead</a> (changed from 1024 to NSIS_MAX_STRLEN)</li><li>Fixed empty $INSTDIR value in directory page show callback function (<a href="http://sourceforge.net/support/tracker.php?aid=1209843">bug #1209843</a>)</li><li>Fixed relative jumps ignoring <a href="Section4.9.html#4.9.1.5"><code>File</code></a><code> /nonfatal</code> (<a href="http://sourceforge.net/support/tracker.php?aid=1299100">bug #1299100</a>)</li><li>Fixed typo in NSIS Menu (<a href="http://sourceforge.net/support/tracker.php?aid=1387748">bug #1387748</a>)</li><li>Issue a warning when <a href="Section4.8.html#4.8.1.6"><code>BrandingText</code></a><code> /TRIM*</code> actually expands the label (<a href="http://sourceforge.net/support/tracker.php?aid=1362443">bug #1362443</a>)</li><li>Made <a href="Section4.9.html#4.9.1.8"><code>RMDir</code></a><code> /r</code> remove Unicode paths as well using short names (<a href="http://sourceforge.net/support/tracker.php?aid=1378785">bug #1378785</a>)</li><li>Minor documentation improvements and fixes</li></ul>
+<a name="F.34.2.4"></a><h4>F.34.2.4 Utilities and Plug-ins</h4>
+<ul>
+<li>Fixed System plug-in <a href="#" onclick="parser('../Docs/System/System.html')">documentation</a> of callback functions (<a href="http://sourceforge.net/support/tracker.php?aid=1403608">bug #1403608</a>)</li><li>Fixed System plug-in heap corruption (<a href="http://sourceforge.net/support/tracker.php?aid=1403601">bug #1403601</a>)</li></ul>
+<a name="F.34.2.5"></a><h4>F.34.2.5 Translations</h4>
+<ul>
+<li>Mongolian translation improvements</li></ul>
+<a name="F.34.2.6"></a><h4>F.34.2.6 Build System</h4>
+<ul>
+<li>Better installation under POSIX with proper ${NSISDIR} detection and appropriate directory paths (/usr/bin, /usr/share/doc, etc.)</li></ul>
+<p><a href='SectionF.33.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.35.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.24</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.22.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.24.html'>Next</a></p>
+<a name="F.23"></a><h2>F.23 2.24</h2>
+
+<p>Released on February 17th, 2007</p>
+<a name="F.23.1"></a><h3>F.23.1 Changelog</h3>
+<a name="F.23.1.1"></a><h4>F.23.1.1 Major Changes</h4>
+<ul>
+<li><a href="AppendixB.html#B">Library</a> uninstall-reinstall-reboot problems workaround (<a href="http://sourceforge.net/support/tracker.php?aid=1097642">bug #1097642</a>)</li><li>Minimized number of cases where an error message appears in silent mode</li><li>New compiler predefines for <a href="Section5.2.html#5.2.7">code scope</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1644712">patch #1644712</a>)</li></ul>
+<a name="F.23.1.2"></a><h4>F.23.1.2 Minor Changes</h4>
+<ul>
+<li>Added <a href="Section3.1.html#3.1.1">/P command line option</a> for setting process priority of makensis (<a href="http://sourceforge.net/support/tracker.php?aid=1638974">patch #1638974</a>)</li><li>Added support for 64-bit PE on POSIX to <a href="Section4.9.html#4.9.3.6">GetDLLVersionLocal</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1643633">patch #1643633</a>)</li><li>Append last part of <a href="Section4.8.html#4.8.1.21">InstallDir</a> only to $INSTDIR on directory pages (<a href="http://sourceforge.net/support/tracker.php?aid=1174184">bug #1174184</a>)</li><li>Avoid permissions change of output files for <a href="SectionE.2.html#E.2.2">LineFind</a> and <a href="SectionE.2.html#E.2.6">FileJoin</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1631773">bug #1631773</a>)</li><li>Fixed erroneous warnings on uninstall sections (<a href="http://sourceforge.net/support/tracker.php?aid=1631889">bug #1631889</a>)</li><li>Fixed lossy Unicode conversion in resource editor (<a href="http://sourceforge.net/support/tracker.php?aid=1083492">bug #1083492</a>)</li><li>Ignore invalid preprocessor commands in ignored block or comments</li><li>Made <a href="Section4.8.html#4.8.3.1">VIAddVersionKey</a> only query language tables instead of creating them and generating warnings (<a href="http://sourceforge.net/support/tracker.php?aid=1626504">bug #1626504</a>)</li><li>Minor documentation updates and fixes (including <a href="http://sourceforge.net/support/tracker.php?aid=1642107">bug #1642107</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1649187">patch #1649187</a>)</li><li>Warn when continuing a comment line using backslash (<a href="http://sourceforge.net/support/tracker.php?aid=1554178">bug #1554178</a>)</li></ul>
+<a name="F.23.1.3"></a><h4>F.23.1.3 New/Changed Commands</h4>
+<ul>
+<li><a href="Section4.9.html#4.9.3.13">RegDLL</a> and <a href="Section4.9.html#4.9.3.14">UnregDLL</a> now use LOAD_WITH_ALTERED_SEARCH_PATH, so there's no need to use <a href="Section4.9.html#4.9.1.9">SetOutPath</a> to set the working directory (<a href="http://sourceforge.net/support/tracker.php?aid=1638191">bug #1638191</a>)</li></ul>
+<a name="F.23.1.4"></a><h4>F.23.1.4 Utilities and Plug-ins</h4>
+<ul>
+<li><a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions 2.45</a>: Added FOCUS flag (<a href="http://sourceforge.net/support/tracker.php?aid=1634704">patch #1634704</a>) and fixed paste with ONLY_NUMBERS flag (<a href="http://sourceforge.net/support/tracker.php?aid=1652075">bug #1652075</a>)</li><li><a href="#" onclick="parser('../Docs/makensisw/Readme.txt')">MakeNSISW</a>: settings in HKCU instead of HKLM (<a href="http://sourceforge.net/support/tracker.php?aid=1411970">bug #1411970</a>) and MRU menu accelerators</li></ul>
+<a name="F.23.1.5"></a><h4>F.23.1.5 Translations</h4>
+<ul>
+<li>Added Galician translation (<a href="http://sourceforge.net/support/tracker.php?aid=1631765">patch #1631765</a>)</li></ul>
+<a name="F.23.1.6"></a><h4>F.23.1.6 Build System</h4>
+<ul>
+<li>Added a workaround for building on x64 POSIX platforms (<a href="http://sourceforge.net/support/tracker.php?aid=1646170">bug #1646170</a>)</li><li>Added a workaround for strict-aliasing compatibility (<a href="http://sourceforge.net/support/tracker.php?aid=1635841">bug #1635841</a>)</li><li>Added compression tests</li><li>Added STRIP, APPEND_CCFLAGS and APPEND_LINKFLAGS build options</li><li>Fixed SCons 0.96.94 compatibility</li></ul>
+<p><a href='SectionF.22.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.24.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

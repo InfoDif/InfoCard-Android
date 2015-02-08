@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Library Uninstallation</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionB.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionB.4.html'>Next</a></p>
+<a name="B.3"></a><h2>B.3 Library Uninstallation</h2>
+<a name="B.3.1"></a><h3>B.3.1 Introduction</h3>
+
+<p>The UnInstallLib macro allows you to uninstall a library. It sets the error flag if something went wrong during library removal.</p>
+<a name="B.3.2"></a><h3>B.3.2 Parameters</h3>
+<pre>libtype shared uninstall file
+</pre>
+
+<p><b>libtype</b></p>
+
+<p>The type of the library</p>
+
+<p>DLL - Dynamic link library (DLL)<br> REGDLL - DLL that has to be unregistered<br> REGEXE - EXE COM server that has to be unregistered using /unregserver<br> TLB - Type library or DLL that contains a type library<br> REGDLLTLB - DLL that has to be unregistered and contains a type library<br></p>
+
+<p><b>shared</b></p>
+
+<p>Specify whether the library is shared with other applications</p>
+
+<p>NOTSHARED - The library is not shared<br> SHARED - The library is shared and should be removed if the shared library count indicates that the file is not in use anymore..<br></p>
+
+<p><b>uninstall</b></p>
+
+<p>Specify the uninstallation method</p>
+
+<p>NOREMOVE</p>
+<ul>
+<li>The library should not be removed. You should use this option for common or important system files such as the Visual Basic/C++/MFC runtimes.</li></ul>
+
+<p>REBOOT_PROTECTED</p>
+<ul>
+<li>Remove the library on reboot when in use (required for system files).</li><li>Remove the library if the file is not protected by Windows File Protection.</li></ul>
+
+<p>NOREBOOT_PROTECTED</p>
+<ul>
+<li>Warns the user when the library is in use. The user will have to close applications using the library.</li><li>Remove the library if the file is not protected by Windows File Protection.</li></ul>
+
+<p>REBOOT_NOTPROTECTED</p>
+<ul>
+<li>Remove the library on reboot when in use (required for system files).</li><li>Remove the library without checking for Windows File Protection.</li></ul>
+
+<p>NOREBOOT_NOTPROTECTED</p>
+<ul>
+<li>Warns the user when the library is in use. The user will have to close applications using the library.</li><li>Remove the library without checking for Windows File Protection.</li></ul>
+
+<p><b>file</b></p>
+
+<p>Location of the library</p>
+<a name="B.3.3"></a><h3>B.3.3 Options</h3>
+
+<p><a href="Section5.4.html#5.4.1">Define</a> any of the following before inserting the UnInstallLib macro to modify its behavior as specified.</p>
+<a name="B.3.3.1"></a><h4>B.3.3.1 LIBRARY_X64</h4>
+<ul>
+<li>Uninstalls a DLL built for Windows x64.</li><li><b>Warning:</b> this resets <a href="Section4.9.html#4.9.7.6">RegSetView</a> and file system redirection.</li></ul>
+<a name="B.3.3.2"></a><h4>B.3.3.2 LIBRARY_SHELL_EXTENSION</h4>
+<ul>
+<li>Define this before inserting UninstallLib macro to call SHChangeNotify with SHCNE_ASSOCCHANGED after unregistration. Use this to refresh the shell when uninstalling a shell extension or when changing file associations.</li></ul>
+<a name="B.3.3.3"></a><h4>B.3.3.3 LIBRARY_COM</h4>
+<ul>
+<li>Define this before inserting UninstallLib macro to call CoFreeUnusedLibraries after unregistration. Use this for unloading all unnecessary libraries from memory when uninstalling COM libraries.</li></ul>
+<a name="B.3.4"></a><h3>B.3.4 Example</h3>
+<pre> !insertmacro UnInstallLib REGDLL SHARED REBOOT_NOTPROTECTED $SYSDIR\dllname.dll
+</pre>
+<p><a href='SectionB.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionB.4.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

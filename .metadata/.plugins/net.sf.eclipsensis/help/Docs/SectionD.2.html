@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Add uninstall information to Add/Remove Programs</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionD.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionD.3.html'>Next</a></p>
+<a name="D.2"></a><h2>D.2 Add uninstall information to Add/Remove Programs</h2>
+
+<p>Create a key with your product name under <b>HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall</b> to add entries to the &quot;Add/Remove Programs&quot; section in the Control Panel. For Windows NT (NT4/2000/XP), it's also possible to create the key in the HKCU hive, so it will only appear for the current user. There are several values you can write to key to give information about your application and the uninstaller. Write a value using the WriteRegStr command (for strings) or WriteRegDWORD command (for DWORD values). Example:</p>
+<pre>WriteRegStr HKLM &quot;Software\Microsoft\Windows\CurrentVersion\Uninstall\Product&quot; &quot;DisplayName&quot; &quot;Application Name&quot;
+</pre>
+
+<p><b>Required values</b></p>
+
+<p><em>DisplayName</em> (string) - Name of the application <br> <em>UninstallString</em> (string) - Path and filename of the uninstaller. You should <b>always</b> quote the path to make sure spaces in the path will not disrupt Windows to find the uninstaller.</p>
+
+<p><b>Optional values</b></p>
+
+<p>Some of the following values will not be used by older Windows versions.</p>
+
+<p><em>InstallLocation</em> (string) - Installation directory ($INSTDIR) <br> <em>DisplayIcon</em> (string) - Path, filename and index of the icon that will be displayed next to your application name</p>
+
+<p><em>Publisher</em> (string) - (Company) name of the publisher</p>
+
+<p><em>ModifyPath</em> (string) - Path and filename of the application modify program <br> <em>InstallSource</em> (string) - Location where the application was installed from</p>
+
+<p><em>ProductID</em> (string) - Product ID of the application <br> <em>RegOwner</em> (string) - Registered owner of the application <br> <em>RegCompany</em> (string) - Registered company of the application</p>
+
+<p><em>HelpLink</em> (string) - Link to the support website <br> <em>HelpTelephone</em> (string) - Telephone number for support</p>
+
+<p><em>URLUpdateInfo</em> (string) - Link to the website for application updates <br> <em>URLInfoAbout</em> (string) - Link to the application home page</p>
+
+<p><em>DisplayVersion</em> (string) - Displayed version of the application <br> <em>VersionMajor</em> (DWORD) - Major version number of the application <br> <em>VersionMinor</em> (DWORD) - Minor version number of the application</p>
+
+<p><em>NoModify</em> (DWORD) - 1 if uninstaller has no option to modify the installed application <br> <em>NoRepair</em> (DWORD) - 1 if the uninstaller has no option to repair the installation</p>
+
+<p>If both NoModify and NoRepair are set to 1, the button displays &quot;Remove&quot; instead of &quot;Modify/Remove&quot;.</p>
+<p><a href='SectionD.1.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionD.3.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

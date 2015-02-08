@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>How to Read REG_MULTI_SZ Values</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionD.4.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='AppendixE.html'>Next</a></p>
+<a name="D.5"></a><h2>D.5 How to Read REG_MULTI_SZ Values</h2>
+
+<p>I wrote this script to help rpetges in <a href="http://forums.winamp.com/showthread.php?s=&threadid=131154">this forum thread</a>. It reads a registry value of the type REG_MULTI_SZ and prints it out. Don't forget to edit where it says &quot;Edit this!&quot; when you test this script. The values must point to a REG_MULTI_SZ value or the example will spit out an error.</p>
+<pre>OutFile &quot;REG_MULTI_SZ Reader.exe&quot;
+
+Name &quot;REG_MULTI_SZ Reader&quot;
+
+ShowInstDetails show
+
+!define HKEY_CLASSES_ROOT        0x80000000
+!define HKEY_CURRENT_USER        0x80000001
+!define HKEY_LOCAL_MACHINE       0x80000002
+!define HKEY_USERS               0x80000003
+!define HKEY_PERFORMANCE_DATA    0x80000004
+!define HKEY_PERFORMANCE_TEXT    0x80000050
+!define HKEY_PERFORMANCE_NLSTEXT 0x80000060
+!define HKEY_CURRENT_CONFIG      0x80000005
+!define HKEY_DYN_DATA            0x80000006
+
+!define KEY_QUERY_VALUE          0x0001
+!define KEY_ENUMERATE_SUB_KEYS   0x0008
+
+!define REG_NONE                 0
+!define REG_SZ                   1
+!define REG_EXPAND_SZ            2
+!define REG_BINARY               3
+!define REG_DWORD                4
+!define REG_DWORD_LITTLE_ENDIAN  4
+!define REG_DWORD_BIG_ENDIAN     5
+!define REG_LINK                 6
+!define REG_MULTI_SZ             7
+
+!define RegOpenKeyEx     &quot;Advapi32::RegOpenKeyExA(i, t, i, i, *i) i&quot;
+!define RegQueryValueEx  &quot;Advapi32::RegQueryValueExA(i, t, i, *i, i, *i) i&quot;
+!define RegCloseKey      &quot;Advapi32::RegCloseKeyA(i) i&quot;
+
+####### Edit this!
+
+!define ROOT_KEY         ${HKEY_CURRENT_USER}
+!define SUB_KEY          &quot;Software\Joe Software&quot;
+!define VALUE            &quot;Strings&quot;
+
+####### Stop editing
+
+Section &quot;Read&quot;
+  StrCpy $0 &quot;&quot;
+  StrCpy $1 &quot;&quot;
+  StrCpy $2 &quot;&quot;
+  StrCpy $3 &quot;&quot;
+  System::Call &quot;${RegOpenKeyEx}(${ROOT_KEY}, '${SUB_KEY}', \
+    0, ${KEY_QUERY_VALUE}|${KEY_ENUMERATE_SUB_KEYS}, .r0) .r3&quot;
+ 
+  StrCmp $3 0 goon
+    MessageBox MB_OK|MB_ICONSTOP &quot;Can't open registry key! ($3)&quot;
+    Goto done
+goon:
+
+  System::Call &quot;${RegQueryValueEx}(r0, '${VALUE}', 0, .r1, 0, .r2) .r3&quot;
+ 
+  StrCmp $3 0 read
+    MessageBox MB_OK|MB_ICONSTOP &quot;Can't query registry value size! ($3)&quot;
+    Goto done
+ 
+read:
+ 
+  StrCmp $1 ${REG_MULTI_SZ} multisz
+    MessageBox MB_OK|MB_ICONSTOP &quot;Registry value no REG_MULTI_SZ! ($3)&quot;
+    Goto done
+ 
+multisz:
+ 
+  StrCmp $2 0 0 multiszalloc
+    MessageBox MB_OK|MB_ICONSTOP &quot;Registry value empty! ($3)&quot;
+    Goto done
+ 
+multiszalloc:
+
+  System::Alloc $2
+  Pop $1
+ 
+  StrCmp $1 0 0 multiszget
+    MessageBox MB_OK|MB_ICONSTOP &quot;Can't allocate enough memory! ($3)&quot;
+    Goto done
+ 
+multiszget:
+ 
+  System::Call &quot;${RegQueryValueEx}(r0, '${VALUE}', 0, n, r1, r2) .r3&quot;
+ 
+  StrCmp $3 0 multiszprocess
+    MessageBox MB_OK|MB_ICONSTOP &quot;Can't query registry value data! ($3)&quot;
+    Goto done
+ 
+multiszprocess:
+ 
+  StrCpy $4 $1
+ 
+  loop:
+ 
+    System::Call &quot;*$4(&amp;t${NSIS_MAX_STRLEN} .r3)&quot;
+    StrCmp $3 &quot;&quot; done
+    DetailPrint $3
+    StrLen $5 $3
+    IntOp $4 $4 + $5
+    IntOp $4 $4 + 1
+    Goto loop
+ 
+done:
+ 
+  System::Free $1
+ 
+  StrCmp $0 0 noClose
+    System::Call &quot;${RegCloseKey}(r0)&quot;
+ 
+noClose:
+
+SectionEnd
+</pre>
+
+<p>written by KiCHiK</p>
+<p><a href='SectionD.4.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='AppendixE.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

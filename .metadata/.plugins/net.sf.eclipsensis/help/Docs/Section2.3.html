@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Scripting structure</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section2.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section2.4.html'>Next</a></p>
+<a name="2.3"></a><h2>2.3 Scripting structure</h2>
+
+<p>A NSIS script can contain Installer Attributes and Sections/Functions. You can also use Compiler Commands for compile-time operations. Required is the <a href="Section4.8.html#4.8.1.31">OutFile</a> instruction, which tells NSIS where to write the installer, and one section.</p>
+<a name="2.3.1"></a><h3>2.3.1 Installer Attributes</h3>
+
+<p>Installer Attributes determine the behavior and the look and feel of your installer. With these attributes you can change texts that will be shown during the installation, the number of installation types etc. Most of these commands can only be set and are not changeable during runtime.</p>
+
+<p>Other basic instructions are <a href="Section4.8.html#4.8.1.30">Name</a> and <a href="Section4.8.html#4.8.1.21">InstallDir</a>.</p>
+
+<p>For more information about installer attributes, have a look at <a href="Section4.8.html#4.8">Installer Attributes</a>.</p>
+<a name="2.3.2"></a><h3>2.3.2 Pages</h3>
+
+<p>A non-silent installer has a set of wizard pages to let the user configure the installer. You can set which pages to display using the <a href="Section4.5.html#4.5.4">Page</a> command (or <a href="Section4.5.html#4.5.6">PageEx</a> for more advanced settings). A typical set of pages looks like this:</p>
+<pre>Page license
+Page components
+Page directory
+Page instfiles
+UninstPage uninstConfirm
+UninstPage instfiles
+</pre>
+
+<p>For the installer, this typical set of pages will display a license agreement, allow selection of components to install, allow selection of an installation directory, and finally install the selected components in the instfiles page. For the uninstaller, it will display a confirmation page, and uninstall in the instfiles page.</p>
+<a name="2.3.3"></a><h3>2.3.3 Sections</h3>
+
+<p>In a common installer there are several things the user can install. For example in the NSIS distribution installer you can choose to install the source code, additional plug-ins, examples and more. Each of these components has its own piece of code. If the user selects to install this component, then the installer will execute that code. In the script, that code is defined in sections. Each section corresponds to one component in the components page. The section's name is the displayed component name, and the section code will be executed if that component is selected. It is possible to build your installer with only one section, but if you want to use the components page and let the user choose what to install, you'll have to use more than one section.</p>
+
+<p>Uninstallers can also have multiple sections. Uninstaller section names are prefixed with 'un.'. For example:</p>
+<pre>Section &quot;Installer Section&quot;
+SectionEnd
+
+Section &quot;un.Uninstaller Section&quot;
+SectionEnd
+</pre>
+
+<p>The instructions that can be used in sections are very different from the installer attributes instructions, they are executed at runtime on the user's computer. Those instructions can extract files, read from and write to the registry, INI files or normal files, create directories, create shortcuts and a lot more. You can find out more in <a href="Section4.9.html#4.9">Instructions</a>.</p>
+
+<p>The most basic instructions are <a href="Section4.9.html#4.9.1.9">SetOutPath</a> which tells the installer where to extract files and <a href="Section4.9.html#4.9.1.5">File</a> which extracts files.</p>
+
+<p>Example:</p>
+<pre>Section &quot;My Program&quot;
+  SetOutPath $INSTDIR
+  File &quot;My Program.exe&quot;
+  File &quot;Readme.txt&quot;
+SectionEnd
+</pre>
+
+<p>For more information about sections see <a href="Section4.6.html#4.6">Sections</a>.</p>
+<a name="2.3.4"></a><h3>2.3.4 Functions</h3>
+
+<p>Functions can contain script code, just like sections. The difference between sections and functions is the way they are called. There are two types of functions, user functions and callback functions.</p>
+
+<p>User functions are called by the user from within sections or other functions using the <a href="Section4.9.html#4.9.4.2">Call</a> instruction. User functions will not execute unless you call them. After the code of the function will be executed the installer will continue executing the instructions that came after the Call instruction, unless you have aborted the installation inside the function. User functions are very useful if you have a set of instructions that need to be executed at several locations in the installers. If you put the code into a function you can save the copying time and you can maintain the code more easily.</p>
+
+<p>Callback functions are called by the installer upon certain defined events such as when the installer starts. Callbacks are optional. If for example you want to welcome the user to your installer you will define a function called .onInit. The NSIS compiler will recognize this function as a callback function by the name and will call it when the installer starts.</p>
+<pre>Function .onInit
+  MessageBox MB_YESNO &quot;This will install My Program. Do you wish to continue?&quot; IDYES gogogo
+    Abort
+  gogogo:
+FunctionEnd
+</pre>
+
+<p><a href="Section4.9.html#4.9.4.1">Abort</a> has a special meaning in callback functions. Each callback function has its own meaning for it, have a look at <a href="Section4.7.html#4.7.2">Callback Functions</a> for more information. In the above example Abort tells the installer to stop initializing the installer and quit immediately.</p>
+
+<p>For more information about functions see <a href="Section4.7.html#4.7">Functions</a>.</p>
+<a name="2.3.5"></a><h3>2.3.5 Working with Scripts</h3>
+<a name="2.3.5.1"></a><h4>2.3.5.1 Logical Code Structures</h4>
+
+<p>Conditionally executing code, or executing code in a loop can be done using <a href="Section4.9.html#4.9.4.19">StrCmp</a>, <a href="Section4.9.html#4.9.4.13">IntCmp</a>, <a href="Section4.9.html#4.9.4.9">IfErrors</a>, <a href="Section4.9.html#4.9.4.7">Goto</a> and more. However, there's a much easier way do this. The LogicLib provides some very simple macros that allow easy construction of complex logical structures. Its syntax, explained in <a href="#" onclick="parser('../Include/LogicLib.nsh')">LogicLib.nsh</a>, is similar to other programming languages and can prove to be simpler for beginners and advanced users alike.</p>
+
+<p>For example, checking a value of a variable without the LogicLib can be done as followed.</p>
+<pre>StrCmp $0 'some value' 0 +3
+  MessageBox MB_OK '$$0 is some value'
+  Goto done
+StrCmp $0 'some other value' 0 +3
+  MessageBox MB_OK '$$0 is some other value'
+  Goto done
+# else
+  MessageBox MB_OK '$$0 is &quot;$0&quot;'
+done:
+</pre>
+
+<p>However, with the LogicLib, the code gets is much more readable and easy to understand, as can be seen in the following example.</p>
+<pre>${If} $0 == 'some value'
+  MessageBox MB_OK '$$0 is some value'
+${ElseIf} $0 == 'some other value'
+  MessageBox MB_OK '$$0 is some other value'
+${Else}
+  MessageBox MB_OK '$$0 is &quot;$0&quot;'
+${EndIf}
+</pre>
+
+<p>The same can also be done using a switch, as shown in the following example.</p>
+<pre>${Switch} $0
+  ${Case} 'some value'
+    MessageBox MB_OK '$$0 is some value'
+    ${Break}
+  ${Case} 'some other value'
+    MessageBox MB_OK '$$0 is some other value'
+    ${Break}
+  ${Default}
+    MessageBox MB_OK '$$0 is &quot;$0&quot;'
+    ${Break}
+${EndSwitch}
+</pre>
+
+<p>Multiple conditions are also supported. The following example will notify the user, if both $0 and $1 are empty.</p>
+<pre>${If} $0 == ''
+${AndIf} $1 == ''
+  MessageBox MB_OK|MB_ICONSTOP 'both are empty!'
+${EndIf}
+</pre>
+
+<p>The LogicLib removes the need for labels and relative jumps, thus prevents label name conflicts, and removes the need to manually adjust relative jump offsets every time the script is changed.</p>
+
+<p>It also simplifies looping, by supporting the common while, do and for loops. All of the following examples count to five using the LogicLib.</p>
+<pre>StrCpy $R1 0
+${While} $R1 &lt; 5
+  IntOp $R1 $R1 + 1
+  DetailPrint $R1
+${EndWhile}
+</pre>
+<pre>${For} $R1 1 5
+  DetailPrint $R1
+${Next}
+</pre>
+<pre>StrCpy $R1 0
+${Do}
+  IntOp $R1 $R1 + 1
+  DetailPrint $R1
+${LoopUntil} $R1 &gt;= 5
+</pre>
+
+<p>To use the LogicLib, the following line needs to put at the top of the script.</p>
+<pre>!include LogicLib.nsh
+</pre>
+
+<p>More examples can be found in <a href="#" onclick="parser('../Examples/LogicLib.nsi')">LogicLib.nsi</a>.</p>
+<a name="2.3.5.2"></a><h4>2.3.5.2 Variables</h4>
+
+<p>You can declare your own variables ($VARNAME) with the <a href="Section4.2.html#4.2.1.1">Var</a> command. Variables are global and can be used in any Section or Function.</p>
+
+<p>Declaring and using a user variable:</p>
+<pre>Var BLA ;Declare the variable
+
+Section bla
+
+  StrCpy $BLA &quot;123&quot; ;Now you can use the variable $BLA
+
+SectionEnd
+</pre>
+
+<p>In addition there is a Stack, which can also be used for temporary storage. To access the stack use the commands <a href="Section4.9.html#4.9.9.3">Push</a> and <a href="Section4.9.html#4.9.9.2">Pop</a>. Push adds a value to the stack, Pop removes one and sets the variable.</p>
+
+<p>For shared code, there are <a href="Section4.2.html#4.2.2">20 registers available</a> (like $0 and $R0). These static variables don't have to be declared and you won't get any name conflicts. If you want to use these variables in shared code, store the original values on the stack and restore the original values afterwards.</p>
+
+<p>After calling the function, the variables contain the same value as before. Note the order when using multiple variables (last-in first-out):</p>
+<pre>Function bla
+
+  Push $R0
+  Push $R1
+
+    ...code...
+
+  Pop $R1
+  Pop $R0
+
+FunctionEnd
+</pre>
+<a name="2.3.5.3"></a><h4>2.3.5.3 Debugging Scripts</h4>
+
+<p>The more you work with NSIS the more complex the scripts will become. This will increase the potential of mistakes, especially when dealing with lots of variables. There are a few possibilities to help you debugging the code. To display the contents of variables you should use <a href="Section4.9.html#4.9.4.15">MessageBoxes</a> or <a href="Section4.9.html#4.9.14.3">DetailPrint</a>. To get a brief overview about all variables you should use the plug-in <a href="http://nsis.sourceforge.net/DumpState">DumpState</a>. By default all actions of the Installer are printed out in the Log Window. You can access the log if you right-click in the Log Window and select &quot;Copy Details To Clipboard&quot;. There is also a way to write it directly to a file, see <a href="SectionD.4.html#D.4">here</a>.</p>
+<a name="2.3.6"></a><h3>2.3.6 Script Execution</h3>
+
+<p>When a user runs an installer or an uninstaller, pages are displayed in the order they were defined in the script. When the instfiles page is reached, sections, corresponding to the selected components, are executed in the order they were defined in the script. If the components page is not displayed, all sections are executed, assuming they were not unselected or somehow disabled by the script.</p>
+
+<p>Beside code in sections, there's also code in callback functions. If defined, they might be executed before the sections code. For example, the <a href="Section4.7.html#4.7.2.1.2">.onInit</a> callback function is executed before anything else in the script. There are also <a href="Section4.5.html#4.5.3">page callback functions</a> which are executed at certain points of the page display process.</p>
+<a name="2.3.7"></a><h3>2.3.7 Compiler Commands</h3>
+
+<p>Compiler commands will be executed on compile time on your computer. They can be used for conditional compilation, to include header files, to execute applications, to change the working directory and more. The most common usage is defines. Defines are compile time constants. You can define your product's version number and use it in your script. For example:</p>
+<pre>!define VERSION &quot;1.0.3&quot;
+Name &quot;My Program ${VERSION}&quot;
+OutFile &quot;My Program Installer - ${VERSION}.exe&quot;
+</pre>
+
+<p>For more information about defines see <a href="Section5.4.html#5.4">Conditional Compilation</a>.</p>
+
+<p>Another common use is macros. Macros are used to insert code on compile time, depending on defines and using the values of the defines. The macro's commands are inserted at compile time. This allows you to write a general code only once and use it a lot of times but with a few changes. For example:</p>
+<pre>!macro MyFunc UN
+Function ${UN}MyFunc
+  Call ${UN}DoRegStuff
+  ReadRegStr $0 HKLM Software\MyProgram key
+  DetailPrint $0
+FunctionEnd
+!macroend
+
+!insertmacro MyFunc &quot;&quot;
+!insertmacro MyFunc &quot;un.&quot;
+</pre>
+
+<p>This macro helps you avoid writing the same code for both the installer and the uninstaller. The two !insertmacros insert two functions, one for the installer called MyFunc and one for the uninstaller called un.MyFunc and both do exactly the same thing.</p>
+
+<p>For more information see <a href="Chapter5.html#5">Compile Time Commands</a>.</p>
+<p><a href='Section2.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section2.4.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

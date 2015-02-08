@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.05</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.41.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.43.html'>Next</a></p>
+<a name="F.42"></a><h2>F.42 2.05</h2>
+
+<p>Released on February 4th, 2005</p>
+<a name="F.42.1"></a><h3>F.42.1 Release Notes</h3>
+<ul>
+<li>A lot of changes were made to the behavior of sections/components and related instructions. The changes were thoroughly tested, but may still cause minor incompatibilities with old scripts. Please let us know if your script no longer functions as expected with these changes.</li></ul>
+<a name="F.42.2"></a><h3>F.42.2 Changelog</h3>
+<a name="F.42.2.1"></a><h4>F.42.2.1 New/Changed Commands</h4>
+<ul>
+<li>Renamed SubSection and SubSectionEnd to <a href="Section4.6.html#4.6.1.5">SectionGroup</a> and <a href="Section4.6.html#4.6.1.6">SectionGroupEnd</a></li><li><a href="Section4.9.html#4.9.13.1">SectionSetFlags</a>, when used on a section group, toggles its children too</li><li><a href="Section4.9.html#4.9.13.3">SectionSetText</a> works better with variables (parses immediately and treats an empty variable as an empty string)</li><li><a href="Section4.9.html#4.9.13.9">SetCurInstType</a> works without the components page</li></ul>
+<a name="F.42.2.2"></a><h4>F.42.2.2 Minor Changes</h4>
+<ul>
+<li>Added Breton translation</li><li><a href="#" onclick="parser('../Docs/AdvSplash/advsplash.txt')">AdvSplash</a>: Fixed double delay time in some cases</li><li>Documentation fixes and enhancements (including <a href="http://sourceforge.net/support/tracker.php?aid=1098454">patch #1098454</a>)</li><li>Fixed case sensitive name comparison with <a href="Section4.9.html#4.9.1.5">File</a> /x, when not using wildcards</li><li>Fixed extraction status ending prior to 100%</li><li>Fixed negative values of available space in the directory page (<a href="http://sourceforge.net/support/tracker.php?aid=1114876">bug #1114876</a>)</li><li>Fixed system.nsi example crash (<a href="http://sourceforge.net/support/tracker.php?aid=1102255">bug #1102255</a>)</li><li>Fixed unused label warnings with <a href="AppendixB.html#B">Library macros</a></li><li>Improved some error messages</li><li><a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions 2.42</a>: Added an image displaying example, added TRANSPARENT flag for BITMAP fields (<a href="http://sourceforge.net/support/tracker.php?aid=1079715">RFE #1079715</a> - funded by Chris Morgan)</li><li>Invisible sections weren't always affected by a change of the installation type (<a href="http://sourceforge.net/support/tracker.php?aid=1045722">bug #1045722</a>)</li><li>Language file fixes</li><li>Made pages refresh after an aborted leave function</li><li>Partially selected section groups can now be toggled</li></ul>
+<p><a href='SectionF.41.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.43.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

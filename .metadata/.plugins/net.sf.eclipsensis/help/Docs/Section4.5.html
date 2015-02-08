@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Pages</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.4.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.6.html'>Next</a></p>
+<a name="4.5"></a><h2>4.5 Pages</h2>
+
+<p>Each (non-silent) NSIS installer has a set of pages. Each page can be a NSIS built-in page or a custom page created by a user's function (with <a href="#" onclick="parser('../Docs/nsDialogs/Readme.html')">nsDialogs</a> or <a href="#" onclick="parser('../Docs/InstallOptions/Readme.html')">InstallOptions</a> for example).</p>
+
+<p>Using the script you can control the pages' order, appearance, and behavior. You can skip pages, paint them white, force the user to stay in a certain page until a certain condition is met, show a readme page, show custom designed pages for input and more. In this section, you will learn how to control all of the above.</p>
+
+<p>There are two basic commands regarding pages, <a href="Section4.5.html#4.5.4">Page</a> and <a href="Section4.5.html#4.5.5">UninstPage</a>. The first adds a page to the installer, the second adds a page to the uninstaller. On top of those two there is the <a href="Section4.5.html#4.5.6">PageEx</a> command which allows you to add a page to either one and with greater amount of options. <a href="Section4.5.html#4.5.6">PageEx</a> allows you to set options to the specific page you are adding instead of using the default that's set outside of <a href="Section4.5.html#4.5.6">PageEx</a>.</p>
+<a name="4.5.1"></a><h3>4.5.1 Ordering</h3>
+
+<p>The page order is set simply by the order <a href="Section4.5.html#4.5.4">Page</a>, <a href="Section4.5.html#4.5.5">UninstPage</a> and <a href="Section4.5.html#4.5.6">PageEx</a> appear in the script. For example:</p>
+<pre> Page license
+ Page components
+ Page directory
+ Page instfiles
+ UninstPage uninstConfirm
+ UninstPage instfiles
+</pre>
+
+<p>This code will tell NSIS to first show the license page, then the components selection page, then the directory selection page and finally the install log where sections are executed, just like in old installers. The uninstaller will first show the uninstall confirmation page and then the uninstallation log.</p>
+
+<p>You can specify the same page type more than once.</p>
+
+<p>For backwards compatibility with old NSIS scripts, the following installer pages will be added if no installer page commands are used: license (if <a href="Section4.8.html#4.8.1.28">LicenseText</a> and <a href="Section4.8.html#4.8.1.26">LicenseData</a> were specified), components (if <a href="Section4.8.html#4.8.1.11">ComponentText</a> was specified and there is more than one visible section), directory (if <a href="Section4.8.html#4.8.1.14">DirText</a> was specified) and instfiles. When there are no uninstaller page commands, the following uninstaller pages will be added: uninstall confirmation page (if <a href="Section4.8.html#4.8.1.44">UninstallText</a> was specified) and instfiles. This method is deprecated, converting scripts to use page commands is highly recommended because you can use the new standard language strings.</p>
+<a name="4.5.2"></a><h3>4.5.2 Page Options</h3>
+
+<p>Each page has its unique set of data that defines how it will look and act. This section describes what data each type of page uses and how you can set it. <a href="Section4.5.html#4.5.3">Callback functions</a> are described below and are not dealt with in this section.</p>
+
+<p>The list below lists what commands affect the certain page type. Unless mentioned otherwise, these commands can be used both in and out of a <a href="Section4.5.html#4.5.6">PageEx</a> block. If used inside a <a href="Section4.5.html#4.5.6">PageEx</a> block they will only affect the current page being set by <a href="Section4.5.html#4.5.6">PageEx</a>, else they will set the default for every other page.</p>
+
+<p><em>License page</em></p>
+<ul>
+<li><a href="Section4.8.html#4.8.1.28">LicenseText</a></li><li><a href="Section4.8.html#4.8.1.26">LicenseData</a></li><li><a href="Section4.8.html#4.8.1.27">LicenseForceSelection</a></li></ul>
+
+<p><em>Components selection page</em></p>
+<ul>
+<li><a href="Section4.8.html#4.8.1.11">ComponentText</a></li></ul>
+
+<p><em>Directory selection page</em></p>
+<ul>
+<li><a href="Section4.8.html#4.8.1.14">DirText</a></li><li><a href="Section4.8.html#4.8.1.15">DirVar</a> - can only be used in <a href="Section4.5.html#4.5.6">PageEx</a></li><li><a href="Section4.8.html#4.8.1.16">DirVerify</a></li></ul>
+
+<p><em>Un/Installation log page</em></p>
+<ul>
+<li><a href="Section4.8.html#4.8.1.13">DetailsButtonText</a></li><li><a href="Section4.8.html#4.8.1.10">CompletedText</a></li></ul>
+
+<p><em>Uninstall confirmation page</em></p>
+<ul>
+<li><a href="Section4.8.html#4.8.1.15">DirVar</a> - can only be used in <a href="Section4.5.html#4.5.6">PageEx</a></li><li><a href="Section4.8.html#4.8.1.44">UninstallText</a></li></ul>
+
+<p>To set the page caption use <a href="Section4.8.html#4.8.1.7">Caption</a>.</p>
+<a name="4.5.3"></a><h3>4.5.3 Callbacks</h3>
+
+<p>Each built-in page has three callback functions: the pre-function, the show-creation function and the leave-function. The pre-function is called right before the page is created, the show-function is called right after it is created and before it is shown and the leave-function is called right after the user has pressed the next button and before the page is left.</p>
+<ul>
+<li>The pre-function allows you to skip the page using <a href="Section4.9.html#4.9.4.1">Abort</a>.</li><li>The show-function allows you to tweak the page's user interface with <a href="Section4.9.html#4.9.14.2">CreateFont</a>, <a href="Section4.9.html#4.9.14.15">SetCtlColors</a>, <a href="Section4.9.html#4.9.14.10">SendMessage</a> and others.</li><li>The leave-function allows you to force the user to stay on the current page using <a href="Section4.9.html#4.9.4.1">Abort</a>.</li></ul>
+
+<p>A custom page only has two callback functions, one that creates it which is mandatory, and one leave-function that acts just like the leave-function for built-in pages.</p>
+
+<p>Examples:</p>
+<pre> Page license skipLicense &quot;&quot; stayInLicense
+ Page custom customPage &quot;&quot; &quot;: custom page&quot;
+ Page instfiles
+
+ Function skipLicense
+   MessageBox MB_YESNO &quot;Do you want to skip the license page?&quot; IDNO no
+     Abort
+   no:
+ FunctionEnd
+
+ Function stayInLicense
+   MessageBox MB_YESNO &quot;Do you want to stay in the license page?&quot; IDNO no
+     Abort
+   no:
+ FunctionEnd
+
+ Function customPage
+   GetTempFileName $R0
+   File /oname=$R0 customPage.ini
+   InstallOptions::dialog $R0
+   Pop $R1
+   StrCmp $R1 &quot;cancel&quot; done
+   StrCmp $R1 &quot;back&quot; done
+   StrCmp $R1 &quot;success&quot; done
+   error: MessageBox MB_OK|MB_ICONSTOP &quot;InstallOptions error:$\r$\n$R1&quot;
+   done:
+ FunctionEnd
+</pre>
+<a name="4.5.4"></a><h3>4.5.4 Page</h3>
+<pre>custom [creator_function] [leave_function] [caption] [/ENABLECANCEL]
+  OR
+internal_page_type [pre_function] [show_function] [leave_function] [/ENABLECANCEL]
+</pre>
+
+<p>Adds an installer page. See the above sections for more information about built-in versus custom pages and about callback functions.</p>
+
+<p><em>internal_page_type</em> can be:</p>
+<ul>
+<li><em>license</em> - license page</li><li><em>components</em> - components selection page</li><li><em>directory</em> - installation directory selection page</li><li><em>instfiles</em> - installation page where the sections are executed</li><li><em>uninstConfirm</em> - uninstall confirmation page</li></ul>
+
+<p>The last page of the installer has its cancel button disabled to prevent confusion. To enable it anyway, use <em>/ENABLECANCEL</em>.</p>
+<a name="4.5.5"></a><h3>4.5.5 UninstPage</h3>
+<pre>custom [creator_function] [leave_function] [caption] [/ENABLECANCEL]
+  OR
+internal_page_type [pre_function] [show_function] [leave_function] [/ENABLECANCEL]
+</pre>
+
+<p>Adds an uninstaller page. See the above sections for more information about built-in versus custom pages and about callback functions.</p>
+
+<p>See <a href="Section4.5.html#4.5.4">Page</a> for possible values of <em>internal_page_type</em>.</p>
+<a name="4.5.6"></a><h3>4.5.6 PageEx</h3>
+<pre>[un.](custom|uninstConfirm|license|components|directory|instfiles)
+</pre>
+
+<p>Adds an installer page or an uninstaller page if the un. prefix was used. Every PageEx must have a matching <a href="Section4.5.html#4.5.7">PageExEnd</a>. In a PageEx block you can set options that are specific to this page and will not be used for other pages. Options that are not set will revert to what was set outside the PageEx block or the default if nothing was set. To set the sub-caption for a page use <a href="Section4.8.html#4.8.1.7">Caption</a> or <a href="Section4.8.html#4.8.1.39">SubCaption</a> to set the default. To set the callback functions for a page set with PageEx use <a href="Section4.5.html#4.5.8">PageCallbacks</a>. See the above sections for more information about built-in versus custom pages.</p>
+
+<p>Example usage:</p>
+<pre> PageEx license
+   LicenseText &quot;Readme&quot;
+   LicenseData readme.rtf
+ PageExEnd
+
+ PageEx license
+   LicenseData license.txt
+   LicenseForceSelection checkbox
+ PageExEnd
+</pre>
+<a name="4.5.7"></a><h3>4.5.7 PageExEnd</h3>
+
+<p>Ends a <a href="Section4.5.html#4.5.6">PageEx</a> block.</p>
+<a name="4.5.8"></a><h3>4.5.8 PageCallbacks</h3>
+<pre>([creator_function] [leave_function]) | ([pre_function] [show_function] [leave_function])
+</pre>
+
+<p>Sets the callback functions for a page defined using <a href="Section4.5.html#4.5.6">PageEx</a>. Can only be used inside a <a href="Section4.5.html#4.5.6">PageEx</a> block. See the above sections for more information about callback functions.</p>
+<pre>PageEx license
+  PageCallbacks licensePre licenseShow licenseLeave
+PageExEnd
+</pre>
+<p><a href='Section4.4.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.6.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

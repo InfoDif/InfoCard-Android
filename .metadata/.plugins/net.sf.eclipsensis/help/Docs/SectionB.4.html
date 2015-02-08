@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Visual Basic 6 Run-Time Files</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionB.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='AppendixC.html'>Next</a></p>
+<a name="B.4"></a><h2>B.4 Visual Basic 6 Run-Time Files</h2>
+
+<p>A new VB6RunTime.nsh header file is available for the setup of the VB6 run-time files. To obtain the latest run-time files, download <a href="http://nsis.sourceforge.net/vb6runtime.zip">vb6runtime.zip</a> and extract this file.</p>
+<pre> !include VB6RunTime.nsh
+
+ Var AlreadyInstalled
+
+ Section &quot;-Install VB6 run-time files&quot;
+
+   ;Add code here that sets $AlreadyInstalled to a non-zero value if the application is already installed. For example:
+   IfFileExists &quot;$INSTDIR\MyApp.exe&quot; 0 new_installation ;Replace MyApp.exe with your application filename
+     StrCpy $AlreadyInstalled 1
+   new_installation:
+
+   !insertmacro VB6RunTimeInstall C:\vb6runtimes $AlreadyInstalled ;Replace C:\vb6runtimes with the location of the files
+
+ SectionEnd
+
+ Section &quot;-un.Uninstall VB6 run-time files&quot;
+
+   !insertmacro VB6RunTimeUnInstall
+
+ SectionEnd
+</pre>
+
+<p>Remarks:</p>
+<ul>
+<li>You may have to install additional files for such Visual Basic application to work, such as OCX files for user interface controls.</li><li>Installation of the run-time files requires Administrator or Power User privileges. Use the Multi-User header file to verify whether these privileges are available.</li><li>Add a Modern UI finish page or another check (see <a href="Section4.9.html#4.9.4.11">IfRebootFlag</a>) to allow the user to restart the computer when necessary.</li></ul>
+<p><a href='SectionB.3.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='AppendixC.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

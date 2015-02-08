@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Labels</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='Section4.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.4.html'>Next</a></p>
+<a name="4.3"></a><h2>4.3 Labels</h2>
+
+<p>Labels are the targets of Goto instructions, or of the various branching instructions (such as <a href="Section4.9.html#4.9.4.9">IfErrors</a>, <a href="Section4.9.html#4.9.4.15">MessageBox</a>, <a href="Section4.9.html#4.9.4.10">IfFileExists</a>, and <a href="Section4.9.html#4.9.4.19">StrCmp</a>). Labels must be within a Section or a Function. Labels are local in scope, meaning they are only accessible from within the Section or Function that they reside in. To declare a label, simply use:</p>
+
+<p><em>MyLabel:</em></p>
+
+<p>Labels cannot begin with a -, +, !, $, or 0-9. When specifying labels for the various instructions that require them, remember that both an empty string (&quot;&quot;) and 0 both represent the next instruction (meaning no Goto will occur). Labels beginning with a period (.) are global, meaning you can jump to them from any function or section (though you cannot jump to an uninstall global label from the installer, and vice versa).</p>
+<p><a href='Section4.2.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='Section4.4.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

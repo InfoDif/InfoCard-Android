@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.30</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.16.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.18.html'>Next</a></p>
+<a name="F.17"></a><h2>F.17 2.30</h2>
+
+<p>Released on August 25th, 2007</p>
+<a name="F.17.1"></a><h3>F.17.1 Release Notes</h3>
+<ul>
+<li>This release includes a beta of <a href="#" onclick="parser('../Docs/Modern UI 2/Readme.html')">Modern UI 2</a>. Please report any issues and suggestions.</li><li>The format of Modern UI language files has been modified to better support external strings. Private language files should be converted (and submitted as a <a href="http://sourceforge.net/tracker/?group_id=22049&atid=373087">patch</a> in the spirit of open source).</li></ul>
+<a name="F.17.2"></a><h3>F.17.2 Changelog</h3>
+<a name="F.17.2.1"></a><h4>F.17.2.1 Major Changes</h4>
+<ul>
+<li>Fixed a bug introduced in version 2.29 that caused invalid $SMPROGRAMS value on Windows 98 (<a href="http://sourceforge.net/support/tracker.php?aid=1766268">bug #1766268</a>)</li><li><a href="#" onclick="parser('../Docs/Modern UI 2/Readme.html')">Modern UI 2 beta</a>: Simpler code, easier to extend and makes use of nsDialogs</li></ul>
+<a name="F.17.2.2"></a><h4>F.17.2.2 Minor Changes</h4>
+<ul>
+<li>Added InstallOptions.nsh with relevant usage macros, based on the old Modern UI macros</li><li>Added LangFile.nsh allowing creation of langauge files that can be included with a single command with defaults for missing strings (when LANGFILE_DEFAULT is set)</li><li>Added LB_ERR and CB_ERR to WinMessages.nsh (<a href="http://sourceforge.net/support/tracker.php?aid=1771644">bug #1771644</a>)</li><li>Fixed <a href="Section4.9.html#4.9.3.3">CreateDirectory</a> logging (<a href="http://sourceforge.net/support/tracker.php?aid=1768584">patch #1768584</a>)</li><li>Fixed escaping of quotes with $\ in macros (<a href="http://sourceforge.net/support/tracker.php?aid=1713708">bug #1713708</a>)</li><li>Minor documentation improvements</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.80</a>: New language files structure based on LangFile.nsh</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.80</a>: MUI_LANGDLL_DISPLAY now reads previous settings on silent installations as well</li><li><a href="#" onclick="parser('../Docs/Modern UI/Readme.html')">Modern UI 1.80</a>: Added MUI_CUSTOMFUNCTION_MOUSEOVERSECTION (<a href="http://sourceforge.net/support/tracker.php?aid=1762003">patch #1762003</a>)</li></ul>
+<a name="F.17.2.3"></a><h4>F.17.2.3 Utilities and Plug-ins</h4>
+<ul>
+<li>Various nsDialogs improvements including RTL support, more macros in nsDialogs.nsh and <a href="#" onclick="parser('../Docs/nsDialogs/Readme.html')">initial documentation</a></li></ul>
+<a name="F.17.2.4"></a><h4>F.17.2.4 Translations</h4>
+<ul>
+<li>Catalan returns</li><li>Danish corrections</li><li>Slovak corrections (<a href="http://sourceforge.net/support/tracker.php?aid=1762627">patch #1762627</a>)</li></ul>
+<a name="F.17.2.5"></a><h4>F.17.2.5 Build System</h4>
+<ul>
+<li>More HPUX fixes (<a href="http://sourceforge.net/support/tracker.php?aid=1755148">bug #1755148</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1753063">bug #1753063</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1758873">bug #1758873</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1758863">patch #1758863</a>)</li><li>Ignore known failing tests by default on POSIX</li></ul>
+<p><a href='SectionF.16.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.18.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

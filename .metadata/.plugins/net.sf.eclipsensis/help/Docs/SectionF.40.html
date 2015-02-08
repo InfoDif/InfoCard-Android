@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>2.07</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionF.39.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.41.html'>Next</a></p>
+<a name="F.40"></a><h2>F.40 2.07</h2>
+
+<p>Released on June 20th, 2005</p>
+<a name="F.40.1"></a><h3>F.40.1 Release Notes</h3>
+<ul>
+<li>NSIS Update was removed and the update check was moved back to MakeNSISw (Help -&gt; NSIS Update). Use the <a href="SectionG.4.html#G.4">nightly builds</a> to get the latest compiled binaries from CVS.</li><li>Solid compression is no longer the default for bzip2 and lzma, use <code>SetCompressor /SOLID bzip2</code> or <code>SetCompressor /SOLID lzma</code> for solid compression.</li><li>Source code is no longer supplied with the installer package. Source code can be downloaded from CVS or from the <a href="http://nsis.sourceforge.net/download/">download page</a>.</li><li>The directory structure of the installation has been changed. All documentation is now in the Docs folder and all examples are in the Examples folder.</li></ul>
+<a name="F.40.2"></a><h3>F.40.2 Changelog</h3>
+<a name="F.40.2.1"></a><h4>F.40.2.1 Major Changes</h4>
+<ul>
+<li>Added /SOLID switch for <a href="Section4.8.html#4.8.2.4">SetCompressor</a></li><li>New build system (see <a href="AppendixG.html#G">appendix G</a>)</li><li>Stubs (exeheads) are no longer compiled into makensis.exe, but kept in the Stubs folder</li></ul>
+<a name="F.40.2.2"></a><h4>F.40.2.2 New/Changed Commands</h4>
+<ul>
+<li><a href="Section4.9.html#4.9.2.6">EnumRegValue</a> sets the error flag, if the enumeration index is out of range (<a href="http://sourceforge.net/support/tracker.php?aid=1178756">bug #1178756</a>)</li><li><a href="Section4.9.html#4.9.2.7">ExpandEnvStrings</a> now sets the error flag as the documentation states</li><li>Made <a href="Section4.9.html#4.9.1.5">File</a> /oname throw an error if the first character is a quote</li></ul>
+<a name="F.40.2.3"></a><h4>F.40.2.3 Minor Changes</h4>
+<ul>
+<li>Added <a href="Section4.2.html#4.2.3">$LOCALAPPDATA</a> (<a href="http://sourceforge.net/support/tracker.php?aid=1172123">RFE #1172123</a>)</li><li>Changed MUI dialogs charset from ANSI_CHARSET to DEFAULT_CHARSET (<a href="http://sourceforge.net/support/tracker.php?aid=1193736">bug #1193736</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1201712">bug #1201712</a>)</li><li>Fixed <a href="Section4.2.html#4.2.2">$INSTDIR</a> changing, even if user clicked Cancel in browse dialog</li><li>Fixed a crash in makensis when using <a href="Section4.8.html#4.8.1.45">WindowIcon</a> off (<a href="http://sourceforge.net/support/tracker.php?aid=1123353">bug #1123353</a>)</li><li>Fixed <a href="Section4.9.html#4.9.4.2">Call</a> :label in uninstall code</li><li>Fixed compilation error without NSIS_CONFIG_COMPONENTPAGE</li><li>Fixed compilation errors on various platforms (including <a href="http://sourceforge.net/support/tracker.php?aid=1179116">patch #1179116</a>, <a href="http://sourceforge.net/support/tracker.php?aid=1193692">patch #1193692</a>)</li><li>Fixed <a href="Section4.9.html#4.9.3.3">CreateDirectory</a> setting the error flag for directories with two consecutive backslashes (<a href="http://sourceforge.net/support/tracker.php?aid=1119442">bug #1119442</a>)</li><li>Fixed <a href="AppendixB.html#B">InstallLib</a> setting the error flag for new shared libraries (<a href="http://sourceforge.net/support/tracker.php?aid=1181951">bug #1181951</a>)</li><li>Fixed letters case in examples (<a href="http://sourceforge.net/support/tracker.php?aid=1184571">patch #1184571</a>)</li><li>Fixed logging state being reset after the directory page (<a href="http://sourceforge.net/support/tracker.php?aid=1168711">bug #1168711</a>)</li><li>Fixed overlapping icon in welcome page (<a href="http://sourceforge.net/support/tracker.php?aid=1221772">bug #1221772</a>)</li><li>Fixed <a href="Section4.9.html#4.9.1.8">RMDir</a> /REBOOTOK setting the reboot flag when trying to delete non-existent directory (<a href="http://sourceforge.net/support/tracker.php?aid=1073792">bug #1073792</a>)</li><li>Minor documentation fixes and improvements (including <a href="http://sourceforge.net/support/tracker.php?aid=1220940">bug #1220940</a>)</li><li>Removed NSIS Update, MakeNSISw checks for new versions again</li></ul>
+<a name="F.40.2.4"></a><h4>F.40.2.4 Include Files</h4>
+<ul>
+<li>More messages in <a href="#" onclick="parser('../Include/WinMessages.nsh')">WinMessages.nsh</a> (Shengalts Aleksander)</li><li>Some more useful macros in <a href="#" onclick="parser('../Include/Colors.nsh')">Colors.nsh</a> (Joel)</li></ul>
+<a name="F.40.2.5"></a><h4>F.40.2.5 Utilities and Plug-ins</h4>
+<ul>
+<li>Fixed halibut segfaults on PowerPC (<a href="http://sourceforge.net/support/tracker.php?aid=1180886">patch #1180886</a>)</li><li><a href="#" onclick="parser('../Docs/Math/Math.txt')">Math</a>: Fixed memory leak (brainsucker)</li><li>zip2exe: upgraded to zlib 1.2.2</li></ul>
+<a name="F.40.2.6"></a><h4>F.40.2.6 Translations</h4>
+<ul>
+<li>Added Malaysian translation (Azwa)</li><li>Added Welsh translation (Rhoslyn Prys)</li><li>Fixed Breton NLF file (credits weren't commented)</li><li>Fixed duplicate accelerator in French translation (<a href="http://sourceforge.net/support/tracker.php?aid=1168652">bug #1168652</a>)</li><li>Improved French translation (<a href="http://sourceforge.net/support/tracker.php?aid=1220277">bug #1220277</a>)</li><li>Updated Russian translation (Dmitry)</li><li>Updated translation credits (<a href="http://sourceforge.net/support/tracker.php?aid=1223362">patch #1223362</a>)</li></ul>
+<p><a href='SectionF.39.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionF.41.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>

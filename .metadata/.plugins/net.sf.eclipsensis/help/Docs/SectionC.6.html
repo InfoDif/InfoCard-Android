@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+<title>Prevent Multiple Instances</title>
+<meta name="generator" content="Halibut version 1.0 (NSIS Custom Build) xhtml-backend" />
+<link rel="stylesheet" href="style.css" type='text/css' /><script language="JavaScript" type="text/javascript" src="chmlink.js"></script>
+</head>
+
+<body>
+<p><a href='SectionC.5.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionC.7.html'>Next</a></p>
+<a name="C.6"></a><h2>C.6 Prevent Multiple Instances</h2>
+
+<p>Put the following code in your <a href="Section4.7.html#4.7.2.1.2">.onInit function</a>:</p>
+<pre> System::Call 'kernel32::CreateMutexA(i 0, i 0, t &quot;myMutex&quot;) i .r1 ?e'
+ Pop $R0
+ 
+ StrCmp $R0 0 +3
+   MessageBox MB_OK|MB_ICONEXCLAMATION &quot;The installer is already running.&quot;
+   Abort
+</pre>
+
+<p>'myMutex' should be replaced by a unique value.</p>
+<p><a href='SectionC.5.html'>Previous</a> | <a href='Contents.html'>Contents</a> | <a href='SectionC.7.html'>Next</a></p>
+
+<hr />
+
+<address>
+</address>
+</body>
+
+</html>
